@@ -1,0 +1,101 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="true" %>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/img/icon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/icon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/icon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/icon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" href="/img/icon/apple-touch-icon-57x57.png">
+
+    <title>테스트 페이지~~@@</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/cubeportfolio.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/plugins.css" rel="stylesheet">
+    <link href="/css/pe-icons.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+       'use strict';
+
+        jQuery('#headerwrap').backstretch([
+          "/img/bg/bg1.jpg",
+          "/img/bg/bg2.jpg",
+          "/img/bg/bg3.jpg"
+        ], {duration: 8000, fade: 800});
+
+        $("#mapwrapper").gMap({ controls: false,
+            scrollwheel: false,
+            markers: [{
+                latitude:40.7566,
+                longitude: -73.9863,
+            icon: { image: "/img/marker.png",
+                iconsize: [44,44],
+                iconanchor: [12,46],
+                infowindowanchor: [12, 0] } }],
+            icon: {
+                image: "/img/marker.png",
+                iconsize: [26, 46],
+                iconanchor: [12, 46],
+                infowindowanchor: [12, 0] },
+            latitude:40.7566,
+            longitude: -73.9863,
+            zoom: 14
+        });
+    });
+    </script>
+</head>
+
+<body>
+
+    <div id="searchwrapper" class="sb-slide">
+    	<div class="container">
+	    	<div id="search">
+			    <button type="button" class="close">×</button>
+			    <form>
+			        <input type="search" value="" placeholder="type keyword(s) here" />
+			        <button type="submit"><i class="fa fa-search"></i></button>
+			    </form>
+			</div>
+    	</div>
+    </div>
+
+    <div id="main-navigation" class="navbar navbar-inverse navbar-fixed-top smoothtransition fadeInDown sb-slide" data-wow-delay="1s" role="navigation">
+        <div class="container smoothtransition">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h2><a class="navbar-brand" href="/">미도리</a></h2>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">게시판</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>

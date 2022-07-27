@@ -6,15 +6,14 @@
     		<div class="container">
     			<div class="row">
     			    <div class="col-md-12">
-    			    	<h3 class="fancy wow fadeInDown" data-wow-delay="1.5s"><span><strong>뭔가 부연설명이 들어간다</strong></span></h3>
-                        <h1 class="mb30 wow fadeInUp" data-wow-delay="2s">WELCOME TO MIDORI</h1>
+    			    	<h3 class="fancy wow fadeInDown" data-wow-delay="1.5s"><span><strong>뭔가 부연설명이 들어간다.</strong></span></h3>
+                        <h1 class="mb30 wow fadeInUp" data-wow-delay="2s">WELCOME TO MIDORI!!</h1>
                         <a class="page-scroll btn btn-theme btn-lg btn-white wow fadeInUp" data-wow-delay="2.5s" href="#about-us">Take A Look</a>
     			    </div>
     			</div>
     		</div>
         </div>
 	</header>
-
 	<section class="white halfcreen big-carousel">
         <div class="section-inner nopaddingbottom">
             <div class="container">

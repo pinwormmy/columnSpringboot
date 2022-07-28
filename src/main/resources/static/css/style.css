@@ -37,8 +37,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  1 - FONT IMPORT
 /*-----------------------------------------------------------------------------------*/
-@import url(http://fonts.googleapis.com/css?family=Raleway:900,800,700,400,300);
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /*-----------------------------------------------------------------------------------*/
 /*  2 - BASE
 /*-----------------------------------------------------------------------------------*/
@@ -51,7 +50,7 @@ body {
 	background:#fff;
 	margin:0;
 	color:#404040;
-	font-family:'Raleway',sans-serif
+	font-family:'Noto Sans KR',sans-serif
 }
 
 body.boxed {
@@ -59,21 +58,21 @@ body.boxed {
 }
 
 h1,h2,h3,h4,h5,h6 {
-	font-family:'Raleway',sans-serif;
-	font-weight:300;
+	font-family:'Noto Sans KR',sans-serif;
+	font-weight:100;
 	letter-spacing:-1px
 }
 
 h1 strong,h2 strong,h3 strong,h4 strong,h5 strong,h6 strong {
-	font-family:'Raleway',sans-serif;
+	font-family:'Noto Sans KR',sans-serif;
 	font-weight: 700
 }
 
 p {
 	padding:0;
 	margin-bottom:22px;
-	font-family:'Raleway',sans-serif;
-	font-weight:300;
+	font-family:'Noto Sans KR',sans-serif;
+	font-weight:100;
 	font-size: 14px;
 	line-height:28px;
 	color:#666;
@@ -342,7 +341,7 @@ p.white, span.white, .white-text {
 .navbar-inverse {
 	background:rgba(255,255,255,0);
 	border:transparent;
-	font-family:'Raleway',sans-serif;
+	font-family:'Noto Sans KR',sans-serif;
 	padding: 10px 15px;
 }
 
@@ -1637,7 +1636,7 @@ html.sb-active-right body.boxed .sb-slidebar.sb-right {
     font-weight: 800 !important;
     opacity: 0;
     filter: alpha(opacity=0);
-    font-family: 'Raleway',sans-serif;
+    font-family: 'Noto Sans KR',sans-serif;
 }
 
 .tooltip.in{

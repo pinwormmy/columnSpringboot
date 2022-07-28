@@ -19,5 +19,12 @@ public class TimeMapperTest {
         log.info("timeMapper class name: " + timeMapper.getClass().getName());
         log.info("timeMapper time: " + timeMapper.getTime());
     }
+
+    //XML 방식
+    @Test
+    public void testGetTime2() {
+        log.info("getTime2");
+        log.info("getTime2: " + timeMapper.getTime2());
+    }
 }
 

@@ -1,5 +1,6 @@
 package com.study.demo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,5 +13,3 @@ public class Demo0Application {
 	}
 
 }
-
-// https://azurealstn.tistory.com/83 여기서 디비 마이바티스 연동하던 중이었음

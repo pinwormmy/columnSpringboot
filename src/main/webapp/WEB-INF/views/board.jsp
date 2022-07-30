@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="./include/header.jspf" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <header id="headerwrap" class="halfscreen">
 
@@ -23,39 +24,33 @@
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
-
 		                    <div id="comments" class="col-xs-12">
+		                        <c:if test="${empty postList}">작성된 글이 없습니다. 글쓰기 버튼을 누르면 작성할 수 있습니다~!</c:if>
 		                        <div id="comments-list" class="gap">
-		                           <c:forEach>
-		                           <div class="media">
-		                                <div class="media-body">
-                                            <div class="well">
-                                                <div class="media-heading">
-
-                                                </div>
-                                            </div>
-		                                </div>
-		                           </div>
-		                           </c:forEach>
-		                           <div class="media">
-                                        <div class="media-body">
-                                               <div class="well">
-                                                   <div class="media-heading">
-                                                       <h2>尹 시장교란 불법 공매도 뿌리뽑겠다</h2><br>
-                                                       <small>2022.07.28</small>
+		                            <c:forEach var="post" items="${postList}">
+                                        <div class="media">
+                                             <div class="media-body">
+                                                   <div class="well">
+                                                       <div class="media-heading">
+                                                           <h2><a href="/post?postNum=${post.postNum}">${post.title}</a></h2><br>
+                                                           <small><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/> </small>
+                                                       </div>
                                                    </div>
-                                               </div>
+                                            </div>
                                         </div>
-                                   </div>
-
-		                        </div><!--/#comments-list-->
+                                    </c:forEach>
+                                </div><!--/#comments-list-->
 		                        <div class="post-navigation">
-		                            <a class="pull-left btn btn-theme" href="#">Older Posts</a>
-		                            <a class="pull-right btn btn-theme" href="#">Newer Posts</a>
+		                            <a class="pull-letf btn btn-theme" href="#">이전</a>
+		                            <a class="pull-center btn btn-theme" href="#">1</a>
+		                            <a class="pull-center btn btn-theme" href="#">2</a>
+		                            <a class="pull-center btn btn-theme" href="#">3</a>
+		                            <a class="pull-center btn btn-theme" href="#">4</a>
+		                            <a class="pull-right btn btn-theme" href="#">다음</a>
 		                        </div>
-		                        <a class="pull-right btn btn-theme" href="#">Reply</a>
 		                    </div><!--/#comments-->
 						</div>
+						<a class="pull-right btn btn-theme" href="#">글쓰기</a>
 					</div>
 				</div>
 			</div>

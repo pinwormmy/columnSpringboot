@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.demo.mapper.BoardMapper">
+    <select id="showPostList" resultType="com.study.demo.board.BoardDTO">
+        select post_num, title, content, writer, reg_date, views
+            from board
+            order by post_num desc
+    </select>
+</mapper>

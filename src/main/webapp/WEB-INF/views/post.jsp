@@ -26,6 +26,7 @@
 
 			                    <p>글 내용 들어가는 곳</p>
 
+
 							</div>
 
 							<div id="author-box" class="col-xs-12 mb100 wow fadeInUp">

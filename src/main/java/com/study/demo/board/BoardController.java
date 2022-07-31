@@ -25,4 +25,9 @@ public class BoardController {
         return "post";
     }
 
+    @RequestMapping("/writePost")
+    public String writePost() {
+        return "writePost";
+    }
+
 }

@@ -30,4 +30,10 @@ public class BoardController {
         return "writePost";
     }
 
+    @RequestMapping("/submitPost")
+    public String submitPost(BoardDTO board) throws Exception {
+        boardService.submitPost(board);
+        return "/board";
+    }
+
 }

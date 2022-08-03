@@ -14,4 +14,9 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardDTO> showPostList() throws Exception {
         return boardMapper.showPostList();
     }
+
+    @Override
+    public void submitPost(BoardDTO board) throws Exception {
+        boardMapper.submitPost(board);
+    }
 }

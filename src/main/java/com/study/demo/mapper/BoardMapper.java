@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     List<BoardDTO> showPostList() throws Exception;
+
+    void submitPost(BoardDTO board) throws Exception;
 }

@@ -22,9 +22,8 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
-                                <p>ck에디터 쓸거면 라이센스 확인</p>
                                 <form action="/submitPost" method="post">
-                                    <input type="hidden" name="writer" value="${member.userId}">
+                                    <input type="hidden" name="writer" value="admin">
                                     제목 <input type="text" name="title" size="70" required> <br>
                                     <textarea name="content" id="content"></textarea><br>
                                     <button class="pull-left btn btn-theme">게시하기</button>
@@ -44,5 +43,4 @@
 			</div>
 		</div>
 	</section>
-
 <%@include file="./include/footer.jspf" %>

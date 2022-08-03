@@ -7,8 +7,8 @@
             	<div class="container">
 	                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 	                    <div class="post-heading mb">
-	                        <h1>여기 그 어떤 제목이 들어가는 것이다</h1>
-	                        <span class="white meta">Posted by <a href="#">작성자 </a>on 2022.07.30</span>
+	                        <h1>${post.title}</h1>
+	                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
 	                    </div>
 	                </div>
 	            </div>
@@ -23,10 +23,8 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
-
 			                    <p>글 내용 들어가는 곳</p>
-
-
+			                    ${post.content}
 							</div>
 
 							<div id="author-box" class="col-xs-12 mb100 wow fadeInUp">

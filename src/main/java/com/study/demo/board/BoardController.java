@@ -20,9 +20,11 @@ public class BoardController {
         return "board";
     }
 
-    @RequestMapping("/post")
-    public String post() {
-        return "post";
+    @RequestMapping("/readPost")
+    public String post(Model model, int postNum) throws Exception {
+        BoardDTO post = boardService.readPost(postNum);
+        model.addAttribute("post", post);
+        return "readPost";
     }
 
     @RequestMapping("/writePost")
@@ -33,7 +35,7 @@ public class BoardController {
     @RequestMapping("/submitPost")
     public String submitPost(BoardDTO board) throws Exception {
         boardService.submitPost(board);
-        return "/board";
+        return "redirect:/board";
     }
 
 }

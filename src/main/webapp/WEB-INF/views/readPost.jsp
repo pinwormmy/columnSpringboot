@@ -101,8 +101,8 @@
 		                        </div><!--/#comment-form-->
 
 		                        <div class="post-navigation">
-		                            <a class="pull-left btn btn-theme" href="#">Older Posts</a>
-		                            <a class="pull-right btn btn-theme" href="#">Newer Posts</a>
+		                            <a class="pull-left btn btn-theme" href="/board">글 목록</a>
+		                            <!-- <a class="pull-right btn btn-theme" href="#">Newer Posts</a> -->
 		                        </div>
 		                    </div><!--/#comments-->
 						</div>

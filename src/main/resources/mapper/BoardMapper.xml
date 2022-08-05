@@ -10,6 +10,11 @@
             order by post_num desc
     </select>
 
+    <select id="readPost" resultType="com.study.demo.board.BoardDTO">
+        select * from board
+            where post_num=#{postNum}
+    </select>
+
     <insert id="submitPost">
         insert into board
             values(POST_NUM_SEQ.nextval, #{title}, #{content}, #{writer}, sysdate, 0)

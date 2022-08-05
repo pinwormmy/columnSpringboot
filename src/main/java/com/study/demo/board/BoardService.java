@@ -6,4 +6,6 @@ public interface BoardService {
     public List<BoardDTO> showPostList() throws Exception;
 
     void submitPost(BoardDTO board) throws Exception;
+
+    BoardDTO readPost(int postNum) throws Exception;
 }

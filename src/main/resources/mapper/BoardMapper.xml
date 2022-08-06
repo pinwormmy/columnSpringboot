@@ -19,4 +19,9 @@
         insert into board
             values(POST_NUM_SEQ.nextval, #{title}, #{content}, #{writer}, sysdate, 0)
     </insert>
+
+    <delete id="deletePost">
+        delete from board
+            where post_num=#{postNum}
+    </delete>
 </mapper>

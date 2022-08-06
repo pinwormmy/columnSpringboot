@@ -24,4 +24,9 @@ public class BoardServiceImpl implements BoardService{
     public BoardDTO readPost(int postNum) throws Exception {
         return boardMapper.readPost(postNum);
     }
+
+    @Override
+    public void deletePost(int postNum) throws Exception {
+        boardMapper.deletePost(postNum);
+    }
 }

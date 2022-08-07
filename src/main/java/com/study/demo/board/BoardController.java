@@ -50,4 +50,9 @@ public class BoardController {
         model.addAttribute("postList", postList);
         return "videoBoard";
     }
+
+    @RequestMapping("/writeVideoPost")
+    public String writeVideoPost() {
+        return "writeVideoPost";
+    }
 }

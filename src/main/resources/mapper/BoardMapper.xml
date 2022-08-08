@@ -22,6 +22,6 @@
 
     <delete id="deletePost">
         delete from board
-            where post_num=#{postNum}
+        where post_num=#{postNum}
     </delete>
 </mapper>

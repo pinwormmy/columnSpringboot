@@ -44,15 +44,4 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    @GetMapping(value = "/videoBoard")
-    public String videoBoard(Model model) throws Exception {
-        List<BoardDTO> postList = boardService.showPostList();
-        model.addAttribute("postList", postList);
-        return "videoBoard";
-    }
-
-    @RequestMapping("/writeVideoPost")
-    public String writeVideoPost() {
-        return "writeVideoPost";
-    }
 }

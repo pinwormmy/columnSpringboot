@@ -31,9 +31,13 @@
                                              <div class="media-body">
                                                    <div class="well">
                                                        <div class="media-heading">
-                                                           <h2><a href="/readPost?postNum=${post.postNum}">${post.title}</a></h2><br>
-                                                           <small><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/> </small>
-                                                           <p>영상넣기</p>
+                                                           <h2>${video.title}</h2><br>
+                                                           <small><fmt:formatDate pattern="yyyy.MM.dd" value="${video.regDate}"/> </small>
+                                                           <iframe width="560" height="315" src="${video.videoUrl}"
+                                                           title="YouTube video player" frameborder="0" allow="accelerometer;
+                                                           autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                           allowfullscreen>
+                                                           </iframe>
                                                        </div>
                                                    </div>
                                             </div>
@@ -50,7 +54,7 @@
 		                        </div>
 		                    </div><!--/#comments-->
 						</div>
-						<a href="/writePost" class="pull-right btn btn-theme" href="#">글쓰기</a>
+						<a href="/writeVideoPost" class="pull-right btn btn-theme" href="#">글쓰기</a>
 					</div>
 				</div>
 			</div>

@@ -4,5 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.demo.mapper.VideoMapper">
+    <insert id="submitVideoPost">
+        insert into VIDEO values(VIDEO_NUM_SEQ.nextval, #{title}, #{videoUrl}, sysdate)
+    </insert>
 
 </mapper>

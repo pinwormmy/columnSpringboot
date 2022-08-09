@@ -24,11 +24,10 @@
 							<div class="col-xs-12 mb wow fadeInUp">
 
                                 <form action="/submitVideoPost" method="post">
-                                    <input type="hidden" name="writer" value="admin">
                                     제목 <input type="text" name="title" size="70" required> <br>
-                                    영상주소 <input type="text" name="url"><br>
+                                    영상주소 <input type="text" name="videoUrl"><br>
                                     <button class="pull-left btn btn-theme">게시하기</button>
-                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/board'">취소</button>
+                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/videoBoard'">취소</button>
                                 </form>
 
 							</div>

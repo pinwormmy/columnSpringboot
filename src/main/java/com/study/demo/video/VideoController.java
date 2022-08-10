@@ -17,8 +17,8 @@ public class VideoController {
 
     @GetMapping(value = "/videoBoard")
     public String videoBoard(Model model) throws Exception {
-        //List<BoardDTO> postList = boardService.showPostList();
-        //model.addAttribute("postList", postList);
+        List<BoardDTO> videoList = videoService.showVideoList();
+        model.addAttribute("videoList", videoList);
         return "videoBoard";
     }
 

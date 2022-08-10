@@ -8,4 +8,9 @@
         insert into VIDEO values(VIDEO_NUM_SEQ.nextval, #{title}, #{videoUrl}, sysdate)
     </insert>
 
+    <select id="showVideoList" resultType="com.study.demo.video.VideoDTO">
+        select *
+            from video
+            order by video_num desc
+    </select>
 </mapper>

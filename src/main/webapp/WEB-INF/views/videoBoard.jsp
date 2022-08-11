@@ -31,13 +31,8 @@
                                              <div class="media-body">
                                                    <div class="well">
                                                        <div class="media-heading">
-                                                           <h2>${video.title}</h2><br>
-                                                           <small><fmt:formatDate pattern="yyyy.MM.dd" value="${video.regDate}"/> </small>
-                                                           <iframe width="560" height="315" src="${video.videoUrl}"
-                                                           title="YouTube video player" frameborder="0" allow="accelerometer;
-                                                           autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                           allowfullscreen>
-                                                           </iframe>
+                                                           <h2>${video.title}</h2>${video.regDate}<br>
+                                                           ${video.videoUrl}
                                                        </div>
                                                    </div>
                                             </div>

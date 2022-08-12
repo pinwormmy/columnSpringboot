@@ -30,6 +30,7 @@
                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/videoBoard'">취소</button>
                                 </form>
 							</div>
+
                             <div class="post-navigation">
                                 <a class="pull-left btn btn-theme" href="#">Older Posts</a>
                                 <a class="pull-right btn btn-theme" href="#">Newer Posts</a>

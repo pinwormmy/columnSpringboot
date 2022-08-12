@@ -8,4 +8,5 @@ public class MemberDTO {
     private String pw;
     private String nickName;
     private String email;
+    private int memberLevel;
 }

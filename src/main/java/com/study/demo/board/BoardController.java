@@ -43,5 +43,7 @@ public class BoardController {
         boardService.deletePost(postNum);
         return "redirect:/board";
     }
+    
+    // 수정 삭제 추가해야함
 
 }

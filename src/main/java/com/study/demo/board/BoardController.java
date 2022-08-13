@@ -44,6 +44,6 @@ public class BoardController {
         return "redirect:/board";
     }
     
-    // 수정 삭제 추가해야함
+    // 수정 추가해야함
 
 }

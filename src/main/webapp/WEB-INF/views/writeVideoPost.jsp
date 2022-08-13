@@ -25,7 +25,7 @@
                                 <form action="/submitVideoPost" method="post">
                                     제목 <input type="text" name="title" size="70" required> <br>
                                     영상주소 <br>
-                                    <textarea name="videoUrl" cols="100" rows="5"></textarea>
+                                    <textarea name="videoUrl" cols="100" rows="3"></textarea>
                                     <button class="pull-left btn btn-theme">게시하기</button>
                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/videoBoard'">취소</button>
                                 </form>

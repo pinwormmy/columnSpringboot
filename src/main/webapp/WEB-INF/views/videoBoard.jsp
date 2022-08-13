@@ -32,7 +32,8 @@
                                                    <div class="well">
                                                        <div class="media-heading">
                                                            <h2>${video.title}</h2>${video.regDate}<br>
-                                                           ${video.videoUrl}
+                                                           ${video.videoUrl}<br>
+                                                           <a href="/deleteVideoPost?videoNum=${video.videoNum}">삭제</a> <!-- (운영자만 보이게 수정예정) -->
                                                        </div>
                                                    </div>
                                             </div>

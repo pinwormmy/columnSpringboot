@@ -21,4 +21,9 @@ public class VideoServiceImpl implements VideoService{
     public List<BoardDTO> showVideoList() throws Exception {
         return videoMapper.showVideoList();
     }
+
+    @Override
+    public void deleteVideoPost(int videoNum) throws Exception {
+        videoMapper.deleteVideoPost(videoNum);
+    }
 }

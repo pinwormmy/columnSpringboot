@@ -13,4 +13,9 @@
             from video
             order by video_num desc
     </select>
+
+    <delete id="deleteVideoPost">
+        delete from video
+        where video_num=#{videoNum}
+    </delete>
 </mapper>

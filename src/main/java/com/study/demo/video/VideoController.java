@@ -32,4 +32,10 @@ public class VideoController {
         videoService.submitVideoPost(video);
         return "redirect:/videoBoard";
     }
+
+    @RequestMapping("/deleteVideoPost")
+    public String deletePost(int videoNum) throws Exception {
+        videoService.deleteVideoPost(videoNum);
+        return "redirect:/videoBoard";
+    }
 }

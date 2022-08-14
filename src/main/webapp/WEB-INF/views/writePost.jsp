@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="./include/header.jspf" %>
+<script type="text/javascript" src="/js/info/ckeditor/ckeditor.js"></script>
 
 <header id="headerwrap" class="halfscreen">
 		<div class="align-bottom wow fadeInUp">
@@ -26,6 +27,9 @@
                                     <input type="hidden" name="writer" value="admin">
                                     제목 <input type="text" name="title" size="70" required> <br>
                                     <textarea name="content" id="content"></textarea><br>
+                                    <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+                                        CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
+                                    </script>
                                     <button class="pull-left btn btn-theme">게시하기</button>
                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/board'">취소</button>
                                 </form>

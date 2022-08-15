@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.UUID;
 
+// 에디터 첨부자료 통째로 들고와서 괜히 무거워짐. 나중에 필요없는 파일 다 삭제하기 
 @Controller
 public class UtilController {
 

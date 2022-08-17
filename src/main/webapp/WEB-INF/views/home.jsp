@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>테스트 페이지~~@@</title>
+<title>테스트 메인~~@@</title>
 </head>
 <body>
 <%@include file="./include/header.jspf" %>

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>테스트 글쓰기~~@@</title>
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+</head>
+<body>
 <%@include file="./include/header.jspf" %>
-<script type="text/javascript" src="/js/info/ckeditor/ckeditor.js"></script>
 
 <header id="headerwrap" class="halfscreen">
 		<div class="align-bottom wow fadeInUp">
@@ -48,3 +54,5 @@
 		</div>
 	</section>
 <%@include file="./include/footer.jspf" %>
+</body>
+</html>

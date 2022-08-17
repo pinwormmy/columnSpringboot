@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>테스트 게시물읽기~~@@</title>
+</head>
+<body>
 <%@include file="./include/header.jspf" %>
 
 <header id="headerwrap" class="halfscreen">
@@ -23,7 +30,6 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
-			                    <p>글 내용 들어가는 곳</p>
 			                    ${post.content}
 							</div>
 
@@ -114,3 +120,5 @@
 	</section>
 
 <%@include file="./include/footer.jspf" %>
+</body>
+</html>

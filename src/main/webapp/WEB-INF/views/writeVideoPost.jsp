@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>테스트 영상글쓰기~~@@</title>
+</head>
+<body>
 <%@include file="./include/header.jspf" %>
 
 <header id="headerwrap" class="halfscreen">
@@ -43,3 +49,5 @@
 		</div>
 	</section>
 <%@include file="./include/footer.jspf" %>
+</body>
+</html>

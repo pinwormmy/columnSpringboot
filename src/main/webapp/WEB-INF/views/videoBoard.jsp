@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@include file="./include/header.jspf" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>테스트 영상글~~@@</title>
+</head>
+<body>
+<%@include file="./include/header.jspf" %>
 
 <header id="headerwrap" class="halfscreen">
 
@@ -57,3 +64,5 @@
 		</div>
 	</section>
 <%@include file="./include/footer.jspf" %>
+</body>
+</html>

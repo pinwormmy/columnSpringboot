@@ -25,4 +25,8 @@
         delete from board
         where post_num=#{postNum}
     </delete>
+
+    <select id="countTotalPost" resultType="int">
+        select count(*) from board
+    </select>
 </mapper>

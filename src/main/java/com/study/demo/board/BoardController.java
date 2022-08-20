@@ -1,5 +1,6 @@
 package com.study.demo.board;
 
+import com.study.demo.util.PageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ public class BoardController {
     public String board(Model model) throws Exception {
         List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
+        PageDTO page = boardService.pageSetting();
+        model.addAttribute("page", page);
         return "board";
     }
 

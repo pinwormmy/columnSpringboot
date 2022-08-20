@@ -1,6 +1,8 @@
 package com.study.demo.board;
 
 import com.study.demo.mapper.BoardMapper;
+import com.study.demo.util.PageDTO;
+import com.study.demo.util.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,29 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void deletePost(int postNum) throws Exception {
         boardMapper.deletePost(postNum);
+    }
+
+    @Override
+    public PageDTO pageSetting() throws Exception {
+        int recentPage = 1;	// 첫페이지
+        return utilLoadingForPage(recentPage);
+    }
+
+    private PageDTO utilLoadingForPage(int recentPage) throws Exception {
+        int totalPostCount = countTotalPost();
+        PageService util = initPageUtil();
+        return util.calculatePage(recentPage, totalPostCount);
+    }
+
+    @Override
+    public int countTotalPost() throws Exception {
+        return boardMapper.countTotalPost();
+    }
+
+    private PageService initPageUtil() {
+        PageService util = new PageService();
+        util.setDISPLAY_POST_LIMIT(5);
+        util.setPAGESET_LIMIT(10);
+        return util;
     }
 }

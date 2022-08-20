@@ -1,5 +1,6 @@
 package com.study.demo.util;
 
+// 추후 코드 어떻게 정리할지, 서비스로 치는게 맞는지 구현부 따로 두는게 맞는지 알아보기
 public class PageService {
 
     int DISPLAY_POST_LIMIT = 10;

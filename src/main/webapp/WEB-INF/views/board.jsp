@@ -34,7 +34,7 @@
 		                    <div id="comments" class="col-xs-12">
 		                        <c:if test="${empty postList}">작성된 글이 없습니다. 글쓰기 버튼을 누르면 작성할 수 있습니다~!</c:if>
 		                        <div id="comments-list" class="gap">
-		                            <c:forEach var="post" items="${postList}">
+		                            <c:forEach var="post" items="${postList}" begin="${page.postBeginPoint}" end="${page.postEndPoint}">
                                         <div class="media">
                                              <div class="media-body">
                                                    <div class="well">
@@ -48,12 +48,15 @@
                                     </c:forEach>
                                 </div><!--/#comments-list-->
 		                        <div class="post-navigation">
-		                            <a class="pull-letf btn btn-theme" href="#">이전</a>
-		                            <a class="pull-center btn btn-theme" href="#">1</a>
-		                            <a class="pull-center btn btn-theme" href="#">2</a>
-		                            <a class="pull-center btn btn-theme" href="#">3</a>
-		                            <a class="pull-center btn btn-theme" href="#">4</a>
-		                            <a class="pull-right btn btn-theme" href="#">다음</a>
+                                    <c:if test="${page.prevPageSetPoint >= 1}">
+                                        <a class="pull-letf btn btn-theme" href="#">이전</a>
+                                    </c:if>
+                                    <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
+                                        <a class="pull-center btn btn-theme" href="#">${countPage}</a>
+                                    </c:forEach>
+                                    <c:if test="${page.nextPageSetPoint <= page.totalPage}">
+                                        <a class="pull-right btn btn-theme" href="#">다음</a>
+                                    </c:if>
 		                        </div>
 		                    </div><!--/#comments-->
 						</div>

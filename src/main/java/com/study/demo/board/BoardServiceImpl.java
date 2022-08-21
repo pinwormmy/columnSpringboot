@@ -38,6 +38,11 @@ public class BoardServiceImpl implements BoardService{
         return utilLoadingForPage(recentPage);
     }
 
+    @Override
+    public PageDTO pageSetting(int recentPage) throws Exception {
+        return utilLoadingForPage(recentPage);
+    }
+
     private PageDTO utilLoadingForPage(int recentPage) throws Exception {
         int totalPostCount = countTotalPost();
         PageService util = initPageUtil();

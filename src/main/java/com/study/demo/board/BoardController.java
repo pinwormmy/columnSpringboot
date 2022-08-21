@@ -23,6 +23,15 @@ public class BoardController {
         return "board";
     }
 
+    @GetMapping(value = "/boardPage")
+    public String boardPage(Model model, int recentPage) throws Exception {
+        List<BoardDTO> postList = boardService.showPostList();
+        model.addAttribute("postList", postList);
+        PageDTO page = boardService.pageSetting(recentPage);
+        model.addAttribute("page", page);
+        return "board";
+    }
+
     @RequestMapping("/readPost")
     public String post(Model model, int postNum) throws Exception {
         BoardDTO post = boardService.readPost(postNum);

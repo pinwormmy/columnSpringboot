@@ -13,4 +13,6 @@ public interface VideoMapper {
     List<BoardDTO> showVideoList() throws Exception;
 
     void deleteVideoPost(int videoNum) throws Exception;
+
+    int countTotalPost() throws Exception;
 }

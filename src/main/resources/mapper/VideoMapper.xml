@@ -18,4 +18,8 @@
         delete from video
         where video_num=#{videoNum}
     </delete>
+
+    <select id="countTotalPost" resultType="int">
+        select count(*) from video
+    </select>
 </mapper>

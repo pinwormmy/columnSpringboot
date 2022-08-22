@@ -18,16 +18,14 @@ import java.util.UUID;
 @Controller
 public class UtilController {
 
-    @RequestMapping(value="food/imageUpload.do", method = RequestMethod.POST)
+    @RequestMapping(value="/imageUpload", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
                             HttpServletResponse response, MultipartHttpServletRequest multiFile
             , @RequestParam MultipartFile upload) throws Exception{
         // 랜덤 문자 생성
         UUID uid = UUID.randomUUID();
-
         OutputStream out = null;
         PrintWriter printWriter = null;
-
         //인코딩
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
@@ -37,7 +35,7 @@ public class UtilController {
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "C:\\Users\\wowo1\\Pictures\\Saved Pictures" + "ckImage/";	// 이미지 경로 설정(폴더 자동 생성)
+            String path = "C:\\testsite\\Pictures\\Saved Pictures" + "ckImage/";	// 이미지 경로 설정(폴더 자동 생성)
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
             System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
@@ -56,7 +54,7 @@ public class UtilController {
 
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl = "/food/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
+            String fileUrl = "/ckImgSubmit?uid=" + uid + "&fileName=" + fileName; // 작성화면
 
             // 업로드시 메시지 출력
             printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
@@ -81,7 +79,7 @@ public class UtilController {
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
-        String path = "C:\\Users\\wowo1\\Pictures\\Saved Pictures" + "ckImage/";	// 저장된 이미지 경로
+        String path = "C:\\testsite\\Pictures\\Saved Pictures" + "ckImage/";	// 저장된 이미지 경로
         System.out.println("path:"+path);
         String sDirPath = path + uid + "_" + fileName;
 

@@ -32,7 +32,6 @@
 							<div class="col-xs-12 mb wow fadeInUp">
 			                    ${post.content}
 							</div>
-
 							<div id="author-box" class="col-xs-12 mb100 wow fadeInUp">
 								<div class="row">
 									<div class="col-xs-3">

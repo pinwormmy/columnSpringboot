@@ -107,6 +107,7 @@
 
 		                        <div class="post-navigation">
 		                            <a class="pull-left btn btn-theme" href="/board">글 목록</a>
+		                            <a class="pull-left btn btn-theme" href="/modifyBoard">글 수정</a>
 		                            <a class="pull-right btn btn-theme" href="/deletePost?postNum=${post.postNum}">글 삭제</a>
 		                            <!-- <a class="pull-right btn btn-theme" href="#">Newer Posts</a> -->
 		                        </div>

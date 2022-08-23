@@ -28,6 +28,11 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public void modifyPost(int postNum) throws Exception {
+        boardMapper.modifyPost(postNum);
+    }
+
+    @Override
     public void deletePost(int postNum) throws Exception {
         boardMapper.deletePost(postNum);
     }
@@ -60,4 +65,6 @@ public class BoardServiceImpl implements BoardService{
         util.setPAGESET_LIMIT(10);
         return util;
     }
+
+
 }

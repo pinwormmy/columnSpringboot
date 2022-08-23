@@ -21,6 +21,11 @@
             values(POST_NUM_SEQ.nextval, #{title}, #{content}, #{writer}, sysdate, 0)
     </insert>
 
+    <update id="modifyPost">
+        update board
+            set title=#{title}, content=#{content}
+    </update>
+
     <delete id="deletePost">
         delete from board
         where post_num=#{postNum}

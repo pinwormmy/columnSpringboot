@@ -55,7 +55,11 @@ public class BoardController {
         boardService.deletePost(postNum);
         return "redirect:/board";
     }
-    
-    // 수정 추가해야함
+
+    @RequestMapping("/modifyPost")
+    public String modifyPost(int postNum) throws Exception {
+        boardService.modifyPost(postNum);
+        return "modifyPost";
+    }
 
 }

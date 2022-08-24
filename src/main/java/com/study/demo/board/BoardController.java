@@ -45,8 +45,8 @@ public class BoardController {
     }
 
     @RequestMapping("/submitPost")
-    public String submitPost(BoardDTO board) throws Exception {
-        boardService.submitPost(board);
+    public String submitPost(BoardDTO post) throws Exception {
+        boardService.submitPost(post);
         return "redirect:/board";
     }
 
@@ -56,10 +56,16 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    @RequestMapping("/modifyPost")
-    public String modifyPost(int postNum) throws Exception {
-        boardService.modifyPost(postNum);
+    @RequestMapping(value = "/modifyPost")
+    public String modifyPost(Model model, int postNum) throws Exception {
+        BoardDTO post = boardService.readPost(postNum);
+        model.addAttribute("post", post);
         return "modifyPost";
     }
 
+    @RequestMapping(value = "/submitModifyPost")
+    public String submitModifyPost(BoardDTO post) throws Exception {
+        boardService.submitModifyPost(post);
+        return "redirect:/readPost?postNum=" + post.getPostNum();
+    }
 }

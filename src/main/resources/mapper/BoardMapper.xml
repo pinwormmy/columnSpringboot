@@ -21,9 +21,10 @@
             values(POST_NUM_SEQ.nextval, #{title}, #{content}, #{writer}, sysdate, 0)
     </insert>
 
-    <update id="modifyPost">
+    <update id="submitModifyPost">
         update board
-            set title=#{title}, content=#{content}
+            set title=#{title}, content=#{content}, writer=#{writer}
+            where post_num=#{postNum}
     </update>
 
     <delete id="deletePost">

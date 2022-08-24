@@ -28,8 +28,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void modifyPost(int postNum) throws Exception {
-        boardMapper.modifyPost(postNum);
+    public void submitModifyPost(BoardDTO post) throws Exception {
+        boardMapper.submitModifyPost(post);
     }
 
     @Override

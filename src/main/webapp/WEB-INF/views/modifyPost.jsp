@@ -29,15 +29,16 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
-                                <form action="/submitPost" method="post"> <!-- 작업해야함 -->
-                                    <input type="hidden" name="writer" value="admin">
-                                    제목 <input type="text" name="title" size="70" required> <br>
-                                    <textarea name="content" id="content"></textarea><br>
+                                <form action="/submitModifyPost" method="post"> <!-- 작업해야함 -->
+                                    <input type="hidden" name="writer" value="${post.writer}">
+                                    <input type="hidden" name="postNum" value="${post.postNum}">
+                                    제목 <input type="text" name="title" size="70" value="${post.title}" required> <br>
+                                    <textarea name="content" id="content">${post.content}</textarea><br>
                                     <script type="text/javascript">
                                         CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
                                     </script>
                                     <button class="pull-left btn btn-theme">게시하기</button>
-                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/board'">취소</button>
+                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/readPost?postNum=${post.postNum}'">취소</button>
                                 </form>
 
 							</div>

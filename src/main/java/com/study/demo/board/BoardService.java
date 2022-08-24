@@ -11,7 +11,7 @@ public interface BoardService {
 
     BoardDTO readPost(int postNum) throws Exception;
 
-    void modifyPost(int postNum) throws Exception;
+    void submitModifyPost(BoardDTO post) throws Exception;
 
     void deletePost(int postNum) throws Exception;
 

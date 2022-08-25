@@ -60,6 +60,17 @@
 		                        </div>
 		                    </div><!--/#comments-->
 						</div>
+						<div class="form-group">
+                            <form>
+                                <select name="searchType">
+                                    <option value="titleAndContent">제목+내용</option>
+                                    <option value="title">제목</option>
+                                    <option value="content">내용</option>
+                                </select>
+                                <input name="keyword">
+                                <button class="pull btn btn-theme">검색</button>
+                            </form>
+						</div>
 						<a href="/writePost" class="pull-right btn btn-theme" href="#">글쓰기</a>
 					</div>
 				</div>

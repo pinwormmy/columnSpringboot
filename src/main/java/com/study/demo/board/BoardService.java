@@ -21,5 +21,5 @@ public interface BoardService {
 
     public int countTotalPost() throws Exception;
 
-
+    List<BoardDTO> showSearchPostList(String searchType, String keyword) throws Exception;
 }

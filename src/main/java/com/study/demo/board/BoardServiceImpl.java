@@ -59,6 +59,11 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.countTotalPost();
     }
 
+    @Override
+    public List<BoardDTO> showSearchPostList(String searchType, String keyword) throws Exception {
+        return boardMapper.showSearchPostList(searchType, keyword);
+    }
+
     private PageService initPageUtil() {
         PageService util = new PageService();
         util.setDISPLAY_POST_LIMIT(5);

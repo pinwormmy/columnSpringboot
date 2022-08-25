@@ -2,6 +2,7 @@ package com.study.demo.mapper;
 
 import com.study.demo.board.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface BoardMapper {
 
     int countTotalPost() throws Exception;
 
-
+    List<BoardDTO> showSearchPostList(@Param("searchType") String searchType, @Param("keyword") String keyword) throws Exception;
 }

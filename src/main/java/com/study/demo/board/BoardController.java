@@ -32,6 +32,15 @@ public class BoardController {
         return "board";
     }
 
+    @GetMapping(value = "/boardSearch")
+    public String boardSearch(Model model, String searchType, String keyword) throws Exception {
+        List<BoardDTO> postList = boardService.showSearchPostList(searchType, keyword);
+        model.addAttribute("postList", postList);
+        PageDTO page = boardService.pageSetting();
+        model.addAttribute("page", page);
+        return "board";
+    }
+
     @RequestMapping("/readPost")
     public String post(Model model, int postNum) throws Exception {
         BoardDTO post = boardService.readPost(postNum);

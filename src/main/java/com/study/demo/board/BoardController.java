@@ -14,6 +14,7 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+    // 페이징+검색 관련 코드 정리해라
     @GetMapping(value = "/board")
     public String board(Model model) throws Exception {
         List<BoardDTO> postList = boardService.showPostList();
@@ -36,9 +37,22 @@ public class BoardController {
     public String boardSearch(Model model, String searchType, String keyword) throws Exception {
         List<BoardDTO> postList = boardService.showSearchPostList(searchType, keyword);
         model.addAttribute("postList", postList);
-        PageDTO page = boardService.pageSetting();
+        PageDTO page = boardService.pageSetting(searchType, keyword);
         model.addAttribute("page", page);
-        return "board";
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+        return "boardSearch";
+    }
+
+    @GetMapping(value = "/boardSearchPage")
+    public String boardSearch(Model model, int recentPage, String searchType, String keyword) throws Exception {
+        List<BoardDTO> postList = boardService.showSearchPostList(searchType, keyword);
+        model.addAttribute("postList", postList);
+        PageDTO page = boardService.pageSetting(recentPage, searchType, keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+        return "boardSearch";
     }
 
     @RequestMapping("/readPost")

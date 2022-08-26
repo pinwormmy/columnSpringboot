@@ -20,5 +20,7 @@ public interface BoardMapper {
 
     int countTotalPost() throws Exception;
 
-    List<BoardDTO> showSearchPostList(@Param("searchType") String searchType, @Param("keyword") String keyword) throws Exception;
+    List<BoardDTO> showSearchPostList(@Param("searchType")String searchType, @Param("keyword")String keyword) throws Exception;
+
+    int countTotalPostForSearch(@Param("searchType")String searchType, @Param("keyword")String keyword) throws Exception;
 }

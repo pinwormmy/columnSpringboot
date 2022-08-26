@@ -22,4 +22,8 @@ public interface BoardService {
     public int countTotalPost() throws Exception;
 
     List<BoardDTO> showSearchPostList(String searchType, String keyword) throws Exception;
+
+    PageDTO pageSetting(int recentPage, String searchType, String keyword) throws Exception;
+
+    PageDTO pageSetting(String searchType, String keyword) throws Exception;
 }

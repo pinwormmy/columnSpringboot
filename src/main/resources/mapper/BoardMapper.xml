@@ -13,12 +13,12 @@
 
     <select id="showSearchPostList" resultType="com.study.demo.board.BoardDTO">
         select post_num, title, content, writer, reg_date, views
-        from board
-        where
-            <if test="searchType == title">title</if>
-            <if test="searchType == content">content</if>
-            <if test="searchType == titleAndContent">title and content</if>
-            like '%'||#{keyword}||'%'
+            from board
+            where
+            <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+            <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
+            <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
+                or content like '%'||#{keyword}||'%'</if>
         order by post_num desc
     </select>
 
@@ -45,5 +45,14 @@
 
     <select id="countTotalPost" resultType="int">
         select count(*) from board
+    </select>
+
+    <select id="countTotalPostForSearch" resultType="int">
+        select count(*) from board
+            where
+            <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+            <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
+            <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
+                or content like '%'||#{keyword}||'%'</if>
     </select>
 </mapper>

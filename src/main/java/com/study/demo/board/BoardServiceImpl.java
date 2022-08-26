@@ -64,6 +64,27 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.showSearchPostList(searchType, keyword);
     }
 
+    @Override
+    public PageDTO pageSetting(String searchType, String keyword) throws Exception {
+        int recentPage = 1;	// 첫페이지
+        return utilLoadingForPage(recentPage, searchType, keyword);
+    }
+
+    @Override
+    public PageDTO pageSetting(int recentPage, String searchType, String keyword) throws Exception {
+        return utilLoadingForPage(recentPage, searchType, keyword);
+    }
+
+    private PageDTO utilLoadingForPage(int recentPage, String searchType, String keyword) throws Exception {
+        int totalPostCount = countTotalPostForSearch(searchType, keyword);
+        PageService util = initPageUtil();
+        return util.calculatePage(recentPage, totalPostCount);
+    }
+
+    private int countTotalPostForSearch(String searchType, String keyword) throws Exception {
+        return boardMapper.countTotalPostForSearch(searchType, keyword);
+    }
+
     private PageService initPageUtil() {
         PageService util = new PageService();
         util.setDISPLAY_POST_LIMIT(5);

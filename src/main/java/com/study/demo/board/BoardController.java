@@ -15,6 +15,8 @@ public class BoardController {
     BoardService boardService;
 
     // 페이징+검색 관련 코드 정리해라
+    // 다른 사람 한거 참고하랬는데, 참고할만한 자료 찾기도 어렵다
+    // 그냥 파라미터 두개(searchType, keyword) 묶는 방법만 클린코드 책에서 찾아보고 묶기 시작
     @GetMapping(value = "/board")
     public String board(Model model) throws Exception {
         List<BoardDTO> postList = boardService.showPostList();

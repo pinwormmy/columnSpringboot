@@ -3,12 +3,14 @@ package com.study.demo.board;
 import com.study.demo.mapper.BoardMapper;
 import com.study.demo.util.PageDTO;
 import com.study.demo.util.PageService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class BoardServiceImpl implements BoardService{
     @Autowired
     BoardMapper boardMapper;
@@ -71,6 +73,19 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public PageDTO pageSetting(PageDTO page) throws Exception {
+        page = checkPageAndKeyword(page);
+        return utilLoadingForPage(page);
+    }
+
+    private PageDTO checkPageAndKeyword(PageDTO page) {
+        if(page.getRecentPage() < 1) { page.setRecentPage(1); }
+        if(page.getSearchType() == null) { page.setSearchType("title"); }
+        if(page.getKeyword() == null) { page.setKeyword(""); }
+        return page;
+    }
+
+    @Override
     public PageDTO pageSetting(int recentPage, String searchType, String keyword) throws Exception {
         return utilLoadingForPage(recentPage, searchType, keyword);
     }
@@ -81,8 +96,19 @@ public class BoardServiceImpl implements BoardService{
         return util.calculatePage(recentPage, totalPostCount);
     }
 
+    private PageDTO utilLoadingForPage(PageDTO page) throws Exception {
+        log.info("키워트 확인 : {}", page.getKeyword());
+        int totalPostCount = countTotalPost2(page);
+        PageService util = initPageUtil();
+        return util.calculatePage(page.getRecentPage(), totalPostCount);
+    }
+
     private int countTotalPostForSearch(String searchType, String keyword) throws Exception {
         return boardMapper.countTotalPostForSearch(searchType, keyword);
+    }
+
+    private int countTotalPost2(PageDTO page) throws Exception {
+        return boardMapper.countTotalPost2(page);
     }
 
     private PageService initPageUtil() {

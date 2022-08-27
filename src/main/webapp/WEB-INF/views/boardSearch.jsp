@@ -50,17 +50,17 @@
 		                        <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
                                         <a class="pull-letf btn btn-theme"
-                                        href="/boardSearchPage?recentPage=${page.prevPageSetPoint}&searchType=${searchType}&keyword=${keyword}">
+                                        href="/boardSearchPage?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
                                         <a class="pull-center btn btn-theme"
-                                        href="/boardSearchPage?recentPage=${countPage}&searchType=${searchType}&keyword=${keyword}">
+                                        href="/boardSearchPage?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         ${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
                                         <a class="pull-right btn btn-theme"
-                                        href="/boardSearchPage?recentPage=${page.nextPageSetPoint}&searchType=${searchType}&keyword=${keyword}">
+                                        href="/boardSearchPage?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         다음</a>
                                     </c:if>
 		                        </div>
@@ -73,12 +73,16 @@
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
                                 </select>
-                                <input name="keyword" value=${keyword}>
+                                <input name="keyword" value=${page.keyword}>
                                 <button class="pull btn btn-theme">검색</button>
                             </form>
 						</div>
 						<a href="/writePost" class="pull-right btn btn-theme" href="#">글쓰기</a>
 					</div>
+					<br>
+					${page.totalPage} 이것도 출력테스트 <br>
+					"${page.keyword}" 출력 테스트
+					<br>
 				</div>
 			</div>
 		</div>

@@ -26,4 +26,6 @@ public interface BoardService {
     PageDTO pageSetting(int recentPage, String searchType, String keyword) throws Exception;
 
     PageDTO pageSetting(String searchType, String keyword) throws Exception;
+
+    PageDTO pageSetting(PageDTO page) throws Exception;
 }

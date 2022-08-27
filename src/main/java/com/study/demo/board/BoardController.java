@@ -1,6 +1,8 @@
 package com.study.demo.board;
 
+import ch.qos.logback.core.CoreConstants;
 import com.study.demo.util.PageDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class BoardController {
     @Autowired
     BoardService boardService;
@@ -18,43 +21,55 @@ public class BoardController {
     // 다른 사람 한거 참고하랬는데, 참고할만한 자료 찾기도 어렵다
     // 그냥 파라미터 두개(searchType, keyword) 묶는 방법만 클린코드 책에서 찾아보고 묶기 시작
     @GetMapping(value = "/board")
-    public String board(Model model) throws Exception {
+    public String board(PageDTO page, Model model) throws Exception {
+        log.info("로그테스트");
+        log.debug("현재페이지 {}", page.getRecentPage());
+        log.debug("검색타입 {}", page.getSearchType());
+        log.debug("검색단어 {}", page.getKeyword());
         List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
-        PageDTO page = boardService.pageSetting();
+        page = boardService.pageSetting(page);
         model.addAttribute("page", page);
         return "board";
     }
 
     @GetMapping(value = "/boardPage")
-    public String boardPage(Model model, int recentPage) throws Exception {
+    public String boardPage(PageDTO page, Model model) throws Exception {
+        log.info("로그테스트");
+        log.debug("근데 로그 왜 안나오냐");
+        log.debug("현재페이지 {}", page.getRecentPage());
+        log.debug("검색타입 {}", page.getSearchType());
+        log.debug("검색단어 {}", page.getKeyword());
         List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
-        PageDTO page = boardService.pageSetting(recentPage);
+        page = boardService.pageSetting(page);
         model.addAttribute("page", page);
         return "board";
     }
 
     @GetMapping(value = "/boardSearch")
-    public String boardSearch(Model model, String searchType, String keyword) throws Exception {
-        List<BoardDTO> postList = boardService.showSearchPostList(searchType, keyword);
+    public String boardSearch(PageDTO page, Model model) throws Exception {
+        log.info("현재페이지 {}", page.getRecentPage());
+        log.info("검색타입 {}", page.getSearchType());
+        log.info("검색단어 {}", page.getKeyword());
+        List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
-        PageDTO page = boardService.pageSetting(searchType, keyword);
+        page = boardService.pageSetting(page);
         model.addAttribute("page", page);
-        model.addAttribute("searchType", searchType);
-        model.addAttribute("keyword", keyword);
         return "boardSearch";
     }
 
     @GetMapping(value = "/boardSearchPage")
-    public String boardSearch(Model model, int recentPage, String searchType, String keyword) throws Exception {
-        List<BoardDTO> postList = boardService.showSearchPostList(searchType, keyword);
+    public String boardSearchPage(PageDTO page, Model model) throws Exception {
+        log.info("현재페이지 {}", page.getRecentPage());
+        log.info("검색타입 {}", page.getSearchType());
+
+        List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
-        PageDTO page = boardService.pageSetting(recentPage, searchType, keyword);
+        page = boardService.pageSetting(page);
+        log.info("검색단어 {}", page.getKeyword());
         model.addAttribute("page", page);
-        model.addAttribute("searchType", searchType);
-        model.addAttribute("keyword", keyword);
-        return "boardSearch";
+        return "redirect:/boardSearch";
     }
 
     @RequestMapping("/readPost")

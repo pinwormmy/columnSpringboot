@@ -67,7 +67,7 @@
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
                                 </select>
-                                <input name="keyword" value=${keyword}>
+                                <input name="keyword" value=${page.keyword}>
                                 <button class="pull btn btn-theme">검색</button>
                             </form>
 						</div>

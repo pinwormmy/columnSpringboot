@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -51,24 +52,24 @@ public class BoardController {
     public String boardSearch(PageDTO page, Model model) throws Exception {
         log.info("현재페이지 {}", page.getRecentPage());
         log.info("검색타입 {}", page.getSearchType());
-        log.info("검색단어 {}", page.getKeyword());
+
         List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
         page = boardService.pageSetting(page);
         model.addAttribute("page", page);
+        log.info("검색단어 {}", page.getKeyword());
         return "boardSearch";
     }
 
     @GetMapping(value = "/boardSearchPage")
-    public String boardSearchPage(PageDTO page, Model model) throws Exception {
-        log.info("현재페이지 {}", page.getRecentPage());
-        log.info("검색타입 {}", page.getSearchType());
-
+    public String boardSearchPage(@ModelAttribute PageDTO page, Model model) throws Exception {
         List<BoardDTO> postList = boardService.showPostList();
         model.addAttribute("postList", postList);
         page = boardService.pageSetting(page);
-        log.info("검색단어 {}", page.getKeyword());
         model.addAttribute("page", page);
+        log.info("현재페이지 {}", page.getRecentPage());
+        log.info("검색타입 {}", page.getSearchType());
+        log.info("검색단어 {}", page.getKeyword());
         return "redirect:/boardSearch";
     }
 

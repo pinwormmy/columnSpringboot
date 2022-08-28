@@ -85,23 +85,23 @@
 		                        </div><!--/#comments-list-->
 
 		                        <div id="comment-form" class="gap">
-		                            <h3  class="main-title">Leave a comment</h3>
+		                            <h3  class="main-title">댓글을 남겨주세요</h3>
 		                            <hr>
-		                            <form class="form-horizontal" role="form">
+		                            <form class="form-horizontal" role="form" id="commentForm">
 		                                <div class="form-group">
 		                                    <div class="col-sm-6">
-		                                        <input type="text" class="form-control" placeholder="Name">
+		                                        <input type="text" class="form-control" name="commentWriter" placeholder="작성자">
 		                                    </div>
 		                                    <div class="col-sm-6">
-		                                        <input type="email" class="form-control" placeholder="Email">
+		                                        <input type="password" class="form-control" name="commentPw" placeholder="비밀번호">
 		                                    </div>
 		                                </div>
 		                                <div class="form-group">
 		                                    <div class="col-sm-12">
-		                                        <textarea rows="8" class="form-control" placeholder="Comment"></textarea>
+		                                        <textarea rows="8" class="form-control" placeholder="댓글내용"></textarea>
 		                                    </div>
 		                                </div>
-		                                <button type="submit" class="btn btn-theme">Submit Comment</button>
+		                                <button type="button" class="btn btn-theme">댓글 달기</button>
 		                            </form>
 		                        </div><!--/#comment-form-->
 
@@ -118,6 +118,12 @@
 			</div>
 		</div>
 	</section>
+
+<script>
+
+
+
+</script>
 
 <%@include file="./include/footer.jspf" %>
 </body>

@@ -14,7 +14,7 @@ public class PageDTO {
     private int totalPage;
     private int totalPostCount;
     private int recentPage;
-    private String searchType;
+    private String searchType; // 검색 결과도 페이징이 필요하기에, 검색단어 전달 포함
     private String keyword;
 
 }

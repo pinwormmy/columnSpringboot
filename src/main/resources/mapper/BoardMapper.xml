@@ -43,10 +43,6 @@
         where post_num=#{postNum}
     </delete>
 
-    <select id="countTotalPost" resultType="int">
-        select count(*) from board
-    </select>
-
     <select id="countTotalPostForSearch" resultType="int">
         select count(*) from board
             where
@@ -56,7 +52,7 @@
                 or content like '%'||#{keyword}||'%'</if>
     </select>
 
-    <select id="countTotalPost2" resultType="int">
+    <select id="countTotalPost" resultType="int">
         select count(*) from board
         where
         <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>

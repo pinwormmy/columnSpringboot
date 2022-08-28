@@ -40,75 +40,27 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public PageDTO pageSetting() throws Exception {
-        int recentPage = 1;	// 첫페이지
-        return utilLoadingForPage(recentPage);
-    }
-
-    @Override
-    public PageDTO pageSetting(int recentPage) throws Exception {
-        return utilLoadingForPage(recentPage);
-    }
-
-    private PageDTO utilLoadingForPage(int recentPage) throws Exception {
-        int totalPostCount = countTotalPost();
-        PageService util = initPageUtil();
-        return util.calculatePage(recentPage, totalPostCount);
-    }
-
-    @Override
-    public int countTotalPost() throws Exception {
-        return boardMapper.countTotalPost();
-    }
-
-    @Override
-    public List<BoardDTO> showSearchPostList(String searchType, String keyword) throws Exception {
-        return boardMapper.showSearchPostList(searchType, keyword);
-    }
-
-    @Override
-    public PageDTO pageSetting(String searchType, String keyword) throws Exception {
-        int recentPage = 1;	// 첫페이지
-        return utilLoadingForPage(recentPage, searchType, keyword);
-    }
-
-    @Override
     public PageDTO pageSetting(PageDTO page) throws Exception {
-        page = checkPageAndKeyword(page);
+        checkPageAndKeyword(page);
         return utilLoadingForPage(page);
     }
 
-    private PageDTO checkPageAndKeyword(PageDTO page) {
+    private void checkPageAndKeyword(PageDTO page) {
         if(page.getRecentPage() < 1) { page.setRecentPage(1); }
         if(page.getSearchType() == null) { page.setSearchType("title"); }
         if(page.getKeyword() == null) { page.setKeyword(""); }
-        return page;
-    }
-
-    @Override
-    public PageDTO pageSetting(int recentPage, String searchType, String keyword) throws Exception {
-        return utilLoadingForPage(recentPage, searchType, keyword);
-    }
-
-    private PageDTO utilLoadingForPage(int recentPage, String searchType, String keyword) throws Exception {
-        int totalPostCount = countTotalPostForSearch(searchType, keyword);
-        PageService util = initPageUtil();
-        return util.calculatePage(recentPage, totalPostCount);
     }
 
     private PageDTO utilLoadingForPage(PageDTO page) throws Exception {
-        log.info("키워트 확인 : {}", page.getKeyword());
-        int totalPostCount = countTotalPost2(page);
+        log.debug("서비스단계에서 검색어 확인 : {}", page.getKeyword());
+        page.setTotalPostCount(countTotalPost(page));
         PageService util = initPageUtil();
-        return util.calculatePage(page.getRecentPage(), totalPostCount);
+        return util.calculatePage(page);
     }
 
-    private int countTotalPostForSearch(String searchType, String keyword) throws Exception {
-        return boardMapper.countTotalPostForSearch(searchType, keyword);
-    }
-
-    private int countTotalPost2(PageDTO page) throws Exception {
-        return boardMapper.countTotalPost2(page);
+    @Override
+    public int countTotalPost(PageDTO page) throws Exception {
+        return boardMapper.countTotalPost(page);
     }
 
     private PageService initPageUtil() {
@@ -117,6 +69,5 @@ public class BoardServiceImpl implements BoardService{
         util.setPAGESET_LIMIT(10);
         return util;
     }
-
 
 }

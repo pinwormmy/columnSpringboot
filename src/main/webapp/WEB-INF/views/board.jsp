@@ -49,23 +49,29 @@
                                 </div><!--/#comments-list-->
 		                        <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
-                                        <a class="pull-letf btn btn-theme" href="/boardPage?recentPage=${page.prevPageSetPoint}">이전</a>
+                                        <a class="pull-letf btn btn-theme"
+                                        href="/board?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
-                                        <a class="pull-center btn btn-theme" href="/boardPage?recentPage=${countPage}">${countPage}</a>
+                                        <a class="pull-center btn btn-theme"
+                                        href="/board?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        ${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
-                                        <a class="pull-right btn btn-theme" href="/boardPage?recentPage=${page.nextPageSetPoint}">다음</a>
+                                        <a class="pull-right btn btn-theme"
+                                        href="/board?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        다음</a>
                                     </c:if>
 		                        </div>
 		                    </div><!--/#comments-->
 						</div>
 						<div class="form-group">
-                            <form action="/boardSearch">
+                            <form action="/board">
                                 <select name="searchType">
-                                    <option value="titleAndContent">제목+내용</option>
-                                    <option value="title">제목</option>
-                                    <option value="content">내용</option>
+                                    <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
+                                    <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>
+                                    <option value="content" <c:if test="${page.searchType == 'content'}">selected</c:if> >내용</option>
                                 </select>
                                 <input name="keyword" value=${page.keyword}>
                                 <button class="pull btn btn-theme">검색</button>

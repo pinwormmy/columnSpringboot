@@ -19,11 +19,6 @@ public interface BoardMapper {
 
     void deletePost(int postNum) throws Exception;
 
-    int countTotalPost() throws Exception;
+    int countTotalPost(PageDTO page) throws Exception;
 
-    List<BoardDTO> showSearchPostList(@Param("searchType")String searchType, @Param("keyword")String keyword) throws Exception;
-
-    int countTotalPostForSearch(@Param("searchType")String searchType, @Param("keyword")String keyword) throws Exception;
-
-    int countTotalPost2(PageDTO page) throws Exception;
 }

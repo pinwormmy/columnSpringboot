@@ -49,19 +49,13 @@
                                 </div><!--/#comments-list-->
 		                        <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
-                                        <a class="pull-letf btn btn-theme"
-                                        href="/boardSearchPage?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
-                                        이전</a>
+                                        <a class="pull-letf btn btn-theme" href="/boardPage?recentPage=${page.prevPageSetPoint}">이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
-                                        <a class="pull-center btn btn-theme"
-                                        href="/boardSearchPage?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
-                                        ${countPage}</a>
+                                        <a class="pull-center btn btn-theme" href="/boardPage?recentPage=${countPage}">${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
-                                        <a class="pull-right btn btn-theme"
-                                        href="/boardSearchPage?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
-                                        다음</a>
+                                        <a class="pull-right btn btn-theme" href="/boardPage?recentPage=${page.nextPageSetPoint}">다음</a>
                                     </c:if>
 		                        </div>
 		                    </div><!--/#comments-->
@@ -79,10 +73,6 @@
 						</div>
 						<a href="/writePost" class="pull-right btn btn-theme" href="#">글쓰기</a>
 					</div>
-					<br>
-					${page.totalPage} 이것도 출력테스트 <br>
-					"${page.keyword}" 출력 테스트
-					<br>
 				</div>
 			</div>
 		</div>

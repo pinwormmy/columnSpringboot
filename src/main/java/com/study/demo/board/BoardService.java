@@ -15,17 +15,7 @@ public interface BoardService {
 
     void deletePost(int postNum) throws Exception;
 
-    PageDTO pageSetting() throws Exception;
-
-    PageDTO pageSetting(int recentPage) throws Exception;
-
-    public int countTotalPost() throws Exception;
-
-    List<BoardDTO> showSearchPostList(String searchType, String keyword) throws Exception;
-
-    PageDTO pageSetting(int recentPage, String searchType, String keyword) throws Exception;
-
-    PageDTO pageSetting(String searchType, String keyword) throws Exception;
-
     PageDTO pageSetting(PageDTO page) throws Exception;
+
+    public int countTotalPost(PageDTO page) throws Exception;
 }

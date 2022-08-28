@@ -9,13 +9,11 @@ import java.util.List;
 public interface VideoService {
     void submitVideoPost(VideoDTO video) throws Exception;
 
-    List<BoardDTO> showVideoList() throws Exception;
+    List<VideoDTO> showVideoList() throws Exception;
 
     void deleteVideoPost(int videoNum) throws Exception;
 
-    PageDTO pageSetting() throws Exception;
+    PageDTO pageSetting(PageDTO page) throws Exception;
 
-    PageDTO pageSetting(int recentPage) throws Exception;
-
-    public int countTotalPost() throws Exception;
+    public int countTotalPost(PageDTO page) throws Exception;
 }

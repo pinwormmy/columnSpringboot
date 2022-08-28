@@ -12,6 +12,7 @@ public class PageDTO {
     private int prevPageSetPoint;
     private int nextPageSetPoint;
     private int totalPage;
+    private int totalPostCount;
     private int recentPage;
     private String searchType;
     private String keyword;

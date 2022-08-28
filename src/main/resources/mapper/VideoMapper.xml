@@ -21,5 +21,11 @@
 
     <select id="countTotalPost" resultType="int">
         select count(*) from video
+        where
+        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
+            or content like '%'||#{keyword}||'%'</if>
     </select>
+
 </mapper>

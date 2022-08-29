@@ -15,8 +15,8 @@ public class BoardServiceImpl implements BoardService{
     @Autowired
     BoardMapper boardMapper;
     @Override
-    public List<BoardDTO> showPostList() throws Exception {
-        return boardMapper.showPostList();
+    public List<BoardDTO> showPostList(PageDTO page) throws Exception {
+        return boardMapper.showPostList(page);
     }
 
     @Override

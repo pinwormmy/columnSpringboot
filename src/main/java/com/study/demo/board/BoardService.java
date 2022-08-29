@@ -5,7 +5,7 @@ import com.study.demo.util.PageDTO;
 import java.util.List;
 
 public interface BoardService {
-    public List<BoardDTO> showPostList() throws Exception;
+    public List<BoardDTO> showPostList(PageDTO page) throws Exception;
 
     void submitPost(BoardDTO board) throws Exception;
 

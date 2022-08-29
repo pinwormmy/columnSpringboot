@@ -9,10 +9,17 @@
     </insert>
 
     <select id="showVideoList" resultType="com.study.demo.video.VideoDTO">
-        select *
-            from video
-            order by video_num desc
+        SELECT * FROM
+            (SELECT rownum r, a.* FROM
+                (select * from video
+                    where <include refid="searchKeyword"></include>
+                    order by video_num desc) a)
+        WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
     </select>
+
+    <sql id="searchKeyword">
+        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+    </sql>
 
     <delete id="deleteVideoPost">
         delete from video
@@ -21,11 +28,7 @@
 
     <select id="countTotalPost" resultType="int">
         select count(*) from video
-        where
-        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
-        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
-        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
-            or content like '%'||#{keyword}||'%'</if>
+        where <include refid="searchKeyword"></include>
     </select>
 
 </mapper>

@@ -20,10 +20,10 @@ public class VideoController {
 
     @GetMapping(value = "/videoBoard")
     public String videoBoard(PageDTO page, Model model) throws Exception {
-        List<VideoDTO> videoList = videoService.showVideoList();
-        model.addAttribute("videoList", videoList);
         page = videoService.pageSetting(page);
         model.addAttribute("page", page);
+        List<VideoDTO> videoList = videoService.showVideoList(page);
+        model.addAttribute("videoList", videoList);
         return "videoBoard";
     }
 

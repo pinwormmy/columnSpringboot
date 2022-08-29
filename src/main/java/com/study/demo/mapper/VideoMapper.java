@@ -11,7 +11,7 @@ import java.util.List;
 public interface VideoMapper {
     void submitVideoPost(VideoDTO video) throws Exception;
 
-    List<VideoDTO> showVideoList() throws Exception;
+    List<VideoDTO> showVideoList(PageDTO page) throws Exception;
 
     void deleteVideoPost(int videoNum) throws Exception;
 

@@ -22,8 +22,8 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
-    public List<VideoDTO> showVideoList() throws Exception {
-        return videoMapper.showVideoList();
+    public List<VideoDTO> showVideoList(PageDTO page) throws Exception {
+        return videoMapper.showVideoList(page);
     }
 
     @Override

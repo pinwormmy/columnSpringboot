@@ -33,7 +33,7 @@
 		                    <div id="comments" class="col-xs-12">
 		                        <c:if test="${empty videoList}">작성된 글이 없습니다. 글쓰기 버튼을 누르면 작성할 수 있습니다~!</c:if>
 		                        <div id="comments-list" class="gap">
-		                            <c:forEach var="video" items="${videoList}" begin="${page.postBeginPoint}" end="${page.postEndPoint}">
+		                            <c:forEach var="video" items="${videoList}">
                                         <div class="media">
                                              <div class="media-body">
                                                    <div class="well">

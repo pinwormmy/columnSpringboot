@@ -90,15 +90,15 @@
 		                            <form class="form-horizontal" role="form" id="commentForm">
 		                                <div class="form-group">
 		                                    <div class="col-sm-6">
-		                                        <input type="text" class="form-control" name="commentWriter" placeholder="작성자">
+		                                        <input type="text" class="form-control" name="writer" placeholder="작성자">
 		                                    </div>
 		                                    <div class="col-sm-6">
-		                                        <input type="password" class="form-control" name="commentPw" placeholder="비밀번호">
+		                                        <input type="password" class="form-control" name="pw" placeholder="비밀번호">
 		                                    </div>
 		                                </div>
 		                                <div class="form-group">
 		                                    <div class="col-sm-12">
-		                                        <textarea rows="8" class="form-control" placeholder="댓글내용"></textarea>
+		                                        <textarea rows="8" class="form-control" name="content" placeholder="댓글내용"></textarea>
 		                                    </div>
 		                                </div>
 		                                <button type="button" class="btn btn-theme">댓글 달기</button>
@@ -121,7 +121,21 @@
 
 <script>
 
-
+function addComment(){
+    fetch("/addComment", {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json",
+        },
+        body : JSON.stringify({
+            writer : "미도리",
+            pw : "1212123",
+            content : "I write fetch post",
+        }),
+    }).then((response) => response.json())
+        .then((data) => {console.log(data)
+    });
+}
 
 </script>
 

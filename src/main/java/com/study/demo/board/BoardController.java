@@ -18,10 +18,10 @@ public class BoardController {
 
     @GetMapping(value = "/board")
     public String board(PageDTO page, Model model) throws Exception {
-        List<BoardDTO> postList = boardService.showPostList();
-        model.addAttribute("postList", postList);
         page = boardService.pageSetting(page);
         model.addAttribute("page", page);
+        List<BoardDTO> postList = boardService.showPostList(page);
+        model.addAttribute("postList", postList);
         return "board";
     }
 

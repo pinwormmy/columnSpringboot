@@ -6,21 +6,21 @@
 <mapper namespace="com.study.demo.mapper.BoardMapper">
 
     <select id="showPostList" resultType="com.study.demo.board.BoardDTO">
-        select post_num, title, content, writer, reg_date, views
-            from board
-            order by post_num desc
+        SELECT * FROM
+            (SELECT rownum r, a.* FROM
+                (select post_num, title, content, writer, reg_date, views
+                    from board
+                    where <include refid="searchKeyword"></include>
+                    order by post_num desc) a)
+            WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
     </select>
 
-    <select id="showSearchPostList" resultType="com.study.demo.board.BoardDTO">
-        select post_num, title, content, writer, reg_date, views
-            from board
-            where
-            <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
-            <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
-            <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
-                or content like '%'||#{keyword}||'%'</if>
-        order by post_num desc
-    </select>
+    <sql id="searchKeyword">
+        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
+            or content like '%'||#{keyword}||'%'</if>
+    </sql>
 
     <select id="readPost" resultType="com.study.demo.board.BoardDTO">
         select * from board
@@ -43,22 +43,9 @@
         where post_num=#{postNum}
     </delete>
 
-    <select id="countTotalPostForSearch" resultType="int">
-        select count(*) from board
-            where
-            <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
-            <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
-            <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
-                or content like '%'||#{keyword}||'%'</if>
-    </select>
-
     <select id="countTotalPost" resultType="int">
-        select count(*) from board
-        where
-        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
-        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
-        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
-            or content like '%'||#{keyword}||'%'</if>
+    select count(*) from board
+    where <include refid="searchKeyword"></include>
     </select>
 
 </mapper>

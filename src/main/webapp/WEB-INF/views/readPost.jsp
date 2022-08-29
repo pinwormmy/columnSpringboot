@@ -71,38 +71,38 @@
 		                                    </div><!--/.media-->
 		                                </div>
 		                            </div><!--/.media-->
+
 		                            <div class="media">
 		                                <div class="media-body">
 		                                    <div class="well">
 		                                        <div class="media-heading">
-		                                            <strong>John Smith</strong>&nbsp; <small>14th Jan, 2015</small>
+		                                            <strong>${comment.writer}</strong>&nbsp; <small>${comment.regDate}</small>
 		                                        </div>
-		                                        <p>Quitting informed concerns can men now. Projection to or up conviction uncommonly delightful continuing. In appetite ecstatic opinions hastened by handsome admitted.</p>
+		                                        <p>${comment.content}</p>
 		                                        <a class="pull-right btn btn-theme" href="#">Reply</a>
 		                                    </div>
 		                                </div>
 		                            </div><!--/.media-->
+
 		                        </div><!--/#comments-list-->
 
 		                        <div id="comment-form" class="gap">
 		                            <h3  class="main-title">댓글을 남겨주세요</h3>
 		                            <hr>
-		                            <form class="form-horizontal" role="form" id="commentForm">
 		                                <div class="form-group">
 		                                    <div class="col-sm-6">
-		                                        <input type="text" class="form-control" name="writer" placeholder="작성자">
+		                                        <input type="text" class="form-control" name="writer" id="commnetWriter" placeholder="작성자">
 		                                    </div>
 		                                    <div class="col-sm-6">
-		                                        <input type="password" class="form-control" name="pw" placeholder="비밀번호">
+		                                        <input type="password" class="form-control" name="pw" id="commentPw" placeholder="비밀번호">
 		                                    </div>
 		                                </div>
 		                                <div class="form-group">
 		                                    <div class="col-sm-12">
-		                                        <textarea rows="8" class="form-control" name="content" placeholder="댓글내용"></textarea>
+		                                        <textarea rows="8" class="form-control" name="content" name="commentContent" placeholder="댓글내용"></textarea>
 		                                    </div>
 		                                </div>
 		                                <button type="button" class="btn btn-theme">댓글 달기</button>
-		                            </form>
 		                        </div><!--/#comment-form-->
 
 		                        <div class="post-navigation">

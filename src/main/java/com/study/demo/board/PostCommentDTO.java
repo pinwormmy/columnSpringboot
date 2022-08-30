@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class CommentDTO {
+public class PostCommentDTO {
 
     private int postNum;
     private int commentNum;

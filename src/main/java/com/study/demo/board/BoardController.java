@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -60,5 +61,12 @@ public class BoardController {
     public String submitModifyPost(BoardDTO post) throws Exception {
         boardService.submitModifyPost(post);
         return "redirect:/readPost?postNum=" + post.getPostNum();
+    }
+
+    @RequestMapping(value = "/addComment")
+    @ResponseBody
+    public String addComment(PostCommentDTO comment) throws Exception {
+        boardService.addComment(comment);
+        return "1";
     }
 }

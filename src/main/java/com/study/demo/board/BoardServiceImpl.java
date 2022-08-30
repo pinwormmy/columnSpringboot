@@ -70,4 +70,8 @@ public class BoardServiceImpl implements BoardService{
         return util;
     }
 
+    @Override
+    public void addComment(PostCommentDTO comment) throws Exception {
+        boardMapper.addComment(comment);
+    }
 }

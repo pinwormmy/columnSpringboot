@@ -48,4 +48,9 @@
     where <include refid="searchKeyword"></include>
     </select>
 
+    <insert id="addComment">
+    INSERT INTO POST_COMMENT
+        VALUES(#{postNum}, COMMENT_SEQ.nextval, #{writer}, SYSDATE, #{content});
+    </insert>
+
 </mapper>

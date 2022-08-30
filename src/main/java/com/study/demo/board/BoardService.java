@@ -18,4 +18,6 @@ public interface BoardService {
     PageDTO pageSetting(PageDTO page) throws Exception;
 
     public int countTotalPost(PageDTO page) throws Exception;
+
+    void addComment(PostCommentDTO comment) throws Exception;
 }

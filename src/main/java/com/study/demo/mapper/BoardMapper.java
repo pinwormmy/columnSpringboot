@@ -1,6 +1,7 @@
 package com.study.demo.mapper;
 
 import com.study.demo.board.BoardDTO;
+import com.study.demo.board.PostCommentDTO;
 import com.study.demo.util.PageDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,4 +22,5 @@ public interface BoardMapper {
 
     int countTotalPost(PageDTO page) throws Exception;
 
+    void addComment(PostCommentDTO comment) throws Exception;
 }

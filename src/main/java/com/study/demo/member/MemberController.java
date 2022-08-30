@@ -43,7 +43,7 @@ public class MemberController {
     public String submitSignUp(MemberDTO memberDTO, HttpSession httpSession) throws Exception {
         memberService.submitSignUp(memberDTO);
         memberDTO = memberService.checkLoginData(memberDTO);
-        log.info("회원가입 확인: {}", memberDTO);
+        log.debug("회원가입 확인: {}", memberDTO);
         httpSession.setAttribute("member", memberDTO);
         return "redirect:/";
     }
@@ -51,7 +51,7 @@ public class MemberController {
     @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
     public String submitLogin(HttpSession httpSession, MemberDTO memberDTO) throws Exception {
         memberDTO = memberService.checkLoginData(memberDTO);
-        log.info("로그인 확인: {}", memberDTO);
+        log.debug("로그인 확인: {}", memberDTO);
         httpSession.setAttribute("member", memberDTO);
         return "redirect:/";
     }

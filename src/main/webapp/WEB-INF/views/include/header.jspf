@@ -100,7 +100,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">회원정보<span class="pe-7s-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">${member.nickName}님 로그인 중</a></li>
-                                <li><a href="/">Home Agency</a></li>
+                                <li><a href="/myPage">회원정보조회</a></li>
                                 <li><a href="/logout">로그아웃</a></li>
                             </ul>
                         </li>

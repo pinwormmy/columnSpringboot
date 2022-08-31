@@ -43,7 +43,7 @@
 
 <script>
 
-    alert("js test02");
+    // alert("js test02");
 
     let submitSignUpForm = document.getElementById("submitSignUpForm");
 	let checkUniqueId = false;

@@ -32,12 +32,15 @@
                                     <div class="media-body">
                                         <div class="well">
                                             <div class="media-heading">
-                                                <strong>아이디</strong>&nbsp; <small>여긴 머쓰냐</small>
+                                                <strong>${member.nickName}님의 회원정보</strong>
                                             </div>
-                                            <p>상세내용1</p>
-                                            <p>상세내용2</p>
-                                            <p>상세내용3</p>
-                                            <p>상세내용4</p>
+                                            <hr>
+                                            <div>
+                                                <p>ID : ${member.id}</p>
+                                                <p>별명 : ${member.nickName}</p>
+                                                <p>이메일 : ${member.email}</p>
+                                                <p><a href="#">회원정보수정</a></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>회원정보조회</h1>
+                        <h1>회원정보수정</h1>
                     </div>
                 </div>
             </div>
@@ -32,14 +32,17 @@
                                     <div class="media-body">
                                         <div class="well">
                                             <div class="media-heading">
-                                                <strong>${member.nickName}님의 회원정보</strong>
+                                                <strong>${member.nickName}님의 회원정보수정</strong>
                                             </div>
                                             <hr>
                                             <div>
                                                 <p>ID : ${member.id}</p>
-                                                <p>별명 : ${member.nickName}</p>
-                                                <p>이메일 : ${member.email}</p>
-                                                <p><a class="pull-right btn btn-theme" href="/modifyMyInfo">회원정보수정</a></p>
+                                                <p>별명 : <input type="text" name="nickName" value="${member.nickName}"></p>
+                                                <p>비밀번호 : <input type="password" name="pw" value="${member.pw}"></p>
+                                                <p>비밀번호확인 : <input type="password" name="pw2" value="${member.pw}"></p>
+                                                <p>이메일 : <input type="email" name="email" value="${member.email}"></p>
+                                                <button type="button">수정하기</button>
+                                                <button type="button">취소</button>
                                             </div>
                                         </div>
                                     </div>

@@ -67,6 +67,11 @@ public class MemberController {
         return "myPage";
     }
 
+    @RequestMapping(value = "/modifyMyInfo")
+    public String modifyMyInfo() {
+        return "modifyMyInfo";
+    }
+
     @RequestMapping(value = "/modifyMember")
     public String modifyMember() {
         return "modifyMember";

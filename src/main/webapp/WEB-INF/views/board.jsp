@@ -77,7 +77,7 @@
                                 <button class="pull btn btn-theme">검색</button>
                             </form>
 						</div>
-						<a href="/writePost" class="pull-right btn btn-theme" href="#">글쓰기</a>
+						<a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
 					</div>
 				</div>
 			</div>

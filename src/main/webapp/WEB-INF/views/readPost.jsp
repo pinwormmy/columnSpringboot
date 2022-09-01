@@ -123,17 +123,16 @@ let commentContent = document.getElementById("commentContent");
 function addComment(){
 
     fetch("/addComment", {
-        method : "post",
-        headers : {
+        method: 'POST',
+        headers: {
             "Content-Type" : "application/json",
         },
-        body : JSON.stringify({
+        body: JSON.stringify({
             postNum : ${post.postNum},
             writer : "${member.nickName}",
             content : commentContent.value,
         })
     })
-    .then((response) => response.json())
     .then((data) => {console.log(data)});
 }
 

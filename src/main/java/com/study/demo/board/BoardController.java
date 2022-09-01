@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -65,8 +66,9 @@ public class BoardController {
 
     @RequestMapping(value = "/addComment")
     @ResponseBody
-    public String addComment(PostCommentDTO comment) throws Exception {
+    public void addComment(@RequestBody PostCommentDTO comment) throws Exception {
+        log.debug("입력값 테스트 : {}", comment.getContent());
         boardService.addComment(comment);
-        return "1";
+
     }
 }

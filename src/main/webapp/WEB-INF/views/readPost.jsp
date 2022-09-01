@@ -91,18 +91,15 @@
 		                            <hr>
 		                                <div class="form-group">
 		                                    <div class="col-sm-6">
-		                                        <input type="text" class="form-control" name="writer" id="commnetWriter" placeholder="작성자">
-		                                    </div>
-		                                    <div class="col-sm-6">
-		                                        <input type="password" class="form-control" name="pw" id="commentPw" placeholder="비밀번호">
+		                                        작성자 : ${member.nickName}
 		                                    </div>
 		                                </div>
 		                                <div class="form-group">
 		                                    <div class="col-sm-12">
-		                                        <textarea rows="8" class="form-control" name="content" name="commentContent" placeholder="댓글내용"></textarea>
+		                                        <textarea rows="8" class="form-control" name="commentContent" id="commentContent" placeholder="댓글내용"></textarea>
 		                                    </div>
 		                                </div>
-		                                <button type="button" class="btn btn-theme">댓글 달기</button>
+		                                <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
 		                        </div><!--/#comment-form-->
 
 		                        <div class="post-navigation">
@@ -121,20 +118,23 @@
 
 <script>
 
+let commentContent = document.getElementById("commentContent");
+
 function addComment(){
+
     fetch("/addComment", {
-        method : "POST",
+        method : "post",
         headers : {
             "Content-Type" : "application/json",
         },
         body : JSON.stringify({
-            writer : "미도리",
-            pw : "1212123",
-            content : "I write fetch post",
-        }),
-    }).then((response) => response.json())
-        .then((data) => {console.log(data)
-    });
+            postNum : ${post.postNum},
+            writer : "${member.nickName}",
+            content : commentContent.value,
+        })
+    })
+    .then((response) => response.json())
+    .then((data) => {console.log(data)});
 }
 
 </script>

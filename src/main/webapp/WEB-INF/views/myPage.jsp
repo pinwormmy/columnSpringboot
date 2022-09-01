@@ -39,6 +39,7 @@
                                                 <p>ID : ${member.id}</p>
                                                 <p>별명 : ${member.nickName}</p>
                                                 <p>이메일 : ${member.email}</p>
+                                                <p>가입일 : ${member.regDate}</p>
                                                 <p><a class="pull-right btn btn-theme" href="/modifyMyInfo">회원정보수정</a></p>
                                             </div>
                                         </div>

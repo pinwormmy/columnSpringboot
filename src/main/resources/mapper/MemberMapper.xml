@@ -20,4 +20,10 @@
             WHERE id=#{id} and pw=#{pw}
     </select>
 
+    <update id="submitModifyMyInfo">
+        UPDATE MEMBER
+            SET PW=#{pw}, NICKNAME=#{nickName}, EMAIL=#{email}
+            WHERE ID=#{id}
+    </update>
+
 </mapper>

@@ -72,6 +72,14 @@ public class MemberController {
         return "modifyMyInfo";
     }
 
+    @RequestMapping(value = "/submitModifyMyInfo", method = RequestMethod.POST)
+    public String submitModifyMyInfo(MemberDTO member, HttpSession session) throws Exception {
+        memberService.submitModifyMyInfo(member);
+        member = memberService.checkLoginData(member); // 회원가입수정 후 재로그인 처리해서 로그인데이터 갱신
+        session.setAttribute("member", member);
+        return "myPage";
+    }
+
     @RequestMapping(value = "/modifyMember")
     public String modifyMember() {
         return "modifyMember";

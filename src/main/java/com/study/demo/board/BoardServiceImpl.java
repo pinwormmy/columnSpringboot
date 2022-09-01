@@ -74,4 +74,9 @@ public class BoardServiceImpl implements BoardService{
     public void addComment(PostCommentDTO comment) throws Exception {
         boardMapper.addComment(comment);
     }
+
+    @Override
+    public List<PostCommentDTO> showCommentList(int postNum) throws Exception {
+        return boardMapper.showCommentList(postNum);
+    }
 }

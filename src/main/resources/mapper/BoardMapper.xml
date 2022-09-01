@@ -44,13 +44,18 @@
     </delete>
 
     <select id="countTotalPost" resultType="int">
-    select count(*) from board
-    where <include refid="searchKeyword"></include>
+        select count(*) from board
+        where <include refid="searchKeyword"></include>
     </select>
 
     <insert id="addComment">
-    INSERT INTO POST_COMMENT
-        VALUES(#{postNum}, COMMENT_SEQ.nextval, #{writer}, SYSDATE, #{content})
+        INSERT INTO POST_COMMENT
+            VALUES(#{postNum}, COMMENT_SEQ.nextval, #{writer}, SYSDATE, #{content})
     </insert>
 
+    <select id="showCommentList">
+        SELECT * FROM POST_COMMENT
+            WHERE POST_NUM=#{postNum}
+            ORDER BY COMMENT_NUM DESC
+    </select>
 </mapper>

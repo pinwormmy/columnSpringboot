@@ -86,6 +86,7 @@
 
 		                        </div><!--/#comments-list-->
 
+                                <c:if test="${member != null}">
 		                        <div id="comment-form" class="gap">
 		                            <h3  class="main-title">댓글을 남겨주세요</h3>
 		                            <hr>
@@ -101,6 +102,7 @@
 		                                </div>
 		                                <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
 		                        </div><!--/#comment-form-->
+		                        </c:if>
 
 		                        <div class="post-navigation">
 		                            <a class="pull-left btn btn-theme" href="/board">글 목록</a>
@@ -134,6 +136,10 @@ function addComment(){
         })
     })
     .then((data) => {console.log(data)});
+}
+
+function showCommentList(){
+
 }
 
 </script>

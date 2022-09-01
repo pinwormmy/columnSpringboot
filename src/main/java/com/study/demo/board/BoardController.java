@@ -67,8 +67,14 @@ public class BoardController {
     @RequestMapping(value = "/addComment")
     @ResponseBody
     public void addComment(@RequestBody PostCommentDTO comment) throws Exception {
-        log.debug("입력값 테스트 : {}", comment.getContent());
+        log.debug("댓글 인수 확인(댓글내용) : {}", comment.getContent());
         boardService.addComment(comment);
 
+    }
+
+    @RequestMapping(value = "/showCommentList")
+    @ResponseBody
+    public List<PostCommentDTO> showCommentList(int postNum) throws Exception {
+        return boardService.showCommentList(postNum);
     }
 }

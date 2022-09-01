@@ -23,4 +23,6 @@ public interface BoardMapper {
     int countTotalPost(PageDTO page) throws Exception;
 
     void addComment(PostCommentDTO comment) throws Exception;
+
+    List<PostCommentDTO> showCommentList(int postNum) throws Exception;
 }

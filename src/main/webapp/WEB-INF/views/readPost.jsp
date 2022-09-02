@@ -45,45 +45,10 @@
 							</div>
 
 		                    <div id="comments" class="col-xs-12">
+		                        <div class="mb">
+                                    <h3 class="single-section-title">Comments</h3>
+                                </div>
 		                        <div id="comments-list" class="gap">
-		                        	<div class="mb">
-		                            	<h3 class="single-section-title"><strong>3</strong> Comments</h3>
-		                            </div>
-		                            <div class="media">
-		                                <div class="media-body">
-		                                    <div class="well">
-		                                        <div class="media-heading">
-		                                            <strong>Dave Evans</strong>&nbsp; <small>30th Jan, 2015</small>
-		                                        </div>
-		                                        <p>Was are delightful solicitude discovered collecting man day. Resolving neglected sir tolerably but existence conveying for. Day his put off unaffected literature partiality inhabiting.</p>
-		                                        <a class="pull-right btn btn-theme" href="#">Reply</a>
-		                                    </div>
-		                                    <div class="media">
-		                                        <div class="media-body">
-		                                            <div class="well">
-		                                                <div class="media-heading">
-		                                                    <strong>Peter Jackson</strong>&nbsp; <small>16th Jan, 2015</small>
-		                                                </div>
-		                                                <p>Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the. Abode stuff noisy manor blush yet the far. Up colonel so between removed so do.</p>
-		                                                <a class="pull-right btn btn-theme" href="#">Reply</a>
-		                                            </div>
-		                                        </div>
-		                                    </div><!--/.media-->
-		                                </div>
-		                            </div><!--/.media-->
-
-		                            <div class="media">
-		                                <div class="media-body">
-		                                    <div class="well">
-		                                        <div class="media-heading">
-		                                            <strong>${comment.writer}</strong>&nbsp; <small>${comment.regDate}</small>
-		                                        </div>
-		                                        <p>${comment.content}</p>
-		                                        <a class="pull-right btn btn-theme" href="#">Reply</a>
-		                                    </div>
-		                                </div>
-		                            </div><!--/.media-->
-
 		                        </div><!--/#comments-list-->
 
                                 <c:if test="${member != null}">
@@ -106,7 +71,7 @@
 
 		                        <div class="post-navigation">
 		                            <a class="pull-left btn btn-theme" href="/board">글 목록</a>
-		                            <a class="pull-left btn btn-theme" href="/modifyPost?postNum=${post.postNum}">글 수정</a>
+		                            <a class="pull-right btn btn-theme" href="/modifyPost?postNum=${post.postNum}">글 수정</a>
 		                            <a class="pull-right btn btn-theme" href="/deletePost?postNum=${post.postNum}">글 삭제</a>
 		                            <!-- <a class="pull-right btn btn-theme" href="#">Newer Posts</a> -->
 		                        </div>
@@ -120,10 +85,13 @@
 
 <script>
 
+//alert("js test 08");
+
 let commentContent = document.getElementById("commentContent");
 
-function addComment(){
+showCommentList(${post.postNum});
 
+function addComment(){
     fetch("/addComment", {
         method: 'POST',
         headers: {
@@ -135,11 +103,29 @@ function addComment(){
             content : commentContent.value,
         })
     })
-    .then((data) => {console.log(data)});
+    .then((data) => {
+        console.log(data);
+        showCommentList(${post.postNum});
+    });
+    commentContent.value = "";
 }
 
-function showCommentList(){
+function showCommentList(postNum){
 
+    fetch("/showCommentList?postNum=" + postNum)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        document.getElementById("comments-list").innerHTML = "";
+        let commentListHtml = "";
+        for(let comment of data) {
+            console.log(comment.writer, comment.content, comment.regDate);
+            commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+            commentListHtml += "<strong>" + comment.writer + "</strong> &nbsp; <small>양식" + comment.regDate + "</small></div><p>";
+            commentListHtml += comment.content + "</p><a class='pull-right btn btn-theme' href='#'>Reply</a>" + "</div></div></div>"
+        }
+        document.getElementById("comments-list").innerHTML += commentListHtml;
+    });
 }
 
 </script>

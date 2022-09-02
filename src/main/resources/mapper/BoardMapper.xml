@@ -53,9 +53,9 @@
             VALUES(#{postNum}, COMMENT_SEQ.nextval, #{writer}, SYSDATE, #{content})
     </insert>
 
-    <select id="showCommentList">
+    <select id="showCommentList" resultType="com.study.demo.board.PostCommentDTO">
         SELECT * FROM POST_COMMENT
             WHERE POST_NUM=#{postNum}
-            ORDER BY COMMENT_NUM DESC
+            ORDER BY COMMENT_NUM ASC
     </select>
 </mapper>

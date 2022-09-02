@@ -4,6 +4,7 @@
 <html lang="ko">
 <head>
 <title>테스트 게시물읽기~~@@</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 </head>
 <body>
 <%@include file="./include/header.jspf" %>
@@ -85,7 +86,7 @@
 
 <script>
 
-//alert("js test 08");
+alert("js test 09");
 
 let commentContent = document.getElementById("commentContent");
 
@@ -121,7 +122,8 @@ function showCommentList(postNum){
         for(let comment of data) {
             console.log(comment.writer, comment.content, comment.regDate);
             commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-            commentListHtml += "<strong>" + comment.writer + "</strong> &nbsp; <small>양식" + comment.regDate + "</small></div><p>";
+            commentListHtml += "<strong>" + comment.writer + "</strong> &nbsp; <small>";
+            commentListHtml += comment.regDate + "</small></div><p>";
             commentListHtml += comment.content + "</p><a class='pull-right btn btn-theme' href='#'>Reply</a>" + "</div></div></div>"
         }
         document.getElementById("comments-list").innerHTML += commentListHtml;

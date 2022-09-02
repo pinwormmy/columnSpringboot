@@ -86,7 +86,7 @@
 
 <script>
 
-alert("js test 09");
+//alert("js test 09");
 
 let commentContent = document.getElementById("commentContent");
 
@@ -123,11 +123,19 @@ function showCommentList(postNum){
             console.log(comment.writer, comment.content, comment.regDate);
             commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
             commentListHtml += "<strong>" + comment.writer + "</strong> &nbsp; <small>";
-            commentListHtml += comment.regDate + "</small></div><p>";
-            commentListHtml += comment.content + "</p><a class='pull-right btn btn-theme' href='#'>Reply</a>" + "</div></div></div>"
+            commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
+            commentListHtml += "<a class='pull-right btn btn-theme' href='#'>답글</a>";
+            commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
+            commentListHtml += comment.commentNum + ");'>삭제</button>" + "</div></div></div>";
         }
         document.getElementById("comments-list").innerHTML += commentListHtml;
     });
+}
+
+function deleteComment(commentNum) {
+    fetch("/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
+    .then(data => showCommentList( ${post.postNum} ))
+    .catch(error => alert("댓글 삭제 오류"));
 }
 
 </script>

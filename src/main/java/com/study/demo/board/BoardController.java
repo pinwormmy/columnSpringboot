@@ -77,4 +77,10 @@ public class BoardController {
     public List<PostCommentDTO> showCommentList(int postNum) throws Exception {
         return boardService.showCommentList(postNum);
     }
+
+    @RequestMapping(value = "/deleteComment")
+    @ResponseBody
+    public void deleteComment(int commentNum) throws Exception {
+        boardService.deleteComment(commentNum);
+    }
 }

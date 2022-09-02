@@ -40,7 +40,7 @@
 
     <delete id="deletePost">
         delete from board
-        where post_num=#{postNum}
+            where post_num=#{postNum}
     </delete>
 
     <select id="countTotalPost" resultType="int">
@@ -58,4 +58,9 @@
             WHERE POST_NUM=#{postNum}
             ORDER BY COMMENT_NUM ASC
     </select>
+
+    <delete id="deleteComment">
+        delete from POST_COMMENT
+            where COMMENT_NUM=#{commentNum}
+    </delete>
 </mapper>

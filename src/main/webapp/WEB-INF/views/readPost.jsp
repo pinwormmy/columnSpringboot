@@ -54,20 +54,23 @@
 
                                 <c:if test="${member != null}">
 		                        <div id="comment-form" class="gap">
-		                            <h3  class="main-title">댓글을 남겨주세요</h3>
-		                            <hr>
-		                                <div class="form-group">
-		                                    <div class="col-sm-6">
-		                                        작성자 : ${member.nickName}
-		                                    </div>
-		                                </div>
-		                                <div class="form-group">
-		                                    <div class="col-sm-12">
-		                                        <textarea rows="8" class="form-control" name="commentContent" id="commentContent" placeholder="댓글내용"></textarea>
-		                                    </div>
-		                                </div>
-		                                <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            작성자 : ${member.nickName}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
 		                        </div><!--/#comment-form-->
+		                        </c:if>
+		                        <c:if test="${member == null}">
+		                        <div id="comment-form" class="gap">
+                                    <h4  class="main-title">로그인하면 댓글을 작성할 수 있습니다.</h3>
+                                </div>
 		                        </c:if>
 
 		                        <div class="post-navigation">
@@ -93,6 +96,10 @@ let commentContent = document.getElementById("commentContent");
 showCommentList(${post.postNum});
 
 function addComment(){
+    if(commentContent.value == "") {
+        alert("댓글 내용을 작성해주세요~", commentContent.value);
+        return false;
+    }
     fetch("/addComment", {
         method: 'POST',
         headers: {
@@ -112,21 +119,20 @@ function addComment(){
 }
 
 function showCommentList(postNum){
-
     fetch("/showCommentList?postNum=" + postNum)
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
         document.getElementById("comments-list").innerHTML = "";
         let commentListHtml = "";
         for(let comment of data) {
-            console.log(comment.writer, comment.content, comment.regDate);
             commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
             commentListHtml += "<strong>" + comment.writer + "</strong> &nbsp; <small>";
             commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
-            commentListHtml += "<a class='pull-right btn btn-theme' href='#'>답글</a>";
-            commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
-            commentListHtml += comment.commentNum + ");'>삭제</button>" + "</div></div></div>";
+            if( ("${member.nickName}" == comment.writer) || ("${member.memberLevel}" == 2) ) {
+                commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
+                commentListHtml += comment.commentNum + ");'>삭제</button>";
+            }
+            commentListHtml += "</div></div></div>";
         }
         document.getElementById("comments-list").innerHTML += commentListHtml;
     });

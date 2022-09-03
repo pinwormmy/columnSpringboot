@@ -43,7 +43,7 @@
 
     <insert id="submitPost">
         insert into board
-            values(POST_NUM_SEQ.nextval, #{title}, #{content}, #{writer}, sysdate, 0)
+            values(POST_NUM_SEQ.nextval, #{title}, #{writer}, sysdate, 0, #{content})
     </insert>
 
     <update id="submitModifyPost">

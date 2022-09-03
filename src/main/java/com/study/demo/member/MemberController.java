@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import java.util.List;
 
 @Controller
@@ -23,7 +25,9 @@ public class MemberController {
     MemberService memberService;
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request) {
+        // 로그인 이전 페이지 정보 세션에 저장
+        request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
         return "login";
     }
 
@@ -49,11 +53,11 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
-    public String submitLogin(HttpSession httpSession, MemberDTO memberDTO) throws Exception {
+    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {
         memberDTO = memberService.checkLoginData(memberDTO);
         log.debug("로그인 확인: {}", memberDTO);
-        httpSession.setAttribute("member", memberDTO);
-        return "redirect:/";
+        session.setAttribute("member", memberDTO);
+        return "redirect:" + session.getAttribute("pageBeforeLogin");
     }
 
     @RequestMapping(value = "/logout")

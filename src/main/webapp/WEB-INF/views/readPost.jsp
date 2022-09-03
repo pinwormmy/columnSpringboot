@@ -89,10 +89,8 @@
 
 <script>
 
-//alert("js test 09");
-
+alert("js test 15");
 let commentContent = document.getElementById("commentContent");
-
 showCommentList(${post.postNum});
 
 function addComment(){
@@ -102,9 +100,7 @@ function addComment(){
     }
     fetch("/addComment", {
         method: 'POST',
-        headers: {
-            "Content-Type" : "application/json",
-        },
+        headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({
             postNum : ${post.postNum},
             id : "${member.id}",
@@ -112,7 +108,7 @@ function addComment(){
         })
     })
     .then((data) => {
-        console.log(data); // 필요없는 내용. response되는 내용 딱히 없다?
+        console.log(data);
         showCommentList(${post.postNum});
     });
     commentContent.value = "";
@@ -121,22 +117,32 @@ function addComment(){
 function showCommentList(postNum){
     fetch("/showCommentList?postNum=" + postNum)
     .then((response) => response.json())
-    .then((data) => {
-        document.getElementById("comments-list").innerHTML = "";
-        let commentListHtml = "";
-        for(let comment of data) {
-            console.log(comment);
-            commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-            commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
-            commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
-            if( ("${member.id}" == comment.id) || ("${member.memberLevel}" == 2) ) {
-                commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
-                commentListHtml += comment.commentNum + ");'>삭제</button>";
-            }
-            commentListHtml += "</div></div></div>";
-        }
-        document.getElementById("comments-list").innerHTML += commentListHtml;
-    });
+    .then((data) => showCommentWithHtml(data));
+}
+
+function showCommentWithHtml(CommentDTOList) {
+    let commentDivTag = document.getElementById("comments-list");
+    commentDivTag.innerHTML = "";
+    let commentListHtml = "";
+    commentDivTag.innerHTML += commentHtmlWithString(commentListHtml, CommentDTOList);
+}
+
+function commentHtmlWithString(commentListHtml, CommentDTOList) {
+    for(let comment of CommentDTOList) {
+        commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+        commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
+        commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
+        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</div></div></div>";
+    }
+    return commentListHtml;
+}
+
+function displayDeleteButton(commentListHtml, commentDTO) {
+    if( ("${member.id}" == commentDTO.id) || ("${member.memberLevel}" == 2) ) {
+        commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
+        commentListHtml += commentDTO.commentNum + ");'>삭제</button>";
+    }
+    return commentListHtml;
 }
 
 function deleteComment(commentNum) {

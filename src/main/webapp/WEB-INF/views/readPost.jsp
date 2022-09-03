@@ -107,7 +107,7 @@ function addComment(){
         },
         body: JSON.stringify({
             postNum : ${post.postNum},
-            writer : "${member.nickName}",
+            id : "${member.id}",
             content : commentContent.value,
         })
     })
@@ -126,9 +126,9 @@ function showCommentList(postNum){
         let commentListHtml = "";
         for(let comment of data) {
             commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-            commentListHtml += "<strong>" + comment.writer + "</strong> &nbsp; <small>";
+            commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
             commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
-            if( ("${member.nickName}" == comment.writer) || ("${member.memberLevel}" == 2) ) {
+            if( ("${member.id}" == comment.id) || ("${member.memberLevel}" == 2) ) {
                 commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
                 commentListHtml += comment.commentNum + ");'>삭제</button>";
             }

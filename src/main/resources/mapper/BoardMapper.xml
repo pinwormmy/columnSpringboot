@@ -5,6 +5,20 @@
 
 <mapper namespace="com.study.demo.mapper.BoardMapper">
 
+    <resultMap id="MemberDTO" type="com.study.demo.member.MemberDTO">
+        <result column="id" property="id" />
+        <result column="nickName" property="nickName" />
+    </resultMap>
+
+    <resultMap id="PostCommentDTO" type="com.study.demo.board.PostCommentDTO">
+        <result column="postNum" property="postNum" />
+        <result column="commentNum" property="commentNum" />
+        <result column="id" property="id" />
+        <result column="regDate" property="regDate" />
+        <result column="content" property="content" />
+        <collection property="memberDTO" resultMap="MemberDTO" />
+    </resultMap>
+
     <select id="showPostList" resultType="com.study.demo.board.BoardDTO">
         SELECT * FROM
             (SELECT rownum r, a.* FROM
@@ -50,12 +64,13 @@
 
     <insert id="addComment">
         INSERT INTO POST_COMMENT
-            VALUES(#{postNum}, COMMENT_SEQ.nextval, #{writer}, SYSDATE, #{content})
+            VALUES(#{postNum}, COMMENT_SEQ.nextval, #{id}, SYSDATE, #{content})
     </insert>
 
-    <select id="showCommentList" resultType="com.study.demo.board.PostCommentDTO">
-        SELECT * FROM POST_COMMENT
-            WHERE POST_NUM=#{postNum}
+    <select id="showCommentList" resultMap="PostCommentDTO">
+        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REGDATE, A.CONTENT, B.ID, B.NICKNAME
+            FROM POST_COMMENT A, MEMBER B
+            WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
             ORDER BY COMMENT_NUM ASC
     </select>
 

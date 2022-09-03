@@ -11,8 +11,8 @@
     </resultMap>
 
     <resultMap id="PostCommentDTO" type="com.study.demo.board.PostCommentDTO">
-        <result column="postNum" property="postNum" />
-        <result column="commentNum" property="commentNum" />
+        <result column="POST_NUM" property="postNum" />
+        <result column="COMMENT_NUM" property="commentNum" />
         <result column="id" property="id" />
         <result column="regDate" property="regDate" />
         <result column="content" property="content" />

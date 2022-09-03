@@ -112,7 +112,7 @@ function addComment(){
         })
     })
     .then((data) => {
-        console.log(data);
+        console.log(data); // 필요없는 내용. response되는 내용 딱히 없다?
         showCommentList(${post.postNum});
     });
     commentContent.value = "";
@@ -125,6 +125,7 @@ function showCommentList(postNum){
         document.getElementById("comments-list").innerHTML = "";
         let commentListHtml = "";
         for(let comment of data) {
+            console.log(comment);
             commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
             commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
             commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";

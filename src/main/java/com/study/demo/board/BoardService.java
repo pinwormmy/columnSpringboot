@@ -5,7 +5,7 @@ import com.study.demo.util.PageDTO;
 import java.util.List;
 
 public interface BoardService {
-    public List<BoardDTO> showPostList(PageDTO page) throws Exception;
+    List<BoardDTO> showPostList(PageDTO page) throws Exception;
 
     void submitPost(BoardDTO board) throws Exception;
 
@@ -17,11 +17,13 @@ public interface BoardService {
 
     PageDTO pageSetting(PageDTO page) throws Exception;
 
-    public int countTotalPost(PageDTO page) throws Exception;
+    int countTotalPost(PageDTO page) throws Exception;
 
     void addComment(PostCommentDTO comment) throws Exception;
 
     List<PostCommentDTO> showCommentList(int postNum) throws Exception;
 
     void deleteComment(int commentNum) throws Exception;
+
+    void updateCommentCount(int postNum) throws Exception;
 }

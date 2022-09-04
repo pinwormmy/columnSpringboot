@@ -27,4 +27,6 @@ public interface BoardMapper {
     List<PostCommentDTO> showCommentList(int postNum) throws Exception;
 
     void deleteComment(int commentNum) throws Exception;
+
+    void updateCommentCount(int postNum) throws Exception;
 }

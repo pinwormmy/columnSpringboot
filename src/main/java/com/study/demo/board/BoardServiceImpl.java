@@ -84,4 +84,9 @@ public class BoardServiceImpl implements BoardService{
     public void deleteComment(int commentNum) throws Exception {
         boardMapper.deleteComment(commentNum);
     }
+
+    @Override
+    public void updateCommentCount(int postNum) throws Exception {
+        boardMapper.updateCommentCount(postNum);
+    }
 }

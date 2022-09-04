@@ -69,7 +69,6 @@ public class BoardController {
     public void addComment(@RequestBody PostCommentDTO comment) throws Exception {
         log.debug("댓글 인수 확인(댓글내용) : {}", comment.getContent());
         boardService.addComment(comment);
-
     }
 
     @RequestMapping(value = "/showCommentList")
@@ -82,5 +81,11 @@ public class BoardController {
     @ResponseBody
     public void deleteComment(int commentNum) throws Exception {
         boardService.deleteComment(commentNum);
+    }
+
+    @RequestMapping(value = "/updateCommentCount")
+    @ResponseBody
+    public void updateCommentCount(int postNum) throws Exception {
+        boardService.updateCommentCount(postNum);
     }
 }

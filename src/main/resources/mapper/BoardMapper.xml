@@ -22,9 +22,9 @@
     <select id="showPostList" resultType="com.study.demo.board.BoardDTO">
         SELECT * FROM
             (SELECT rownum r, a.* FROM
-                (select post_num, title, content, writer, reg_date, views
+                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
                     from board
-                    where <include refid="searchKeyword"></include>
+                    where <include refid="searchKeyword" />
                     order by post_num desc) a)
             WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
     </select>
@@ -59,7 +59,7 @@
 
     <select id="countTotalPost" resultType="int">
         select count(*) from board
-        where <include refid="searchKeyword"></include>
+        where <include refid="searchKeyword" />
     </select>
 
     <insert id="addComment">
@@ -78,4 +78,13 @@
         delete from POST_COMMENT
             where COMMENT_NUM=#{commentNum}
     </delete>
+
+    <update id="updateCommentCount">
+        UPDATE board
+            SET COMMENT_COUNT=
+                (SELECT COUNT(*) FROM POST_COMMENT
+                    WHERE POST_NUM=#{postNum})
+            WHERE POST_NUM=#{postNum}
+    </update>
+
 </mapper>

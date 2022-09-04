@@ -109,6 +109,7 @@ function addComment(){
     })
     .then((data) => {
         console.log(data);
+        updateCommentCount(${post.postNum});
         showCommentList(${post.postNum});
     });
     commentContent.value = "";
@@ -147,8 +148,17 @@ function displayDeleteButton(commentListHtml, commentDTO) {
 
 function deleteComment(commentNum) {
     fetch("/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
-    .then(data => showCommentList( ${post.postNum} ))
+    .then(data => {
+        updateCommentCount(${post.postNum});
+        showCommentList(${post.postNum});
+    })
     .catch(error => alert("댓글 삭제 오류"));
+}
+
+function updateCommentCount(postNum) {
+    fetch("/updateCommentCount?postNum=" + postNum, {method:"PUT"})
+        .then(data => console.log("댓글 업데이트 : " + data))
+        .catch(error => alert("댓글수 갱신 오류"));
 }
 
 </script>

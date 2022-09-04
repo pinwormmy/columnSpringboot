@@ -39,7 +39,10 @@
                                              <div class="media-body">
                                                    <div class="well">
                                                        <div class="media-heading">
-                                                           <h2><a href="/readPost?postNum=${post.postNum}">${post.title}</a></h2><br>
+                                                           <h2><a href="/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if>
+                                                           </h2>
+                                                           <br>
                                                            <small><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/> </small>
                                                        </div>
                                                    </div>

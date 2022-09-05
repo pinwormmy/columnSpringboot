@@ -89,7 +89,7 @@
 
 <script>
 
-alert("js test 15");
+//alert("js test 15");
 let commentContent = document.getElementById("commentContent");
 showCommentList(${post.postNum});
 
@@ -109,8 +109,8 @@ function addComment(){
     })
     .then((data) => {
         console.log(data);
-        updateCommentCount(${post.postNum});
-        showCommentList(${post.postNum});
+        updateCommentCount(${post.postNum}); // 댓글 추가후 동작. 댓글수 갱신 후 댓글 목록 다시띄우기
+        showCommentList(${post.postNum}); // 근데 이것도 단일 책임 원칙 맞는지 생각해보기
     });
     commentContent.value = "";
 }
@@ -157,7 +157,7 @@ function deleteComment(commentNum) {
 
 function updateCommentCount(postNum) {
     fetch("/updateCommentCount?postNum=" + postNum, {method:"PUT"})
-        .then(data => console.log("댓글 업데이트 : " + data))
+        .then(data => console.log("댓글 업데이트"))
         .catch(error => alert("댓글수 갱신 오류"));
 }
 

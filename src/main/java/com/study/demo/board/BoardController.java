@@ -18,7 +18,7 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping(value = "/board")
+    @GetMapping(value = "/board") // 단일 책임 원칙 맞는지 검토
     public String board(PageDTO page, Model model) throws Exception {
         page = boardService.pageSetting(page);
         model.addAttribute("page", page);

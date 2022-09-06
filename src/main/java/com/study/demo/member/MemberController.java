@@ -46,17 +46,15 @@ public class MemberController {
     @RequestMapping(value = "/submitSignUp", method = RequestMethod.POST)
     public String submitSignUp(MemberDTO memberDTO, HttpSession httpSession) throws Exception {
         memberService.submitSignUp(memberDTO);
-        memberDTO = memberService.checkLoginData(memberDTO);
+        httpSession.setAttribute("member", memberService.checkLoginData(memberDTO)); // 로그인도 해줌
         log.debug("회원가입 확인: {}", memberDTO);
-        httpSession.setAttribute("member", memberDTO);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
-    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {
-        memberDTO = memberService.checkLoginData(memberDTO);
+    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {  
+        session.setAttribute("member", memberService.checkLoginData(memberDTO));
         log.debug("로그인 확인: {}", memberDTO);
-        session.setAttribute("member", memberDTO);
         return "redirect:" + session.getAttribute("pageBeforeLogin");
     }
 
@@ -78,9 +76,8 @@ public class MemberController {
 
     @RequestMapping(value = "/submitModifyMyInfo", method = RequestMethod.POST)
     public String submitModifyMyInfo(MemberDTO member, HttpSession session) throws Exception {
-        memberService.submitModifyMyInfo(member);
-        member = memberService.checkLoginData(member); // 회원가입수정 후 재로그인 처리해서 로그인데이터 갱신
-        session.setAttribute("member", member);
+        memberService.submitModifyMyInfo(member);       
+        session.setAttribute("member", memberService.checkLoginData(member)); // 재로그인해서 회원정보갱신
         return "myPage";
     }
 

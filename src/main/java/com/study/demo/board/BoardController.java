@@ -18,19 +18,16 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping(value = "/board") // 단일 책임 원칙 맞는지 검토
+    @GetMapping(value = "/board")
     public String board(PageDTO page, Model model) throws Exception {
-        page = boardService.pageSetting(page);
-        model.addAttribute("page", page);
-        List<BoardDTO> postList = boardService.showPostList(page);
-        model.addAttribute("postList", postList);
+        model.addAttribute("page", boardService.pageSetting(page));
+        model.addAttribute("postList", boardService.showPostList(page));
         return "board";
     }
 
     @RequestMapping("/readPost")
     public String post(Model model, int postNum) throws Exception {
-        BoardDTO post = boardService.readPost(postNum);
-        model.addAttribute("post", post);
+        model.addAttribute("post", boardService.readPost(postNum));
         return "readPost";
     }
 

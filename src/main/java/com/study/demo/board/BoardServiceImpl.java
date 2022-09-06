@@ -65,7 +65,7 @@ public class BoardServiceImpl implements BoardService{
 
     private PageService initPageUtil() {
         PageService util = new PageService();
-        util.setDISPLAY_POST_LIMIT(5);
+        util.setDISPLAY_POST_LIMIT(10);
         util.setPAGESET_LIMIT(10);
         return util;
     }

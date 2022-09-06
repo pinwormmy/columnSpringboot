@@ -30,7 +30,7 @@
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
                                 <form action="/submitPost" method="post">
-                                    <input type="hidden" name="writer" value="admin">
+                                    <input type="hidden" name="writer" value="${member.id}">
                                     제목 <input type="text" name="title" size="70" required> <br>
                                     <textarea name="content" id="content"></textarea><br>
                                     <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능

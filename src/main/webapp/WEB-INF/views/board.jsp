@@ -34,21 +34,41 @@
 		                    <div id="comments" class="col-xs-12">
 		                        <c:if test="${empty postList}">작성된 글이 없습니다. 글쓰기 버튼을 누르면 작성할 수 있습니다~!</c:if>
 		                        <div id="comments-list" class="gap">
-		                            <c:forEach var="post" items="${postList}">
+
                                         <div class="media">
+
                                              <div class="media-body">
+
                                                    <div class="well">
                                                        <div class="media-heading">
+                                                       <!--
                                                            <h2><a href="/readPost?postNum=${post.postNum}">${post.title}</a>
                                                                 <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if>
                                                            </h2>
                                                            <br>
                                                            <small><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/> </small>
-                                                       </div>
+                                                       -->
+
+
+                                             <table>
+                                                    <tr>
+                                                        <th>제목</th>
+                                                        <th>작성자</th>
+                                                        <th>작성일자</th>
+                                                    </tr>
+                                                    <c:forEach var="post" items="${postList}">
+                                                        <tr>
+                                                            <td><a href="/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                            <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></td>
+                                                            <td>${post.writer}</td>
+                                                            <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                        </div>
                                                    </div>
+                                             </table>
                                             </div>
                                         </div>
-                                    </c:forEach>
                                 </div><!--/#comments-list-->
 		                        <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">

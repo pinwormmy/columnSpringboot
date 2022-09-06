@@ -50,8 +50,7 @@ public class BoardController {
 
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
-        BoardDTO post = boardService.readPost(postNum);
-        model.addAttribute("post", post);
+        model.addAttribute("post", boardService.readPost(postNum));
         return "modifyPost";
     }
 

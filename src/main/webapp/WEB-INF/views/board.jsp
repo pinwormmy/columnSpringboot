@@ -7,6 +7,7 @@
 <title>테스트 페이지~~@@</title>
 
 <style>
+
 .boardList {
     width: 100%;
     background-color: #fff;
@@ -46,16 +47,49 @@
 .postTitle {
     color: black;
 }
-.wrapper .sidebar{
-    background: grey;
-    position: absolute;
-    left: 10%;
-    width: 12%;
-    min-width: 10%;
-    height: 70%;
-    padding: 0;
-    transition: all 0.5s ease;
+@media (min-width: 1150px) {
+    .sidebar {
+        color: white;
+        background: #202020;
+        position: absolute;
+        left: 0;
+        width: 15%;
+        min-width: 160px;
+        height: 70%;
+        padding: 1%;
+    }
+    .leftbar-ul li {
+        margin : 5%;
+    }
 }
+
+@media (max-width: 1150px) {
+    .sidebar {
+        color: white;
+        background: #202020;;
+        position: flex;
+        width: 100%;
+        height: 5%;
+        padding: 1%;
+    }
+    .leftbar-ul li {
+        margin : 1%;
+    }
+}
+
+.leftbar-ul {
+    border-top: solid 1px ivory;
+    list-style-type: none;
+}
+.leftbar-ul li {
+    border-bottom: solid 1px ivory;
+}
+.leftbar-ul li a{
+    color : white;
+    font-size: 16px;
+    font-weight: 500px;
+}
+
 </style>
 </head>
 <body>
@@ -78,11 +112,16 @@
     </div>
 </header>
 
-<div class="wrapper">
-    <!--Top menu -->
-    <div class="sidebar">
-       <h3>메뉴글 테스트!</h3>
-    </div>
+<div class="sidebar">
+    <nav>
+        <h2>게시판 메뉴</h2>
+        <ul class="leftbar-ul">
+            <li><a href="/board">공지사항</a></li>
+            <li><a href="/board">전용게시판1</a></li>
+            <li><a href="/board">전용게시판2</a></li>
+            <li><a href="/board">자유게시판</a></li>
+        </ul>
+    </nav>
 </div>
 
 <section class="white section-wrapper">

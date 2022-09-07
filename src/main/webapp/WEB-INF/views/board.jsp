@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>테스트 페이지~~@@</title>
+<title>게시판 페이지~~</title>
 
 <style>
 
@@ -96,15 +96,13 @@
 
 <%@include file="./include/header.jspf" %>
 
-<header id="headerwrap" class="halfscreen">
+<header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>게시판</h1>
-                        <p class="lead white">수리 모드에서는 사진과 메시지, 계정 등 개인 데이터에 접근할 수 없고 기본으로 설치된 애플리케이션만 이용할 수 있다.
-                        스마트폰 설정에서 '배터리 및 디바이스 케어' 메뉴를 선택한 뒤 '수리 모드' 탭을 실행하면 스스로 시스템 재부팅을 하면서 수리 모드가 켜진다.</p>
+                        <h1>자유게시판</h1>
                     </div>
                 </div>
             </div>

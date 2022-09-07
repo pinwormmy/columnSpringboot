@@ -16,9 +16,7 @@
                     <form class="form white-text" action="/submitLogin" method="post">
                         <div class="form-group">
                             <input type="text" class="outlined subscribe-input fullwidth-me form-control input-lg mb" name="id" placeholder="ID"><br>
-                            <input type="checkbox" name="saveId" /><span>아이디 저장</span>
                         </div>
-
                         <div class="form-group mt30">
                             <input type="password" class="outlined subscribe-input fullwidth-me form-control input-lg" name="pw" placeholder="비밀번호">
                         </div>

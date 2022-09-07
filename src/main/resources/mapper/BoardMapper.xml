@@ -41,9 +41,9 @@
             where post_num=#{postNum}
     </select>
 
-    <insert id="submitPost">
-        insert into board
-            values(POST_NUM_SEQ.nextval, #{title}, #{writer}, sysdate, 0, #{content})
+    <insert id="submitPst">
+        INSERT INTO BOARD
+            VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0)
     </insert>
 
     <update id="submitModifyPost">

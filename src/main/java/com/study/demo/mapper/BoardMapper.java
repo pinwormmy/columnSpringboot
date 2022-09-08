@@ -29,4 +29,6 @@ public interface BoardMapper {
     void deleteComment(int commentNum) throws Exception;
 
     void updateCommentCount(int postNum) throws Exception;
+
+    void updateViews(int postNum) throws Exception;
 }

@@ -89,4 +89,9 @@ public class BoardServiceImpl implements BoardService{
     public void updateCommentCount(int postNum) throws Exception {
         boardMapper.updateCommentCount(postNum);
     }
+
+    @Override
+    public void updateViews(int postNum) throws Exception {
+        boardMapper.updateViews(postNum);
+    }
 }

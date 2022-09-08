@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -26,7 +29,20 @@ public class BoardController {
     }
 
     @RequestMapping("/readPost")
-    public String post(Model model, int postNum) throws Exception {
+    public String post(Model model, int postNum, HttpServletRequest request, HttpServletResponse response) throws Exception {       
+        // 조회수 중복방지 쿠키. 코드 정리 필요
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            log.debug("cookie.getName : {}", cookie.getName());
+            log.debug("cookie.getValue : {}", cookie.getValue());
+            if (!cookie.getValue().contains(request.getParameter("postNum")) && !cookie.getName().equals("JSESSIONID")) {
+                cookie.setValue(cookie.getValue() + "_" + request.getParameter("postNum"));
+                cookie.setMaxAge(60 * 60 * 24 * 31);  // 1달
+                response.addCookie(cookie);
+                log.debug("쿠키생성 : ", cookie);
+                boardService.updateViews(postNum);
+            }
+        }
         model.addAttribute("post", boardService.readPost(postNum));
         return "readPost";
     }

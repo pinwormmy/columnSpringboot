@@ -24,7 +24,6 @@
                             <button class="pull-left btn btn-theme btn-white mt30">로그인</button>
                             <button type="button" class="pull-right btn btn-theme btn-white mt30" onclick="location.href='/signUp'">회원가입</button>
                         </div>
-
                     </form>
                 </div>
             </div>

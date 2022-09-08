@@ -41,7 +41,7 @@
             where post_num=#{postNum}
     </select>
 
-    <insert id="submitPst">
+    <insert id="submitPost">
         INSERT INTO BOARD
             VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0)
     </insert>
@@ -84,6 +84,12 @@
             SET COMMENT_COUNT=
                 (SELECT COUNT(*) FROM POST_COMMENT
                     WHERE POST_NUM=#{postNum})
+            WHERE POST_NUM=#{postNum}
+    </update>
+    
+    <update id="updateViews">
+        UPDATE BOARD
+            SET VIEWS= VIEWS + 1
             WHERE POST_NUM=#{postNum}
     </update>
 

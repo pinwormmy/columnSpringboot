@@ -55,7 +55,7 @@
         left: 0;
         width: 15%;
         min-width: 160px;
-        height: 70%;
+        height: 80%;
         padding: 1%;
     }
     .leftbar-ul li {
@@ -102,7 +102,7 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>자유게시판</h1>
+                        <h1>연재게시판1</h1>
                     </div>
                 </div>
             </div>
@@ -115,9 +115,8 @@
         <h2>게시판 메뉴</h2>
         <ul class="leftbar-ul">
             <li><a href="/board">공지사항</a></li>
-            <li><a href="/board">전용게시판1</a></li>
-            <li><a href="/board">전용게시판2</a></li>
-            <li><a href="/board">자유게시판</a></li>
+            <li><a href="/board">연재게시판1</a></li>
+            <li><a href="/board">연재게시판2</a></li>
         </ul>
     </nav>
 </div>
@@ -135,15 +134,15 @@
                                              <table class="boardList">
                                                     <tr>
                                                         <th>제목</th>
-                                                        <th>작성자</th>
                                                         <th>작성일자</th>
+                                                        <th>조회수</th>
                                                     </tr>
                                                     <c:forEach var="post" items="${postList}">
                                                     <tr>
                                                         <td><h4><a class="postTitle" href="/readPost?postNum=${post.postNum}">${post.title}</a>
                                                         <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                        <td>${post.writer}</td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                        <td>${post.views}</td>
                                                     </tr>
                                                     </c:forEach>
                                              </table>
@@ -181,7 +180,9 @@
                                         </c:if>
                                     </form>
                                 </div>
-                                <a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
+                                <c:if test="${member.memberLevel == 2}">
+                                    <a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
+                                </c:if>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
                     </div>

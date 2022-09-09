@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.UUID;
 
-// 에디터 첨부자료 통째로 들고와서 괜히 무거워짐. 나중에 필요없는 파일 다 삭제하기 
+// 에디터 첨부자료 통째로 들고와서 괜히 무거워짐. 나중에 필요없는 파일 다 삭제하기
+// 컨트롤러에 연산 이렇게 두는거 정리해야하지않을까?
 @Controller
 public class UploadController {
 

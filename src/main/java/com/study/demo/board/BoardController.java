@@ -1,18 +1,18 @@
 package com.study.demo.board;
 
 import com.study.demo.util.PageDTO;
+import com.study.demo.util.RequestIP;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -20,7 +20,6 @@ import java.util.List;
 public class BoardController {
     @Autowired
     BoardService boardService;
-
     @GetMapping(value = "/board")
     public String board(PageDTO page, Model model) throws Exception {
         model.addAttribute("page", boardService.pageSetting(page));
@@ -29,35 +28,10 @@ public class BoardController {
     }
 
     @RequestMapping("/readPost")
-    public String post(Model model, int postNum, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // 조회수 중복방지 쿠키. 코드 정리 필요
-        Cookie viewsCookie = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("viewsCookie")) {
-                    log.debug("cookie.getName : {}", cookie.getName());
-                    log.debug("cookie.getValue : {}", cookie.getValue());
-                    viewsCookie = cookie;
-                }
-            }
-        }
-        if (viewsCookie != null) {
-            if(!viewsCookie.getValue().contains(request.getParameter("postNum"))) {
-                viewsCookie.setValue(viewsCookie.getValue() + "_" + request.getParameter("postNum"));
-                viewsCookie.setMaxAge(60 * 60 * 24 * 31);  // 1달
-                response.addCookie(viewsCookie);
-                log.debug("쿠키값갱신 : ", viewsCookie.getValue());
-                boardService.updateViews(postNum);
-            }
-        } else {
-            Cookie newCookie = new Cookie("viewsCookie", request.getParameter("postNum"));
-            newCookie.setMaxAge(60 * 60 * 24 * 31);
-            response.addCookie(newCookie);
-            log.debug("(신규)쿠키값갱신 : ", newCookie.getValue());
-            boardService.updateViews(postNum);
-        }
-
+    @Transactional
+    public String post(Model model, int postNum, HttpServletRequest request) throws Exception {
+        String ip = RequestIP.getRemoteIP(request);
+        log.debug("현재IP주소 확인 : {}", ip);
         model.addAttribute("post", boardService.readPost(postNum));
         return "readPost";
     }

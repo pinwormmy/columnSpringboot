@@ -29,20 +29,35 @@ public class BoardController {
     }
 
     @RequestMapping("/readPost")
-    public String post(Model model, int postNum, HttpServletRequest request, HttpServletResponse response) throws Exception {       
+    public String post(Model model, int postNum, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 조회수 중복방지 쿠키. 코드 정리 필요
+        Cookie viewsCookie = null;
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            log.debug("cookie.getName : {}", cookie.getName());
-            log.debug("cookie.getValue : {}", cookie.getValue());
-            if (!cookie.getValue().contains(request.getParameter("postNum")) && !cookie.getName().equals("JSESSIONID")) {
-                cookie.setValue(cookie.getValue() + "_" + request.getParameter("postNum"));
-                cookie.setMaxAge(60 * 60 * 24 * 31);  // 1달
-                response.addCookie(cookie);
-                log.debug("쿠키생성 : ", cookie);
-                boardService.updateViews(postNum);
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("viewsCookie")) {
+                    log.debug("cookie.getName : {}", cookie.getName());
+                    log.debug("cookie.getValue : {}", cookie.getValue());
+                    viewsCookie = cookie;
+                }
             }
         }
+        if (viewsCookie != null) {
+            if(!viewsCookie.getValue().contains(request.getParameter("postNum"))) {
+                viewsCookie.setValue(viewsCookie.getValue() + "_" + request.getParameter("postNum"));
+                viewsCookie.setMaxAge(60 * 60 * 24 * 31);  // 1달
+                response.addCookie(viewsCookie);
+                log.debug("쿠키값갱신 : ", viewsCookie.getValue());
+                boardService.updateViews(postNum);
+            }
+        } else {
+            Cookie newCookie = new Cookie("viewsCookie", request.getParameter("postNum"));
+            newCookie.setMaxAge(60 * 60 * 24 * 31);
+            response.addCookie(newCookie);
+            log.debug("(신규)쿠키값갱신 : ", newCookie.getValue());
+            boardService.updateViews(postNum);
+        }
+
         model.addAttribute("post", boardService.readPost(postNum));
         return "readPost";
     }

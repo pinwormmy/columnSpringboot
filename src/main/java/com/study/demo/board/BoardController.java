@@ -29,14 +29,19 @@ public class BoardController {
 
     @RequestMapping("/readPost")
     @Transactional
-    public String post(Model model, int postNum, HttpServletRequest request) throws Exception {
+    public String post(Model model, HttpServletRequest request) throws Exception {
+        int postNum = Integer.parseInt(request.getParameter("postNum"));
+        checkIpAndUpdateViews(request, postNum);
+        model.addAttribute("post", boardService.readPost(postNum));
+        return "readPost";
+    }
+
+    private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
         if(boardService.checkViewUserIp(postNum, ip) == 0) {
             boardService.saveViewUserIp(postNum, ip);
             boardService.updateViews(postNum);
         }
-        model.addAttribute("post", boardService.readPost(postNum));
-        return "readPost";
     }
 
     @RequestMapping("/writePost")

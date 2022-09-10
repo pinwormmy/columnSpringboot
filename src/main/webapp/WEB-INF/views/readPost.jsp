@@ -126,7 +126,7 @@ function commentHtmlWithString(commentListHtml, CommentDTOList) {
 }
 
 function displayDeleteButton(commentListHtml, commentDTO) {
-    if( ("${member.id}" == commentDTO.id) || ("${member.memberLevel}" == 2) ) {
+    if( ("${member.id}" == commentDTO.id) || ("${member.memberLevel}" == 3) ) {
         commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
         commentListHtml += commentDTO.commentNum + ");'>삭제</button>";
     }

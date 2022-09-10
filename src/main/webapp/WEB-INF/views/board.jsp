@@ -139,7 +139,7 @@
                                                     </tr>
                                                     <c:forEach var="post" items="${postList}">
                                                     <tr>
-                                                        <td><h4><a class="postTitle" href="/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                        <td><h4><a class="postTitle" href="javascript:checkMemberLevelBeforeRead(${post.postNum});">${post.title}</a>
                                                         <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
                                                         <td>${post.views}</td>
@@ -180,7 +180,7 @@
                                         </c:if>
                                     </form>
                                 </div>
-                                <c:if test="${member.memberLevel == 2}">
+                                <c:if test="${member.memberLevel == 3}">
                                     <a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->
@@ -191,6 +191,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    function checkMemberLevelBeforeRead(postNum) {
+        if(${member == null || member.memberLevel < 2}) {
+            alert("해당 글 열람은 관리자 승인이 필요합니다.");
+            return false;
+        }
+        location.href = "/readPost?postNum=" + postNum;
+    }
+</script>
 
 <%@include file="./include/footer.jspf" %>
 </body>

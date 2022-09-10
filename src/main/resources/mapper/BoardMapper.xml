@@ -93,4 +93,14 @@
             WHERE POST_NUM=#{postNum}
     </update>
 
+    <insert id="saveViewUserIp">
+        INSERT INTO board_views_detail
+            VALUES(#{postNum}, #{ip}, SYSDATE)
+    </insert>
+
+    <select id="checkViewUserIp" resultType="int">
+        SELECT COUNT(*) FROM board_views_detail
+            WHERE POST_NUM=#{postNum} AND IP=#{ip}
+    </select>
+
 </mapper>

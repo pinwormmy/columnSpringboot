@@ -28,4 +28,8 @@ public interface BoardService {
     void updateCommentCount(int postNum) throws Exception;
 
     void updateViews(int postNum) throws Exception;
+
+    int checkViewUserIp(int postNum, String ip) throws Exception;
+
+    void saveViewUserIp(int postNum, String ip) throws Exception;
 }

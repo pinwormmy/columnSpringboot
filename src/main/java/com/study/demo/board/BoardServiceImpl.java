@@ -94,4 +94,14 @@ public class BoardServiceImpl implements BoardService{
     public void updateViews(int postNum) throws Exception {
         boardMapper.updateViews(postNum);
     }
+
+    @Override
+    public int checkViewUserIp(int postNum, String ip) throws Exception {
+        return boardMapper.checkViewUserIp(postNum, ip);
+    }
+
+    @Override
+    public void saveViewUserIp(int postNum, String ip) throws Exception {
+        boardMapper.saveViewUserIp(postNum, ip);
+    }
 }

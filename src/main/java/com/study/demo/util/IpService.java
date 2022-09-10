@@ -2,7 +2,7 @@ package com.study.demo.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RequestIP {
+public class IpService {
     public static String getRemoteIP(HttpServletRequest request){
         String ip = request.getHeader("X-FORWARDED-FOR");
         if (ip == null || ip.length() == 0) { ip = request.getHeader("Proxy-Client-IP"); }

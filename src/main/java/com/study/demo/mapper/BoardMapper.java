@@ -31,4 +31,8 @@ public interface BoardMapper {
     void updateCommentCount(int postNum) throws Exception;
 
     void updateViews(int postNum) throws Exception;
+
+    int checkViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
+
+    void saveViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
 }

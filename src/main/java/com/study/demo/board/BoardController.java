@@ -1,7 +1,7 @@
 package com.study.demo.board;
 
 import com.study.demo.util.PageDTO;
-import com.study.demo.util.RequestIP;
+import com.study.demo.util.IpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +30,11 @@ public class BoardController {
     @RequestMapping("/readPost")
     @Transactional
     public String post(Model model, int postNum, HttpServletRequest request) throws Exception {
-        String ip = RequestIP.getRemoteIP(request);
-        log.debug("현재IP주소 확인 : {}", ip);
+        String ip = IpService.getRemoteIP(request);
+        if(boardService.checkViewUserIp(postNum, ip) == 0) {
+            boardService.saveViewUserIp(postNum, ip);
+            boardService.updateViews(postNum);
+        }
         model.addAttribute("post", boardService.readPost(postNum));
         return "readPost";
     }

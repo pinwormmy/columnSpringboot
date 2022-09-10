@@ -50,6 +50,7 @@ body {
 	margin:0;
 	color:#404040;
 	font-family:'Noto Sans KR',sans-serif
+	height: 100%;
 }
 body.boxed {
 	-webkit-backface-visibility: visible;
@@ -835,6 +836,7 @@ input {
 /*-----------------------------------------------------------------------------------*/
 .section-wrapper {
 	width:100%;
+	min-height: 100%;
 	display:block;
 }
 

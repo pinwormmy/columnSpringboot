@@ -110,18 +110,19 @@
     </div>
 </header>
 
-<div class="sidebar">
-    <nav>
-        <h2>게시판 메뉴</h2>
-        <ul class="leftbar-ul">
-            <li><a href="/board">공지사항</a></li>
-            <li><a href="/board">승인연재게시판</a></li>
-            <li><a href="/openColumn/list">공개연재게시판</a></li>
-        </ul>
-    </nav>
-</div>
-
 <section class="white section-wrapper">
+
+    <div class="sidebar">
+        <nav>
+            <h2>게시판 메뉴</h2>
+            <ul class="leftbar-ul">
+                <li><a href="/board">공지사항</a></li>
+                <li><a href="/board">승인연재게시판</a></li>
+                <li><a href="/openColumn/list">공개연재게시판</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <div class="section-inner">
         <div class="container">
             <div class="row">

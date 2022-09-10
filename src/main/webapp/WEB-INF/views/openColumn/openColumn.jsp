@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>게시판 페이지~~</title>
+<title>공개형 게시판 페이지</title>
 
 <style>
 
@@ -55,7 +55,7 @@
         left: 0;
         width: 15%;
         min-width: 160px;
-        height: 80%;
+        height: 65%;
         padding: 1%;
     }
     .leftbar-ul li {
@@ -94,7 +94,7 @@
 </head>
 <body>
 
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
@@ -102,7 +102,7 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>연재게시판(승인형)</h1>
+                        <h1>연재게시판2(공개형)</h1>
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
                                                     </tr>
                                                     <c:forEach var="post" items="${postList}">
                                                     <tr>
-                                                        <td><h4><a class="postTitle" href="javascript:checkMemberLevelBeforeRead(${post.postNum});">${post.title}</a>
+                                                        <td><h4><a class="postTitle" href="/openColumn/readOpenColumn?postNum=${post.postNum}">${post.title}</a>
                                                         <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
                                                         <td>${post.views}</td>
@@ -152,22 +152,22 @@
                                 <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
                                         <a class="pull-left btn btn-theme"
-                                        href="/board?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/openColumn/list?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
                                         <a class="pull-center btn btn-theme"
-                                        href="/board?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/openColumn/list?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         ${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
                                         <a class="pull-right btn btn-theme"
-                                        href="/board?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/openColumn/list?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         다음</a>
                                     </c:if>
                                 </div>
                                 <div class="form-group">
-                                    <form action="/board">
+                                    <form action="/openColumn">
                                         <select name="searchType">
                                             <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
                                             <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>
@@ -176,12 +176,12 @@
                                         <input name="keyword" value=${page.keyword}>
                                         <button class="pull btn btn-theme">검색</button>
                                         <c:if test="${page.keyword != ''}">
-                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/board'">취소</button>
+                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/openColumn/list'">취소</button>
                                         </c:if>
                                     </form>
                                 </div>
                                 <c:if test="${member.memberLevel == 3}">
-                                    <a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
+                                    <a href="/openColumn/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
@@ -192,18 +192,6 @@
     </div>
 </section>
 
-<script>
-
-    function checkMemberLevelBeforeRead(postNum) {
-        if(${member == null || member.memberLevel < 2}) {
-            alert("해당 글 열람은 관리자 승인이 필요합니다.");
-            return false;
-        }
-        location.href = "/readPost?postNum=" + postNum;
-    }
-
-</script>
-
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 </body>
 </html>

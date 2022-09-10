@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.demo.mapper.OpenColumnMapper">
+
+    <resultMap id="MemberDTO" type="com.study.demo.member.MemberDTO">
+        <result column="id" property="id" />
+        <result column="nickName" property="nickName" />
+    </resultMap>
+
+    <resultMap id="OpenColumnCommentDTO" type="com.study.demo.openColumn.OpenColumnCommentDTO">
+        <result column="POST_NUM" property="postNum" />
+        <result column="COMMENT_NUM" property="commentNum" />
+        <result column="id" property="id" />
+        <result column="REG_DATE" property="regDate" />
+        <result column="content" property="content" />
+        <collection property="memberDTO" resultMap="MemberDTO" />
+    </resultMap>
+
+    <select id="showPostList" resultType="com.study.demo.openColumn.OpenColumnDTO">
+        SELECT * FROM
+            (SELECT rownum r, a.* FROM
+                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
+                    from openColumn
+                    where <include refid="searchKeyword" />
+                    order by post_num desc) a)
+            WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
+    </select>
+
+    <sql id="searchKeyword">
+        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
+            or content like '%'||#{keyword}||'%'</if>
+    </sql>
+
+    <select id="readPost" resultType="com.study.demo.openColumn.OpenColumnDTO">
+        select * from openColumn
+            where post_num=#{postNum}
+    </select>
+
+    <insert id="submitPost">
+        INSERT INTO OPENCOLUMN
+            VALUES(OPENCOLUMN_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0)
+    </insert>
+
+    <update id="submitModifyPost">
+        update openColumn
+            set title=#{title}, content=#{content}, writer=#{writer}
+            where post_num=#{postNum}
+    </update>
+
+    <delete id="deletePost">
+        delete from openColumn
+            where post_num=#{postNum}
+    </delete>
+
+    <select id="countTotalPost" resultType="int">
+        select count(*) from openColumn
+        where <include refid="searchKeyword" />
+    </select>
+
+    <insert id="addComment">
+        INSERT INTO OPENCOLUMN_COMMENT
+            VALUES(#{postNum}, OPENCOLUMN_COMMENT_NUM_SEQ.nextval, #{id}, SYSDATE, #{content})
+    </insert>
+
+    <select id="showCommentList" resultMap="OpenColumnCommentDTO">
+        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.ID, B.NICKNAME
+            FROM OPENCOLUMN_COMMENT A, MEMBER B
+            WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
+            ORDER BY COMMENT_NUM ASC
+    </select>
+
+    <delete id="deleteComment">
+        delete from OPENCOLUMN_COMMENT
+            where COMMENT_NUM=#{commentNum}
+    </delete>
+
+    <update id="updateCommentCount">
+        UPDATE openColumn
+            SET COMMENT_COUNT=
+                (SELECT COUNT(*) FROM OPENCOLUMN_COMMENT
+                    WHERE POST_NUM=#{postNum})
+            WHERE POST_NUM=#{postNum}
+    </update>
+    
+    <update id="updateViews">
+        UPDATE OPENCOLUMN
+            SET VIEWS= VIEWS + 1
+            WHERE POST_NUM=#{postNum}
+    </update>
+
+    <insert id="saveViewUserIp">
+        INSERT INTO OPENCOLUMN_VIEWS
+            VALUES(#{postNum}, #{ip}, SYSDATE)
+    </insert>
+
+    <select id="checkViewUserIp" resultType="int">
+        SELECT COUNT(*) FROM OPENCOLUMN_VIEWS
+            WHERE POST_NUM=#{postNum} AND IP=#{ip}
+    </select>
+
+</mapper>

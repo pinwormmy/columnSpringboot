@@ -918,6 +918,7 @@ section.white p {
 	color:#eee;
 	overflow: hidden;
 	position: relative;
+	bottom: 0;
 }
 
 #footerwrap p {

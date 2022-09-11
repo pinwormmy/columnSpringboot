@@ -57,11 +57,12 @@
     .sidebar {
         color: white;
         background: #202020;
-        position: absolute;
+        position: fixed;
+        top: 30%;
         left: 0;
-        bottom: 0;
+        bottom: 20%;
         width: 15%;
-        height: 80%;
+        height: 70%;
         min-width: 160px;
         padding: 1%;
     }
@@ -119,6 +120,9 @@
     </div>
 </header>
 
+
+
+<section class="white section-wrapper">
 <div class="sidebar">
     <nav>
         <h2>게시판 메뉴</h2>
@@ -129,8 +133,6 @@
         </ul>
     </nav>
 </div>
-
-<section class="white section-wrapper">
     <div class="section-inner">
         <div class="container">
             <div class="row">

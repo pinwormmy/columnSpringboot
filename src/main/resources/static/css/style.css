@@ -45,12 +45,12 @@
 	margin:0;
 	padding:0
 }
-body {
+html, body {
 	background:#fff;
 	padding: 0;
 	margin:0;
 	color:#404040;
-	font-family:'Noto Sans KR',sans-serif
+	font-family:'Noto Sans KR',sans-serif;
 	height: 100%;
 }
 body.boxed {
@@ -920,7 +920,7 @@ section.white p {
 	background: #202020;
 	width:100%;
 	color:#eee;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	left: 0;
 }

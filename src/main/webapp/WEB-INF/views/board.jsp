@@ -8,8 +8,11 @@
 
 <style>
 .body-wrap {
-    min-height:100%;
-    position:relative;
+    min-height: 100%;
+    position: relative;
+}
+.body-content {
+    padding-bottom: 100px;
 }
 .boardList {
     width: 100%;
@@ -56,8 +59,9 @@
         background: #202020;
         position: absolute;
         left: 0;
+        bottom: 0;
         width: 15%;
-        height: 100%;
+        height: 80%;
         min-width: 160px;
         padding: 1%;
     }
@@ -100,6 +104,7 @@
 
 <%@include file="./include/header.jspf" %>
 
+<div class="body-content">
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
@@ -113,18 +118,19 @@
         </div>
     </div>
 </header>
-<section class="white section-wrapper">
-    <div class="sidebar">
-        <nav>
-            <h2>게시판 메뉴</h2>
-            <ul class="leftbar-ul">
-                <li><a href="/board">공지사항</a></li>
-                <li><a href="/board">승인연재게시판</a></li>
-                <li><a href="/openColumn/list">공개연재게시판</a></li>
-            </ul>
-        </nav>
-    </div>
 
+<div class="sidebar">
+    <nav>
+        <h2>게시판 메뉴</h2>
+        <ul class="leftbar-ul">
+            <li><a href="/board">공지사항</a></li>
+            <li><a href="/board">승인연재게시판</a></li>
+            <li><a href="/openColumn/list">공개연재게시판</a></li>
+        </ul>
+    </nav>
+</div>
+
+<section class="white section-wrapper">
     <div class="section-inner">
         <div class="container">
             <div class="row">
@@ -194,7 +200,7 @@
         </div>
     </div>
 </section>
-
+</div>
 <%@include file="./include/footer.jspf" %>
 
 </div>

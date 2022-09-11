@@ -7,7 +7,10 @@
 <title>게시판 페이지~~</title>
 
 <style>
-
+.body-wrap {
+    min-height:100%;
+    position:relative;
+}
 .boardList {
     width: 100%;
     background-color: #fff;
@@ -54,8 +57,8 @@
         position: absolute;
         left: 0;
         width: 15%;
+        height: 100%;
         min-width: 160px;
-        height: 80%;
         padding: 1%;
     }
     .leftbar-ul li {
@@ -93,6 +96,7 @@
 </style>
 </head>
 <body>
+<div class="body-wrap">
 
 <%@include file="./include/header.jspf" %>
 
@@ -109,9 +113,7 @@
         </div>
     </div>
 </header>
-
 <section class="white section-wrapper">
-
     <div class="sidebar">
         <nav>
             <h2>게시판 메뉴</h2>
@@ -193,6 +195,10 @@
     </div>
 </section>
 
+<%@include file="./include/footer.jspf" %>
+
+</div>
+
 <script>
 
     function checkMemberLevelBeforeRead(postNum) {
@@ -205,6 +211,5 @@
 
 </script>
 
-<%@include file="./include/footer.jspf" %>
 </body>
 </html>

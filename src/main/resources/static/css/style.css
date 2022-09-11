@@ -837,6 +837,7 @@ input {
 .section-wrapper {
 	width:100%;
 	min-height: 100%;
+	position: relative;
 	display:block;
 }
 
@@ -919,7 +920,7 @@ section.white p {
 	width:100%;
 	color:#eee;
 	overflow: hidden;
-	position: relative;
+	position: absolute;
 	bottom: 0;
 }
 

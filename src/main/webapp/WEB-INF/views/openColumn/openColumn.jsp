@@ -167,7 +167,7 @@
                                     </c:if>
                                 </div>
                                 <div class="form-group">
-                                    <form action="/openColumn">
+                                    <form action="/openColumn/list">
                                         <select name="searchType">
                                             <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
                                             <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>

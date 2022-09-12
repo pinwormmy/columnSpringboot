@@ -29,18 +29,19 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
-                                <form action="/submitModifyPost" method="post"> <!-- 작업해야함 -->
+                                <form action="/submitModifyPost" method="post">
                                     <input type="hidden" name="writer" value="${post.writer}">
                                     <input type="hidden" name="postNum" value="${post.postNum}">
-                                    제목 <input type="text" name="title" size="70" value="${post.title}" required> <br>
+                                    제목 <input type="text" name="title" size="55" value="${post.title}" required>
+                                    <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
+                                    <input type="checkbox" name="notice" id="noticeChecked" value="1" />공지로 등록<br>
                                     <textarea name="content" id="content">${post.content}</textarea><br>
                                     <script type="text/javascript">
                                         CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
                                     </script>
-                                    <button class="pull-left btn btn-theme">게시하기</button>
+                                    <button class="pull-left btn btn-theme">수정하기</button>
                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/readPost?postNum=${post.postNum}'">취소</button>
                                 </form>
-
 							</div>
 
                             <div class="post-navigation">
@@ -55,5 +56,17 @@
 		</div>
 	</section>
 <%@include file="./include/footer.jspf" %>
+
+<script>
+
+alert("js 테스트01");
+if(document.getElementById("noticeChecked").checked) {
+    alert("js 작동여부 확인: 공지체크박스 온");
+    document.getElementById("noticeUnchecked").disabled = true;
+}
+
+</script>
+
+
 </body>
 </html>

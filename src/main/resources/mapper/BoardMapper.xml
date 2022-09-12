@@ -22,7 +22,7 @@
     <select id="showPostList" resultType="com.study.demo.board.BoardDTO">
         SELECT * FROM
             (SELECT rownum r, a.* FROM
-                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
+                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
                     from board
                     where <include refid="searchKeyword" />
                     order by post_num desc) a)
@@ -43,12 +43,12 @@
 
     <insert id="submitPost">
         INSERT INTO BOARD
-            VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0)
+            VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
     </insert>
 
     <update id="submitModifyPost">
         update board
-            set title=#{title}, content=#{content}, writer=#{writer}
+            set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
             where post_num=#{postNum}
     </update>
 

@@ -14,4 +14,5 @@ public class BoardDTO {
     private Date regDate;
     private int views;
     private int commentCount;
+    private int notice; // 0: 일반글 1:공지
 }

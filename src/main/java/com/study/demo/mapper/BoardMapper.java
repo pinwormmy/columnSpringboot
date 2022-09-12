@@ -14,7 +14,7 @@ public interface BoardMapper {
 
     void submitPost(BoardDTO board) throws Exception;
 
-    void submitModifyPost(BoardDTO postNum) throws Exception;
+    void submitModifyPost(BoardDTO board) throws Exception;
 
     BoardDTO readPost(int postNum) throws Exception;
 

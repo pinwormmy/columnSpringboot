@@ -3,27 +3,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.study.demo.mapper.BoardMapper">
+<mapper namespace="com.study.demo.mapper.FullNoticeMapper">
 
     <resultMap id="MemberDTO" type="com.study.demo.member.MemberDTO">
         <result column="id" property="id" />
         <result column="nickName" property="nickName" />
     </resultMap>
 
-    <resultMap id="PostCommentDTO" type="com.study.demo.board.PostCommentDTO">
+    <resultMap id="FullNoticeCommentDTO" type="com.study.demo.fullNotice.FullNoticeCommentDTO">
         <result column="POST_NUM" property="postNum" />
         <result column="COMMENT_NUM" property="commentNum" />
-        <result column="id" property="id" />
-        <result column="regDate" property="regDate" />
+        <result column="WIRTER" property="writer" />
+        <result column="REG_DATE" property="regDate" />
         <result column="content" property="content" />
         <collection property="memberDTO" resultMap="MemberDTO" />
     </resultMap>
 
-    <select id="showPostList" resultType="com.study.demo.board.BoardDTO">
+    <select id="showPostList" resultType="com.study.demo.fullNotice.FullNoticeDTO">
         SELECT * FROM
             (SELECT rownum r, a.* FROM
-                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
-                    from board
+                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
+                    from FULL_NOTICE
                     where <include refid="searchKeyword" /> and notice=0
                     order by post_num desc) a)
             WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
@@ -36,75 +36,75 @@
             or content like '%'||#{keyword}||'%'</if>
     </sql>
 
-    <select id="readPost" resultType="com.study.demo.board.BoardDTO">
-        select * from board
+    <select id="readPost" resultType="com.study.demo.fullNotice.FullNoticeDTO">
+        select * from FULL_NOTICE
             where post_num=#{postNum}
     </select>
 
     <insert id="submitPost">
-        INSERT INTO BOARD(POST_NUM, TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
-            VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
+        INSERT INTO FULL_NOTICE
+            VALUES(FULL_NOTICE_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
     </insert>
 
     <update id="submitModifyPost">
-        update board
+        update FULL_NOTICE
             set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
             where post_num=#{postNum}
     </update>
 
     <delete id="deletePost">
-        delete from board
+        delete from FULL_NOTICE
             where post_num=#{postNum}
     </delete>
 
     <select id="countTotalPost" resultType="int">
-        select count(*) from board
+        select count(*) from FULL_NOTICE
         where <include refid="searchKeyword" />
     </select>
 
     <insert id="addComment">
-        INSERT INTO POST_COMMENT
-            VALUES(#{postNum}, COMMENT_SEQ.nextval, #{id}, SYSDATE, #{content})
+        INSERT INTO FULL_NOTICE_COMMENT
+            VALUES(#{postNum}, FULL_NOTICE_COMMENT_NUM_SEQ.nextval, #{id}, SYSDATE, #{content})
     </insert>
 
-    <select id="showCommentList" resultMap="PostCommentDTO">
-        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REGDATE, A.CONTENT, B.ID, B.NICKNAME
-            FROM POST_COMMENT A, MEMBER B
+    <select id="showCommentList" resultMap="FullNoticeCommentDTO">
+        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.ID, B.NICKNAME
+            FROM FULL_NOTICE_COMMENT A, MEMBER B
             WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
             ORDER BY COMMENT_NUM ASC
     </select>
 
     <delete id="deleteComment">
-        delete from POST_COMMENT
+        delete from FULL_NOTICE_COMMENT
             where COMMENT_NUM=#{commentNum}
     </delete>
 
     <update id="updateCommentCount">
-        UPDATE board
+        UPDATE FULL_NOTICE
             SET COMMENT_COUNT=
-                (SELECT COUNT(*) FROM POST_COMMENT
+                (SELECT COUNT(*) FROM FULL_NOTICE_COMMENT
                     WHERE POST_NUM=#{postNum})
             WHERE POST_NUM=#{postNum}
     </update>
     
     <update id="updateViews">
-        UPDATE BOARD
+        UPDATE FULL_NOTICE
             SET VIEWS= VIEWS + 1
             WHERE POST_NUM=#{postNum}
     </update>
 
     <insert id="saveViewUserIp">
-        INSERT INTO board_views_detail
+        INSERT INTO FULL_NOTICE_VIEWS
             VALUES(#{postNum}, #{ip}, SYSDATE)
     </insert>
 
     <select id="checkViewUserIp" resultType="int">
-        SELECT COUNT(*) FROM board_views_detail
+        SELECT COUNT(*) FROM FULL_NOTICE_VIEWS
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 
-    <select id="showSelfNoticeList" resultType="com.study.demo.board.BoardDTO">
-        SELECT * FROM BOARD
+    <select id="showSelfNoticeList" resultType="com.study.demo.fullNotice.FullNoticeDTO">
+        SELECT * FROM FULL_NOTICE
             WHERE NOTICE=1
             ORDER BY POST_NUM DESC
     </select>

@@ -7,6 +7,10 @@
 <title>공개형 게시판 페이지</title>
 
 <style>
+.body-wrap {
+    min-height: 100%;
+    position: relative;
+}
 .boardList {
     width: 100%;
     background-color: #fff;
@@ -54,7 +58,7 @@
         left: 0;
         width: 15%;
         min-width: 160px;
-        height: 65%;
+        height: 75%;
         padding: 1%;
     }
     .leftbar-ul li {
@@ -92,6 +96,7 @@
 </style>
 </head>
 <body>
+<div class="body-wrap">
 
 <%@include file="../include/header.jspf" %>
 
@@ -114,7 +119,7 @@
         <nav>
             <h2>게시판 메뉴</h2>
             <ul class="leftbar-ul">
-                <li><a href="/board">공지사항</a></li>
+                <li><a href="/fullNotice/list">공지사항</a></li>
                 <li><a href="/board">승인연재게시판</a></li>
                 <li><a href="/openColumn/list">공개연재게시판</a></li>
             </ul>
@@ -201,5 +206,6 @@
 </section>
 
 <%@include file="../include/footer.jspf" %>
+</div>
 </body>
 </html>

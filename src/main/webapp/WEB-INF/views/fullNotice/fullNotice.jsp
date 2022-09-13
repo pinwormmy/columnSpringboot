@@ -4,15 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>게시판 페이지~~</title>
+<title>공개형 게시판 페이지</title>
 
 <style>
 .body-wrap {
     min-height: 100%;
     position: relative;
-}
-.body-content {
-    padding-bottom: 100px;
 }
 .boardList {
     width: 100%;
@@ -57,13 +54,11 @@
     .sidebar {
         color: white;
         background: #202020;
-        position: fixed;
-        top: 30%;
+        position: absolute;
         left: 0;
-        bottom: 20%;
         width: 15%;
-        height: 70%;
         min-width: 160px;
+        height: 75%;
         padding: 1%;
     }
     .leftbar-ul li {
@@ -103,22 +98,22 @@
 <body>
 <div class="body-wrap">
 
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
-<div class="body-content">
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>연재게시판(승인형)</h1>
+                        <h1>전체공지사항</h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
 <section class="white section-wrapper">
     <div class="sidebar">
         <nav>
@@ -145,10 +140,10 @@
                                                         <th>작성일자</th>
                                                         <th>조회수</th>
                                                     </tr>
-                                                    <c:forEach var="notice" items="${selfNoticeList}">
+                                                     <c:forEach var="notice" items="${selfNoticeList}">
                                                     <tr>
                                                         <td><h4><div align="left">[공지사항]</div>
-                                                        <a class="noticeTitle" href="javascript:checkMemberLevelBeforeRead(${notice.postNum});">
+                                                        <a class="noticeTitle" href="/fullNotice/readFullNotice?postNum=${notice.postNum}">
                                                          ${notice.title}</a>
                                                         <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
@@ -157,7 +152,7 @@
                                                     </c:forEach>
                                                     <c:forEach var="post" items="${postList}">
                                                     <tr>
-                                                        <td><h4><a class="postTitle" href="javascript:checkMemberLevelBeforeRead(${post.postNum});">${post.title}</a>
+                                                        <td><h4><a class="postTitle" href="/fullNotice/readFullNotice?postNum=${post.postNum}">${post.title}</a>
                                                         <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
                                                         <td>${post.views}</td>
@@ -170,22 +165,22 @@
                                 <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
                                         <a class="pull-left btn btn-theme"
-                                        href="/board?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/fullNotice/list?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
                                         <a class="pull-center btn btn-theme"
-                                        href="/board?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/fullNotice/list?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         ${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
                                         <a class="pull-right btn btn-theme"
-                                        href="/board?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/fullNotice/list?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         다음</a>
                                     </c:if>
                                 </div>
                                 <div class="form-group">
-                                    <form action="/board">
+                                    <form action="/fullNotice/list">
                                         <select name="searchType">
                                             <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
                                             <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>
@@ -194,12 +189,12 @@
                                         <input name="keyword" value=${page.keyword}>
                                         <button class="pull btn btn-theme">검색</button>
                                         <c:if test="${page.keyword != ''}">
-                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/board'">취소</button>
+                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/fullNotice/list'">취소</button>
                                         </c:if>
                                     </form>
                                 </div>
                                 <c:if test="${member.memberLevel == 3}">
-                                    <a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
+                                    <a href="/fullNotice/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
@@ -209,22 +204,8 @@
         </div>
     </div>
 </section>
+
+<%@include file="../include/footer.jspf" %>
 </div>
-<%@include file="./include/footer.jspf" %>
-
-</div>
-
-<script>
-
-    function checkMemberLevelBeforeRead(postNum) {
-        if(${member == null || member.memberLevel < 2}) {
-            alert("해당 글 열람은 관리자 승인이 필요합니다.");
-            return false;
-        }
-        location.href = "/readPost?postNum=" + postNum;
-    }
-
-</script>
-
 </body>
 </html>

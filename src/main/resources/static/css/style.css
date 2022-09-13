@@ -45,13 +45,11 @@
 	margin:0;
 	padding:0
 }
-html, body {
+body {
 	background:#fff;
-	padding: 0;
 	margin:0;
 	color:#404040;
 	font-family:'Noto Sans KR',sans-serif;
-	height: 100%;
 }
 body.boxed {
 	-webkit-backface-visibility: visible;
@@ -837,8 +835,6 @@ input {
 /*-----------------------------------------------------------------------------------*/
 .section-wrapper {
 	width:100%;
-	height: 100%;
-	position: static;
     display:block;
 }
 
@@ -920,9 +916,8 @@ section.white p {
 	background: #202020;
 	width:100%;
 	color:#eee;
+	overflow: hidden;
 	position: relative;
-	bottom: 0;
-	left: 0;
 }
 
 #footerwrap p {

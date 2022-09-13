@@ -7,13 +7,7 @@
 <title>게시판 페이지~~</title>
 
 <style>
-.body-wrap {
-    min-height: 100%;
-    position: relative;
-}
-.body-content {
-    padding-bottom: 100px;
-}
+
 .boardList {
     width: 100%;
     background-color: #fff;
@@ -57,12 +51,11 @@
     .sidebar {
         color: white;
         background: #202020;
-        position: fixed;
-        top: 30%;
+        position: relative;
         left: 0;
-        bottom: 20%;
         width: 15%;
-        height: 70%;
+        height: 100%;
+        overflow: hidden;
         min-width: 160px;
         padding: 1%;
     }
@@ -120,20 +113,21 @@
     </div>
 </header>
 <section class="white section-wrapper">
-    <div class="sidebar">
-        <nav>
-            <h2>게시판 메뉴</h2>
-            <ul class="leftbar-ul">
-                <li><a href="/fullNotice/list">공지사항</a></li>
-                <li><a href="/board">승인연재게시판</a></li>
-                <li><a href="/openColumn/list">공개연재게시판</a></li>
-            </ul>
-        </nav>
-    </div>
+
     <div class="section-inner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
+                    <div class="sidebar">
+                        <nav>
+                            <h2>게시판 메뉴</h2>
+                            <ul class="leftbar-ul">
+                                <li><a href="/fullNotice/list">공지사항</a></li>
+                                <li><a href="/board">승인연재게시판</a></li>
+                                <li><a href="/openColumn/list">공개연재게시판</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">

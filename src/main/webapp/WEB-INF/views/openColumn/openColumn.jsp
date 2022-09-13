@@ -58,7 +58,7 @@
         left: 0;
         width: 15%;
         min-width: 160px;
-        height: 75%;
+        height: 70%;
         padding: 1%;
     }
     .leftbar-ul li {

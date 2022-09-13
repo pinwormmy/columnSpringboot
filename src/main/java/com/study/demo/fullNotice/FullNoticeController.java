@@ -24,7 +24,7 @@ public class FullNoticeController {
 
     @GetMapping(value = "/list")
     public String board(PageDTO page, Model model) throws Exception {
-        model.addAttribute("selfNoticeList", fullNoticeService.showSelfNoticeList());
+        model.addAttribute("fullNoticeList", fullNoticeService.showSelfNoticeList());
         model.addAttribute("page", fullNoticeService.pageSetting(page));
         model.addAttribute("postList", fullNoticeService.showPostList(page));
         return "fullNotice/fullNotice";

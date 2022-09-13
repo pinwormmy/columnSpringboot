@@ -1,5 +1,6 @@
 package com.study.demo.openColumn;
 
+import com.study.demo.fullNotice.FullNoticeDTO;
 import com.study.demo.mapper.BoardMapper;
 import com.study.demo.mapper.OpenColumnMapper;
 import com.study.demo.util.PageDTO;
@@ -109,5 +110,10 @@ public class OpenColumnServiceImpl implements OpenColumnService {
     @Override
     public List<OpenColumnDTO> showSelfNoticeList() throws Exception {
         return openColumnMapper.showSelfNoticeList();
+    }
+
+    @Override
+    public List<FullNoticeDTO> showFullNoticeList() throws Exception {
+        return openColumnMapper.showFullNoticeList();
     }
 }

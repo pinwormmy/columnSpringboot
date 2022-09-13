@@ -106,7 +106,7 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>전체공지사항</h1>
+                        <h1>공지사항</h1>
                     </div>
                 </div>
             </div>
@@ -140,9 +140,9 @@
                                                         <th>작성일자</th>
                                                         <th>조회수</th>
                                                     </tr>
-                                                     <c:forEach var="notice" items="${selfNoticeList}">
+                                                     <c:forEach var="notice" items="${fullNoticeList}">
                                                     <tr>
-                                                        <td><h4><div align="left">[공지사항]</div>
+                                                        <td><h4><div align="left">[전체공지]</div>
                                                         <a class="noticeTitle" href="/fullNotice/readFullNotice?postNum=${notice.postNum}">
                                                          ${notice.title}</a>
                                                         <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
@@ -159,7 +159,7 @@
                                                     </tr>
                                                     </c:forEach>
                                              </table>
-                                             <c:if test="${empty postList}"><tr><td>관련 글이 없습니다...</td></tr></c:if>
+                                             <c:if test="${empty fullNoticeList}"><tr><td>현재 등록된 전체공지사항이 없습니다.</td></tr></c:if>
                                        </div>
                                 </div>
                                 <div class="post-navigation">

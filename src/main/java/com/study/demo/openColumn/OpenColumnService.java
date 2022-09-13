@@ -1,5 +1,6 @@
 package com.study.demo.openColumn;
 
+import com.study.demo.fullNotice.FullNoticeDTO;
 import com.study.demo.util.PageDTO;
 
 import java.util.List;
@@ -34,4 +35,6 @@ public interface OpenColumnService {
     void saveViewUserIp(int postNum, String ip) throws Exception;
 
     List<OpenColumnDTO> showSelfNoticeList() throws Exception;
+
+    List<FullNoticeDTO> showFullNoticeList() throws Exception;
 }

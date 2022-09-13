@@ -140,7 +140,17 @@
                                                         <th>작성일자</th>
                                                         <th>조회수</th>
                                                     </tr>
-                                                     <c:forEach var="notice" items="${selfNoticeList}">
+                                                    <c:forEach var="notice" items="${fullNoticeList}">
+                                                    <tr>
+                                                        <td><h4><div align="left">[전체공지]</div>
+                                                        <a class="noticeTitle" href="/openColumn/readOpenColumn?postNum=${notice.postNum}">
+                                                         ${notice.title}</a>
+                                                        <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
+                                                        <td>${notice.views}</td>
+                                                    </tr>
+                                                    </c:forEach>
+                                                    <c:forEach var="notice" items="${selfNoticeList}">
                                                     <tr>
                                                         <td><h4><div align="left">[공지사항]</div>
                                                         <a class="noticeTitle" href="/openColumn/readOpenColumn?postNum=${notice.postNum}">

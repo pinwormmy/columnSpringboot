@@ -2,6 +2,7 @@ package com.study.demo.mapper;
 
 import com.study.demo.board.BoardDTO;
 import com.study.demo.board.PostCommentDTO;
+import com.study.demo.fullNotice.FullNoticeDTO;
 import com.study.demo.openColumn.OpenColumnCommentDTO;
 import com.study.demo.openColumn.OpenColumnDTO;
 import com.study.demo.util.PageDTO;
@@ -39,4 +40,6 @@ public interface OpenColumnMapper {
     void saveViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
 
     List<OpenColumnDTO> showSelfNoticeList() throws Exception;
+
+    List<FullNoticeDTO> showFullNoticeList() throws Exception;
 }

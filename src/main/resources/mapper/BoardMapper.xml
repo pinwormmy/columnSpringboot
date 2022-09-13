@@ -109,4 +109,10 @@
             ORDER BY POST_NUM DESC
     </select>
 
+    <select id="showFullNoticeList" resultType="com.study.demo.fullNotice.FullNoticeDTO">
+        SELECT * FROM FULL_NOTICE
+            WHERE NOTICE=1
+            ORDER BY POST_NUM DESC
+    </select>
+
 </mapper>

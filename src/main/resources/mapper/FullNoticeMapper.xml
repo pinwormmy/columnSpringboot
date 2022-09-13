@@ -43,7 +43,7 @@
 
     <insert id="submitPost">
         INSERT INTO FULL_NOTICE
-            VALUES(FULL_NOTICE_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
+            VALUES(FULL_NOTICE_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, 1)
     </insert>
 
     <update id="submitModifyPost">

@@ -34,7 +34,7 @@
                                     <input type="hidden" name="postNum" value="${post.postNum}">
                                     제목 <input type="text" name="title" size="55" value="${post.title}" required>
                                     <input type="checkbox" name="notice" id="noticeChecked" value="1" onclick="checkboxForNotice();"
-                                    <c:if test="${post.notice == 1}">checked</c:if> />공지중<br>
+                                    <c:if test="${post.notice == 1}">checked</c:if> />공지 중<br>
                                     <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                     <textarea name="content" id="content">${post.content}</textarea><br>
 
@@ -42,7 +42,7 @@
                                         CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
                                     </script>
 
-                                    <button class="pull-left btn btn-theme">게시하기</button>
+                                    <button class="pull-left btn btn-theme">수정하기</button>
                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/fullNotice/readFullNotice?postNum=${post.postNum}'">취소</button>
                                 </form>
 

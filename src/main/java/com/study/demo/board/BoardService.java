@@ -1,5 +1,6 @@
 package com.study.demo.board;
 
+import com.study.demo.fullNotice.FullNoticeDTO;
 import com.study.demo.util.PageDTO;
 
 import java.util.List;
@@ -34,4 +35,6 @@ public interface BoardService {
     void saveViewUserIp(int postNum, String ip) throws Exception;
 
     List<BoardDTO> showSelfNoticeList() throws Exception;
+
+    List<FullNoticeDTO> showFullNoticeList() throws Exception;
 }

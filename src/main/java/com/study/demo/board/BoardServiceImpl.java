@@ -1,5 +1,6 @@
 package com.study.demo.board;
 
+import com.study.demo.fullNotice.FullNoticeDTO;
 import com.study.demo.mapper.BoardMapper;
 import com.study.demo.util.PageDTO;
 import com.study.demo.util.PageService;
@@ -108,5 +109,10 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<BoardDTO> showSelfNoticeList() throws Exception {
         return boardMapper.showSelfNoticeList();
+    }
+
+    @Override
+    public List<FullNoticeDTO> showFullNoticeList() throws Exception {
+        return boardMapper.showFullNoticeList();
     }
 }

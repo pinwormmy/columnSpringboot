@@ -29,7 +29,7 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
-                                <form action="/openColumn/submitPost" method="post">
+                                <form action="/fullNotice/submitPost" method="post">
                                     <input type="hidden" name="writer" value="${member.id}">
                                     제목 <input type="text" name="title" size="60" required>
                                     <textarea name="content" id="content"></textarea><br>
@@ -39,7 +39,7 @@
                                     </script>
 
                                     <button class="pull-left btn btn-theme">게시하기</button>
-                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/openColumn/list'">취소</button>
+                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/fullNotice/list'">취소</button>
                                 </form>
 							</div>
 						</div>

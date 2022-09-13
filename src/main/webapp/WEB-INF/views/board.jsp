@@ -51,10 +51,10 @@
     .sidebar {
         color: white;
         background: #202020;
-        position: relative;
+        position: absolute;
         left: 0;
         width: 15%;
-        height: 100%;
+        height: 100vh;
         overflow: hidden;
         min-width: 160px;
         padding: 1%;
@@ -114,20 +114,21 @@
 </header>
 <section class="white section-wrapper">
 
+<div class="sidebar">
+    <nav>
+        <h2>게시판 메뉴</h2>
+        <ul class="leftbar-ul">
+            <li><a href="/fullNotice/list">공지사항</a></li>
+            <li><a href="/board">승인연재게시판</a></li>
+            <li><a href="/openColumn/list">공개연재게시판</a></li>
+        </ul>
+    </nav>
+</div>
+
     <div class="section-inner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div class="sidebar">
-                        <nav>
-                            <h2>게시판 메뉴</h2>
-                            <ul class="leftbar-ul">
-                                <li><a href="/fullNotice/list">공지사항</a></li>
-                                <li><a href="/board">승인연재게시판</a></li>
-                                <li><a href="/openColumn/list">공개연재게시판</a></li>
-                            </ul>
-                        </nav>
-                    </div>
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">

@@ -37,4 +37,6 @@ public interface OpenColumnMapper {
     int checkViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
 
     void saveViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
+
+    List<OpenColumnDTO> showSelfNoticeList() throws Exception;
 }

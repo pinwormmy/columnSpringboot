@@ -24,6 +24,7 @@ public class OpenColumnController {
 
     @GetMapping(value = "/list")
     public String board(PageDTO page, Model model) throws Exception {
+        model.addAttribute("selfNoticeList", openColumnService.showSelfNoticeList());
         model.addAttribute("page", openColumnService.pageSetting(page));
         model.addAttribute("postList", openColumnService.showPostList(page));
         return "openColumn/openColumn";

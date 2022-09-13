@@ -24,7 +24,7 @@
             (SELECT rownum r, a.* FROM
                 (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
                     from board
-                    where <include refid="searchKeyword" />
+                    where <include refid="searchKeyword" /> and notice=0
                     order by post_num desc) a)
             WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
     </select>
@@ -101,6 +101,12 @@
     <select id="checkViewUserIp" resultType="int">
         SELECT COUNT(*) FROM board_views_detail
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
+    </select>
+
+    <select id="showSelfNoticeList" resultType="com.study.demo.board.BoardDTO">
+        SELECT * FROM BOARD
+            WHERE NOTICE=1
+            ORDER BY POST_NUM DESC
     </select>
 
 </mapper>

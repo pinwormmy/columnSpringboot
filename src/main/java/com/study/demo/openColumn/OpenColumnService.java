@@ -32,4 +32,6 @@ public interface OpenColumnService {
     int checkViewUserIp(int postNum, String ip) throws Exception;
 
     void saveViewUserIp(int postNum, String ip) throws Exception;
+
+    List<OpenColumnDTO> showSelfNoticeList() throws Exception;
 }

@@ -24,7 +24,7 @@
             (SELECT rownum r, a.* FROM
                 (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
                     from openColumn
-                    where <include refid="searchKeyword" />
+                    where <include refid="searchKeyword" /> and notice=0
                     order by post_num desc) a)
             WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
     </select>
@@ -43,12 +43,12 @@
 
     <insert id="submitPost">
         INSERT INTO OPENCOLUMN
-            VALUES(OPENCOLUMN_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0)
+            VALUES(OPENCOLUMN_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
     </insert>
 
     <update id="submitModifyPost">
         update openColumn
-            set title=#{title}, content=#{content}, writer=#{writer}
+            set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
             where post_num=#{postNum}
     </update>
 
@@ -101,6 +101,12 @@
     <select id="checkViewUserIp" resultType="int">
         SELECT COUNT(*) FROM OPENCOLUMN_VIEWS
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
+    </select>
+
+    <select id="showSelfNoticeList" resultType="com.study.demo.openColumn.OpenColumnDTO">
+        SELECT * FROM OPENCOLUMN
+            WHERE NOTICE=1
+            ORDER BY POST_NUM DESC
     </select>
 
 </mapper>

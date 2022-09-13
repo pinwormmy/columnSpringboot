@@ -119,20 +119,17 @@
         </div>
     </div>
 </header>
-
-
-
 <section class="white section-wrapper">
-<div class="sidebar">
-    <nav>
-        <h2>게시판 메뉴</h2>
-        <ul class="leftbar-ul">
-            <li><a href="/board">공지사항</a></li>
-            <li><a href="/board">승인연재게시판</a></li>
-            <li><a href="/openColumn/list">공개연재게시판</a></li>
-        </ul>
-    </nav>
-</div>
+    <div class="sidebar">
+        <nav>
+            <h2>게시판 메뉴</h2>
+            <ul class="leftbar-ul">
+                <li><a href="/board">공지사항</a></li>
+                <li><a href="/board">승인연재게시판</a></li>
+                <li><a href="/openColumn/list">공개연재게시판</a></li>
+            </ul>
+        </nav>
+    </div>
     <div class="section-inner">
         <div class="container">
             <div class="row">
@@ -148,6 +145,16 @@
                                                         <th>작성일자</th>
                                                         <th>조회수</th>
                                                     </tr>
+                                                    <c:forEach var="notice" items="${selfNoticeList}">
+                                                    <tr>
+                                                        <td><h4><div align="left">[공지사항]</div>
+                                                        <a class="noticeTitle" href="javascript:checkMemberLevelBeforeRead(${notice.postNum});">
+                                                         ${notice.title}</a>
+                                                        <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
+                                                        <td>${notice.views}</td>
+                                                    </tr>
+                                                    </c:forEach>
                                                     <c:forEach var="post" items="${postList}">
                                                     <tr>
                                                         <td><h4><a class="postTitle" href="javascript:checkMemberLevelBeforeRead(${post.postNum});">${post.title}</a>

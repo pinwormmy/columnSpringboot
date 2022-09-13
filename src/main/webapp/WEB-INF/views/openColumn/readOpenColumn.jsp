@@ -62,8 +62,10 @@
                             </c:if>
                             <div class="post-navigation">
                                 <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>
-                                <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
+                                <c:if test="${member.id == post.writer || member.memberLevel == 3}">
+                                    <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
+                                    <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
+                                </c:if>
                                 <!-- <a class="pull-right btn btn-theme" href="#">Newer Posts</a> -->
                             </div>
                         </div><!--/#comments-->

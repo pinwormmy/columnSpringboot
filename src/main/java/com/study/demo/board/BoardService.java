@@ -32,4 +32,6 @@ public interface BoardService {
     int checkViewUserIp(int postNum, String ip) throws Exception;
 
     void saveViewUserIp(int postNum, String ip) throws Exception;
+
+    List<BoardDTO> showSelfNoticeList() throws Exception;
 }

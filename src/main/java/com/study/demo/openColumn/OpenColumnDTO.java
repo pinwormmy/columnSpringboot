@@ -14,4 +14,5 @@ public class OpenColumnDTO {
     private Date regDate;
     private int views;
     private int commentCount;
+    private int notice;
 }

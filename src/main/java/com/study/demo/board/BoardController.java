@@ -22,6 +22,7 @@ public class BoardController {
     BoardService boardService;
     @GetMapping(value = "/board")
     public String board(PageDTO page, Model model) throws Exception {
+        model.addAttribute("selfNoticeList", boardService.showSelfNoticeList());
         model.addAttribute("page", boardService.pageSetting(page));
         model.addAttribute("postList", boardService.showPostList(page));
         return "board";

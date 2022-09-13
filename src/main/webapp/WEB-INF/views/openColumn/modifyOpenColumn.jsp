@@ -32,11 +32,16 @@
                                 <form action="/openColumn/submitModifyPost" method="post"> <!-- 작업해야함 -->
                                     <input type="hidden" name="writer" value="${post.writer}">
                                     <input type="hidden" name="postNum" value="${post.postNum}">
-                                    제목 <input type="text" name="title" size="70" value="${post.title}" required> <br>
+                                    제목 <input type="text" name="title" size="55" value="${post.title}" required>
+                                    <input type="checkbox" name="notice" id="noticeChecked" value="1" onclick="checkboxForNotice();"
+                                    <c:if test="${post.notice == 1}">checked</c:if> />공지로 등록<br>
+                                    <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                     <textarea name="content" id="content">${post.content}</textarea><br>
+
                                     <script type="text/javascript">
                                         CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
                                     </script>
+
                                     <button class="pull-left btn btn-theme">게시하기</button>
                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/openColumn/readOpenColumn?postNum=${post.postNum}'">취소</button>
                                 </form>
@@ -55,5 +60,16 @@
 		</div>
 	</section>
 <%@include file="../include/footer.jspf" %>
+
+<script>
+let noticeChecked = document.getElementById("noticeChecked");
+let noticeUnchecked = document.getElementById("noticeUnchecked");
+
+function checkboxForNotice() {
+    if(noticeChecked.checked) { noticeUnchecked.disabled = true; }
+    else { noticeUnchecked.disabled = false; }
+}
+</script>
+
 </body>
 </html>

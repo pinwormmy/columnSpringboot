@@ -105,4 +105,9 @@ public class OpenColumnServiceImpl implements OpenColumnService {
     public void saveViewUserIp(int postNum, String ip) throws Exception {
         openColumnMapper.saveViewUserIp(postNum, ip);
     }
+
+    @Override
+    public List<OpenColumnDTO> showSelfNoticeList() throws Exception {
+        return openColumnMapper.showSelfNoticeList();
+    }
 }

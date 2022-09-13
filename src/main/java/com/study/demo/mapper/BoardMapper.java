@@ -35,4 +35,6 @@ public interface BoardMapper {
     int checkViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
 
     void saveViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
+
+    List<BoardDTO> showSelfNoticeList() throws Exception;
 }

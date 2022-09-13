@@ -104,4 +104,9 @@ public class BoardServiceImpl implements BoardService{
     public void saveViewUserIp(int postNum, String ip) throws Exception {
         boardMapper.saveViewUserIp(postNum, ip);
     }
+
+    @Override
+    public List<BoardDTO> showSelfNoticeList() throws Exception {
+        return boardMapper.showSelfNoticeList();
+    }
 }

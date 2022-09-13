@@ -34,9 +34,11 @@
                                 제목 <input type="text" name="title" size="60" required>
                                 <input type="checkbox" name="notice" value="1">공지로 등록<br>
                                 <textarea name="content" id="content"></textarea><br>
+
                                 <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
                                     CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
                                 </script>
+
                                 <button class="pull-left btn btn-theme">게시하기</button>
                                 <button type="button" class="pull-left btn btn-theme" onclick="location.href='/board'">취소</button>
                             </form>

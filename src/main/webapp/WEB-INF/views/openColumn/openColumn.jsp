@@ -7,9 +7,39 @@
 <title>공개형 게시판 페이지</title>
 
 <style>
-.body-wrap {
-    min-height: 100%;
-    position: relative;
+@media (min-width: 1150px) {
+    .sidebar {
+        color: white;
+        background: #202020;
+        position: absolute;
+        top: 260px;
+        left: 0;
+        bottom: 88px;
+        width: 15%;
+
+        overflow: hidden;
+        min-width: 160px;
+        padding: 1%;
+    }
+    .leftbar-ul li {
+        margin : 5%;
+    }
+}
+@media (max-width: 1150px) {
+    .sidebar {
+        color: white;
+        background: #202020;;
+        position: flex;
+        width: 100%;
+        height: 5%;
+        padding: 1%;
+    }
+    .leftbar-ul li {
+        margin : 1%;
+    }
+}
+body {
+    height: 100%;
 }
 .boardList {
     width: 100%;
@@ -50,36 +80,6 @@
 .postTitle {
     color: black;
 }
-@media (min-width: 1150px) {
-    .sidebar {
-        color: white;
-        background: #202020;
-        position: absolute;
-        left: 0;
-        width: 15%;
-        min-width: 160px;
-        height: 70%;
-        padding: 1%;
-    }
-    .leftbar-ul li {
-        margin : 5%;
-    }
-}
-
-@media (max-width: 1150px) {
-    .sidebar {
-        color: white;
-        background: #202020;;
-        position: flex;
-        width: 100%;
-        height: 5%;
-        padding: 1%;
-    }
-    .leftbar-ul li {
-        margin : 1%;
-    }
-}
-
 .leftbar-ul {
     border-top: solid 1px ivory;
     list-style-type: none;
@@ -92,8 +92,11 @@
     font-size: 16px;
     font-weight: 500px;
 }
-
+.section-wrapper {
+    min-height: 850px;
+}
 </style>
+
 </head>
 <body>
 <div class="body-wrap">

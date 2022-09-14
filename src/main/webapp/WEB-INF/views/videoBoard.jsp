@@ -9,7 +9,7 @@
 <body>
 <%@include file="./include/header.jspf" %>
 
-<header id="headerwrap" class="halfscreen">
+<header id="headerwrap" class="quarterscreen">
 
 		<div class="align-bottom wow fadeInUp">
             <div class="row">

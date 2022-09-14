@@ -5,7 +5,6 @@
 <html lang="ko">
 <head>
 <title>공개형 게시판 페이지</title>
-
 <style>
 @media (min-width: 1150px) {
     .sidebar {
@@ -96,7 +95,6 @@ body {
     min-height: 850px;
 }
 </style>
-
 </head>
 <body>
 <div class="body-wrap">

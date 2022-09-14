@@ -99,10 +99,7 @@ body {
 
 </head>
 <body>
-<div class="body-wrap">
-
 <%@include file="../include/header.jspf" %>
-
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
@@ -116,7 +113,6 @@ body {
         </div>
     </div>
 </header>
-
 <section class="white section-wrapper">
     <div class="sidebar">
         <nav>
@@ -217,8 +213,6 @@ body {
         </div>
     </div>
 </section>
-
 <%@include file="../include/footer.jspf" %>
-</div>
 </body>
 </html>

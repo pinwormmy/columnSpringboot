@@ -15,7 +15,6 @@
         left: 0;
         bottom: 88px;
         width: 15%;
-
         overflow: hidden;
         min-width: 160px;
         padding: 1%;
@@ -97,10 +96,7 @@ body {
 </style>
 </head>
 <body>
-<div class="body-wrap">
-
 <%@include file="../include/header.jspf" %>
-
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
@@ -114,7 +110,6 @@ body {
         </div>
     </div>
 </header>
-
 <section class="white section-wrapper">
     <div class="sidebar">
         <nav>
@@ -205,8 +200,6 @@ body {
         </div>
     </div>
 </section>
-
 <%@include file="../include/footer.jspf" %>
-</div>
 </body>
 </html>

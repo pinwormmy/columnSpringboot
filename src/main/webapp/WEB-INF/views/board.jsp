@@ -98,11 +98,7 @@ body {
 </style>
 </head>
 <body>
-<div class="body-wrap">
-
 <%@include file="./include/header.jspf" %>
-
-<div class="body-content">
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
@@ -216,13 +212,9 @@ body {
         </div>
     </div>
 </section>
-</div>
 <%@include file="./include/footer.jspf" %>
 
-</div>
-
 <script>
-
     function checkMemberLevelBeforeRead(postNum) {
         if(${member == null || member.memberLevel < 2}) {
             alert("해당 글 열람은 관리자 승인이 필요합니다.");
@@ -230,7 +222,6 @@ body {
         }
         location.href = "/readPost?postNum=" + postNum;
     }
-
 </script>
 
 </body>

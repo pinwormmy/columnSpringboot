@@ -216,11 +216,27 @@ function showCommentWithHtml(CommentDTOList) {
 
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
     for(let comment of CommentDTOList) {
-        commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-        commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
-        commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
-        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</div></div></div>";
+        if( ${member.memberLevel > 1} ) {
+            commentListHtml += addStringToCommentList(commentListHtml, comment);
+        }else {
+            commentListHtml += addPrivateStringToCommentList(commentListHtml);
+        }
     }
+    return commentListHtml;
+}
+
+function addStringToCommentList(commentListHtml, commentDTO) {
+    commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+    commentListHtml += "<strong>" + commentDTO.memberDTO.nickName + "</strong> &nbsp; <small>";
+    commentListHtml += commentDTO.regDate + "</small></div><p>" + commentDTO.content + "</p>";
+    commentListHtml = displayDeleteButton(commentListHtml, commentDTO) + "</div></div></div>";
+    return commentListHtml;
+}
+
+function addPrivateStringToCommentList(commentListHtml) {
+    commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+    commentListHtml += "<strong>" + "승인된 회원만 댓글을 볼 수 있습니다." + "</strong>";
+    commentListHtml += "<br><br><br><br><br></div></div></div></div>";
     return commentListHtml;
 }
 

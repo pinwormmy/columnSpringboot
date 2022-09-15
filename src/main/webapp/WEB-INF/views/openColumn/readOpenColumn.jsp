@@ -135,9 +135,11 @@ body {
                             ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
-                            <div class="mb">
-                                <h3 class="single-section-title">Comments</h3>
-                            </div>
+                            <c:if test="${post.commentCount > 0 || member.memberLevel > 1}">
+                                <div class="mb">
+                                    <h3 class="single-section-title">Comments</h3>
+                                </div>
+                            </c:if>
                             <div id="comments-list" class="gap">
                             </div><!--/#comments-list-->
                             <c:if test="${member != null}">
@@ -154,11 +156,6 @@ body {
                                 </div>
                                 <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
                             </div><!--/#comment-form-->
-                            </c:if>
-                            <c:if test="${member == null}">
-                            <div id="comment-form" class="gap">
-                                <h4  class="main-title">로그인하면 댓글을 작성할 수 있습니다.</h3>
-                            </div>
                             </c:if>
                             <div class="post-navigation">
                                 <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>

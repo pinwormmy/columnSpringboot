@@ -37,7 +37,6 @@ public class BoardController {
         model.addAttribute("post", boardService.readPost(postNum));
         return "readPost";
     }
-
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
         if(boardService.checkViewUserIp(postNum, ip) == 0) {

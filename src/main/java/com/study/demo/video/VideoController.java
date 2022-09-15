@@ -30,10 +30,10 @@ public class VideoController {
         return "video/writeVideoPost";
     }
 
-    @RequestMapping("/readVideoPost")
+    @RequestMapping("/readVideo")
     public String readVideoPost(Model model, VideoDTO video) {
         model.addAttribute("video", video);
-        return "video/readVideoPost";
+        return "video/readVideo";
     }
 
     @RequestMapping("/submitVideoPost")

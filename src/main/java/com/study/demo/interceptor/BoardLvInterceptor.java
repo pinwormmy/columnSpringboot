@@ -23,5 +23,4 @@ public class BoardLvInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-
 }

@@ -7,23 +7,21 @@
 <title>테스트 영상글~~@@</title>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
-
-		<div class="align-bottom wow fadeInUp">
-            <div class="row">
-            	<div class="container">
-	                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	                    <div class="post-heading mb">
-	                        <h1>영상 컬럼</h1>
-	                        <p class="lead white">주로 한식당에서 소량으로 유통하던 나라에서도 최근엔 현지 유통체인들이 앞다퉈 한국 라면을 취급하고 있다.</p>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-		</div>
-	</header>
+    <div class="align-bottom wow fadeInUp">
+        <div class="row">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading mb">
+                        <h1>영상 컬럼</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 	<section class="white section-wrapper">
 		<div class="section-inner">
 			<div class="container">
@@ -38,9 +36,11 @@
                                              <div class="media-body">
                                                    <div class="well">
                                                        <div class="media-heading">
-                                                           <h2>${video.title}</h2>${video.regDate}<br>
-                                                           ${video.videoUrl}<br>
-                                                           <a href="/deleteVideoPost?videoNum=${video.videoNum}">삭제</a> <!-- (운영자만 보이게 수정예정) -->
+                                                           <a href="javascript:checkMemberLevelBeforeRead(${video.videoNum});">
+                                                           <h2>${video.title}</h2><small>${video.regDate}</small></a><br>
+                                                           <c:if test="${member.memberLevel == 3}">
+                                                                <a href="/deleteVideoPost?videoNum=${video.videoNum}">삭제</a>
+                                                           </c:if>
                                                        </div>
                                                    </div>
                                             </div>
@@ -60,12 +60,25 @@
                                 </div>
 		                    </div><!--/#comments-->
 						</div>
-						<a href="/writeVideoPost" class="pull-right btn btn-theme" href="#">글쓰기</a>
+						<c:if test="${member.memberLevel == 3}">
+						    <a href="/writeVideoPost" class="pull-right btn btn-theme" href="#">글쓰기</a>
+						</c:if>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
+
+<script>
+    function checkMemberLevelBeforeRead(videoNum) {
+        if(${member == null || member.memberLevel < 2}) {
+            alert("해당 글 열람은 관리자 승인이 필요합니다.");
+            return false;
+        }
+        location.href = "/readVideo?videoNum=" + videoNum;
+    }
+</script>
+
 </body>
 </html>

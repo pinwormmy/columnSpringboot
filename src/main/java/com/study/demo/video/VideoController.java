@@ -22,23 +22,29 @@ public class VideoController {
     public String videoBoard(PageDTO page, Model model) throws Exception {
         model.addAttribute("page", videoService.pageSetting(page));
         model.addAttribute("videoList", videoService.showVideoList(page));
-        return "videoBoard";
+        return "video/videoBoard";
     }
 
     @RequestMapping("/writeVideoPost")
     public String writeVideoPost() {
-        return "writeVideoPost";
+        return "video/writeVideoPost";
+    }
+
+    @RequestMapping("/readVideoPost")
+    public String readVideoPost(Model model, VideoDTO video) {
+        model.addAttribute("video", video);
+        return "video/readVideoPost";
     }
 
     @RequestMapping("/submitVideoPost")
     public String submitVideoPost(VideoDTO video) throws Exception {
         videoService.submitVideoPost(video);
-        return "redirect:/videoBoard";
+        return "redirect:/video/videoBoard";
     }
 
     @RequestMapping("/deleteVideoPost")
     public String deletePost(int videoNum) throws Exception {
         videoService.deleteVideoPost(videoNum);
-        return "redirect:/videoBoard";
+        return "redirect:/video/videoBoard";
     }
 }

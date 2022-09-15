@@ -5,7 +5,7 @@
 <title>테스트 영상글쓰기~~@@</title>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
 		<div class="align-bottom wow fadeInUp">
@@ -48,6 +48,6 @@
 			</div>
 		</div>
 	</section>
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 </body>
 </html>

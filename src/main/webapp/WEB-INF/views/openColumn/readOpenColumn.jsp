@@ -194,7 +194,6 @@ function addComment(){
         })
     })
     .then((data) => {
-        console.log(data);
         updateCommentCount(${post.postNum});
         showCommentList(${post.postNum});
     });
@@ -216,13 +215,16 @@ function showCommentWithHtml(CommentDTOList) {
 
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
     for(let comment of CommentDTOList) {
-        if( ${member.memberLevel > 1} ) {
-            commentListHtml += addStringToCommentList(commentListHtml, comment);
-        }else {
-            commentListHtml += addPrivateStringToCommentList(commentListHtml);
-        }
+        commentListHtml = checkMemberLevelAndAddString(commentListHtml, comment);
     }
     return commentListHtml;
+}
+
+function checkMemberLevelAndAddString(commentListHtml, comment) {
+    if( ${member.memberLevel > 1} )
+        return commentListHtml = addStringToCommentList(commentListHtml, comment);
+    else
+        return commentListHtml = addPrivateStringToCommentList(commentListHtml);
 }
 
 function addStringToCommentList(commentListHtml, commentDTO) {

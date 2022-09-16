@@ -98,7 +98,7 @@ body {
 
 </head>
 <body>
-<%@include file="../include/header.jspf" %>
+<%@include file="./include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
@@ -106,21 +106,34 @@ body {
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>${video.title}</h1>
+                        <h1>${post.title}</h1>
+                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
+                        <span style="float: right; color: white;">조회수 ${post.views}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
 <section class="white section-wrapper">
+    <div class="sidebar">
+        <nav>
+            <h2>게시판 메뉴</h2>
+            <ul class="leftbar-ul">
+                <li><a href="/fullNotice/list">공지사항</a></li>
+                <li><a href="/board">승인연재게시판</a></li>
+                <li><a href="/openColumn/list">공개연재게시판</a></li>
+            </ul>
+        </nav>
+    </div>
     <div class="section-inner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">
-                            ${video.url}
+                            ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
                             <c:if test="${post.commentCount > 0 || member.memberLevel > 1}">
@@ -237,6 +250,6 @@ function updateCommentCount(postNum) {
 
 </script>
 
-<%@include file="../include/footer.jspf" %>
+<%@include file="./include/footer.jspf" %>
 </body>
 </html>

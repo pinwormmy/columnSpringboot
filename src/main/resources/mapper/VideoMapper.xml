@@ -4,31 +4,115 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.demo.mapper.VideoMapper">
-    <insert id="submitVideoPost">
-        insert into VIDEO values(VIDEO_NUM_SEQ.nextval, #{title}, #{videoUrl}, sysdate)
-    </insert>
 
-    <select id="showVideoList" resultType="com.study.demo.video.VideoDTO">
+    <resultMap id="MemberDTO" type="com.study.demo.member.MemberDTO">
+        <result column="id" property="id" />
+        <result column="nickName" property="nickName" />
+    </resultMap>
+
+    <resultMap id="PostCommentDTO" type="com.study.demo.video.VideoCommentDTO">
+        <result column="POST_NUM" property="postNum" />
+        <result column="COMMENT_NUM" property="commentNum" />
+        <result column="id" property="id" />
+        <result column="regDate" property="regDate" />
+        <result column="content" property="content" />
+        <collection property="memberDTO" resultMap="MemberDTO" />
+    </resultMap>
+
+    <select id="showPostList" resultType="com.study.demo.video.VideoDTO">
         SELECT * FROM
             (SELECT rownum r, a.* FROM
-                (select * from video
-                    where <include refid="searchKeyword"></include>
-                    order by video_num desc) a)
+                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
+                    from video
+                    where <include refid="searchKeyword" /> and notice=0
+                    order by post_num desc) a)
         WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
     </select>
 
     <sql id="searchKeyword">
         <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
+            or content like '%'||#{keyword}||'%'</if>
     </sql>
 
-    <delete id="deleteVideoPost">
+    <select id="readPost" resultType="com.study.demo.video.VideoDTO">
+        select * from video
+            where post_num=#{postNum}
+    </select>
+
+    <insert id="submitPost">
+        INSERT INTO VIDEO(POST_NUM, TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
+            VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
+    </insert>
+
+    <update id="submitModifyPost">
+        update video
+            set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
+            where post_num=#{postNum}
+    </update>
+
+    <delete id="deletePost">
         delete from video
-        where video_num=#{videoNum}
+            where post_num=#{postNum}
     </delete>
 
     <select id="countTotalPost" resultType="int">
         select count(*) from video
-        where <include refid="searchKeyword"></include>
+            where <include refid="searchKeyword" />
+    </select>
+
+    <insert id="addComment">
+        INSERT INTO POST_COMMENT
+            VALUES(#{postNum}, COMMENT_SEQ.nextval, #{id}, SYSDATE, #{content})
+    </insert>
+
+    <select id="showCommentList" resultMap="PostCommentDTO">
+        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REGDATE, A.CONTENT, B.ID, B.NICKNAME
+            FROM POST_COMMENT A, MEMBER B
+            WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
+            ORDER BY COMMENT_NUM ASC
+    </select>
+
+    <delete id="deleteComment">
+        delete from POST_COMMENT
+            where COMMENT_NUM=#{commentNum}
+    </delete>
+
+    <update id="updateCommentCount">
+        UPDATE video
+            SET COMMENT_COUNT=
+                (SELECT COUNT(*) FROM POST_COMMENT
+                WHERE POST_NUM=#{postNum})
+                WHERE POST_NUM=#{postNum}
+    </update>
+
+    <update id="updateViews">
+        UPDATE VIDEO
+            SET VIEWS= VIEWS + 1
+            WHERE POST_NUM=#{postNum}
+    </update>
+
+    <insert id="saveViewUserIp">
+        INSERT INTO video_views_detail
+            VALUES(#{postNum}, #{ip}, SYSDATE)
+    </insert>
+
+    <select id="checkViewUserIp" resultType="int">
+        SELECT COUNT(*) FROM video_views_detail
+            WHERE POST_NUM=#{postNum} AND IP=#{ip}
+    </select>
+
+    <select id="showSelfNoticeList" resultType="com.study.demo.video.VideoDTO">
+        SELECT * FROM VIDEO
+            WHERE NOTICE=1
+            ORDER BY POST_NUM DESC
+    </select>
+
+    <select id="showFullNoticeList" resultType="com.study.demo.fullNotice.FullNoticeDTO">
+        SELECT * FROM FULL_NOTICE
+            WHERE NOTICE=1
+            ORDER BY POST_NUM DESC
     </select>
 
 </mapper>

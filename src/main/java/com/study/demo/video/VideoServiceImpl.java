@@ -1,6 +1,7 @@
 package com.study.demo.video;
 
-import com.study.demo.board.BoardDTO;
+import com.study.demo.fullNotice.FullNoticeDTO;
+import com.study.demo.mapper.BoardMapper;
 import com.study.demo.mapper.VideoMapper;
 import com.study.demo.util.PageDTO;
 import com.study.demo.util.PageService;
@@ -12,23 +13,32 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class VideoServiceImpl implements VideoService{
-
+public class VideoServiceImpl implements VideoService {
     @Autowired
     VideoMapper videoMapper;
     @Override
-    public void submitVideoPost(VideoDTO video) throws Exception {
-        videoMapper.submitVideoPost(video);
+    public List<VideoDTO> showPostList(PageDTO page) throws Exception {
+        return videoMapper.showPostList(page);
     }
 
     @Override
-    public List<VideoDTO> showVideoList(PageDTO page) throws Exception {
-        return videoMapper.showVideoList(page);
+    public void submitPost(VideoDTO board) throws Exception {
+        videoMapper.submitPost(board);
     }
 
     @Override
-    public void deleteVideoPost(int videoNum) throws Exception {
-        videoMapper.deleteVideoPost(videoNum);
+    public VideoDTO readPost(int postNum) throws Exception {
+        return videoMapper.readPost(postNum);
+    }
+
+    @Override
+    public void submitModifyPost(VideoDTO post) throws Exception {
+        videoMapper.submitModifyPost(post);
+    }
+
+    @Override
+    public void deletePost(int postNum) throws Exception {
+        videoMapper.deletePost(postNum);
     }
 
     @Override
@@ -44,7 +54,7 @@ public class VideoServiceImpl implements VideoService{
     }
 
     private PageDTO utilLoadingForPage(PageDTO page) throws Exception {
-        log.info("서비스단계에서 검색어 확인 : {}", page.getKeyword());
+        log.debug("서비스단계에서 검색어 확인 : {}", page.getKeyword());
         page.setTotalPostCount(countTotalPost(page));
         PageService util = initPageUtil();
         return util.calculatePage(page);
@@ -57,8 +67,53 @@ public class VideoServiceImpl implements VideoService{
 
     private PageService initPageUtil() {
         PageService util = new PageService();
-        util.setDISPLAY_POST_LIMIT(5);
+        util.setDISPLAY_POST_LIMIT(10);
         util.setPAGESET_LIMIT(10);
         return util;
+    }
+
+    @Override
+    public void addComment(VideoCommentDTO comment) throws Exception {
+        videoMapper.addComment(comment);
+    }
+
+    @Override
+    public List<VideoCommentDTO> showCommentList(int postNum) throws Exception {
+        return videoMapper.showCommentList(postNum);
+    }
+
+    @Override
+    public void deleteComment(int commentNum) throws Exception {
+        videoMapper.deleteComment(commentNum);
+    }
+
+    @Override
+    public void updateCommentCount(int postNum) throws Exception {
+        videoMapper.updateCommentCount(postNum);
+    }
+
+    @Override
+    public void updateViews(int postNum) throws Exception {
+        videoMapper.updateViews(postNum);
+    }
+
+    @Override
+    public int checkViewUserIp(int postNum, String ip) throws Exception {
+        return videoMapper.checkViewUserIp(postNum, ip);
+    }
+
+    @Override
+    public void saveViewUserIp(int postNum, String ip) throws Exception {
+        videoMapper.saveViewUserIp(postNum, ip);
+    }
+
+    @Override
+    public List<VideoDTO> showSelfNoticeList() throws Exception {
+        return videoMapper.showSelfNoticeList();
+    }
+
+    @Override
+    public List<FullNoticeDTO> showFullNoticeList() throws Exception {
+        return videoMapper.showFullNoticeList();
     }
 }

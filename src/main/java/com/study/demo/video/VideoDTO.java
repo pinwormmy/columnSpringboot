@@ -7,8 +7,12 @@ import java.util.Date;
 @Data
 public class VideoDTO {
 
-    private int videoNum;
+    private int postNum;
     private String title;
-    private String videoUrl;
+    private String content;
+    private String writer;
     private Date regDate;
+    private int views;
+    private int commentCount;
+    private int notice; // 0: 일반글 1:공지
 }

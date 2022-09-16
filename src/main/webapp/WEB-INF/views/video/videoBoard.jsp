@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>테스트 영상글~~@@</title>
+<title>영상 게시판~~@@</title>
 </head>
 <body>
 <%@include file="../include/header.jspf" %>

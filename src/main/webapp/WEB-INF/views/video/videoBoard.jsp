@@ -157,7 +157,7 @@ body {
                                         <input name="keyword" value=${page.keyword}>
                                         <button class="pull btn btn-theme">검색</button>
                                         <c:if test="${page.keyword != ''}">
-                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/board'">취소</button>
+                                            <button type="button" class="pull btn btn-theme" onclick="location.href='video/list'">취소</button>
                                         </c:if>
                                     </form>
                                 </div>

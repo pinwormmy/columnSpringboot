@@ -59,7 +59,7 @@
 
     <select id="countTotalPost" resultType="int">
         select count(*) from openColumn
-        where <include refid="searchKeyword" />
+        where <include refid="searchKeyword" /> and notice=0
     </select>
 
     <insert id="addComment">

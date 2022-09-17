@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>테스트 글쓰기~~@@</title>
+<title>영상게시판 글쓰기</title>
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 <style>
 body {
@@ -65,7 +65,7 @@ body {
 </style>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
@@ -89,7 +89,7 @@ body {
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">
-                            <form action="/submitPost" method="post">
+                            <form action="/video/submitPost" method="post">
                                 <input type="hidden" name="writer" value="${member.id}">
                                 제목 <input type="text" name="title" size="60" required>
                                 <input type="checkbox" name="notice" value="1">공지로 등록<br>
@@ -109,6 +109,6 @@ body {
         </div>
     </div>
 </section>
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 </body>
 </html>

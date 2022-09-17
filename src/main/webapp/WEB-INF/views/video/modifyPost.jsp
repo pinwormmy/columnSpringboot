@@ -65,7 +65,7 @@ body {
 </style>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
@@ -88,7 +88,7 @@ body {
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">
-                            <form action="/submitModifyPost" method="post">
+                            <form action="/video/submitModifyPost" method="post">
                                 <input type="hidden" name="writer" value="${post.writer}">
                                 <input type="hidden" name="postNum" value="${post.postNum}">
                                 제목 <input type="text" name="title" size="55" value="${post.title}" required>
@@ -102,7 +102,7 @@ body {
                                 </script>
 
                                 <button class="pull-left btn btn-theme">수정하기</button>
-                                <button type="button" class="pull-left btn btn-theme" onclick="location.href='/readPost?postNum=${post.postNum}'">취소</button>
+                                <button type="button" class="pull-left btn btn-theme" onclick="location.href='/video/readPost?postNum=${post.postNum}'">취소</button>
                             </form>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ body {
         </div>
     </div>
 </section>
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 
 <script>
 let noticeChecked = document.getElementById("noticeChecked");

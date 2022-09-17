@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>게시판 페이지~~</title>
+<title>영상 게시판</title>
 
 <style>
 body {
@@ -67,14 +67,14 @@ body {
 </style>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>연재게시판(승인형)</h1>
+                        <h1>영상게시판(승인형)</h1>
                     </div>
                 </div>
             </div>
@@ -133,22 +133,22 @@ body {
                                 <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
                                         <a class="pull-left btn btn-theme"
-                                        href="/board?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/video/list?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
                                         <a class="pull-center btn btn-theme"
-                                        href="/board?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/video/list?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         ${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
                                         <a class="pull-right btn btn-theme"
-                                        href="/board?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/video/list?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         다음</a>
                                     </c:if>
                                 </div>
                                 <div class="form-group">
-                                    <form action="/board">
+                                    <form action="/video/list">
                                         <select name="searchType">
                                             <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
                                             <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>
@@ -162,7 +162,7 @@ body {
                                     </form>
                                 </div>
                                 <c:if test="${member.memberLevel == 3}">
-                                    <a href="/writePost" class="pull-right btn btn-theme">글쓰기</a>
+                                    <a href="/video/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
@@ -172,7 +172,7 @@ body {
         </div>
     </div>
 </section>
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 
 <script>
     function checkMemberLevelBeforeRead(postNum) {
@@ -180,7 +180,7 @@ body {
             alert("해당 글 열람은 관리자 승인이 필요합니다.");
             return false;
         }
-        location.href = "/readPost?postNum=" + postNum;
+        location.href = "/video/readPost?postNum=" + postNum;
     }
 </script>
 

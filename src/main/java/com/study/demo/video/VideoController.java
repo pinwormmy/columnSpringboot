@@ -21,22 +21,22 @@ import java.util.List;
 public class VideoController {
     @Autowired
     VideoService videoService;
-    @GetMapping(value = "/videoBoard")
+    @GetMapping(value = "/list")
     public String videoBoard(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", videoService.showFullNoticeList());
         model.addAttribute("selfNoticeList", videoService.showSelfNoticeList());
         model.addAttribute("page", videoService.pageSetting(page));
         model.addAttribute("postList", videoService.showPostList(page));
-        return "videoBoard";
+        return "video/videoBoard";
     }
 
     @RequestMapping("/readPost")
     @Transactional
-    public String post(Model model, HttpServletRequest request) throws Exception {
+    public String readPost(Model model, HttpServletRequest request) throws Exception {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         checkIpAndUpdateViews(request, postNum);
         model.addAttribute("post", videoService.readPost(postNum));
-        return "readPost";
+        return "video/readPost";
     }
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
@@ -48,31 +48,31 @@ public class VideoController {
 
     @RequestMapping("/writePost")
     public String writePost() {
-        return "writePost";
+        return "video/writePost";
     }
 
     @RequestMapping("/submitPost")
     public String submitPost(VideoDTO post) throws Exception {
         videoService.submitPost(post);
-        return "redirect:/videoBoard";
+        return "redirect:/video/list";
     }
 
     @RequestMapping("/deletePost")
     public String deletePost(int postNum) throws Exception {
         videoService.deletePost(postNum);
-        return "redirect:/videoBoard";
+        return "redirect:/video/list";
     }
 
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
         model.addAttribute("post", videoService.readPost(postNum));
-        return "modifyPost";
+        return "video/modifyPost";
     }
 
     @RequestMapping(value = "/submitModifyPost")
     public String submitModifyPost(VideoDTO post) throws Exception {
         videoService.submitModifyPost(post);
-        return "redirect:/readPost?postNum=" + post.getPostNum();
+        return "redirect:/video/readPost?postNum=" + post.getPostNum();
     }
 
     @RequestMapping(value = "/addComment")

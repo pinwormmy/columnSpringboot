@@ -14,7 +14,7 @@
         <result column="POST_NUM" property="postNum" />
         <result column="COMMENT_NUM" property="commentNum" />
         <result column="id" property="id" />
-        <result column="regDate" property="regDate" />
+        <result column="REG_DATE" property="regDate" />
         <result column="content" property="content" />
         <collection property="memberDTO" resultMap="MemberDTO" />
     </resultMap>
@@ -68,7 +68,7 @@
     </insert>
 
     <select id="showCommentList" resultMap="PostCommentDTO">
-        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REGDATE, A.CONTENT, B.ID, B.NICKNAME
+        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.ID, B.NICKNAME
             FROM POST_COMMENT A, MEMBER B
             WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
             ORDER BY COMMENT_NUM ASC

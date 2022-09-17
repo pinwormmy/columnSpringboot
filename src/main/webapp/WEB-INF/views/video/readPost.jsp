@@ -67,7 +67,7 @@ body {
 
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
@@ -119,12 +119,11 @@ body {
                                 </div><!--/#comment-form-->
                             </c:if>
                             <div class="post-navigation">
-                                <a class="pull-left btn btn-theme" href="/board">글 목록</a>
+                                <a class="pull-left btn btn-theme" href="/video/list">글 목록</a>
                                 <c:if test="${member.id == post.writer || member.memberLevel == 3}">
-                                    <a class="pull-right btn btn-theme" href="/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                    <a class="pull-right btn btn-theme" href="/deletePost?postNum=${post.postNum}">글 삭제</a>
+                                    <a class="pull-right btn btn-theme" href="/video/modifyPost?postNum=${post.postNum}">글 수정</a>
+                                    <a class="pull-right btn btn-theme" href="/video/deletePost?postNum=${post.postNum}">글 삭제</a>
                                 </c:if>
-                                <!-- <a class="pull-right btn btn-theme" href="#">Newer Posts</a> -->
                             </div>
                         </div><!--/#comments-->
                     </div>
@@ -145,7 +144,7 @@ function addComment(){
         alert("댓글 내용을 작성해주세요~", commentContent.value);
         return false;
     }
-    fetch("/addComment", {
+    fetch("/video/addComment", {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({
@@ -163,7 +162,7 @@ function addComment(){
 }
 
 function showCommentList(postNum){
-    fetch("/showCommentList?postNum=" + postNum)
+    fetch("/video/showCommentList?postNum=" + postNum)
     .then((response) => response.json())
     .then((data) => showCommentWithHtml(data));
 }
@@ -194,7 +193,7 @@ function displayDeleteButton(commentListHtml, commentDTO) {
 }
 
 function deleteComment(commentNum) {
-    fetch("/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
+    fetch("/video/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
     .then(data => {
         updateCommentCount(${post.postNum});
         showCommentList(${post.postNum});
@@ -203,13 +202,13 @@ function deleteComment(commentNum) {
 }
 
 function updateCommentCount(postNum) {
-    fetch("/updateCommentCount?postNum=" + postNum, {method:"PUT"})
+    fetch("/video/updateCommentCount?postNum=" + postNum, {method:"PUT"})
         .then(data => console.log("댓글 업데이트"))
         .catch(error => alert("댓글수 갱신 오류"));
 }
 
 </script>
 
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 </body>
 </html>

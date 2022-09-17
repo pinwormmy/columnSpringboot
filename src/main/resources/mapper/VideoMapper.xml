@@ -10,11 +10,11 @@
         <result column="nickName" property="nickName" />
     </resultMap>
 
-    <resultMap id="PostCommentDTO" type="com.study.demo.video.VideoCommentDTO">
+    <resultMap id="VideoCommentDTO" type="com.study.demo.video.VideoCommentDTO">
         <result column="POST_NUM" property="postNum" />
         <result column="COMMENT_NUM" property="commentNum" />
         <result column="id" property="id" />
-        <result column="regDate" property="regDate" />
+        <result column="REG_DATE" property="regDate" />
         <result column="content" property="content" />
         <collection property="memberDTO" resultMap="MemberDTO" />
     </resultMap>
@@ -43,7 +43,7 @@
 
     <insert id="submitPost">
         INSERT INTO VIDEO(POST_NUM, TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
-            VALUES(POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
+            VALUES(VIDEO_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
     </insert>
 
     <update id="submitModifyPost">
@@ -63,27 +63,27 @@
     </select>
 
     <insert id="addComment">
-        INSERT INTO POST_COMMENT
-            VALUES(#{postNum}, COMMENT_SEQ.nextval, #{id}, SYSDATE, #{content})
+        INSERT INTO VIDEO_COMMENT
+            VALUES(#{postNum}, VIDEO_COMMENT_NUM_SEQ.nextval, #{id}, SYSDATE, #{content})
     </insert>
 
-    <select id="showCommentList" resultMap="PostCommentDTO">
-        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REGDATE, A.CONTENT, B.ID, B.NICKNAME
-            FROM POST_COMMENT A, MEMBER B
+    <select id="showCommentList" resultMap="VideoCommentDTO">
+        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.ID, B.NICKNAME
+            FROM VIDEO_COMMENT A, MEMBER B
             WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
             ORDER BY COMMENT_NUM ASC
     </select>
 
     <delete id="deleteComment">
-        delete from POST_COMMENT
+        delete from VIDEO_COMMENT
             where COMMENT_NUM=#{commentNum}
     </delete>
 
     <update id="updateCommentCount">
         UPDATE video
             SET COMMENT_COUNT=
-                (SELECT COUNT(*) FROM POST_COMMENT
-                WHERE POST_NUM=#{postNum})
+                (SELECT COUNT(*) FROM VIDEO_COMMENT
+                    WHERE POST_NUM=#{postNum})
                 WHERE POST_NUM=#{postNum}
     </update>
 
@@ -94,12 +94,12 @@
     </update>
 
     <insert id="saveViewUserIp">
-        INSERT INTO video_views_detail
+        INSERT INTO video_views
             VALUES(#{postNum}, #{ip}, SYSDATE)
     </insert>
 
     <select id="checkViewUserIp" resultType="int">
-        SELECT COUNT(*) FROM video_views_detail
+        SELECT COUNT(*) FROM video_views
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 

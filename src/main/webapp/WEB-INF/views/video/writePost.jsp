@@ -93,6 +93,7 @@ body {
                                 <input type="hidden" name="writer" value="${member.id}">
                                 제목 <input type="text" name="title" size="60" required>
                                 <input type="checkbox" name="notice" value="1">공지로 등록<br>
+                                영상소스<br><textarea type="text" name="url" rows="4" cols="80"></textarea><br>
                                 <textarea name="content" id="content"></textarea><br>
 
                                 <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능

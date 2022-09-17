@@ -22,7 +22,7 @@
     <select id="showPostList" resultType="com.study.demo.video.VideoDTO">
         SELECT * FROM
             (SELECT rownum r, a.* FROM
-                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
+                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice, url
                     from video
                     where <include refid="searchKeyword" /> and notice=0
                     order by post_num desc) a)
@@ -42,13 +42,13 @@
     </select>
 
     <insert id="submitPost">
-        INSERT INTO VIDEO(POST_NUM, TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
-            VALUES(VIDEO_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
+        INSERT INTO VIDEO(POST_NUM, TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE, url)
+            VALUES(VIDEO_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice}, #{url})
     </insert>
 
     <update id="submitModifyPost">
         update video
-            set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
+            set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}, url=#{url}
             where post_num=#{postNum}
     </update>
 

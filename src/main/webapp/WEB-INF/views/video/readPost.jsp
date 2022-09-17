@@ -92,6 +92,9 @@ body {
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="row">
+                        <div class="col-md-12 mb100">
+                            ${post.url}
+                        </div>
                         <div class="col-xs-12 mb wow fadeInUp">
                             ${post.content}
                         </div>

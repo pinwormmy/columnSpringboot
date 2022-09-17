@@ -95,6 +95,7 @@ body {
                                 <input type="checkbox" name="notice" id="noticeChecked" value="1" onclick="checkboxForNotice();"
                                 <c:if test="${post.notice == 1}">checked</c:if> />공지로 등록<br>
                                 <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
+                                영상소스<br><textarea type="text" name="url" rows="4" cols="80">${post.url}</textarea><br>
                                 <textarea name="content" id="content">${post.content}</textarea><br>
 
                                 <script type="text/javascript">

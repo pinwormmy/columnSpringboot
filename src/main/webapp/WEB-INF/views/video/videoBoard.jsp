@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>영상 게시판</title>
+<title>동영상 게시판</title>
 
 <style>
 body {
@@ -74,7 +74,7 @@ body {
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading mb">
-                        <h1>영상게시판(승인형)</h1>
+                        <h1>동영상 게시판(승인형)</h1>
                     </div>
                 </div>
             </div>

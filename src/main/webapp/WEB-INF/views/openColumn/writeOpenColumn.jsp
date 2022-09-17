@@ -5,37 +5,6 @@
 <title>테스트 글쓰기~~@@</title>
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 <style>
-@media (min-width: 1150px) {
-    .sidebar {
-        color: white;
-        background: #202020;
-        position: absolute;
-        top: 260px;
-        left: 0;
-        bottom: 88px;
-        width: 15%;
-
-        overflow: hidden;
-        min-width: 160px;
-        padding: 1%;
-    }
-    .leftbar-ul li {
-        margin : 5%;
-    }
-}
-@media (max-width: 1150px) {
-    .sidebar {
-        color: white;
-        background: #202020;;
-        position: flex;
-        width: 100%;
-        height: 5%;
-        padding: 1%;
-    }
-    .leftbar-ul li {
-        margin : 1%;
-    }
-}
 body {
     height: 100%;
 }
@@ -112,16 +81,7 @@ body {
 		</div>
 	</header>
 	<section class="white section-wrapper">
-	    <div class="sidebar">
-            <nav>
-                <h2>게시판 메뉴</h2>
-                <ul class="leftbar-ul">
-                    <li><a href="/fullNotice/list">공지사항</a></li>
-                    <li><a href="/board">승인연재게시판</a></li>
-                    <li><a href="/openColumn/list">공개연재게시판</a></li>
-                </ul>
-            </nav>
-        </div>
+	    <%@include file="../include/boardSidebar.jspf" %>
 		<div class="section-inner">
 			<div class="container">
 				<div class="row">

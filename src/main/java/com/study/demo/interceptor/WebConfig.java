@@ -12,6 +12,10 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new BoardLvInterceptor())
                 .addPathPatterns("/readPost/**")
                 .excludePathPatterns("/css/**", "/fonts/**");
+
+        registry.addInterceptor(new VideoLvInterceptor())
+                .addPathPatterns("/video/readPost/**")
+                .excludePathPatterns("/css/**", "/fonts/**");
     }
 
 }

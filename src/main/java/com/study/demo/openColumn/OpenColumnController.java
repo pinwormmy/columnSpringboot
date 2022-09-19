@@ -23,7 +23,7 @@ public class OpenColumnController {
     OpenColumnService openColumnService;
 
     @GetMapping(value = "/list")
-    public String board(PageDTO page, Model model) throws Exception {
+    public String list(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", openColumnService.showFullNoticeList());
         model.addAttribute("selfNoticeList", openColumnService.showSelfNoticeList());
         model.addAttribute("page", openColumnService.pageSetting(page));
@@ -31,13 +31,13 @@ public class OpenColumnController {
         return "openColumn/openColumn";
     }
 
-    @RequestMapping("/readOpenColumn")
+    @RequestMapping("/readPost")
     @Transactional
-    public String post(Model model, HttpServletRequest request) throws Exception {
+    public String readPost(Model model, HttpServletRequest request) throws Exception {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         checkIpAndUpdateViews(request, postNum);
         model.addAttribute("post", openColumnService.readPost(postNum));
-        return "openColumn/readOpenColumn";
+        return "openColumn/readPost";
     }
 
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
@@ -49,8 +49,8 @@ public class OpenColumnController {
     }
 
     @RequestMapping("/writePost")
-    public String writeOpenColumn() {
-        return "openColumn/writeOpenColumn";
+    public String writePost() {
+        return "openColumn/writePost";
     }
 
     @RequestMapping("/submitPost")
@@ -68,13 +68,13 @@ public class OpenColumnController {
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
         model.addAttribute("post", openColumnService.readPost(postNum));
-        return "openColumn/modifyOpenColumn";
+        return "openColumn/modifyPost";
     }
 
     @RequestMapping(value = "/submitModifyPost")
     public String submitModifyPost(OpenColumnDTO post) throws Exception {
         openColumnService.submitModifyPost(post);
-        return "redirect:/openColumn/readOpenColumn?postNum=" + post.getPostNum();
+        return "redirect:/openColumn/readPost?postNum=" + post.getPostNum();
     }
 
     @RequestMapping(value = "/addComment")

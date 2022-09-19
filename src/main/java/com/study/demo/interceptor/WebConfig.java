@@ -10,12 +10,12 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new BoardLvInterceptor())
-                .addPathPatterns("/readPost/**")
-                .excludePathPatterns("/css/**", "/fonts/**");
-
-        registry.addInterceptor(new VideoLvInterceptor())
-                .addPathPatterns("/video/**")
-                .excludePathPatterns("/video/list/**", "/css/**", "/fonts/**");
+                .addPathPatterns("/board/**", "/video/**", "/fullNotice/**", "/openColumn/**")
+                .excludePathPatterns("/css/**", "/fonts/**", "/board/list/**", "/video/list/**",
+                        "/fullNotice/list/**", "/openColumn/list/**", "/openColumn/readPost/**");
+        registry.addInterceptor(new AdminInterceptor())
+                .addPathPatterns("/board/**", "/video/**", "/fullNotice/**", "/openColumn/**")
+                .excludePathPatterns("/css/**", "/fonts/**", "/board/list/**", "/video/list/**", "/fullNotice/list/**", "/openColumn/list/**");
     }
 
 }

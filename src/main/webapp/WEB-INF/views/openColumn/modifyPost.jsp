@@ -101,7 +101,7 @@ body {
                                 </script>
 
                                 <button class="pull-left btn btn-theme">게시하기</button>
-                                <button type="button" class="pull-left btn btn-theme" onclick="location.href='/openColumn/readOpenColumn?postNum=${post.postNum}'">취소</button>
+                                <button type="button" class="pull-left btn btn-theme" onclick="location.href='/openColumn/readPost?postNum=${post.postNum}'">취소</button>
                             </form>
 
                         </div>

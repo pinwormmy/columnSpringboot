@@ -12,10 +12,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new BoardLvInterceptor())
                 .addPathPatterns("/board/**", "/video/**", "/fullNotice/**", "/openColumn/**")
                 .excludePathPatterns("/css/**", "/fonts/**", "/board/list/**", "/video/list/**",
-                        "/fullNotice/list/**", "/openColumn/list/**", "/openColumn/readPost/**");
+                        "/fullNotice/list/**", "/openColumn/list/**", "/openColumn/readPost/**", "/**/showCommentList/**");
         registry.addInterceptor(new AdminInterceptor())
-                .addPathPatterns("/board/**", "/video/**", "/fullNotice/**", "/openColumn/**")
-                .excludePathPatterns("/css/**", "/fonts/**", "/board/list/**", "/video/list/**", "/fullNotice/list/**", "/openColumn/list/**");
+                .addPathPatterns("/**/writePost/**", "/**/modifyPost/**");
     }
 
 }

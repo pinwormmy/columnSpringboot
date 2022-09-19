@@ -39,7 +39,7 @@
         <h2>게시판 메뉴</h2>
         <ul class="leftbar-ul">
             <li><a href="/fullNotice/list">공지사항</a></li>
-            <li><a href="/board">승인연재게시판</a></li>
+            <li><a href="/board/list">승인연재게시판</a></li>
             <li><a href="/video/list">동영상 게시판</a></li>
             <li><a href="/openColumn/list">공개연재게시판</a></li>
         </ul>

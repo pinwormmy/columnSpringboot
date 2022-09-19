@@ -17,16 +17,17 @@ import java.util.List;
 
 @Controller
 @Slf4j
+@RequestMapping("/board")
 public class BoardController {
     @Autowired
     BoardService boardService;
-    @GetMapping(value = "/board")
+    @GetMapping(value = "/list")
     public String board(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", boardService.showFullNoticeList());
         model.addAttribute("selfNoticeList", boardService.showSelfNoticeList());
         model.addAttribute("page", boardService.pageSetting(page));
         model.addAttribute("postList", boardService.showPostList(page));
-        return "board";
+        return "board/board";
     }
 
     @RequestMapping("/readPost")
@@ -35,7 +36,7 @@ public class BoardController {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         checkIpAndUpdateViews(request, postNum);
         model.addAttribute("post", boardService.readPost(postNum));
-        return "readPost";
+        return "board/readPost";
     }
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
@@ -47,31 +48,31 @@ public class BoardController {
 
     @RequestMapping("/writePost")
     public String writePost() {
-        return "writePost";
+        return "board/writePost";
     }
 
     @RequestMapping("/submitPost")
     public String submitPost(BoardDTO post) throws Exception {
         boardService.submitPost(post);
-        return "redirect:/board";
+        return "redirect:/board/board";
     }
 
     @RequestMapping("/deletePost")
     public String deletePost(int postNum) throws Exception {
         boardService.deletePost(postNum);
-        return "redirect:/board";
+        return "redirect:/board/board";
     }
 
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
         model.addAttribute("post", boardService.readPost(postNum));
-        return "modifyPost";
+        return "board/modifyPost";
     }
 
     @RequestMapping(value = "/submitModifyPost")
     public String submitModifyPost(BoardDTO post) throws Exception {
         boardService.submitModifyPost(post);
-        return "redirect:/readPost?postNum=" + post.getPostNum();
+        return "redirect:/board/readPost?postNum=" + post.getPostNum();
     }
 
     @RequestMapping(value = "/addComment")

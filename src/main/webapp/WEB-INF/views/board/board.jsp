@@ -67,7 +67,7 @@ body {
 </style>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
+<%@include file="../include/header.jspf" %>
 <header id="headerwrap" class="quarterscreen">
     <div class="align-bottom wow fadeInUp">
         <div class="row">
@@ -82,7 +82,7 @@ body {
     </div>
 </header>
 <section class="white section-wrapper">
-<%@include file="./include/boardSidebar.jspf" %>
+<%@include file="../include/boardSidebar.jspf" %>
     <div class="section-inner">
         <div class="container">
             <div class="row">
@@ -148,7 +148,7 @@ body {
                                     </c:if>
                                 </div>
                                 <div class="form-group">
-                                    <form action="/board">
+                                    <form action="/board/list">
                                         <select name="searchType">
                                             <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
                                             <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>
@@ -157,7 +157,7 @@ body {
                                         <input name="keyword" value=${page.keyword}>
                                         <button class="pull btn btn-theme">검색</button>
                                         <c:if test="${page.keyword != ''}">
-                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/board'">취소</button>
+                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/board/list'">취소</button>
                                         </c:if>
                                     </form>
                                 </div>
@@ -172,7 +172,7 @@ body {
         </div>
     </div>
 </section>
-<%@include file="./include/footer.jspf" %>
+<%@include file="../include/footer.jspf" %>
 
 <script>
     function checkMemberLevelBeforeRead(postNum) {
@@ -180,7 +180,7 @@ body {
             alert("해당 글 열람은 관리자 승인이 필요합니다.");
             return false;
         }
-        location.href = "/readPost?postNum=" + postNum;
+        location.href = "/board/readPost?postNum=" + postNum;
     }
 </script>
 

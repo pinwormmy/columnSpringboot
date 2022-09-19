@@ -14,8 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/css/**", "/fonts/**");
 
         registry.addInterceptor(new VideoLvInterceptor())
-                .addPathPatterns("/video/readPost/**")
-                .excludePathPatterns("/css/**", "/fonts/**");
+                .addPathPatterns("/video/**")
+                .excludePathPatterns("/video/list/**", "/css/**", "/fonts/**");
     }
 
 }

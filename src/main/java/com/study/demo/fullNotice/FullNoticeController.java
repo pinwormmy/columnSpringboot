@@ -23,20 +23,20 @@ public class FullNoticeController {
     FullNoticeService fullNoticeService;
 
     @GetMapping(value = "/list")
-    public String board(PageDTO page, Model model) throws Exception {
+    public String list(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", fullNoticeService.showSelfNoticeList());
         model.addAttribute("page", fullNoticeService.pageSetting(page));
         model.addAttribute("postList", fullNoticeService.showPostList(page));
         return "fullNotice/fullNotice";
     }
 
-    @RequestMapping("/readFullNotice")
+    @RequestMapping("/readPost")
     @Transactional
-    public String post(Model model, HttpServletRequest request) throws Exception {
+    public String readPost(Model model, HttpServletRequest request) throws Exception {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         checkIpAndUpdateViews(request, postNum);
         model.addAttribute("post", fullNoticeService.readPost(postNum));
-        return "fullNotice/readFullNotice";
+        return "fullNotice/readPost";
     }
 
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
@@ -48,8 +48,8 @@ public class FullNoticeController {
     }
 
     @RequestMapping("/writePost")
-    public String writeFullNotice() {
-        return "fullNotice/writeFullNotice";
+    public String writePost() {
+        return "fullNotice/writePost";
     }
 
     @RequestMapping("/submitPost")
@@ -67,7 +67,7 @@ public class FullNoticeController {
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
         model.addAttribute("post", fullNoticeService.readPost(postNum));
-        return "fullNotice/modifyFullNotice";
+        return "fullNotice/modifyPost";
     }
 
     @RequestMapping(value = "/submitModifyPost")

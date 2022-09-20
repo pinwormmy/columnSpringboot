@@ -173,11 +173,30 @@ function showCommentWithHtml(CommentDTOList) {
 
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
     for(let comment of CommentDTOList) {
-        commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-        commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
-        commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
-        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</div></div></div>";
+        commentListHtml = checkMemberLevelAndAddString(commentListHtml, comment);
     }
+    return commentListHtml;
+}
+
+function checkMemberLevelAndAddString(commentListHtml, comment) {
+    if( ${member.memberLevel > 1} )
+        return commentListHtml = addStringToCommentList(commentListHtml, comment);
+    else
+        return commentListHtml = addPrivateStringToCommentList(commentListHtml);
+}
+
+function addStringToCommentList(commentListHtml, commentDTO) {
+    commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+    commentListHtml += "<strong>" + commentDTO.memberDTO.nickName + "</strong> &nbsp; <small>";
+    commentListHtml += commentDTO.regDate + "</small></div><p>" + commentDTO.content + "</p>";
+    commentListHtml = displayDeleteButton(commentListHtml, commentDTO) + "</div></div></div>";
+    return commentListHtml;
+}
+
+function addPrivateStringToCommentList(commentListHtml) {
+    commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+    commentListHtml += "<strong>" + "승인된 회원만 댓글을 볼 수 있습니다." + "</strong>";
+    commentListHtml += "<br><br><br><br><br></div></div></div></div>";
     return commentListHtml;
 }
 
@@ -190,7 +209,7 @@ function displayDeleteButton(commentListHtml, commentDTO) {
 }
 
 function deleteComment(commentNum) {
-    fetch("/fullNotice/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
+    fetch("/openColumn/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
     .then(data => {
         updateCommentCount(${post.postNum});
         showCommentList(${post.postNum});
@@ -199,7 +218,7 @@ function deleteComment(commentNum) {
 }
 
 function updateCommentCount(postNum) {
-    fetch("/fullNotice/updateCommentCount?postNum=" + postNum, {method:"PUT"})
+    fetch("/openColumn/updateCommentCount?postNum=" + postNum, {method:"PUT"})
         .then(data => console.log("댓글 업데이트"))
         .catch(error => alert("댓글수 갱신 오류"));
 }

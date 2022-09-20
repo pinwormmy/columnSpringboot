@@ -100,7 +100,7 @@ body {
                                                      <c:forEach var="notice" items="${fullNoticeList}">
                                                     <tr>
                                                         <td><h4><div align="left">[전체공지]</div>
-                                                        <a class="noticeTitle" href="/fullNotice/readFullNotice?postNum=${notice.postNum}">
+                                                        <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
                                                          ${notice.title}</a>
                                                         <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
@@ -109,7 +109,7 @@ body {
                                                     </c:forEach>
                                                     <c:forEach var="post" items="${postList}">
                                                     <tr>
-                                                        <td><h4><a class="postTitle" href="/fullNotice/readFullNotice?postNum=${post.postNum}">${post.title}</a>
+                                                        <td><h4><a class="postTitle" href="/fullNotice/readPost?postNum=${post.postNum}">${post.title}</a>
                                                         <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                         <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
                                                         <td>${post.views}</td>

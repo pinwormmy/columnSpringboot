@@ -160,10 +160,15 @@ function addComment(){
     commentContent.value = "";
 }
 
-function showCommentList(postNum){
-    fetch("/board/showCommentList?postNum=" + postNum)
-    .then((response) => response.json())
-    .then((data) => showCommentWithHtml(data));
+function showCommentList(commentDTO){
+    commentDTO = commentPageSetting(commentDTO);
+    loadRecentPageComment(commentDTO);
+}
+
+function loadRecentPageComment(commentDTO) {
+    fetch("/board/showCommentList?postNum=" + postNum + "&recentPage=" + recentPage) // 테스트값1. 댓글용 recentPage 관련 만들어야함
+        .then((response) => response.json())
+        .then((data) => showCommentWithHtml(data));
 }
 
 function showCommentWithHtml(CommentDTOList) {

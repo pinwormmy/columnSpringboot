@@ -85,6 +85,7 @@ public class BoardController {
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
     public List<PostCommentDTO> showCommentList(PageDTO page) throws Exception {
+        page = boardService.pageSetting((page));
         return boardService.showCommentList(page);
     }
 

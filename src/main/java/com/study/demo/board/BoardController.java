@@ -82,10 +82,15 @@ public class BoardController {
         boardService.addComment(comment);
     }
 
+    @RequestMapping(value = "/commentPageSetting")
+    @ResponseBody
+    public PageDTO commentPageSetting(@RequestBody PageDTO page) throws Exception {
+        return boardService.pageSetting(page);
+    }
+
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
-    public List<PostCommentDTO> showCommentList(PageDTO page) throws Exception {
-        page = boardService.pageSetting((page));
+    public List<PostCommentDTO> showCommentList(@RequestBody PageDTO page) throws Exception {
         return boardService.showCommentList(page);
     }
 

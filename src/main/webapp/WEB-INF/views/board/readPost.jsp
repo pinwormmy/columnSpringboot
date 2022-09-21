@@ -134,9 +134,10 @@ body {
 
 <script>
 
-//alert("js test 15");
+alert("js test 16");
 let commentContent = document.getElementById("commentContent");
-showCommentList(${post.postNum});
+//showCommentList();
+commentPageSetting();
 
 function addComment(){
     if(commentContent.value == "") {
@@ -160,15 +161,34 @@ function addComment(){
     commentContent.value = "";
 }
 
-function showCommentList(commentDTO){
-    commentDTO = commentPageSetting(commentDTO);
-    loadRecentPageComment(commentDTO);
+function showCommentList(){
+    commentPageSetting();
+
 }
 
-function loadRecentPageComment(commentDTO) {
-    fetch("/board/showCommentList?postNum=" + postNum + "&recentPage=" + recentPage) // 테스트값1. 댓글용 recentPage 관련 만들어야함
-        .then((response) => response.json())
-        .then((data) => showCommentWithHtml(data));
+function commentPageSetting() {
+    fetch("/board/commentPageSetting", {
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                postNum : ${post.postNum}
+            })
+        })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        loadCommentFetch(data);
+    });
+}
+
+function loadCommentFetch(pageDTO) {
+    fetch("/board/showCommentList", {
+        method: "POST",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(pageDTO),
+    })
+    .then((response) => response.json())
+    .then((data) => showCommentWithHtml(data));
 }
 
 function showCommentWithHtml(CommentDTOList) {

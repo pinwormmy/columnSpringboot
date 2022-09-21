@@ -61,6 +61,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public int countTotalPost(PageDTO page) throws Exception {
+        if(page.getPostNum() != 0) {return boardMapper.countTotalComment(page);}
         return boardMapper.countTotalPost(page);
     }
 

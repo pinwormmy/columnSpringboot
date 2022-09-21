@@ -101,6 +101,7 @@ body {
                                 </div>
                             </c:if>
                             <div id="comments-list" class="gap">
+                            <div id="comments-page" class="gap">
                             </div><!--/#comments-list-->
                             <c:if test="${member != null}">
                                 <div id="comment-form" class="gap">
@@ -136,8 +137,7 @@ body {
 
 alert("js test 16");
 let commentContent = document.getElementById("commentContent");
-//showCommentList();
-commentPageSetting();
+showCommentList();
 
 function addComment(){
     if(commentContent.value == "") {
@@ -161,12 +161,11 @@ function addComment(){
     commentContent.value = "";
 }
 
-function showCommentList(){
-    commentPageSetting();
-
+function showCommentList() {
+    pageSettingAndLoadComment(); // fetch로 페이지 세팅 -> 댓글 목록 불러오기
 }
 
-function commentPageSetting() {
+function pageSettingAndLoadComment() {
     fetch("/board/commentPageSetting", {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
@@ -178,6 +177,16 @@ function commentPageSetting() {
     .then((data) => {
         console.log(data);
         loadCommentFetch(data);
+        let commentPageDivTag = document.getElementById("comments-page");
+        commentPageDivTag.innerHTML = "";
+        let commentPageHtml = "";
+
+
+        for(let i=data.pageBeginPoint; i<data.pageEndPoint; i++) {
+            commentPageHtml += "<a href='#'> " + i + " </a>";
+        }
+        console.log(commentPageHtml);
+        commentPageDivTag.innerHTML += commentPageHtml;
     });
 }
 

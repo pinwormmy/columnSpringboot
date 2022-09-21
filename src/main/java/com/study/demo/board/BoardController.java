@@ -84,8 +84,8 @@ public class BoardController {
 
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
-    public List<PostCommentDTO> showCommentList(int postNum) throws Exception {
-        return boardService.showCommentList(postNum);
+    public List<PostCommentDTO> showCommentList(PageDTO page) throws Exception {
+        return boardService.showCommentList(page);
     }
 
     @RequestMapping(value = "/deleteComment")

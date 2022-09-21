@@ -22,7 +22,7 @@ public interface BoardService {
 
     void addComment(PostCommentDTO comment) throws Exception;
 
-    List<PostCommentDTO> showCommentList(int postNum) throws Exception;
+    List<PostCommentDTO> showCommentList(PageDTO page) throws Exception;
 
     void deleteComment(int commentNum) throws Exception;
 

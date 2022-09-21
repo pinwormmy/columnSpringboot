@@ -77,8 +77,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<PostCommentDTO> showCommentList(int postNum) throws Exception {
-        return boardMapper.showCommentList(postNum);
+    public List<PostCommentDTO> showCommentList(PageDTO page) throws Exception {
+        return boardMapper.showCommentList(page);
     }
 
     @Override

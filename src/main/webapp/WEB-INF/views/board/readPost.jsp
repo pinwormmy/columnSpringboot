@@ -181,6 +181,9 @@ function pageSettingAndLoadComment(commentPage) {
         commentPageDivTag.innerHTML = "";
         let commentPageHtml = "";
 
+        if(data.prevPageSetPoint < 1) {
+            commentPageHtml ="<a href='javascript:pageSettingAndLoadComment(" + data.prevPageSetPoint + ")'>◁</a>";
+        }
         if(data.totalPage > 1) {
             for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
                 if(i == data.recentPage) {
@@ -189,6 +192,9 @@ function pageSettingAndLoadComment(commentPage) {
                     commentPageHtml += "<a href='javascript:pageSettingAndLoadComment(" + i + ")'>" + i + " </a>";
                 }
             }
+        }
+        if(data.nextPageSetPoint > 10) {
+            commentPageHtml ="<a href='javascript:pageSettingAndLoadComment(" + data.nextPageSetPoint + ")'>▷</a>";
         }
         commentPageDivTag.innerHTML += commentPageHtml;
     });

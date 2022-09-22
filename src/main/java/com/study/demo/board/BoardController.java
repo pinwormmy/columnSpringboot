@@ -54,7 +54,7 @@ public class BoardController {
     @RequestMapping("/submitPost")
     public String submitPost(BoardDTO post) throws Exception {
         boardService.submitPost(post);
-        return "redirect:/board/board";
+        return "redirect:/board/list";
     }
 
     @RequestMapping("/deletePost")

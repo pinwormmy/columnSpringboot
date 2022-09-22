@@ -100,9 +100,8 @@ body {
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>
                             </c:if>
-                            <div id="comments-list" class="gap">
-                            <div id="comments-page" class="gap">
-                            </div><!--/#comments-list-->
+                            <div id="comments-list" class="gap"></div>
+                            <div id="comments-page" class="gap"></div>
                             <c:if test="${member != null}">
                                 <div id="comment-form" class="gap">
                                     <div class="form-group">
@@ -162,7 +161,7 @@ function addComment(){
 }
 
 function showCommentList() {
-    pageSettingAndLoadComment(); // fetch로 페이지 세팅 -> 댓글 목록 불러오기
+    pageSettingAndLoadComment();
 }
 
 function pageSettingAndLoadComment() {
@@ -181,33 +180,40 @@ function pageSettingAndLoadComment() {
         commentPageDivTag.innerHTML = "";
         let commentPageHtml = "";
 
-
-        for(let i=data.pageBeginPoint; i<data.pageEndPoint; i++) {
+        commentPageHtml += "<div>"
+        for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
             commentPageHtml += "<a href='#'> " + i + " </a>";
         }
-        console.log(commentPageHtml);
+        commentPageHtml += "</div>";
         commentPageDivTag.innerHTML += commentPageHtml;
     });
 }
 
 function loadCommentFetch(pageDTO) {
+    console.log("댓글불러오기 펫치 시작전");
     fetch("/board/showCommentList", {
         method: "POST",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(pageDTO),
     })
     .then((response) => response.json())
-    .then((data) => showCommentWithHtml(data));
+    .then((data) => {
+        console.log("댓글불러오기 펫치 진입", data);
+        showCommentWithHtml(data);
+    });
 }
 
 function showCommentWithHtml(CommentDTOList) {
+    console.log("댓글 코맨트 소스 작업 시작확인");
     let commentDivTag = document.getElementById("comments-list");
     commentDivTag.innerHTML = "";
     let commentListHtml = "";
     commentDivTag.innerHTML += commentHtmlWithString(commentListHtml, CommentDTOList);
+    console.log("댓글 코맨트 소스 작업  반영 확인");
 }
 
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
+    console.log("댓글 코맨트 소스 반복문 준비 확인");
     for(let comment of CommentDTOList) {
         commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
         commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";

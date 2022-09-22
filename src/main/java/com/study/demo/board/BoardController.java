@@ -60,7 +60,7 @@ public class BoardController {
     @RequestMapping("/deletePost")
     public String deletePost(int postNum) throws Exception {
         boardService.deletePost(postNum);
-        return "redirect:/board/board";
+        return "redirect:/board/list";
     }
 
     @RequestMapping(value = "/modifyPost")

@@ -134,11 +134,11 @@ body {
 
 <script>
 
-alert("js test 16");
+alert("js test 20");
 let commentContent = document.getElementById("commentContent");
 showCommentList();
 
-function addComment(){
+function addComment() {
     if(commentContent.value == "") {
         alert("댓글 내용을 작성해주세요~", commentContent.value);
         return false;
@@ -155,20 +155,21 @@ function addComment(){
     .then((data) => {
         console.log(data);
         updateCommentCount(${post.postNum});
-        showCommentList(${post.postNum});
+        showCommentList();
     });
     commentContent.value = "";
 }
 
-function showCommentList() {
-    pageSettingAndLoadComment();
+function showCommentList(commentPage) {
+    pageSettingAndLoadComment(commentPage);
 }
 
-function pageSettingAndLoadComment() {
+function pageSettingAndLoadComment(commentPage) {
     fetch("/board/commentPageSetting", {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
+                recentPage : commentPage,
                 postNum : ${post.postNum}
             })
         })
@@ -180,11 +181,15 @@ function pageSettingAndLoadComment() {
         commentPageDivTag.innerHTML = "";
         let commentPageHtml = "";
 
-        commentPageHtml += "<div>"
-        for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
-            commentPageHtml += "<a href='#'> " + i + " </a>";
+        if(data.totalPage > 1) {
+            for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
+                if(i == data.recentPage) {
+                    commentPageHtml += " " + i + " ";
+                }else {
+                    commentPageHtml += "<a href='javascript:pageSettingAndLoadComment(" + i + ")'>" + i + " </a>";
+                }
+            }
         }
-        commentPageHtml += "</div>";
         commentPageDivTag.innerHTML += commentPageHtml;
     });
 }
@@ -235,7 +240,7 @@ function deleteComment(commentNum) {
     fetch("/board/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
     .then(data => {
         updateCommentCount(${post.postNum});
-        showCommentList(${post.postNum});
+        showCommentList();
     })
     .catch(error => alert("댓글 삭제 오류"));
 }

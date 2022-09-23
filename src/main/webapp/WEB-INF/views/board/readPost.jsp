@@ -155,6 +155,7 @@ function addComment() {
     .then((data) => {
         console.log(data);
         updateCommentCount(${post.postNum});
+        document.getElementById("comments").scrollIntoView(true);
         showCommentList();
     });
     commentContent.value = "";
@@ -208,14 +209,10 @@ function loadCommentFetch(pageDTO) {
         body: JSON.stringify(pageDTO),
     })
     .then((response) => response.json())
-    .then((data) => {
-        console.log("댓글불러오기 펫치 진입", data);
-        showCommentWithHtml(data);
-    });
+    .then((data) => showCommentWithHtml(data));
 }
 
 function showCommentWithHtml(CommentDTOList) {
-    console.log("댓글 코맨트 소스 작업 시작확인");
     let commentDivTag = document.getElementById("comments-list");
     commentDivTag.innerHTML = "";
     let commentListHtml = "";

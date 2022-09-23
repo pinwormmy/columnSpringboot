@@ -27,6 +27,7 @@ public class BoardController {
         model.addAttribute("selfNoticeList", boardService.showSelfNoticeList());
         model.addAttribute("page", boardService.pageSetting(page));
         model.addAttribute("postList", boardService.showPostList(page));
+        log.debug(page.toString());
         return "board/board";
     }
 

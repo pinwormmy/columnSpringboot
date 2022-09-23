@@ -134,7 +134,7 @@ body {
 
 <script>
 
-alert("js test 20");
+alert("js test 21");
 let commentContent = document.getElementById("commentContent");
 showCommentList();
 
@@ -181,8 +181,8 @@ function pageSettingAndLoadComment(commentPage) {
         commentPageDivTag.innerHTML = "";
         let commentPageHtml = "";
 
-        if(data.prevPageSetPoint < 1) {
-            commentPageHtml ="<a href='javascript:pageSettingAndLoadComment(" + data.prevPageSetPoint + ")'>◁</a>";
+        if(data.prevPageSetPoint >= 1) {
+            commentPageHtml +="<a href='javascript:pageSettingAndLoadComment(" + data.prevPageSetPoint + ")'>◁</a>";
         }
         if(data.totalPage > 1) {
             for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
@@ -193,8 +193,8 @@ function pageSettingAndLoadComment(commentPage) {
                 }
             }
         }
-        if(data.nextPageSetPoint > 10) {
-            commentPageHtml ="<a href='javascript:pageSettingAndLoadComment(" + data.nextPageSetPoint + ")'>▷</a>";
+        if(data.nextPageSetPoint <= data.totalPage) {
+            commentPageHtml +="<a href='javascript:pageSettingAndLoadComment(" + data.nextPageSetPoint + ")'>▷</a>";
         }
         commentPageDivTag.innerHTML += commentPageHtml;
     });

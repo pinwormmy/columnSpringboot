@@ -25,7 +25,7 @@ public class PageService {
         if(pageEndPoint > totalPage)
             pageEndPoint = totalPage;
 
-        int prevPageSetPoint = pageEndPoint - PAGESET_LIMIT;
+        int prevPageSetPoint = pageBeginPoint - 1;
         int nextPageSetPoint = pageBeginPoint + PAGESET_LIMIT;
 
         page.setPageBeginPoint(pageBeginPoint);

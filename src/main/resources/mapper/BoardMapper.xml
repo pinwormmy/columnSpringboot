@@ -80,6 +80,7 @@
                     WHERE A.ID=B.ID AND A.POST_NUM=#{postNum}
                     ORDER BY A.COMMENT_NUM DESC) A)
             WHERE R BETWEEN #{postBeginPoint} AND #{postEndPoint}
+            ORDER BY COMMENT_NUM
     </select>
 
     <delete id="deleteComment">

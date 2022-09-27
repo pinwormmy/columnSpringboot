@@ -68,10 +68,14 @@
     </insert>
 
     <select id="showCommentList" resultMap="FullNoticeCommentDTO">
-        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.ID, B.NICKNAME
-            FROM FULL_NOTICE_COMMENT A, MEMBER B
-            WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
-            ORDER BY COMMENT_NUM ASC
+        SELECT * FROM
+            (SELECT ROWNUM R, A.* FROM
+                (SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.NICKNAME
+                    FROM FULL_NOTICE_COMMENT A, MEMBER B
+                    WHERE A.ID=B.ID AND A.POST_NUM=#{postNum}
+                    ORDER BY A.COMMENT_NUM DESC) A)
+            WHERE R BETWEEN #{postBeginPoint} AND #{postEndPoint}
+            ORDER BY COMMENT_NUM
     </select>
 
     <delete id="deleteComment">

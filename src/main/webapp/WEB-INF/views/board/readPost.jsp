@@ -155,7 +155,6 @@ function addComment() {
     .then((data) => {
         console.log(data);
         updateCommentCount(${post.postNum});
-        document.getElementById("comments").scrollIntoView(true);
         showCommentList();
     });
     commentContent.value = "";

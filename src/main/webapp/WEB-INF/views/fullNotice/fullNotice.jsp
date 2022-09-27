@@ -153,6 +153,54 @@ body {
                                 <c:if test="${member.memberLevel == 3}">
                                     <a href="/fullNotice/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
+                                <div class="media">
+                                       <div class="well">
+                                            각게시판 공지 모아볼수있게
+                                             <table class="boardList">
+                                                    <tr>
+                                                        <th>제목</th>
+                                                        <th>작성일자</th>
+                                                        <th>조회수</th>
+                                                    </tr>
+                                                     <c:forEach var="notice" items="${fullNoticeList}">
+                                                    <tr>
+                                                        <td><h4><div align="left">[전체공지]</div>
+                                                        <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
+                                                         ${notice.title}</a>
+                                                        <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
+                                                        <td>${notice.views}</td>
+                                                    </tr>
+                                                    </c:forEach>
+                                                    <c:forEach var="post" items="${postList}">
+                                                    <tr>
+                                                        <td><h4><a class="postTitle" href="/fullNotice/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                        <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                        <td>${post.views}</td>
+                                                    </tr>
+                                                    </c:forEach>
+                                             </table>
+                                             <c:if test="${empty fullNoticeList}"><tr><td>현재 등록된 전체공지사항이 없습니다.</td></tr></c:if>
+                                       </div>
+                                </div>
+                                <div class="post-navigation">
+                                    <c:if test="${page.prevPageSetPoint >= 1}">
+                                        <a class="pull-left btn btn-theme"
+                                        href="/fullNotice/list?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        이전</a>
+                                    </c:if>
+                                    <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
+                                        <a class="pull-center btn btn-theme"
+                                        href="/fullNotice/list?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        ${countPage}</a>
+                                    </c:forEach>
+                                    <c:if test="${page.nextPageSetPoint <= page.totalPage}">
+                                        <a class="pull-right btn btn-theme"
+                                        href="/fullNotice/list?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        다음</a>
+                                    </c:if>
+                                </div>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
                     </div>

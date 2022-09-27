@@ -1,5 +1,6 @@
 package com.study.demo.openColumn;
 
+import com.study.demo.board.PostCommentDTO;
 import com.study.demo.util.IpService;
 import com.study.demo.util.PageDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -82,6 +83,12 @@ public class OpenColumnController {
     public void addComment(@RequestBody OpenColumnCommentDTO comment) throws Exception {
         log.debug("댓글 인수 확인(댓글내용) : {}", comment.getContent());
         openColumnService.addComment(comment);
+    }
+
+    @RequestMapping(value = "/commentPageSetting")
+    @ResponseBody
+    public PageDTO commentPageSetting(@RequestBody PageDTO page) throws Exception {
+        return openColumnService.pageSetting(page);
     }
 
     @RequestMapping(value = "/showCommentList")

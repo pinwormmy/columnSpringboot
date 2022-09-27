@@ -68,15 +68,19 @@
     </insert>
 
     <select id="showCommentList" resultMap="OpenColumnCommentDTO">
-        SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.ID, B.NICKNAME
-            FROM OPENCOLUMN_COMMENT A, MEMBER B
-            WHERE A.ID = B.ID AND A.POST_NUM=#{postNum}
-            ORDER BY COMMENT_NUM ASC
+        SELECT * FROM
+            (SELECT ROWNUM R, A.* FROM
+                (SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.NICKNAME
+                    FROM OPENCOLUMN_COMMENT A, MEMBER B
+                    WHERE A.ID=B.ID AND A.POST_NUM=#{postNum}
+                    ORDER BY A.COMMENT_NUM DESC) A)
+            WHERE R BETWEEN #{postBeginPoint} AND #{postEndPoint}
+            ORDER BY COMMENT_NUM
     </select>
 
     <delete id="deleteComment">
-        delete from OPENCOLUMN_COMMENT
-            where COMMENT_NUM=#{commentNum}
+        DELETE FROM OPENCOLUMN_COMMENT
+            WHERE COMMENT_NUM=#{commentNum}
     </delete>
 
     <update id="updateCommentCount">

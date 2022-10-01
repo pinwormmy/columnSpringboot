@@ -48,19 +48,15 @@ public class UploadController {
                     e.getStackTrace();
                 }
             }
-
             out = new FileOutputStream(new File(ckUploadPath));
             out.write(bytes);
             out.flush(); // outputStram에 저장된 데이터를 전송하고 초기화
-
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
             String fileUrl = "/ckImgSubmit?uid=" + uid + "&fileName=" + fileName; // 작성화면
-
             // 업로드시 메시지 출력
             printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
             printWriter.flush();
-
         }catch(IOException e){
             e.printStackTrace();
         } finally {

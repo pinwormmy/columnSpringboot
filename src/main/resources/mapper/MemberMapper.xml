@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.study.demo.mapper.MemberMapper">
+<mapper namespace="com.study.column.mapper.MemberMapper">
 
     <select id="isUniqueId" resultType="String">
         SELECT COUNT(*) FROM MEMBER
@@ -12,12 +12,12 @@
 
     <insert id="submitSignUp">
         INSERT INTO MEMBER
-            VALUES(#{id}, #{pw}, #{nickName}, #{email}, 1, sysdate)
+            VALUES(#{id}, #{pw}, #{nickName}, #{email}, 1, NOW())
     </insert>
 
-    <select id="checkLoginData" resultType="com.study.demo.member.MemberDTO">
+    <select id="checkLoginData" resultType="com.study.column.member.MemberDTO">
         SELECT * FROM MEMBER
-            WHERE id=#{id} and pw=#{pw}
+            WHERE ID=#{id} AND PW=#{pw}
     </select>
 
     <update id="submitModifyMyInfo">

@@ -3,14 +3,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.study.demo.mapper.OpenColumnMapper">
+<mapper namespace="com.study.column.mapper.OpenColumnMapper">
 
-    <resultMap id="MemberDTO" type="com.study.demo.member.MemberDTO">
+    <resultMap id="MemberDTO" type="com.study.column.member.MemberDTO">
         <result column="id" property="id" />
         <result column="nickName" property="nickName" />
     </resultMap>
 
-    <resultMap id="OpenColumnCommentDTO" type="com.study.demo.openColumn.OpenColumnCommentDTO">
+    <resultMap id="OpenColumnCommentDTO" type="com.study.column.openColumn.OpenColumnCommentDTO">
         <result column="POST_NUM" property="postNum" />
         <result column="COMMENT_NUM" property="commentNum" />
         <result column="id" property="id" />
@@ -19,31 +19,29 @@
         <collection property="memberDTO" resultMap="MemberDTO" />
     </resultMap>
 
-    <select id="showPostList" resultType="com.study.demo.openColumn.OpenColumnDTO">
-        SELECT * FROM
-            (SELECT rownum r, a.* FROM
-                (select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
-                    from openColumn
-                    where <include refid="searchKeyword" /> and notice=0
-                    order by post_num desc) a)
-            WHERE r BETWEEN #{postBeginPoint} AND #{postEndPoint}
+    <select id="showPostList" resultType="com.study.column.openColumn.OpenColumnDTO">
+        SELECT post_num, title, content, writer, REG_DATE, views, COMMENT_COUNT
+            from OPENCOLUMN
+            WHERE <include refid="searchKeyword" /> AND notice=0
+            order by post_num desc
+            LIMIT #{postBeginPoint}, #{displayPostLimit}
     </select>
 
     <sql id="searchKeyword">
-        <if test="searchType == 'title'">title like '%'||#{keyword}||'%'</if>
-        <if test="searchType == 'content'">content like '%'||#{keyword}||'%'</if>
-        <if test="searchType == 'titleAndContent'">title like '%'||#{keyword}||'%'
-            or content like '%'||#{keyword}||'%'</if>
+        <if test="searchType == 'title'">title like CONCAT('%', #{keyword}, '%')</if>
+        <if test="searchType == 'content'">content like CONCAT('%', #{keyword}, '%')</if>
+        <if test="searchType == 'titleAndContent'">title like CONCAT('%', #{keyword}, '%')
+            or content like CONCAT('%', #{keyword}, '%')</if>
     </sql>
 
-    <select id="readPost" resultType="com.study.demo.openColumn.OpenColumnDTO">
-        select * from openColumn
+    <select id="readPost" resultType="com.study.column.openColumn.OpenColumnDTO">
+        select * from OPENCOLUMN
             where post_num=#{postNum}
     </select>
 
     <insert id="submitPost">
-        INSERT INTO OPENCOLUMN
-            VALUES(OPENCOLUMN_POST_NUM_SEQ.NEXTVAL, #{title}, #{writer}, sysdate, 0, #{content}, 0, #{notice})
+        INSERT INTO OPENCOLUMN(TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
+            VALUES(#{title}, #{writer}, NOW(), 0, #{content}, 0, #{notice})
     </insert>
 
     <update id="submitModifyPost">
@@ -63,18 +61,19 @@
     </select>
 
     <insert id="addComment">
-        INSERT INTO OPENCOLUMN_COMMENT
-            VALUES(#{postNum}, OPENCOLUMN_COMMENT_NUM_SEQ.nextval, #{id}, SYSDATE, #{content})
+        INSERT INTO OPENCOLUMN_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
+            VALUES(#{postNum}, #{id}, SYSDATE, #{content})
     </insert>
 
     <select id="showCommentList" resultMap="OpenColumnCommentDTO">
         SELECT * FROM
-            (SELECT ROWNUM R, A.* FROM
-                (SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.NICKNAME
-                    FROM OPENCOLUMN_COMMENT A, MEMBER B
-                    WHERE A.ID=B.ID AND A.POST_NUM=#{postNum}
-                    ORDER BY A.COMMENT_NUM DESC) A)
-            WHERE R BETWEEN #{postBeginPoint} AND #{postEndPoint}
+            (SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.NICKNAME
+                FROM OPENCOLUMN_COMMENT A
+                INNER JOIN MEMBER B
+                ON A.ID=B.ID
+                WHERE A.POST_NUM=#{postNum}
+                ORDER BY A.COMMENT_NUM DESC)
+            LIMIT #{postBeginPoint}, #{displayPostLimit}
             ORDER BY COMMENT_NUM
     </select>
 
@@ -107,13 +106,13 @@
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 
-    <select id="showSelfNoticeList" resultType="com.study.demo.openColumn.OpenColumnDTO">
+    <select id="showSelfNoticeList" resultType="com.study.column.openColumn.OpenColumnDTO">
         SELECT * FROM OPENCOLUMN
             WHERE NOTICE=1
             ORDER BY POST_NUM DESC
     </select>
 
-    <select id="showFullNoticeList" resultType="com.study.demo.fullNotice.FullNoticeDTO">
+    <select id="showFullNoticeList" resultType="com.study.column.fullNotice.FullNoticeDTO">
         SELECT * FROM FULL_NOTICE
             WHERE NOTICE=1
             ORDER BY POST_NUM DESC

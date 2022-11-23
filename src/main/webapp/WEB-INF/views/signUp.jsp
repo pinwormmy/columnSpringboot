@@ -1,82 +1,111 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<title>테스트 로그인</title>
+<title>회원가입</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+html {
+    height: 100%;
+}
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+}
+input {
+    width: 400px;
+    height: 50px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    border: 0;
+    margin: 2px;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+.basicButton {
+    width: 410px;
+    height: 50px;
+    border: 0px;
+    border-radius: 10px;
+    margin: 2px;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    background-color: Turquoise;
+}
+.loginApi {
+    margin: 3px;
+}
+.loginMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin:-400px 0 0 -200px
+}
+.signUpMenu {
+    margin-bottom: 10%;
+}
+.loginTitle {
+    font-size: 24px;
+}
+
+</style>
 </head>
 <body>
-<%@include file="./include/header.jspf" %>
-
-<!-- Header -->
-<header id="headerwrap" class="fullscreen">
-    <div class="vertical-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <h3>회원가입</h3>
-                    <form class="form white-text" action="/submitSignUp" id="submitSignUpForm" method="post">
-                        <div class="form-group">
-                            <input type="text" class="outlined subscribe-input fullwidth-me form-control input-lg mb" name="id" id="id" placeholder="ID">
-                            <div id="isUniqueId">ID 중복확인이 필요합니다</div>
-                        </div>
-                        <div class="form-group mt30">
-                            <input type="password" class="outlined subscribe-input fullwidth-me form-control input-lg" name="pw" placeholder="비밀번호">
-                        </div>
-                        <div class="form-group mt30">
-                            <input type="password" class="outlined subscribe-input fullwidth-me form-control input-lg" name="pw2" placeholder="비밀번호 확인">
-                        </div>
-                        <div class="form-group mt30">
-                            <input type="text" class="outlined subscribe-input fullwidth-me form-control input-lg" name="nickName" placeholder="닉네임">
-                        </div>
-                        <div class="form-group mt30">
-                            <input type="email" class="outlined subscribe-input fullwidth-me form-control input-lg" name="email" placeholder="이메일">
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="pull-left btn btn-theme btn-white mt30" onclick="checkSignupForm();">가입하기</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="loginMenu">
+    <div class="signUpMenu">
+        <div class="loginTitle">
+            <h2>회원가입</h2>
         </div>
+        <form action="/submitSignUp" name="submitSignUp" id="submitSignUp" method="post">
+            <div class="inputId">
+                <input type="text" name="id" id="id" placeholder="아이디">
+            </div>
+            <div>
+                <input type="password" name="pw" id="pw" placeholder="4~16 자리 영문+숫자 조합">
+            </div>
+            <div>
+                <input type="password" name="pw2" id="pw2" placeholder="비밀번호 재입력">
+            </div>
+            <div>
+                <input type="text" name="name" placeholder="이름">
+            </div>
+            <div>
+                <input type="email" name="email"placeholder="이메일">
+            </div>
+            <div>
+                <input type="text" name="phone" placeholder="연락처(-포함)">
+            </div>
+            <div>
+                <input type="text" name="address" placeholder="전체 주소 입력">
+            </div>
+
+            <button type="button" class="basicButton" onclick="checkSignupForm();" style='cursor:pointer;'>가입하기</button><br>
+            <button type="button" class="basicButton" style="background-color: yellowgreen; cursor:pointer;"
+            onclick="location.href='/login'">이미 가입한 회원이면 로그인하기</button><br>
+            <button type="button" class="basicButton" style="background-color:#9FE2BF; cursor:pointer;"
+            onclick="location.href='/'">처음 화면으로</button>
+        </form>
     </div>
-</header>
+</div>
 
-<script>
+<script type="text/javascript">
 
-    // alert("js test02");
-
-    let submitSignUpForm = document.getElementById("submitSignUpForm");
-	let checkUniqueId = false;
-	let checkUniqueNickname = false;
+	let submitSignUpForm = document.getElementById("submitSignUp");
 
 	function checkSignupForm() {
+		let isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
 
-		let isId = /^[a-z]+[a-z0-9]{3,19}$/g;
-		let isPassword = /\S{4,}/;
-		let isEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-
-		if (submitSignUpForm.id.value == "") {
-			alert("ID를 입력하세요!!");
-			submitSignUpForm.id.focus();
-			return false;
-		}
-		if(!isId.test(submitSignUpForm.id.value)){
-			alert("ID는 영문자로 시작하는, 4~20자 영어 혹은 숫자이어야 합니다;");
-			submitSignUpForm.id.focus();
-			return false;
-		}
-		if(checkUniqueId == false){
-			alert("중복되지 않은 ID를 입력하세요!!");
-			submitSignUpForm.id.focus();
-			return false;
-		}
 		if (submitSignUpForm.pw.value == "") {
 			alert("비밀번호를 입력하세요!!");
-			submitSignUpForm.pw.focus();
-			return false;
-		}
-		if(!isPassword.test(submitSignUpForm.pw.value)){
-			alert("비밀번호는 4자리 이상이어야 합니다;");
 			submitSignUpForm.pw.focus();
 			return false;
 		}
@@ -85,49 +114,25 @@
 			submitSignUpForm.pw2.focus();
 			return false;
 		}
-		if (submitSignUpForm.pw.value != submitSignUpForm.pw2.value) {
+		if (submitSignUpForm.pw.value != pw2.value) {
 			alert("비밀번호 재입력까지 일치해야합니다.");
 			submitSignUpForm.pw.focus();
 			return false;
 		}
-		if (submitSignUpForm.nickName.value == "") {
-            alert("닉네임을 입력하세요!!");
-            submitSignUpForm.nickName.focus();
-            return false;
-        }
-		alert("가입 완료. 환영합니다!");
+		if(!isPassword.test(submitSignUpForm.pw.value)){
+			alert("비밀번호 양식 확인해주세요");
+			submitSignUpForm.pw.focus();
+			return false;
+		}
+		if (submitSignUpForm.name.value == "") {
+			alert("이름을 입력하세요!!");
+			submitSignUpForm.name.focus();
+			return false;
+		}
 		submitSignUpForm.submit();
 	}
 
-	$('#id').focusout(function(){
-		let id = $('#id').val();
-
-		if(id == ""){
-			$("#isUniqueId").html('');
-			isUniqueId= false;
-			return false;
-		}
-		$.ajax({
-			url : "/isUniqueId",
-			type : "get",
-			data : 'id=' + $('#id').val(),
-			datatype : 'json',
-			success : function(result){
-				if(result == 0){
-					$("#isUniqueId").html('해당 ID 사용가능합니다.');
-					checkUniqueId = true;
-				}else{
-					$("#isUniqueId").html('사용할 수 없는 ID입니다.');
-					checkUniqueId = false;
-				}
-			},
-			error : function(a, b, c){
-				alert("(아이디중복검사)서버 요청 실패...", a, b, c);
-			}
-		})
-	});
-
 </script>
-<%@include file="./include/footer.jspf" %>
+
 </body>
 </html>

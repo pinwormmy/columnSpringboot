@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<div class="col-md-3">
+    <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default" style="border-color: Greenyellow; border-radius: 10px;">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    컬럼
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/fullNotice/list">공지사항</a></li>
+                        <li><a href="/board/list">회원연재게시판</a></li>
+                        <li><a href="/openColumn/list">공개연재게시판</a></li>
+                        <li><a href="/video/list">동영상 게시판</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,23 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<footer class="footer section text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<p class="company-info" align="left">
+                    단체명<br>
+                    대표이사 : OOO  |  주소 : OOO시 OOO구<br>
+                    사업자등록번호 : 000-00-00000(이름)<br>
+                </p>
+                <p class="copyright-text">Copyright 2022. OOO All right reserved.</p>
+				<p class="copyright-text">Copyright &copy;2021, Template Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+			</div>
+		</div>
+	</div>
+</footer>
 
-   <footer id="footerwrap">
-        <div id="lowerfooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                    <!-- 저작권 문구 -->
-                        <p>Copyright 2019. Designed by DISTINCTIVE THEMES</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+<!--
+Essential Scripts
+=====================================-->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/cubeportfolio.js"></script>
-    <script src="/js/init.js"></script>
+<!-- Main jQuery -->
+<script src="plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.1 -->
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Touchpin -->
+<script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+<!-- Instagram Feed Js -->
+<script src="plugins/instafeed/instafeed.min.js"></script>
+<!-- Video Lightbox Plugin -->
+<script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+<!-- Count Down Js -->
+<script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
+<!-- slick Carousel -->
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/slick/slick-animation.min.js"></script>
+
+<!-- Google Mapl -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+
+<!-- Main Js File -->
+<script src="js/script.js"></script>
+
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</html>

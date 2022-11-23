@@ -77,4 +77,30 @@ public class MemberController {
     public String modifyMember() {
         return "modifyMember";
     }
+
+    @RequestMapping(value = "/loginForDemo")
+    public String loginForDemo(HttpServletRequest request) throws Exception {
+        request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
+        MemberDTO member = new MemberDTO();
+        member.setId("midori"); // midori는 시연용 일반계정입니다.
+        member.setPw("1111");
+        MemberDTO loginData = memberService.checkLoginData(member);
+        HttpSession session = request.getSession();
+        session.setAttribute("member", loginData);
+        log.info("(시연용) 일반로그인 성공 : {}", loginData);
+        return "redirect:" + session.getAttribute("pageBeforeLogin");
+    }
+
+    @RequestMapping(value = "/loginForDemoAsAdmin")
+    public String loginForDemoAsAdmin(HttpServletRequest request) throws Exception {
+        request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
+        MemberDTO member = new MemberDTO();
+        member.setId("admin"); // admin은 관리자계정입니다.
+        member.setPw("1111");
+        MemberDTO loginData = memberService.checkLoginData(member);
+        HttpSession session = request.getSession();
+        session.setAttribute("member", loginData);
+        log.info("(시연용) 관리자로그인 성공 : {}", loginData);
+        return "redirect:" + session.getAttribute("pageBeforeLogin");
+    }
 }

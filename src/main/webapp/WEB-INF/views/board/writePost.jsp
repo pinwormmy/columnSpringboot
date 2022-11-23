@@ -83,7 +83,7 @@ body {
 </header>
 
 <section class="white section-wrapper">
-    <%@include file="../include/boardSidebar.jspf" %>
+    <%@ include file="/WEB-INF/views/include/sidebar.jspf" %>
     <div class="section-inner">
         <div class="container">
             <div class="row">

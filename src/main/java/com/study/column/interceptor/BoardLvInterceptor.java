@@ -16,7 +16,7 @@ public class BoardLvInterceptor implements HandlerInterceptor {
             throws Exception {
         HttpSession session = request.getSession();
         MemberDTO member = (MemberDTO)session.getAttribute("member");
-        if (member == null || member.getMemberLevel() < 2){
+        if (member == null || member.getGrade() < 2){
             log.debug("해당 접근은 관리자 승인이 필요합니다.");
             response.sendRedirect("/");
             return false;

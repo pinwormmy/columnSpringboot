@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
+   <footer id="footerwrap">
+        <div id="lowerfooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    <!-- 저작권 문구 -->
+                        <p>Copyright 2019. Designed by DISTINCTIVE THEMES</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/cubeportfolio.js"></script>
+    <script src="/js/init.js"></script>
+

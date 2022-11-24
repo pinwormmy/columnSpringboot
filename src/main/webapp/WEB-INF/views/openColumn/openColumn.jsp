@@ -162,7 +162,7 @@ body {
                                         </c:if>
                                     </form>
                                 </div>
-                                <c:if test="${member.memberLevel == 3}">
+                                <c:if test="${member.grade == 3}">
                                     <a href="/openColumn/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->

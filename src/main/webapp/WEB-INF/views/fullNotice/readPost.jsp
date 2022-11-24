@@ -66,34 +66,24 @@ body {
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
-<header id="headerwrap" class="quarterscreen">
-    <div class="align-bottom wow fadeInUp">
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading mb">
-                        <h1>${post.title}</h1>
-                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
-                        <span style="float: right; color: white;">조회수 ${post.views}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 
 <section class="white section-wrapper">
-    <%@include file="../include/boardSidebar.jspf" %>
     <div class="section-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <%@include file="../include/sidebar.jspf" %>
+                <div class="col-md-9">
                     <div class="row">
+                        <div class="post-heading mb">
+                            <h1>${post.title}</h1>
+                            <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
+                            <span style="float: right; color: white;">조회수 ${post.views}</span>
+                        </div>
                         <div class="col-xs-12 mb wow fadeInUp">
                             ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
-                            <c:if test="${post.commentCount > 0 || member.memberLevel > 1}">
+                            <c:if test="${post.commentCount > 0 || member.grade > 1}">
                                 <div class="mb">
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>
@@ -112,12 +102,12 @@ body {
                                         <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
+                                <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                             </div><!--/#comment-form-->
                             </c:if>
                             <div class="post-navigation">
                                 <a class="pull-left btn btn-theme" href="/fullNotice/list">글 목록</a>
-                                <c:if test="${member.id == post.writer || member.memberLevel == 3}">
+                                <c:if test="${member.id == post.writer || member.grade == 3}">
                                     <a class="pull-right btn btn-theme" href="/fullNotice/modifyPost?postNum=${post.postNum}">글 수정</a>
                                     <a class="pull-right btn btn-theme" href="/fullNotice/deletePost?postNum=${post.postNum}">글 삭제</a>
                                 </c:if>
@@ -179,7 +169,7 @@ function commentHtmlWithString(commentListHtml, CommentDTOList) {
 }
 
 function checkMemberLevelAndAddString(commentListHtml, comment) {
-    if( ${member.memberLevel > 1} )
+    if( ${member.grade > 1} )
         return commentListHtml = addStringToCommentList(commentListHtml, comment);
     else
         return commentListHtml = addPrivateStringToCommentList(commentListHtml);
@@ -188,8 +178,8 @@ function checkMemberLevelAndAddString(commentListHtml, comment) {
 function addStringToCommentList(commentListHtml, commentDTO) {
     commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
     commentListHtml += "<strong>" + commentDTO.memberDTO.nickName + "</strong> &nbsp; <small>";
-    commentListHtml += commentDTO.regDate + "</small></div><p>" + commentDTO.content + "</p>";
-    commentListHtml = displayDeleteButton(commentListHtml, commentDTO) + "</div></div></div>";
+    commentListHtml += commentDTO.regDate + "</small></div><p>" + commentDTO.content;
+    commentListHtml = displayDeleteButton(commentListHtml, commentDTO) + "</p></div></div></div>";
     return commentListHtml;
 }
 
@@ -201,7 +191,7 @@ function addPrivateStringToCommentList(commentListHtml) {
 }
 
 function displayDeleteButton(commentListHtml, commentDTO) {
-    if( ("${member.id}" == commentDTO.id) || ("${member.memberLevel}" == 3) ) {
+    if( ("${member.id}" == commentDTO.id) || ("${member.grade}" == 3) ) {
         commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
         commentListHtml += commentDTO.commentNum + ");'>삭제</button>";
     }

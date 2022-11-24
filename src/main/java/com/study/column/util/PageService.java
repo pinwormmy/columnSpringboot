@@ -17,7 +17,7 @@ public class PageService {
     public PageDTO calculatePage(PageDTO page) throws Exception {
 
         int postEndPoint = page.getRecentPage() * DISPLAY_POST_LIMIT;
-        int postBeginPoint = postEndPoint - DISPLAY_POST_LIMIT + 1;
+        int postBeginPoint = postEndPoint - DISPLAY_POST_LIMIT;
 
         int totalPage = (int)Math.ceil((double)page.getTotalPostCount() / DISPLAY_POST_LIMIT);
         int pageBeginPoint = (page.getRecentPage()-1) / PAGESET_LIMIT * PAGESET_LIMIT + 1;

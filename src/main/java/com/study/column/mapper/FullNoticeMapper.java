@@ -1,8 +1,11 @@
 package com.study.column.mapper;
 
+import com.study.column.board.BoardDTO;
 import com.study.column.fullNotice.FullNoticeDTO;
 import com.study.column.fullNotice.FullNoticeCommentDTO;
+import com.study.column.openColumn.OpenColumnDTO;
 import com.study.column.util.PageDTO;
+import com.study.column.video.VideoDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +13,11 @@ import java.util.List;
 
 @Mapper
 public interface FullNoticeMapper {
-    List<FullNoticeDTO> showPostList(PageDTO page) throws Exception;
+    List<BoardDTO> showBoardList() throws Exception;
+
+    List<OpenColumnDTO> showOpencolumnList() throws Exception;
+
+    List<VideoDTO> showVideoList() throws Exception;
 
     void submitPost(FullNoticeDTO board) throws Exception;
 

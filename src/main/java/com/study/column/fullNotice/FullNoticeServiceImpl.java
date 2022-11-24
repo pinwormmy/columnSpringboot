@@ -1,8 +1,11 @@
 package com.study.column.fullNotice;
 
+import com.study.column.board.BoardDTO;
 import com.study.column.mapper.FullNoticeMapper;
+import com.study.column.openColumn.OpenColumnDTO;
 import com.study.column.util.PageDTO;
 import com.study.column.util.PageService;
+import com.study.column.video.VideoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +17,20 @@ import java.util.List;
 public class FullNoticeServiceImpl implements FullNoticeService {
     @Autowired
     FullNoticeMapper fullNoticeMapper;
+
     @Override
-    public List<FullNoticeDTO> showPostList(PageDTO page) throws Exception {
-        return fullNoticeMapper.showPostList(page);
+    public List<BoardDTO> showBoardList() throws Exception {
+        return fullNoticeMapper.showBoardList();
+    }
+
+    @Override
+    public List<OpenColumnDTO> showOpencolumnList() throws Exception {
+        return fullNoticeMapper.showOpencolumnList();
+    }
+
+    @Override
+    public List<VideoDTO> showVideoList() throws Exception {
+        return fullNoticeMapper.showVideoList();
     }
 
     @Override

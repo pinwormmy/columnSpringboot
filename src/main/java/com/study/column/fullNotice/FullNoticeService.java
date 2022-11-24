@@ -1,11 +1,18 @@
 package com.study.column.fullNotice;
 
+import com.study.column.board.BoardDTO;
+import com.study.column.openColumn.OpenColumnDTO;
 import com.study.column.util.PageDTO;
+import com.study.column.video.VideoDTO;
 
 import java.util.List;
 
 public interface FullNoticeService {
-    List<FullNoticeDTO> showPostList(PageDTO page) throws Exception;
+    List<BoardDTO> showBoardList() throws Exception;
+
+    List<OpenColumnDTO> showOpencolumnList() throws Exception;
+
+    List<VideoDTO> showVideoList() throws Exception;
 
     void submitPost(FullNoticeDTO board) throws Exception;
 

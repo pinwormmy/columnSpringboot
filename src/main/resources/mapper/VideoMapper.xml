@@ -98,7 +98,7 @@
 
     <insert id="saveViewUserIp">
         INSERT INTO video_views
-            VALUES(#{postNum}, #{ip}, SYSDATE)
+            VALUES(#{postNum}, #{ip}, NOW())
     </insert>
 
     <select id="checkViewUserIp" resultType="int">

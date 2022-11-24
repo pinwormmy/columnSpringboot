@@ -26,7 +26,9 @@ public class FullNoticeController {
     public String list(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", fullNoticeService.showSelfNoticeList());
         model.addAttribute("page", fullNoticeService.pageSetting(page));
-        model.addAttribute("postList", fullNoticeService.showPostList(page));
+        model.addAttribute("boardList", fullNoticeService.showBoardList());
+        model.addAttribute("opencolumnList", fullNoticeService.showOpencolumnList());
+        model.addAttribute("videoList", fullNoticeService.showVideoList());
         return "fullNotice/fullNotice";
     }
 

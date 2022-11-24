@@ -72,21 +72,23 @@ body {
         <div class="row">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading mb">
-                        <h1>글 수정하기</h1>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </header>
 <section class="white section-wrapper">
-    <%@include file="../include/boardSidebar.jspf" %>
+
     <div class="section-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <%@include file="../include/sidebar.jspf" %>
+                <div class="col-md-9">
                     <div class="row">
+                        <div class="post-heading mb">
+                            <h1>글 수정하기</h1>
+                        </div>
                         <div class="col-xs-12 mb wow fadeInUp">
                             <form action="/board/submitModifyPost" method="post">
                                 <input type="hidden" name="writer" value="${post.writer}">

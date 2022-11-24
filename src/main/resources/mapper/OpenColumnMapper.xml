@@ -62,7 +62,7 @@
 
     <insert id="addComment">
         INSERT INTO OPENCOLUMN_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
-            VALUES(#{postNum}, #{id}, SYSDATE, #{content})
+            VALUES(#{postNum}, #{id}, NOW(), #{content})
     </insert>
 
     <select id="showCommentList" resultMap="OpenColumnCommentDTO">
@@ -98,7 +98,7 @@
 
     <insert id="saveViewUserIp">
         INSERT INTO OPENCOLUMN_VIEWS
-            VALUES(#{postNum}, #{ip}, SYSDATE)
+            VALUES(#{postNum}, #{ip}, NOW())
     </insert>
 
     <select id="checkViewUserIp" resultType="int">

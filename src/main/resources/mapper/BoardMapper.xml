@@ -67,7 +67,7 @@
 
     <insert id="addComment">
         INSERT INTO POST_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
-            VALUES(#{postNum}, #{id}, SYSDATE, #{content})
+            VALUES(#{postNum}, #{id}, NOW(), #{content})
     </insert>
 
     <select id="showCommentList" resultMap="PostCommentDTO">

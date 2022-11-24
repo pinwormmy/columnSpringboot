@@ -83,27 +83,26 @@ body {
 </header>
 
 <section class="white section-wrapper">
-    <%@ include file="/WEB-INF/views/include/sidebar.jspf" %>
+
     <div class="section-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <%@ include file="/WEB-INF/views/include/sidebar.jspf" %>
+                <div class="col-md-9">
                     <div class="row">
-                        <div class="col-xs-12 mb wow fadeInUp">
-                            <form action="/board/submitPost" method="post">
-                                <input type="hidden" name="writer" value="${member.id}">
-                                제목 <input type="text" name="title" size="60" required>
-                                <input type="checkbox" name="notice" value="1">공지로 등록<br>
-                                <textarea name="content" id="content"></textarea><br>
+                        <form action="/board/submitPost" method="post">
+                            <input type="hidden" name="writer" value="${member.id}">
+                            제목 <input type="text" name="title" size="60" required>
+                            <input type="checkbox" name="notice" value="1">공지로 등록<br>
+                            <textarea name="content" id="content"></textarea><br>
 
-                                <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
-                                    CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
-                                </script>
+                            <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+                                CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
+                            </script>
 
-                                <button class="pull-left btn btn-theme">게시하기</button>
-                                <button type="button" class="pull-left btn btn-theme" onclick="location.href='/board/list'">취소</button>
-                            </form>
-                        </div>
+                            <button class="pull-left btn btn-theme">게시하기</button>
+                            <button type="button" class="pull-left btn btn-theme" onclick="location.href='/board/list'">취소</button>
+                        </form>
                     </div>
                 </div>
             </div>

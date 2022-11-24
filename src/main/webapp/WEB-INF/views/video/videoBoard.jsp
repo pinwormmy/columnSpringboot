@@ -161,7 +161,7 @@ body {
                                         </c:if>
                                     </form>
                                 </div>
-                                <c:if test="${member.memberLevel == 3}">
+                                <c:if test="${member.grade == 3}">
                                     <a href="/video/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->
@@ -176,7 +176,7 @@ body {
 
 <script>
     function checkMemberLevelBeforeRead(postNum) {
-        if(${member == null || member.memberLevel < 2}) {
+        if(${member == null || member.grade < 2}) {
             alert("해당 글 열람은 관리자 승인이 필요합니다.");
             return false;
         }

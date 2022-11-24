@@ -74,28 +74,30 @@ body {
         <div class="row">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading mb">
-                        <h1>${post.title}</h1>
-                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
-                        <span style="float: right; color: white;">조회수 ${post.views}</span>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </header>
 <section class="white section-wrapper">
-    <%@include file="../include/boardSidebar.jspf" %>
+
     <div class="section-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <%@include file="../include/sidebar.jspf" %>
+                <div class="col-md-9">
+                    <div class="post-heading mb">
+                        <h1>${post.title}</h1>
+                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
+                        <span style="float: right; color: white;">조회수 ${post.views}</span>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">
                             ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
-                            <c:if test="${post.commentCount > 0 || member.memberLevel > 1}">
+                            <c:if test="${post.commentCount > 0 || member.grade > 1}">
                                 <div class="mb">
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>
@@ -114,12 +116,12 @@ body {
                                             <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-theme" onclick="addComment();">댓글 달기</button>
+                                    <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                                 </div><!--/#comment-form-->
                             </c:if>
                             <div class="post-navigation">
                                 <a class="pull-left btn btn-theme" href="/board/list">글 목록</a>
-                                <c:if test="${member.id == post.writer || member.memberLevel == 3}">
+                                <c:if test="${member.id == post.writer || member.grade == 3}">
                                     <a class="pull-right btn btn-theme" href="/board/modifyPost?postNum=${post.postNum}">글 수정</a>
                                     <a class="pull-right btn btn-theme" href="/board/deletePost?postNum=${post.postNum}">글 삭제</a>
                                 </c:if>
@@ -134,7 +136,7 @@ body {
 
 <script>
 
-alert("js test 21");
+//alert("js test 21");
 let commentContent = document.getElementById("commentContent");
 showCommentList();
 
@@ -224,14 +226,14 @@ function commentHtmlWithString(commentListHtml, CommentDTOList) {
     for(let comment of CommentDTOList) {
         commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
         commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
-        commentListHtml += comment.regDate + "</small></div><p>" + comment.content + "</p>";
-        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</div></div></div>";
+        commentListHtml += comment.regDate + "</small></div><p>" + comment.content;
+        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</p></div></div></div>";
     }
     return commentListHtml;
 }
 
 function displayDeleteButton(commentListHtml, commentDTO) {
-    if( ("${member.id}" == commentDTO.id) || ("${member.memberLevel}" == 3) ) {
+    if( ("${member.id}" == commentDTO.id) || ("${member.grade}" == 3) ) {
         commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
         commentListHtml += commentDTO.commentNum + ");'>삭제</button>";
     }

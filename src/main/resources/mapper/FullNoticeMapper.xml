@@ -19,12 +19,28 @@
         <collection property="memberDTO" resultMap="MemberDTO" />
     </resultMap>
 
-    <select id="showPostList" resultType="com.study.column.fullNotice.FullNoticeDTO">
+    <select id="showBoardList" resultType="com.study.column.board.BoardDTO">
         select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
-            FROM FULL_NOTICE
-            WHERE <include refid="searchKeyword" /> AND notice=0
+            FROM BOARD
+            WHERE notice=1
             ORDER by post_num desc
-            LIMIT #{postBeginPoint}, #{displayPostLimit}
+            LIMIT 10
+    </select>
+
+    <select id="showOpencolumnList" resultType="com.study.column.openColumn.OpenColumnDTO">
+        select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
+        FROM OPENCOLUMN
+        WHERE notice=1
+        ORDER by post_num desc
+        LIMIT 10
+    </select>
+
+    <select id="showVideoList" resultType="com.study.column.video.VideoDTO">
+        select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, URL
+        FROM VIDEO
+        WHERE notice=1
+        ORDER by post_num desc
+        LIMIT 10
     </select>
 
     <sql id="searchKeyword">
@@ -62,7 +78,7 @@
 
     <insert id="addComment">
         INSERT INTO FULL_NOTICE_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
-            VALUES(#{postNum}, #{id}, SYSDATE, #{content})
+            VALUES(#{postNum}, #{id}, NOW(), #{content})
     </insert>
 
     <select id="showCommentList" resultMap="FullNoticeCommentDTO">
@@ -98,7 +114,7 @@
 
     <insert id="saveViewUserIp">
         INSERT INTO FULL_NOTICE_VIEWS
-            VALUES(#{postNum}, #{ip}, SYSDATE)
+            VALUES(#{postNum}, #{ip}, NOW())
     </insert>
 
     <select id="checkViewUserIp" resultType="int">

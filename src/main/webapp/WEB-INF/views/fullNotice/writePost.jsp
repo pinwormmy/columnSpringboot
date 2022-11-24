@@ -72,9 +72,7 @@ body {
             <div class="row">
             	<div class="container">
 	                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	                    <div class="post-heading mb">
-	                        <h1>공지사항 작성하기</h1>
-	                    </div>
+
 	                </div>
 	            </div>
 	        </div>
@@ -82,13 +80,16 @@ body {
 	</header>
 
 	<section class="white section-wrapper">
-	    <%@include file="../include/boardSidebar.jspf" %>
 		<div class="section-inner">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
+				    <%@include file="../include/sidebar.jspf" %>
+					<div class="col-md-9">
 						<div class="row">
 							<div class="col-xs-12 mb wow fadeInUp">
+							    <div class="post-heading mb">
+                                    <h1>공지사항 작성하기</h1>
+                                </div>
                                 <form action="/fullNotice/submitPost" method="post">
                                     <input type="hidden" name="writer" value="${member.id}">
                                     제목 <input type="text" name="title" size="60" required>

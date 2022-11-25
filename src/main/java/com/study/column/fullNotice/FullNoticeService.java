@@ -28,7 +28,7 @@ public interface FullNoticeService {
 
     void addComment(FullNoticeCommentDTO comment) throws Exception;
 
-    List<FullNoticeCommentDTO> showCommentList(int postNum) throws Exception;
+    List<FullNoticeCommentDTO> showCommentList(PageDTO page) throws Exception;
 
     void deleteComment(int commentNum) throws Exception;
 

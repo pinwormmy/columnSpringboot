@@ -90,8 +90,8 @@ public class FullNoticeServiceImpl implements FullNoticeService {
     }
 
     @Override
-    public List<FullNoticeCommentDTO> showCommentList(int postNum) throws Exception {
-        return fullNoticeMapper.showCommentList(postNum);
+    public List<FullNoticeCommentDTO> showCommentList(PageDTO page) throws Exception {
+        return fullNoticeMapper.showCommentList(page);
     }
 
     @Override

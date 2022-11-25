@@ -29,7 +29,7 @@ body {
 }
 .boardList th,
 .boardList td {
-    padding: 12px;
+    padding: 0px;
     text-align: center;
 }
 .boardList tr th {

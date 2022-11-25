@@ -77,8 +77,8 @@ public class OpenColumnServiceImpl implements OpenColumnService {
     }
 
     @Override
-    public List<OpenColumnCommentDTO> showCommentList(int postNum) throws Exception {
-        return openColumnMapper.showCommentList(postNum);
+    public List<OpenColumnCommentDTO> showCommentList(PageDTO page) throws Exception {
+        return openColumnMapper.showCommentList(page);
     }
 
     @Override

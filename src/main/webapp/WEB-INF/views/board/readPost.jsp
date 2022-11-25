@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>테스트 게시물읽기~~@@</title>
+<title>컬럼 읽기</title>
 
 <style>
 body {
@@ -68,20 +68,7 @@ body {
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
-
-<header id="headerwrap" class="quarterscreen">
-    <div class="align-bottom wow fadeInUp">
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 <section class="white section-wrapper">
-
     <div class="section-inner">
         <div class="container">
             <div class="row">

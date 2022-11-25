@@ -22,7 +22,7 @@ public interface VideoService {
 
     void addComment(VideoCommentDTO comment) throws Exception;
 
-    List<VideoCommentDTO> showCommentList(int postNum) throws Exception;
+    List<VideoCommentDTO> showCommentList(PageDTO page) throws Exception;
 
     void deleteComment(int commentNum) throws Exception;
 

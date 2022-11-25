@@ -77,8 +77,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<VideoCommentDTO> showCommentList(int postNum) throws Exception {
-        return videoMapper.showCommentList(postNum);
+    public List<VideoCommentDTO> showCommentList(PageDTO page) throws Exception {
+        return videoMapper.showCommentList(page);
     }
 
     @Override

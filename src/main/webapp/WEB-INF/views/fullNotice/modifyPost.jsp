@@ -72,9 +72,7 @@ body {
             <div class="row">
             	<div class="container">
 	                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	                    <div class="post-heading mb">
-	                        <h1>글 수정하기</h1>
-	                    </div>
+
 	                </div>
 	            </div>
 	        </div>
@@ -82,20 +80,21 @@ body {
 	</header>
 
 	<section class="white section-wrapper">
-	    <%@include file="../include/boardSidebar.jspf" %>
+
 		<div class="section-inner">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
+				    <%@include file="../include/sidebar.jspf" %>
+					<div class="col-md-9">
 						<div class="row">
+						    <div class="post-heading mb">
+                                <h1>글 수정하기</h1>
+                            </div>
 							<div class="col-xs-12 mb wow fadeInUp">
-                                <form action="/fullNotice/submitModifyPost" method="post"> <!-- 작업해야함 -->
+                                <form action="/fullNotice/submitModifyPost" method="post">
                                     <input type="hidden" name="writer" value="${post.writer}">
                                     <input type="hidden" name="postNum" value="${post.postNum}">
                                     제목 <input type="text" name="title" size="55" value="${post.title}" required>
-                                    <input type="checkbox" name="notice" id="noticeChecked" value="1" onclick="checkboxForNotice();"
-                                    <c:if test="${post.notice == 1}">checked</c:if> />공지 중<br>
-                                    <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                     <textarea name="content" id="content">${post.content}</textarea><br>
 
                                     <script type="text/javascript">
@@ -120,16 +119,6 @@ body {
 		</div>
 	</section>
 <%@include file="../include/footer.jspf" %>
-
-<script>
-let noticeChecked = document.getElementById("noticeChecked");
-let noticeUnchecked = document.getElementById("noticeUnchecked");
-
-function checkboxForNotice() {
-    if(noticeChecked.checked) { noticeUnchecked.disabled = true; }
-    else { noticeUnchecked.disabled = false; }
-}
-</script>
 
 </body>
 </html>

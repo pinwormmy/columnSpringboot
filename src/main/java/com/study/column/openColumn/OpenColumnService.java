@@ -22,7 +22,7 @@ public interface OpenColumnService {
 
     void addComment(OpenColumnCommentDTO comment) throws Exception;
 
-    List<OpenColumnCommentDTO> showCommentList(int postNum) throws Exception;
+    List<OpenColumnCommentDTO> showCommentList(PageDTO page) throws Exception;
 
     void deleteComment(int commentNum) throws Exception;
 

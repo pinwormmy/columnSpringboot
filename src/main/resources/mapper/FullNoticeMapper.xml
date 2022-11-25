@@ -29,18 +29,18 @@
 
     <select id="showOpencolumnList" resultType="com.study.column.openColumn.OpenColumnDTO">
         select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
-        FROM OPENCOLUMN
-        WHERE notice=1
-        ORDER by post_num desc
-        LIMIT 10
+            FROM OPENCOLUMN
+            WHERE notice=1
+            ORDER by post_num desc
+            LIMIT 10
     </select>
 
     <select id="showVideoList" resultType="com.study.column.video.VideoDTO">
         select post_num, title, content, writer, reg_date, views, COMMENT_COUNT, URL
-        FROM VIDEO
-        WHERE notice=1
-        ORDER by post_num desc
-        LIMIT 10
+            FROM VIDEO
+            WHERE notice=1
+            ORDER by post_num desc
+            LIMIT 10
     </select>
 
     <sql id="searchKeyword">
@@ -61,8 +61,8 @@
     </insert>
 
     <update id="submitModifyPost">
-        update FULL_NOTICE
-            set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
+        UPDATE FULL_NOTICE
+            set title=#{title}, content=#{content}, writer=#{writer}
             where post_num=#{postNum}
     </update>
 
@@ -88,9 +88,10 @@
                 INNER JOIN MEMBER B
                 ON A.ID=B.ID
                 WHERE A.POST_NUM=#{postNum}
-                ORDER BY A.COMMENT_NUM DESC)
-            LIMIT #{postBeginPoint}, #{displayPostLimit}
+                ORDER BY A.COMMENT_NUM DESC) C
             ORDER BY COMMENT_NUM
+            LIMIT #{postBeginPoint}, #{displayPostLimit}
+
     </select>
 
     <delete id="deleteComment">

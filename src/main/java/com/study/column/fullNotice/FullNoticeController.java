@@ -75,7 +75,7 @@ public class FullNoticeController {
     @RequestMapping(value = "/submitModifyPost")
     public String submitModifyPost(FullNoticeDTO post) throws Exception {
         fullNoticeService.submitModifyPost(post);
-        return "redirect:/fullNotice/readFullNotice?postNum=" + post.getPostNum();
+        return "redirect:/fullNotice/readPost?postNum=" + post.getPostNum();
     }
 
     @RequestMapping(value = "/addComment")
@@ -87,8 +87,8 @@ public class FullNoticeController {
 
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
-    public List<FullNoticeCommentDTO> showCommentList(int postNum) throws Exception {
-        return fullNoticeService.showCommentList(postNum);
+    public List<FullNoticeCommentDTO> showCommentList(@RequestBody PageDTO page) throws Exception {
+        return fullNoticeService.showCommentList(page);
     }
 
     @RequestMapping(value = "/deleteComment")

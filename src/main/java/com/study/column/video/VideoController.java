@@ -84,8 +84,8 @@ public class VideoController {
 
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
-    public List<VideoCommentDTO> showCommentList(int postNum) throws Exception {
-        return videoService.showCommentList(postNum);
+    public List<VideoCommentDTO> showCommentList(@RequestBody PageDTO page) throws Exception {
+        return videoService.showCommentList(page);
     }
 
     @RequestMapping(value = "/deleteComment")

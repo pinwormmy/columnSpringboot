@@ -69,28 +69,17 @@ body {
 <body>
 <%@include file="../include/header.jspf" %>
 
-<header id="headerwrap" class="quarterscreen">
-    <div class="align-bottom wow fadeInUp">
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<section class="white section-wrapper">
+    <div class="section-inner">
+        <div class="container">
+            <div class="row">
+                <%@include file="../include/sidebar.jspf" %>
+                <div class="col-md-9">
                     <div class="post-heading mb">
                         <h1>${post.title}</h1>
                         <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
                         <span style="float: right; color: white;">조회수 ${post.views}</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section class="white section-wrapper">
-    <%@include file="../include/boardSidebar.jspf" %>
-    <div class="section-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
                     <div class="row">
                         <div class="col-md-12 mb100">
                             ${post.url}

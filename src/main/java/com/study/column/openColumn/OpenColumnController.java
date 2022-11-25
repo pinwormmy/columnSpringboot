@@ -92,8 +92,8 @@ public class OpenColumnController {
 
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
-    public List<OpenColumnCommentDTO> showCommentList(int postNum) throws Exception {
-        return openColumnService.showCommentList(postNum);
+    public List<OpenColumnCommentDTO> showCommentList(@RequestBody PageDTO page) throws Exception {
+        return openColumnService.showCommentList(page);
     }
 
     @RequestMapping(value = "/deleteComment")

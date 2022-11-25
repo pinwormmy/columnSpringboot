@@ -26,12 +26,9 @@ body {
 .boardList tr:last-child {
     border: none;
 }
-.boardList tr:nth-child(odd) {
-    background-color: #ddd;
-}
 .boardList th,
 .boardList td {
-    padding: 12px;
+    padding: 2px;
     text-align: center;
 }
 .boardList tr th {
@@ -66,27 +63,15 @@ body {
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
-
-<header id="headerwrap" class="quarterscreen">
-    <div class="align-bottom wow fadeInUp">
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading mb">
-                        <h1>글 작성하기</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
 <section class="white section-wrapper">
-    <%@include file="../include/boardSidebar.jspf" %>
     <div class="section-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <%@include file="../include/sidebar.jspf" %>
+                <div class="col-md-9">
+                    <div class="post-heading mb">
+                        <h1>글 작성하기</h1>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">
                             <form action="/video/submitPost" method="post">

@@ -35,7 +35,7 @@
     </sql>
 
     <select id="readPost" resultType="com.study.column.video.VideoDTO">
-        select * from video
+        select * from VIDEO
             where post_num=#{postNum}
     </select>
 
@@ -45,18 +45,18 @@
     </insert>
 
     <update id="submitModifyPost">
-        UPDATE video
+        UPDATE VIDEO
             SET title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}, url=#{url}
             WHERE post_num=#{postNum}
     </update>
 
     <delete id="deletePost">
-        DELETE from video
+        DELETE from VIDEO
             where post_num=#{postNum}
     </delete>
 
     <select id="countTotalPost" resultType="int">
-        select count(*) from video
+        select count(*) from VIDEO
             WHERE <include refid="searchKeyword" /> AND notice=0
     </select>
 
@@ -97,12 +97,12 @@
     </update>
 
     <insert id="saveViewUserIp">
-        INSERT INTO video_views
+        INSERT INTO VIDEO_VIEWS
             VALUES(#{postNum}, #{ip}, NOW())
     </insert>
 
     <select id="checkViewUserIp" resultType="int">
-        SELECT COUNT(*) FROM video_views
+        SELECT COUNT(*) FROM VIDEO_VIEWS
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 

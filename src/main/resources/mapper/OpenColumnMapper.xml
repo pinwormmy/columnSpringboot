@@ -45,18 +45,18 @@
     </insert>
 
     <update id="submitModifyPost">
-        update openColumn
+        update OPENCOLUMN
             set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
             where post_num=#{postNum}
     </update>
 
     <delete id="deletePost">
-        delete from openColumn
+        delete from OPENCOLUMN
             where post_num=#{postNum}
     </delete>
 
     <select id="countTotalPost" resultType="int">
-        select count(*) from openColumn
+        select count(*) from OPENCOLUMN
         where <include refid="searchKeyword" /> and notice=0
     </select>
 
@@ -83,7 +83,7 @@
     </delete>
 
     <update id="updateCommentCount">
-        UPDATE openColumn
+        UPDATE OPENCOLUMN
             SET COMMENT_COUNT=
                 (SELECT COUNT(*) FROM OPENCOLUMN_COMMENT
                     WHERE POST_NUM=#{postNum})

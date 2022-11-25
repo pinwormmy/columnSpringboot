@@ -31,7 +31,7 @@ body {
     text-align: center;
 }
 .boardList tr th {
-    background-color: Greenyellow;
+    background-color: #CCFF33;
     color: black;
     padding: 10px;
 }

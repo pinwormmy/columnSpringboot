@@ -33,7 +33,7 @@ body {
     text-align: center;
 }
 .boardList tr th {
-    background-color: Greenyellow;
+    background-color: #CCFF33;
     color: black;
 }
 .boardList tr th:first-child {

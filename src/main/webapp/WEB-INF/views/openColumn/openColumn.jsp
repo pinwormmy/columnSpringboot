@@ -35,7 +35,7 @@ body {
 }
 .boardList tr th {
     background-color: #CCFF33;
-    color: #fff;
+    color: black;
 }
 .boardList tr th:first-child {
     border-radius: 5px 0 0 0;

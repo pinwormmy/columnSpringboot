@@ -55,6 +55,19 @@ input#saveIdBox:checked {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
     background-color: Turquoise;
+    cursor:pointer;
+}
+.homeButton {
+    width: 310px;
+    height: 50px;
+    border: 0px;
+    border-radius: 10px;
+    margin: 2px;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    background-color: Greenyellow;
+    cursor:pointer;
 }
 button#kakaoLogin {
     background-image: url("/img/kakaoLogin.png");
@@ -101,7 +114,6 @@ button#facebookLogin {
         display:inline-block;
         text-align: right;
 }
-
 a {
     color: grey;
     text-decoration: none;
@@ -121,7 +133,8 @@ a {
             <div>
                 <input type="password" name="pw" id="pw" placeholder="4~16 자리 영문+숫자 조합">
             </div>
-            <button id="loginButton">로그인하기</button>
+            <button id="loginButton">로그인하기</button><br>
+            <button class="homeButton" onclick="location.href='/'">처음으로</button>
         </form>
         <div class="subMenu">
             <div id="right-menu" ><a href="javascript:comingSoon();">ID/PW 찾기</a> |

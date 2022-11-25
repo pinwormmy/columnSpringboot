@@ -35,7 +35,7 @@ body {
 }
 .boardList tr th {
     background-color: #CCFF33;
-    color: #fff;
+    color: black;
 }
 .boardList tr th:first-child {
     border-radius: 5px 0 0 0;
@@ -87,7 +87,7 @@ body {
                                                     </tr>
                                                     <c:forEach var="notice" items="${fullNoticeList}">
                                                     <tr>
-                                                        <td><h4><div align="left">[전체공지]</div>
+                                                        <td><h4><span>[전체공지]</span>
                                                         <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
                                                          ${notice.title}</a>
                                                         <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
@@ -97,7 +97,7 @@ body {
                                                     </c:forEach>
                                                     <c:forEach var="notice" items="${selfNoticeList}">
                                                     <tr>
-                                                        <td><h4><div align="left">[공지사항]</div>
+                                                        <td><h4><span>[공지사항]</span>
                                                         <a class="noticeTitle" href="javascript:checkMemberLevelBeforeRead(${notice.postNum});">
                                                          ${notice.title}</a>
                                                         <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>

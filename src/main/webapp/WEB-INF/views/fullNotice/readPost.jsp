@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>공개형 컬럼 읽기</title>
+<title>공지사항 읽기</title>
+
 <style>
 body {
     height: 100%;
@@ -63,22 +64,22 @@ body {
     min-height: 850px;
 }
 </style>
+
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
-
 <section class="white section-wrapper">
     <div class="section-inner">
         <div class="container">
             <div class="row">
                 <%@include file="../include/sidebar.jspf" %>
                 <div class="col-md-9">
+                    <div class="post-heading mb">
+                        <h1>${post.title}</h1>
+                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
+                        <span style="float: right; color: white;">조회수 ${post.views}</span>
+                    </div>
                     <div class="row">
-                        <div class="post-heading mb">
-                            <h1>${post.title}</h1>
-                            <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
-                            <span style="float: right; color: white;">조회수 ${post.views}</span>
-                        </div>
                         <div class="col-xs-12 mb wow fadeInUp">
                             ${post.content}
                         </div>
@@ -88,22 +89,22 @@ body {
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>
                             </c:if>
-                            <div id="comments-list" class="gap">
-                            </div><!--/#comments-list-->
+                            <div id="comments-list" class="gap"></div>
+                            <div id="comments-page" class="gap"></div>
                             <c:if test="${member != null}">
-                            <div id="comment-form" class="gap">
-                                <div class="form-group">
-                                    <div class="col-sm-6">
-                                        작성자 : ${member.nickName}
+                                <div id="comment-form" class="gap">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            작성자 : ${member.nickName}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
-                            </div><!--/#comment-form-->
+                                    <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
+                                </div><!--/#comment-form-->
                             </c:if>
                             <div class="post-navigation">
                                 <a class="pull-left btn btn-theme" href="/fullNotice/list">글 목록</a>
@@ -122,11 +123,11 @@ body {
 
 <script>
 
-//alert("js test 15");
+//alert("js test 21");
 let commentContent = document.getElementById("commentContent");
-showCommentList(${post.postNum});
+showCommentList();
 
-function addComment(){
+function addComment() {
     if(commentContent.value == "") {
         alert("댓글 내용을 작성해주세요~", commentContent.value);
         return false;
@@ -143,13 +144,58 @@ function addComment(){
     .then((data) => {
         console.log(data);
         updateCommentCount(${post.postNum});
-        showCommentList(${post.postNum});
+        showCommentList();
     });
     commentContent.value = "";
 }
 
-function showCommentList(postNum){
-    fetch("/fullNotice/showCommentList?postNum=" + postNum)
+function showCommentList(commentPage) {
+    pageSettingAndLoadComment(commentPage);
+}
+
+function pageSettingAndLoadComment(commentPage) {
+    fetch("/fullNotice/commentPageSetting", {
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                recentPage : commentPage,
+                postNum : ${post.postNum}
+            })
+        })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        loadCommentFetch(data);
+        let commentPageDivTag = document.getElementById("comments-page");
+        commentPageDivTag.innerHTML = "";
+        let commentPageHtml = "";
+
+        if(data.prevPageSetPoint >= 1) {
+            commentPageHtml +="<a href='javascript:pageSettingAndLoadComment(" + data.prevPageSetPoint + ")'>◁</a>";
+        }
+        if(data.totalPage > 1) {
+            for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
+                if(i == data.recentPage) {
+                    commentPageHtml += " " + i + " ";
+                }else {
+                    commentPageHtml += "<a href='javascript:pageSettingAndLoadComment(" + i + ")'>" + i + " </a>";
+                }
+            }
+        }
+        if(data.nextPageSetPoint <= data.totalPage) {
+            commentPageHtml +="<a href='javascript:pageSettingAndLoadComment(" + data.nextPageSetPoint + ")'>▷</a>";
+        }
+        commentPageDivTag.innerHTML += commentPageHtml;
+    });
+}
+
+function loadCommentFetch(pageDTO) {
+    console.log("댓글불러오기 펫치 시작전");
+    fetch("/fullNotice/showCommentList", {
+        method: "POST",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(pageDTO),
+    })
     .then((response) => response.json())
     .then((data) => showCommentWithHtml(data));
 }
@@ -159,34 +205,17 @@ function showCommentWithHtml(CommentDTOList) {
     commentDivTag.innerHTML = "";
     let commentListHtml = "";
     commentDivTag.innerHTML += commentHtmlWithString(commentListHtml, CommentDTOList);
+    console.log("댓글 코맨트 소스 작업  반영 확인");
 }
 
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
+    console.log("댓글 코맨트 소스 반복문 준비 확인");
     for(let comment of CommentDTOList) {
-        commentListHtml = checkMemberLevelAndAddString(commentListHtml, comment);
+        commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+        commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
+        commentListHtml += comment.regDate + "</small></div><p>" + comment.content;
+        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</p></div></div></div>";
     }
-    return commentListHtml;
-}
-
-function checkMemberLevelAndAddString(commentListHtml, comment) {
-    if( ${member.grade > 1} )
-        return commentListHtml = addStringToCommentList(commentListHtml, comment);
-    else
-        return commentListHtml = addPrivateStringToCommentList(commentListHtml);
-}
-
-function addStringToCommentList(commentListHtml, commentDTO) {
-    commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-    commentListHtml += "<strong>" + commentDTO.memberDTO.nickName + "</strong> &nbsp; <small>";
-    commentListHtml += commentDTO.regDate + "</small></div><p>" + commentDTO.content;
-    commentListHtml = displayDeleteButton(commentListHtml, commentDTO) + "</p></div></div></div>";
-    return commentListHtml;
-}
-
-function addPrivateStringToCommentList(commentListHtml) {
-    commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
-    commentListHtml += "<strong>" + "승인된 회원만 댓글을 볼 수 있습니다." + "</strong>";
-    commentListHtml += "<br><br><br><br><br></div></div></div></div>";
     return commentListHtml;
 }
 
@@ -199,16 +228,16 @@ function displayDeleteButton(commentListHtml, commentDTO) {
 }
 
 function deleteComment(commentNum) {
-    fetch("/openColumn/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
+    fetch("/fullNotice/deleteComment?commentNum=" + commentNum, {method:"DELETE"})
     .then(data => {
         updateCommentCount(${post.postNum});
-        showCommentList(${post.postNum});
+        showCommentList();
     })
     .catch(error => alert("댓글 삭제 오류"));
 }
 
 function updateCommentCount(postNum) {
-    fetch("/openColumn/updateCommentCount?postNum=" + postNum, {method:"PUT"})
+    fetch("/fullNotice/updateCommentCount?postNum=" + postNum, {method:"PUT"})
         .then(data => console.log("댓글 업데이트"))
         .catch(error => alert("댓글수 갱신 오류"));
 }

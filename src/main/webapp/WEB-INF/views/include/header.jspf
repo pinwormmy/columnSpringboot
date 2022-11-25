@@ -138,13 +138,13 @@ hr {
     <div class="super-top-menu">
         <ul>
             <c:if test="${member == null}">
-                <li><a href="/loginForDemo">(시연용)일반로그인</a></li>
-                <li><a href="/loginForDemoAsAdmin">(시연용)관리자로그인</a></li>
+                <li><a href="/loginForDemo">(시연용)승인회원 로그인</a></li>
+                <li><a href="/loginForDemoAsAdmin">(시연용)관리자 로그인</a></li>
                 <li><a href="/login">로그인</a></li>
                 <li><a href="/signUp">회원가입</a></li>
             </c:if>
             <c:if test="${member != null}">
-                <li>${member.id}님 로그인 중 : </li>
+                <li>${member.nickName}님 로그인 중 : </li>
                 <li><a href="/logout">로그아웃</a></li>
             </c:if>
         </ul>

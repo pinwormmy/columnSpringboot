@@ -11,8 +11,8 @@
     </select>
 
     <insert id="submitSignUp">
-        INSERT INTO MEMBER
-            VALUES(#{id}, #{pw}, #{nickName}, #{email}, 1, NOW())
+        INSERT INTO MEMBER(ID, PW, NICKNAME, REALNAME, EMAIL, PHONE, GRADE, REG_DATE)
+            VALUES(#{id}, #{pw}, #{nickName}, #{realName}, #{email}, #{phone}, 1, NOW())
     </insert>
 
     <select id="checkLoginData" resultType="com.study.column.member.MemberDTO">

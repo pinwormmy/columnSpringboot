@@ -64,7 +64,6 @@ body {
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
-
     <div class="section-inner">
         <div class="container">
             <div class="row">
@@ -158,7 +157,8 @@ body {
                                                 </tr>
                                                 <c:forEach var="post" items="${opencolumnList}">
                                                 <tr>
-                                                    <td><h4><a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <td><h4><span>[공지]</span>
+                                                    <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
                                                     <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                     <td>${post.writer}</td>
                                                     <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
@@ -181,7 +181,8 @@ body {
                                                 </tr>
                                                 <c:forEach var="post" items="${videoList}">
                                                 <tr>
-                                                    <td><h4><a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <td><h4><span>[공지]</span>
+                                                    <a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
                                                     <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                     <td>${post.writer}</td>
                                                     <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>

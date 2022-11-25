@@ -85,6 +85,12 @@ public class FullNoticeController {
         fullNoticeService.addComment(comment);
     }
 
+    @RequestMapping(value = "/commentPageSetting")
+    @ResponseBody
+    public PageDTO commentPageSetting(@RequestBody PageDTO page) throws Exception {
+        return fullNoticeService.pageSetting(page);
+    }
+
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
     public List<FullNoticeCommentDTO> showCommentList(@RequestBody PageDTO page) throws Exception {

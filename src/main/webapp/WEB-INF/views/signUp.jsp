@@ -76,16 +76,16 @@ input {
                 <input type="password" name="pw2" id="pw2" placeholder="비밀번호 재입력">
             </div>
             <div>
-                <input type="text" name="name" placeholder="이름">
+                <input type="text" name="realName" placeholder="이름">
+            </div>
+            <div>
+                <input type="text" name="nickName" placeholder="별명">
             </div>
             <div>
                 <input type="email" name="email"placeholder="이메일">
             </div>
             <div>
-                <input type="text" name="phone" placeholder="연락처(-포함)">
-            </div>
-            <div>
-                <input type="text" name="address" placeholder="전체 주소 입력">
+                <input type="text" name="phone" placeholder="연락처">
             </div>
 
             <button type="button" class="basicButton" onclick="checkSignupForm();" style='cursor:pointer;'>가입하기</button><br>

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.study1'
-version = '0.0.006-SNAPSHOT'
+version = '0.0.007-SNAPSHOT'
 sourceCompatibility = '8'
 
 repositories {

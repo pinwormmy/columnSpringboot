@@ -57,9 +57,12 @@ body {
     font-size: 16px;
     font-weight: 500px;
 }
-.section-wrapper {
-    min-height: 850px;
+@media (min-width: 800px) {
+    .section-wrapper {
+        min-height: 850px;
+    }
 }
+
 </style>
 </head>
 <body>

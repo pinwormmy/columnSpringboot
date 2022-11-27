@@ -5,11 +5,11 @@
 		<div class="row" style="margin:15px;">
 			<div class="col-md-12">
 				<p class="company-info" align="left">
-                    상담/강의/코칭 전문 단체 SLC
+                    사이트 이름 - 간단 소개문(필요없으면 생략)
                 </p>
-                <p align="left">문의 OOO@naver.com</p>
 
-                <p class="copyright-text">Copyright 2022. SLC All right reserved.</p>
+
+                <p class="copyright-text">Copyright 2022. OOO All right reserved.</p>
 				<p class="copyright-text">Copyright &copy;2021, Template Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
 			</div>
 		</div>

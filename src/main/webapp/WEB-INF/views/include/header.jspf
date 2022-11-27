@@ -147,6 +147,7 @@ hr {
 </div>
 <div class="header-img">
     <a href="/">
+        <!-- 사이트 제목 SLC 아님. 그림도 임시로 설정.(아니면 아예 빼고 메뉴만 넣기) -->
         <img src="/img/logo_temp.jpg">
     </a>
 </div>

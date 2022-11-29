@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
     @Autowired
     MemberService memberService;
+    
+    // 승인 게시판에 아이피 로그 기능 만들기
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {

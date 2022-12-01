@@ -21,7 +21,7 @@
 
     <select id="showPostList" resultType="com.study.column.board.BoardDTO">
         SELECT post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
-            FROM BOARD
+            FROM LIBRARY
             WHERE <include refid="searchKeyword" /> AND notice=0
             ORDER by post_num desc
             LIMIT #{postBeginPoint}, #{displayPostLimit}
@@ -35,45 +35,45 @@
     </sql>
 
     <select id="readPost" resultType="com.study.column.board.BoardDTO">
-        SELECT * FROM BOARD
+        SELECT * FROM LIBRARY
             where post_num=#{postNum}
     </select>
 
     <insert id="submitPost">
-        INSERT INTO BOARD(TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
+        INSERT INTO LIBRARY(TITLE, WRITER, REG_DATE, VIEWS, CONTENT, COMMENT_COUNT, NOTICE)
             VALUES(#{title}, #{writer}, NOW(), 0, #{content}, 0, #{notice})
     </insert>
 
     <update id="submitModifyPost">
-        UPDATE BOARD
+        UPDATE LIBRARY
             set title=#{title}, content=#{content}, writer=#{writer}, notice=#{notice}
             where post_num=#{postNum}
     </update>
 
     <delete id="deletePost">
-        DELETE from BOARD
+        DELETE from LIBRARY
             WHERE post_num=#{postNum}
     </delete>
 
     <select id="countTotalPost" resultType="int">
-        SELECT count(*) from BOARD
+        SELECT count(*) from LIBRARY
         WHERE <include refid="searchKeyword" /> and notice=0
     </select>
 
     <select id="countTotalComment" resultType="int">
-        SELECT count(*) from POST_COMMENT
+        SELECT count(*) from LIBRARY_COMMENT
             WHERE POST_NUM=#{postNum}
     </select>
 
     <insert id="addComment">
-        INSERT INTO POST_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
+        INSERT INTO LIBRARY_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
             VALUES(#{postNum}, #{id}, NOW(), #{content})
     </insert>
 
     <select id="showCommentList" resultMap="LibraryCommentDTO">
         SELECT * FROM
             (SELECT A.POST_NUM, A.COMMENT_NUM, A.ID, A.REG_DATE, A.CONTENT, B.NICKNAME
-                FROM POST_COMMENT A
+                FROM LIBRARY_COMMENT A
                 INNER JOIN MEMBER B
                 ON A.ID=B.ID
                 WHERE A.POST_NUM=#{postNum}
@@ -83,36 +83,36 @@
     </select>
 
     <delete id="deleteComment">
-        delete from POST_COMMENT
+        delete from LIBRARY_COMMENT
             where COMMENT_NUM=#{commentNum}
     </delete>
 
     <update id="updateCommentCount">
         UPDATE board
             SET COMMENT_COUNT=
-                (SELECT COUNT(*) FROM POST_COMMENT
+                (SELECT COUNT(*) FROM LIBRARY_COMMENT
                     WHERE POST_NUM=#{postNum})
             WHERE POST_NUM=#{postNum}
     </update>
     
     <update id="updateViews">
-        UPDATE BOARD
+        UPDATE LIBRARY
             SET VIEWS= VIEWS + 1
             WHERE POST_NUM=#{postNum}
     </update>
 
     <insert id="saveViewUserIp">
-        INSERT INTO BOARD_VIEWS_DETAIL
+        INSERT INTO LIBRARY_VIEWS
             VALUES(#{postNum}, #{ip}, NOW())
     </insert>
 
     <select id="checkViewUserIp" resultType="int">
-        SELECT COUNT(*) FROM BOARD_VIEWS_DETAIL
+        SELECT COUNT(*) FROM LIBRARY_VIEWS
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 
     <select id="showSelfNoticeList" resultType="com.study.column.board.BoardDTO">
-        SELECT * FROM BOARD
+        SELECT * FROM LIBRARY
             WHERE NOTICE=1
             ORDER BY POST_NUM DESC
     </select>

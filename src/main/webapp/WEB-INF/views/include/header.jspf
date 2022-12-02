@@ -98,7 +98,7 @@ a {
     text-align: center;
 }
 .color-hr {
-    border-top: 1px solid Greenyellow;
+    border-top: 1px solid #A6C0C3;
     width: 100%;
 }
 .col-md-4 {
@@ -147,8 +147,7 @@ hr {
 </div>
 <div class="header-img">
     <a href="/">
-        <!-- 사이트 제목 SLC 아님. 그림도 임시로 설정. 타이틀없는 이미지로 교체하기 -->
-        <img src="/img/logo_temp.jpg">
+        컬럼형 사이트
     </a>
 </div>
 <hr>

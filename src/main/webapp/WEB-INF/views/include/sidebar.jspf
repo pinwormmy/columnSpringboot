@@ -20,17 +20,18 @@
 </head>
 <div class="col-md-3">
     <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default" style="border-color: Greenyellow; border-radius: 10px;">
+        <div class="panel panel-default" style="border-color: #CDDCDC; border-radius: 10px;">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    메뉴
+                    카테고리
                     </a>
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                     <ul>
+                        <li><a href="/">메인화면</a></li>
                         <li><a href="/fullNotice/list">공지사항</a></li>
                         <li><a href="/openColumn/list">공개연재게시판</a></li>
                         <li><a href="/board/list">승인연재게시판</a></li>

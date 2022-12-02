@@ -15,12 +15,10 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(PageDTO page, Model model) throws Exception {
-        model.addAttribute("fullNoticeList", fullNoticeService.showSelfNoticeList());
-        model.addAttribute("page", fullNoticeService.pageSetting(page));
         model.addAttribute("boardList", fullNoticeService.showBoardList());
         model.addAttribute("opencolumnList", fullNoticeService.showOpencolumnList());
         model.addAttribute("videoList", fullNoticeService.showVideoList());
-        return "fullNotice/fullNotice";
+        return "index";
     }
 
 }

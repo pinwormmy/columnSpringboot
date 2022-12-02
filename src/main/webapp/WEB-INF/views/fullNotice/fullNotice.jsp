@@ -29,11 +29,11 @@ body {
 }
 .boardList th,
 .boardList td {
-    padding: 0px;
+    padding: 5px;
     text-align: center;
 }
 .boardList tr th {
-    background-color: #CCFF33;
+    background-color: #CDDCDC;
     color: black;
 }
 .boardList tr th:first-child {
@@ -75,8 +75,10 @@ body {
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div class="post-heading mb">
-                                <h1>공지사항</h1>
+                                <h3>공지사항</h3>
+                                <hr><br>
                             </div>
+
                             <div id="comments-list" class="gap">
                                 <div class="media">
                                        <div class="well">

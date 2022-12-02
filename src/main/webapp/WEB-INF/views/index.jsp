@@ -4,6 +4,57 @@
 <head>
 <title>컬럼형 사이트</title>
 <style>
+body {
+    height: 100%;
+}
+.boardList {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.boardList caption {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.boardList tr {
+    border-bottom: 1px solid #eee;
+}
+.boardList tr:last-child {
+    border: none;
+}
+.boardList th,
+.boardList td {
+    padding: 5px;
+    text-align: center;
+}
+.boardList tr th {
+    background-color: #CDDCDC;
+    color: black;
+}
+.boardList tr th:first-child {
+    border-radius: 5px 0 0 0;
+}
+.boardList tr th:last-child {
+    border-radius: 0 5px 0 0;
+}
+.postTitle {
+    color: black;
+}
+.leftbar-ul {
+    border-top: solid 1px ivory;
+    list-style-type: none;
+}
+.leftbar-ul li {
+    border-bottom: solid 1px ivory;
+}
+.leftbar-ul li a{
+    color : white;
+    font-size: 16px;
+    font-weight: 500px;
+}
 .page-navigation {
     text-align: center;
 }
@@ -16,135 +67,148 @@
 </style>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jspf" %>
-<div class="body-wrap">
-<section class="products section">
-	<div class="container">
-		<div class="row">
-			<%@ include file="/WEB-INF/views/include/sidebar.jspf" %>
-			<div class="col-md-9">
-			    <hr><br>
-				<div class="row">
-				    <c:if test="${empty productList}">
-				        <h3>검색 결과가 없습니다</h3>
-				    </c:if>
-				    <c:forEach items="${productList}" var="product">
-                        <div class="col-md-4">
-                            <div class="product-item" style="margin-bottom: 15px;">
-                                <div class="product-thumbnail">
-                                    <a href="/readProduct?productNum=${product.productNum}">
-                                        <img class="img-responsive" src="${product.thumbnail}"/>
-                                    </a>
+<%@include file="./include/header.jspf" %>
+    <div class="section-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="comments" class="col-xs-12">
+                            <div id="comments-list" class="gap">
+                                <div class="media">
+                                       <div class="well">
+                                            회원연재게시판
+                                             <table class="boardList">
+                                                    <tr>
+                                                        <th>제목</th>
+                                                        <th>작성자</th>
+                                                        <th>작성일자</th>
+                                                        <th>조회수</th>
+                                                    </tr>
+                                                    <c:forEach var="post" items="${boardList}">
+                                                    <tr>
+                                                        <td><h4><span>[공지]</span>
+                                                        <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                        <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                        <td>${post.writer}</td>
+                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                        <td>${post.views}</td>
+                                                    </tr>
+                                                    </c:forEach>
+                                             </table>
+                                             <c:if test="${empty boardList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                       </div>
                                 </div>
-                                <div class="product-content">
-                                    <a href="/readProduct?productNum=${product.productNum}">${product.name}</a>
-                                    <p class="price"><c:if test="${product.onDiscount == 1}"><span class="bage">할인중</span></c:if>
-                                    ${product.price}원
-                                        <a href="javascript:addCart(${product.productNum});">🛒</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                            </div><!--/#comments-list-->
+                        </div><!--/#comments-->
+                    </div>
                 </div>
-			</div>
-		</div>
-	</div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="comments" class="col-xs-12">
+                            <div id="comments-list" class="gap">
+                                <div class="media">
+                                    <div class="well">
+                                        공개연재게시판
+                                         <table class="boardList">
+                                                <tr>
+                                                    <th>제목</th>
+                                                    <th>작성자</th>
+                                                    <th>작성일자</th>
+                                                    <th>조회수</th>
+                                                </tr>
+                                                <c:forEach var="post" items="${opencolumnList}">
+                                                <tr>
+                                                    <td><h4><span>[공지]</span>
+                                                    <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                    <td>${post.writer}</td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                    <td>${post.views}</td>
+                                                </tr>
+                                                </c:forEach>
+                                         </table>
+                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                    </div>
+                                </div>
+                            </div><!--/#comments-list-->
+                        </div><!--/#comments-->
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="comments" class="col-xs-12">
+                            <div id="comments-list" class="gap">
+                                <div class="media">
+                                    <div class="well">
+                                        동영상 게시판
+                                         <table class="boardList">
+                                                <tr>
+                                                    <th>제목</th>
+                                                    <th>작성자</th>
+                                                    <th>작성일자</th>
+                                                    <th>조회수</th>
+                                                </tr>
+                                                <c:forEach var="post" items="${videoList}">
+                                                <tr>
+                                                    <td><h4><span>[공지]</span>
+                                                    <a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                    <td>${post.writer}</td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                    <td>${post.views}</td>
+                                                </tr>
+                                                </c:forEach>
+                                         </table>
+                                         <c:if test="${empty videoList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                    </div>
+                                </div>
+                            </div><!--/#comments-list-->
+                        </div><!--/#comments-->
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="comments" class="col-xs-12">
+                            <div id="comments-list" class="gap">
+                                <div class="media">
+                                    <div class="well">
+                                        공개연재게시판
+                                         <table class="boardList">
+                                                <tr>
+                                                    <th>제목</th>
+                                                    <th>작성자</th>
+                                                    <th>작성일자</th>
+                                                    <th>조회수</th>
+                                                </tr>
+                                                <c:forEach var="post" items="${opencolumnList}">
+                                                <tr>
+                                                    <td><h4><span>[공지]</span>
+                                                    <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                    <td>${post.writer}</td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                    <td>${post.views}</td>
+                                                </tr>
+                                                </c:forEach>
+                                         </table>
+                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                    </div>
+                                </div>
+                            </div><!--/#comments-list-->
+                        </div><!--/#comments-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-</div>
-
-<hr>
-
-<div class="page-navigation">
-    <c:if test="${page.prevPageSetPoint >= 1}">
-        <a class="pull-left btn btn-theme"
-        href="/?recentPage=${page.prevPageSetPoint}&sortType=${page.sortType}&keyword=${page.keyword}">
-        이전</a>
-    </c:if>
-    <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
-        <c:if test="${page.recentPage != countPage}">
-            <a class="pull-center btn btn-theme"
-            href="/?recentPage=${countPage}&sortType=${page.sortType}&keyword=${page.keyword}">
-            ${countPage}</a>
-        </c:if>
-        <c:if test="${page.recentPage == countPage}">${countPage}</c:if>
-    </c:forEach>
-    <c:if test="${page.nextPageSetPoint <= page.totalPage}">
-        <a class="pull-right btn btn-theme"
-        href="/?recentPage=${page.nextPageSetPoint}&sortType=${page.sortType}&keyword=${page.keyword}">
-        다음</a>
-    </c:if>
-</div>
-<%@ include file="/WEB-INF/views/include/footer.jspf" %>
-
-<script>
-    //alert("js test 03");
-
-    function comingSoon() {
-        alert("업데이트 예정입니다.");
-    }
-
-    function clickFreeShipping() {
-        let freeShippingBox = document.getElementById("freeShipping");
-        if(freeShippingBox.checked) {
-            location.href=
-            "/?sortType=${page.sortType}&keyword=${page.keyword}&onDiscount=${page.onDiscount}&freeShipping=1";
-        }else {
-            location.href=
-            "/?sortType=${page.sortType}&keyword=${page.keyword}&onDiscount=${page.onDiscount}&freeShipping=0";
-        }
-    }
-
-    function clickOnDiscount() {
-        let onDiscountBox = document.getElementById("onDiscount");
-        if(onDiscountBox.checked) {
-            location.href=
-            "/?sortType=${page.sortType}&keyword=${page.keyword}&freeShipping=${page.freeShipping}&onDiscount=1";
-        }else {
-            location.href=
-            "/?sortType=${page.sortType}&keyword=${page.keyword}&freeShipping=${page.freeShipping}&onDiscount=0";
-        }
-    }
-
-    //쿠키 불러오기(무엇에 대한 쿠키인지 작성하기)
-    function getCookie(name) {
-        // alert("js test 쿠키몬스터");
-        var obj = name + "=";
-        var x = 0;
-        while ( x <= document.cookie.length )
-        {
-            var y = (x+obj.length);
-            if ( document.cookie.substring( x, y ) == obj ) {
-                if ((endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
-                    endOfCookie = document.cookie.length;
-                return unescape( document.cookie.substring( y, endOfCookie ) );
-            }
-            x = document.cookie.indexOf( " ", x ) + 1;
-
-            if ( x == 0 ) break;
-        }
-        return "";
-    }
-
-    function addCart(productNum) {
-        if(${member == null}) {
-            alert("로그인이 필요합니다.");
-            return false;
-        };
-        fetch("/addCart", {
-            method: 'POST',
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({
-                productNum : productNum,
-                id : "${member.id}",
-                quantity : 1,
-            })
-        })
-        .then((data) => alert("장바구니에 담았습니다."));
-    }
-
-</script>
-
+<%@include file="./include/footer.jspf" %>
 </body>
 </html>
+
+
 

@@ -17,18 +17,18 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/board")
+@RequestMapping("/library")
 public class LibraryController {
     @Autowired
     LibraryService libraryService;
     @GetMapping(value = "/list")
-    public String board(PageDTO page, Model model) throws Exception {
+    public String library(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", libraryService.showFullNoticeList());
         model.addAttribute("selfNoticeList", libraryService.showSelfNoticeList());
         model.addAttribute("page", libraryService.pageSetting(page));
         model.addAttribute("postList", libraryService.showPostList(page));
         log.debug(page.toString());
-        return "board/board";
+        return "library/library";
     }
 
     @RequestMapping("/readPost")
@@ -37,7 +37,7 @@ public class LibraryController {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         checkIpAndUpdateViews(request, postNum);
         model.addAttribute("post", libraryService.readPost(postNum));
-        return "board/readPost";
+        return "library/readPost";
     }
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
@@ -49,31 +49,31 @@ public class LibraryController {
 
     @RequestMapping("/writePost")
     public String writePost() {
-        return "board/writePost";
+        return "library/writePost";
     }
 
     @RequestMapping("/submitPost")
     public String submitPost(LibraryDTO post) throws Exception {
         libraryService.submitPost(post);
-        return "redirect:/board/list";
+        return "redirect:/library/list";
     }
 
     @RequestMapping("/deletePost")
     public String deletePost(int postNum) throws Exception {
         libraryService.deletePost(postNum);
-        return "redirect:/board/list";
+        return "redirect:/library/list";
     }
 
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
         model.addAttribute("post", libraryService.readPost(postNum));
-        return "board/modifyPost";
+        return "library/modifyPost";
     }
 
     @RequestMapping(value = "/submitModifyPost")
     public String submitModifyPost(LibraryDTO post) throws Exception {
         libraryService.submitModifyPost(post);
-        return "redirect:/board/readPost?postNum=" + post.getPostNum();
+        return "redirect:/library/readPost?postNum=" + post.getPostNum();
     }
 
     @RequestMapping(value = "/addComment")

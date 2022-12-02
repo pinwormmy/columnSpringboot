@@ -32,9 +32,10 @@
                 <div class="panel-body">
                     <ul>
                         <li><a href="/fullNotice/list">공지사항</a></li>
-                        <li><a href="/board/list">회원연재게시판</a></li>
                         <li><a href="/openColumn/list">공개연재게시판</a></li>
+                        <li><a href="/board/list">승인연재게시판</a></li>
                         <li><a href="/video/list">동영상 게시판</a></li>
+                        <li><a href="/library/list">자료실</a></li>
                     </ul>
                 </div>
             </div>

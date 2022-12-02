@@ -10,7 +10,7 @@
         <result column="nickName" property="nickName" />
     </resultMap>
 
-    <resultMap id="LibraryCommentDTO" type="com.study.column.board.LibraryCommentDTO">
+    <resultMap id="LibraryCommentDTO" type="com.study.column.library.LibraryCommentDTO">
         <result column="POST_NUM" property="postNum" />
         <result column="COMMENT_NUM" property="commentNum" />
         <result column="id" property="id" />
@@ -19,7 +19,7 @@
         <collection property="memberDTO" resultMap="MemberDTO" />
     </resultMap>
 
-    <select id="showPostList" resultType="com.study.column.board.BoardDTO">
+    <select id="showPostList" resultType="com.study.column.library.LibraryDTO">
         SELECT post_num, title, content, writer, reg_date, views, COMMENT_COUNT, notice
             FROM LIBRARY
             WHERE <include refid="searchKeyword" /> AND notice=0
@@ -34,7 +34,7 @@
             or content like CONCAT('%', #{keyword}, '%')</if>
     </sql>
 
-    <select id="readPost" resultType="com.study.column.board.BoardDTO">
+    <select id="readPost" resultType="com.study.column.library.LibraryDTO">
         SELECT * FROM LIBRARY
             where post_num=#{postNum}
     </select>
@@ -88,7 +88,7 @@
     </delete>
 
     <update id="updateCommentCount">
-        UPDATE board
+        UPDATE LIBRARY
             SET COMMENT_COUNT=
                 (SELECT COUNT(*) FROM LIBRARY_COMMENT
                     WHERE POST_NUM=#{postNum})
@@ -111,7 +111,7 @@
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 
-    <select id="showSelfNoticeList" resultType="com.study.column.board.BoardDTO">
+    <select id="showSelfNoticeList" resultType="com.study.column.library.LibraryDTO">
         SELECT * FROM LIBRARY
             WHERE NOTICE=1
             ORDER BY POST_NUM DESC

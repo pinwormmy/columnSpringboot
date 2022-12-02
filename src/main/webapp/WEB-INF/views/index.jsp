@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>S L C</title>
+<title>컬럼형 사이트</title>
 <style>
 .page-navigation {
     text-align: center;

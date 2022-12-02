@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>공개형 게시판 페이지</title>
+<title>공지사항</title>
 <style>
 body {
     height: 100%;

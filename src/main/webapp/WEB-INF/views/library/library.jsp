@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>승인연재게시판</title>
+<title>자료실</title>
 <style>
 body {
     height: 100%;
@@ -70,7 +70,7 @@ body {
                 <%@include file="../include/sidebar.jspf" %>
                 <div class="col-md-9">
                     <div class="post-heading mb">
-                        <h1>회원연재게시판</h1>
+                        <h1>자료실</h1>
                     </div>
                     <div class="row">
                         <div id="comments" class="col-xs-12">
@@ -125,22 +125,22 @@ body {
                                 <div class="post-navigation">
                                     <c:if test="${page.prevPageSetPoint >= 1}">
                                         <a class="pull-left btn btn-theme"
-                                        href="/board/list?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/library/list?recentPage=${page.prevPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         이전</a>
                                     </c:if>
                                     <c:forEach var="countPage" begin="${page.pageBeginPoint}" end="${page.pageEndPoint}">
                                         <a class="pull-center btn btn-theme"
-                                        href="/board/list?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/library/list?recentPage=${countPage}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         ${countPage}</a>
                                     </c:forEach>
                                     <c:if test="${page.nextPageSetPoint <= page.totalPage}">
                                         <a class="pull-right btn btn-theme"
-                                        href="/board/list?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
+                                        href="/library/list?recentPage=${page.nextPageSetPoint}&searchType=${page.searchType}&keyword=${page.keyword}">
                                         다음</a>
                                     </c:if>
                                 </div>
                                 <div class="form-group">
-                                    <form action="/board/list">
+                                    <form action="/library/list">
                                         <select name="searchType">
                                             <option value="titleAndContent" <c:if test="${page.searchType == 'titleAndContent'}">selected</c:if> >제목+내용</option>
                                             <option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if> >제목</option>
@@ -149,12 +149,12 @@ body {
                                         <input name="keyword" value=${page.keyword}>
                                         <button class="pull btn btn-theme">검색</button>
                                         <c:if test="${page.keyword != ''}">
-                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/board/list'">취소</button>
+                                            <button type="button" class="pull btn btn-theme" onclick="location.href='/library/list'">취소</button>
                                         </c:if>
                                     </form>
                                 </div>
                                 <c:if test="${member.grade == 3}">
-                                    <a href="/board/writePost" class="pull-right btn btn-theme">글쓰기</a>
+                                    <a href="/library/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                 </c:if>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
@@ -171,7 +171,7 @@ body {
             alert("해당 글 열람은 관리자 승인이 필요합니다.");
             return false;
         }
-        location.href = "/board/readPost?postNum=" + postNum;
+        location.href = "/library/readPost?postNum=" + postNum;
     }
 </script>
 </body>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>공개형 게시판 페이지</title>
+<title>공개연재게시판</title>
 
 <style>
 body {

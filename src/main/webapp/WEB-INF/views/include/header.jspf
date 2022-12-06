@@ -258,9 +258,8 @@ hr {
     <li style="padding-top: 10px;">특가</li>
     <li style="padding-top: 10px;">이벤트</li>
 </ul>
-</div>
 <hr class="color-hr">
-
+</div>
 </body>
 
 <script>

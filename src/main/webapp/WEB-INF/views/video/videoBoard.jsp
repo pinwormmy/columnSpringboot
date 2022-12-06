@@ -34,7 +34,7 @@ body {
     text-align: center;
 }
 .boardList tr th {
-    background-color: #CCFF33;
+    background-color: #EDFFFF;
     color: black;
 }
 .boardList tr th:first-child {
@@ -81,7 +81,7 @@ body {
                                        <div class="well">
                                              <table class="boardList">
                                                     <tr>
-                                                        <th>제목</th>
+                                                        <th width="70%">제목</th>
                                                         <th>작성일자</th>
                                                         <th>조회수</th>
                                                     </tr>

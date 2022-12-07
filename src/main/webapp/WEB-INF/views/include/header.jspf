@@ -254,9 +254,9 @@ hr {
         </div>
     </li>
     <li style="padding-top: 10px;"><a href="/">홈</a></li>
-    <li style="padding-top: 10px;">베스트</li>
-    <li style="padding-top: 10px;">특가</li>
-    <li style="padding-top: 10px;">이벤트</li>
+    <li style="padding-top: 10px;"><a href="/board/list">게시판</a></li>
+    <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
+
 </ul>
 <hr class="color-hr">
 </div>

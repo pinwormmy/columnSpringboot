@@ -72,7 +72,7 @@ body {
                 <%@include file="../include/sidebar.jspf" %>
                 <div class="col-md-9">
                     <div class="post-heading mb">
-                        <h1>동영상 게시판(승인형)</h1>
+                        <h3>동영상 게시판</h3>
                     </div>
                     <div class="row">
                         <div id="comments" class="col-xs-12">

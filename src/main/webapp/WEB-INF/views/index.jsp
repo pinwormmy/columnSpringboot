@@ -31,7 +31,7 @@ body {
     text-align: center;
 }
 .boardList tr th {
-    background-color: #CDDCDC;
+    background-color: #EDFFFF;
     color: black;
 }
 .boardList tr th:first-child {

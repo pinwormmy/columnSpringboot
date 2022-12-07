@@ -18,6 +18,7 @@ public class HomeController {
         model.addAttribute("boardList", fullNoticeService.showBoardList());
         model.addAttribute("opencolumnList", fullNoticeService.showOpencolumnList());
         model.addAttribute("videoList", fullNoticeService.showVideoList());
+        model.addAttribute("libraryList", fullNoticeService.showVideoList());
         return "index";
     }
 

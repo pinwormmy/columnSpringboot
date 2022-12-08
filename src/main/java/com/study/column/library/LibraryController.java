@@ -21,8 +21,7 @@ import java.util.List;
 public class LibraryController {
     @Autowired
     LibraryService libraryService;
-    // 온라인 버전 적용 확인 하기. 
-    // 견본데이터 먼저 추가하기 게시판당 10건 정도. 로컬, 온라인 각각 추가
+
     @GetMapping(value = "/list")
     public String library(PageDTO page, Model model) throws Exception {
         model.addAttribute("fullNoticeList", libraryService.showFullNoticeList());

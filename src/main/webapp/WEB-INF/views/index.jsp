@@ -87,7 +87,7 @@ body {
                                                     </tr>
                                                     <c:forEach var="post" items="${boardList}">
                                                     <tr>
-                                                        <td><h4><span>[공지]</span>
+                                                        <td>
                                                         <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
                                                         <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                         <td>${post.writer}</td>
@@ -120,7 +120,7 @@ body {
                                                 </tr>
                                                 <c:forEach var="post" items="${opencolumnList}">
                                                 <tr>
-                                                    <td><h4><span>[공지]</span>
+                                                    <td>
                                                     <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
                                                     <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                     <td>${post.writer}</td>
@@ -153,7 +153,7 @@ body {
                                                 </tr>
                                                 <c:forEach var="post" items="${videoList}">
                                                 <tr>
-                                                    <td><h4><span>[공지]</span>
+                                                    <td><h4>
                                                     <a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
                                                     <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                     <td>${post.writer}</td>
@@ -176,7 +176,7 @@ body {
                             <div id="comments-list" class="gap">
                                 <div class="media">
                                     <div class="well">
-                                        공개연재게시판
+                                        자료실
                                          <table class="boardList">
                                                 <tr>
                                                     <th>제목</th>
@@ -184,9 +184,9 @@ body {
                                                     <th>작성일자</th>
                                                     <th>조회수</th>
                                                 </tr>
-                                                <c:forEach var="post" items="${opencolumnList}">
+                                                <c:forEach var="post" items="${libraryList}">
                                                 <tr>
-                                                    <td><h4><span>[공지]</span>
+                                                    <td>
                                                     <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
                                                     <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
                                                     <td>${post.writer}</td>

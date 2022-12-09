@@ -14,6 +14,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     overflow: hidden;
+    margin: 10px 0 10px 0;
 }
 .boardList caption {
     font-size: 20px;
@@ -64,6 +65,11 @@ body {
 .checkbox-list label {
     font-weight: 400;
 }
+span {
+    font-size: 20px;
+    font-weight: 300;
+    border-bottom: 2px solid Turquoise;
+}
 </style>
 </head>
 <body>
@@ -76,41 +82,8 @@ body {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
-                                       <div class="well">
-                                            회원연재게시판
-                                             <table class="boardList">
-                                                    <tr>
-                                                        <th>제목</th>
-                                                        <th>작성자</th>
-                                                        <th>작성일자</th>
-                                                        <th>조회수</th>
-                                                    </tr>
-                                                    <c:forEach var="post" items="${boardList}">
-                                                    <tr>
-                                                        <td>
-                                                        <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                        <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                        <td>${post.writer}</td>
-                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                                        <td>${post.views}</td>
-                                                    </tr>
-                                                    </c:forEach>
-                                             </table>
-                                             <c:if test="${empty boardList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
-                                       </div>
-                                </div>
-                            </div><!--/#comments-list-->
-                        </div><!--/#comments-->
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="row">
-                        <div id="comments" class="col-xs-12">
-                            <div id="comments-list" class="gap">
-                                <div class="media">
                                     <div class="well">
-                                        공개연재게시판
+                                        <span><a href="/openColumn/list">공개연재게시판</a></span>
                                          <table class="boardList">
                                                 <tr>
                                                     <th>제목</th>
@@ -129,7 +102,7 @@ body {
                                                 </tr>
                                                 </c:forEach>
                                          </table>
-                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
                                     </div>
                                 </div>
                             </div><!--/#comments-list-->
@@ -142,8 +115,43 @@ body {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
+                                       <div class="well">
+                                            <span><a href="/board/list">승인연재게시판</a></span>
+                                             <table class="boardList">
+                                                    <tr>
+                                                        <th>제목</th>
+                                                        <th>작성자</th>
+                                                        <th>작성일자</th>
+                                                        <th>조회수</th>
+                                                    </tr>
+                                                    <c:forEach var="post" items="${boardList}">
+                                                    <tr>
+                                                        <td>
+                                                        <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                        <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                        <td>${post.writer}</td>
+                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                        <td>${post.views}</td>
+                                                    </tr>
+                                                    </c:forEach>
+                                             </table>
+                                             <c:if test="${empty boardList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
+                                       </div>
+                                </div>
+                            </div><!--/#comments-list-->
+                        </div><!--/#comments-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="comments" class="col-xs-12">
+                            <div id="comments-list" class="gap">
+                                <div class="media">
                                     <div class="well">
-                                        동영상 게시판
+                                        <span><a href="/video/list">동영상 게시판</a></span>
                                          <table class="boardList">
                                                 <tr>
                                                     <th>제목</th>
@@ -162,7 +170,7 @@ body {
                                                 </tr>
                                                 </c:forEach>
                                          </table>
-                                         <c:if test="${empty videoList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                         <c:if test="${empty videoList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
                                     </div>
                                 </div>
                             </div><!--/#comments-list-->
@@ -176,7 +184,7 @@ body {
                             <div id="comments-list" class="gap">
                                 <div class="media">
                                     <div class="well">
-                                        자료실
+                                        <span><a href="/library/list">자료실</a></span>
                                          <table class="boardList">
                                                 <tr>
                                                     <th>제목</th>
@@ -195,7 +203,7 @@ body {
                                                 </tr>
                                                 </c:forEach>
                                          </table>
-                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
                                     </div>
                                 </div>
                             </div><!--/#comments-list-->

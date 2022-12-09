@@ -69,10 +69,6 @@ input {
     font-size: 24px;
     font-weight: 100;
 }
-a {
-    color: grey;
-    text-decoration: none;
-}
 .super-top-menu {
     font-size: 12px;
 }
@@ -109,7 +105,7 @@ a {
     border: 2px solid Turquoise;
     box-shadow: none;
     text-align: center;
-    background-image: url("img/search-icon.png");
+    background-image: url("/img/search-icon.png");
     background-repeat: no-repeat;
     background-size: 35px;
     background-position: 350px center;
@@ -254,7 +250,7 @@ hr {
         </div>
     </li>
     <li style="padding-top: 10px;"><a href="/">홈</a></li>
-    <li style="padding-top: 10px;"><a href="/board/list">게시판</a></li>
+    <li style="padding-top: 10px;"><a href="/openColumn/list">게시판</a></li>
     <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
 
 </ul>

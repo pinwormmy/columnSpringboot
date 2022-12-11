@@ -89,18 +89,16 @@ input {
     padding:0;
     display: flex;
     flex-direction: row;
-    line-height: 1;
-    margin: 0;
 }
-.header-menu ul li {
+.header-menu ul li{
     color: grey;
     font-size: 12px;
     margin-left: 30px;
     text-align: center;
 }
 .searchbar {
-    width: 300px;
-    height: 30px;
+    width: 400px;
+    height: 42px;
     position: static;
     border-radius: 30px;
     left: 50%;
@@ -109,12 +107,18 @@ input {
     text-align: center;
     background-image: url("/img/search-icon.png");
     background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: 270px center;
+    background-size: 35px;
+    background-position: 350px center;
     margin-right: 80px;
 }
+
 .searchbar:focus {
     outline: none;
+}
+.header-sub ul{
+    line-height: 1;
+    margin: 0;
+    padding: 0;
 }
 .color-hr {
     border-top: 1px solid Turquoise;
@@ -144,6 +148,9 @@ input {
 }
 .checkbox-list {
     margin: 5px;
+}
+.product-thumbnail img{
+    border-radius: 20px;
 }
 .col-md-4 {
     width: 25%;
@@ -224,16 +231,31 @@ hr {
     </div>
     <div class="header-menu">
         <ul>
-            <li style="padding-top: 10px; font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
-            <li style="padding-top: 10px;"><a href="/openColumn/list">게시판</a></li>
-            <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
-            <li><form action="/"><input class="searchbar" name="keyword"></form></li>
-            <li style="padding-top: 10px; font-size: 14px;"><a href="javascript:goMyPage()">👤</a></li>
+            <li><a href="/"><img src="/img/logo.png" height="80px"></a></li>
+            <form action="/"><li><input class="searchbar" name="keyword"></li></form>
+            <li><a href="javascript:goLikeIt();"><img src="/img/heart.png" height="38px"><br>찜한목록</a></li>
+            <li><a href="javascript:goMyPage()"><img src="/img/person.png" height="38px"><br>나의정보</a></li>
+            <li><a href="javascript:goCart();"><img src="/img/cart.png" height="38px"><br>장바구니</a></li>
         </ul>
-        <hr class="color-hr">
-    </div>
+    <div>
 </div>
+<hr>
+<div class="header-sub">
+<ul>
+    <li>
+        <div class="hamburger-button">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </li>
+    <li style="padding-top: 10px;"><a href="/">홈</a></li>
+    <li style="padding-top: 10px;"><a href="/openColumn/list">게시판</a></li>
+    <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
 
+</ul>
+<hr class="color-hr">
+</div>
 </body>
 
 <script>

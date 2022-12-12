@@ -98,7 +98,7 @@ input {
     margin-left: 30px;
     text-align: center;
 }
-.searchbar {
+.searchbar input{
     width: 300px;
     height: 30px;
     position: static;
@@ -111,28 +111,17 @@ input {
     background-repeat: no-repeat;
     background-size: 20px;
     background-position: 270px center;
-    margin-right: 80px;
+    float:right;
 }
-.searchbar:focus {
+.searchbar input:focus {
     outline: none;
+}
+.searchbar form {
+    width: 300px;
 }
 .color-hr {
     border-top: 1px solid Turquoise;
     width: 100%;
-}
-.hamburger-button {
-    width: 48px;
-    height: 35px;
-    background-color: Turquoise;
-    display: inline-block;
-    cursor: pointer;
-    margin: 0;
-}
-.bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
 }
 .panel-body ul {
     flex-direction: column;
@@ -167,14 +156,6 @@ input {
 .page-header {
     background-color: white;
     margin: 0;
-}
-.related-keyword{
-    border: 1px solid Turquoise;
-    border-radius: 10px;
-    text-align: center;
-    padding: 5px;
-    font-weight: 200;
-    margin: 0 5% 0 5%;
 }
 .keyword-button {
     font-size: 14px;
@@ -227,7 +208,7 @@ hr {
             <li style="padding-top: 10px; font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
             <li style="padding-top: 10px;"><a href="/openColumn/list">게시판</a></li>
             <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
-            <li><form action="/"><input class="searchbar" name="keyword"></form></li>
+            <li class="searchbar"><form action="/"><input name="keyword"></form></li>
             <li style="padding-top: 10px; font-size: 14px;"><a href="javascript:goMyPage()">👤</a></li>
         </ul>
         <hr class="color-hr">

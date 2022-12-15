@@ -83,12 +83,16 @@ input {
 .super-top-menu ul li {
     margin-right: 20px;
 }
+.header-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+}
 .header-menu ul {
     list-style:none;
     margin-top:20px;
     padding:0;
-    display: flex;
-    flex-direction: row;
     line-height: 1;
     margin: 0;
 }
@@ -98,11 +102,15 @@ input {
     margin-left: 30px;
     text-align: center;
 }
+.header-menu-right {
+    display: flex;
+}
 .searchbar input{
     width: 300px;
-    height: 30px;
+    height: 24px;
     position: static;
     border-radius: 30px;
+    margin: 5px;
     left: 50%;
     border: 2px solid Turquoise;
     box-shadow: none;
@@ -204,10 +212,12 @@ hr {
         </ul>
     </div>
     <div class="header-menu">
-        <ul>
-            <li style="padding-top: 10px; font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
+        <ul class="header-menu-left">
+            <li style="font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
             <li style="padding-top: 10px;"><a href="/openColumn/list">게시판</a></li>
             <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
+        </ul>
+        <ul class="header-menu-right">
             <li class="searchbar"><form action="/"><input name="keyword"></form></li>
             <li style="padding-top: 10px; font-size: 14px;"><a href="javascript:goMyPage()">👤</a></li>
         </ul>

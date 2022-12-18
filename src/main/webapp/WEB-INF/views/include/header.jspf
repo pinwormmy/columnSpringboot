@@ -197,6 +197,7 @@ hr {
 <body>
 
 <!-- 헤더 메뉴 양쪽으로 정렬해야함. 여의치않으면 그냥 좌측정렬 -->
+<!-- 할수 있는 부분 빨리 수정하고 진행하자... -->
 <div class="this-header">
     <div class="super-top-menu">
         <ul>

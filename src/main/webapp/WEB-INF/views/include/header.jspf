@@ -85,9 +85,10 @@ input {
 }
 .header-menu {
     display: flex;
-    justify-content: space-between;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
     width: 100%;
-    height: 10%;
+    height: 3%;
 }
 .header-menu ul {
     list-style:none;
@@ -98,12 +99,22 @@ input {
 }
 .header-menu ul li {
     color: grey;
-    font-size: 12px;
-    margin-left: 30px;
+    font-size: 14px;
     text-align: center;
 }
-.header-menu-right {
+.header-menu-left {
     display: flex;
+    flex-direction: row;
+}
+.header-menu-left li{
+    margin-left: 30px;
+}
+.header-menu-right li{
+    margin-left: 10px;
+    font-size: 30px;
+}
+.searchbar {
+    margin-left: auto;
 }
 .searchbar input{
     width: 300px;
@@ -214,18 +225,18 @@ hr {
             <li><a href="javascript:comingSoon();">고객센터</a></li>
         </ul>
     </div>
-    <div class="header-menu">
+    <nav class="header-menu">
         <ul class="header-menu-left">
             <li style="font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
-            <li style="padding-top: 10px;"><a href="/openColumn/list">게시판</a></li>
-            <li style="padding-top: 10px;"><a href="/library/list">자료실</a></li>
+            <li style="padding-top: 8px;"><a href="/openColumn/list">게시판</a></li>
+            <li style="padding-top: 8px;"><a href="/library/list">자료실</a></li>
         </ul>
+        <form class="searchbar" action="/"><input name="keyword"></form>
         <ul class="header-menu-right">
-            <li class="searchbar"><form action="/"><input name="keyword"></form></li>
-            <li style="padding-top: 10px; font-size: 14px;"><a href="javascript:goMyPage()">👤</a></li>
+            <li style="padding-top: 8px;"><a href="javascript:goMyPage()">👤</a></li>
         </ul>
-        <hr class="color-hr">
-    </div>
+    </nav>
+    <hr class="color-hr">
 </div>
 
 </body>

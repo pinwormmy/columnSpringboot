@@ -19,7 +19,6 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/board")
 public class BoardController {
-    // 견본 데이터 자료실, 공지말고 10개 이상으로 다 채우기
     @Autowired
     BoardService boardService;
     @GetMapping(value = "/list")

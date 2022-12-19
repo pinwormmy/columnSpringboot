@@ -27,10 +27,9 @@
 							<h1 class="media-heading">환영합니다. ${member.id}님!</h1>
 							<hr>
 							<div class="member-info" style="font-size: 20px; line-height: 50px;">
-                                <span>고객명 : ${member.name}</span><br>
+                                <span>고객명 : ${member.realName}</span><br>
                                 <span>연락처 : ${member.phone}</span><br>
                                 <span>이메일 : ${member.email}</span><br>
-                                <span>주소 : ${member.address}</span><br>
                                 <hr>
 							</div>
 						</div>

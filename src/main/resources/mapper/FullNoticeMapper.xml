@@ -43,6 +43,14 @@
             LIMIT 10
     </select>
 
+    <select id="showLibraryList" resultType="com.study.column.library.LibraryDTO">
+        select post_num, title, content, writer, reg_date, views, COMMENT_COUNT
+            FROM LIBRARY
+            WHERE notice=1
+            ORDER by post_num desc
+            LIMIT 10
+    </select>
+
     <sql id="searchKeyword">
         <if test="searchType == 'title'">title like CONCAT('%', #{keyword}, '%')</if>
         <if test="searchType == 'content'">content like CONCAT('%', #{keyword}, '%')</if>

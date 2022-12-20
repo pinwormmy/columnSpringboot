@@ -78,30 +78,29 @@ body {
                                 <h3>공지사항</h3>
                                 <hr><br>
                             </div>
-
                             <div id="comments-list" class="gap">
                                 <div class="media">
-                                       <div class="well">
-                                           전체 공지사항
-                                             <table class="boardList">
-                                                    <tr>
-                                                        <th>제목</th>
-                                                        <th>작성일자</th>
-                                                        <th>조회수</th>
-                                                    </tr>
-                                                     <c:forEach var="notice" items="${fullNoticeList}">
-                                                    <tr>
-                                                        <td><h4><span text-align="left">[전체공지]</span>
-                                                        <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
-                                                         ${notice.title}</a>
-                                                        <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
-                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
-                                                        <td>${notice.views}</td>
-                                                    </tr>
-                                                    </c:forEach>
-                                             </table>
-                                             <c:if test="${empty fullNoticeList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
-                                       </div>
+                                    전체 공지사항
+                                     <table class="boardList">
+                                            <tr>
+                                                <th>제목</th>
+                                                <th>작성자</th>
+                                                <th>작성일자</th>
+                                                <th>조회수</th>
+                                            </tr>
+                                             <c:forEach var="notice" items="${fullNoticeList}">
+                                            <tr>
+                                                <td><h4><span text-align="left">[전체공지]</span>
+                                                <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
+                                                 ${notice.title}</a>
+                                                <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                <td>${notice.writer}</td>
+                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
+                                                <td>${notice.views}</td>
+                                            </tr>
+                                            </c:forEach>
+                                     </table>
+                                     <c:if test="${empty fullNoticeList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
                                        <c:if test="${member.grade == 3}">
                                            <a href="/fullNotice/writePost" class="pull-right btn btn-theme">글쓰기</a>
                                        </c:if>
@@ -126,79 +125,95 @@ body {
 
 
                                 <div class="media">
-                                       <div class="well">
-                                            회원연재게시판
-                                             <table class="boardList">
-                                                    <tr>
-                                                        <th>제목</th>
-                                                        <th>작성자</th>
-                                                        <th>작성일자</th>
-                                                        <th>조회수</th>
-                                                    </tr>
-                                                    <c:forEach var="post" items="${boardList}">
-                                                    <tr>
-                                                        <td><h4><span>[공지]</span>
-                                                        <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                        <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                        <td>${post.writer}</td>
-                                                        <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                                        <td>${post.views}</td>
-                                                    </tr>
-                                                    </c:forEach>
-                                             </table>
-                                             <c:if test="${empty boardList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
-                                       </div>
+                                    회원연재게시판
+                                     <table class="boardList">
+                                            <tr>
+                                                <th>제목</th>
+                                                <th>작성자</th>
+                                                <th>작성일자</th>
+                                                <th>조회수</th>
+                                            </tr>
+                                            <c:forEach var="post" items="${boardList}">
+                                            <tr>
+                                                <td><h4><span>[공지]</span>
+                                                <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                <td>${post.writer}</td>
+                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                <td>${post.views}</td>
+                                            </tr>
+                                            </c:forEach>
+                                     </table>
+                                     <c:if test="${empty boardList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
                                 </div>
 
                                 <div class="media">
-                                    <div class="well">
-                                        공개연재게시판
-                                         <table class="boardList">
-                                                <tr>
-                                                    <th>제목</th>
-                                                    <th>작성자</th>
-                                                    <th>작성일자</th>
-                                                    <th>조회수</th>
-                                                </tr>
-                                                <c:forEach var="post" items="${opencolumnList}">
-                                                <tr>
-                                                    <td><h4><span>[공지]</span>
-                                                    <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                    <td>${post.writer}</td>
-                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                                    <td>${post.views}</td>
-                                                </tr>
-                                                </c:forEach>
-                                         </table>
-                                         <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
-                                    </div>
+                                    공개연재게시판
+                                     <table class="boardList">
+                                            <tr>
+                                                <th>제목</th>
+                                                <th>작성자</th>
+                                                <th>작성일자</th>
+                                                <th>조회수</th>
+                                            </tr>
+                                            <c:forEach var="post" items="${opencolumnList}">
+                                            <tr>
+                                                <td><h4><span>[공지]</span>
+                                                <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                <td>${post.writer}</td>
+                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                <td>${post.views}</td>
+                                            </tr>
+                                            </c:forEach>
+                                     </table>
+                                     <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
                                 </div>
                                 <div class="media">
-                                    <div class="well">
-                                        동영상 게시판
-                                         <table class="boardList">
-                                                <tr>
-                                                    <th>제목</th>
-                                                    <th>작성자</th>
-                                                    <th>작성일자</th>
-                                                    <th>조회수</th>
-                                                </tr>
-                                                <c:forEach var="post" items="${videoList}">
-                                                <tr>
-                                                    <td><h4><span>[공지]</span>
-                                                    <a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                    <td>${post.writer}</td>
-                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                                    <td>${post.views}</td>
-                                                </tr>
-                                                </c:forEach>
-                                         </table>
-                                         <c:if test="${empty videoList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
-                                    </div>
+                                    동영상 게시판
+                                     <table class="boardList">
+                                            <tr>
+                                                <th>제목</th>
+                                                <th>작성자</th>
+                                                <th>작성일자</th>
+                                                <th>조회수</th>
+                                            </tr>
+                                            <c:forEach var="post" items="${videoList}">
+                                            <tr>
+                                                <td><h4><span>[공지]</span>
+                                                <a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                <td>${post.writer}</td>
+                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                <td>${post.views}</td>
+                                            </tr>
+                                            </c:forEach>
+                                     </table>
+                                     <c:if test="${empty videoList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
                                 </div>
 
+                                <div class="media">
+                                     <span><a href="/library/list">자료실</a></span>
+                                     <table class="boardList">
+                                            <tr>
+                                                <th>제목</th>
+                                                <th>작성자</th>
+                                                <th>작성일자</th>
+                                                <th>조회수</th>
+                                            </tr>
+                                            <c:forEach var="post" items="${libraryList}">
+                                            <tr>
+                                                <td><h4><span>[공지]</span>
+                                                <a class="postTitle" href="/video/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                <td>${post.writer}</td>
+                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                <td>${post.views}</td>
+                                            </tr>
+                                            </c:forEach>
+                                     </table>
+                                     <c:if test="${empty libraryList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
+                                </div>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
                     </div>

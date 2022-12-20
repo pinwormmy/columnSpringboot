@@ -29,6 +29,7 @@ public class FullNoticeController {
         model.addAttribute("boardList", fullNoticeService.showBoardList());
         model.addAttribute("opencolumnList", fullNoticeService.showOpencolumnList());
         model.addAttribute("videoList", fullNoticeService.showVideoList());
+        model.addAttribute("libraryList", fullNoticeService.showLibraryList());
         return "fullNotice/fullNotice";
     }
 

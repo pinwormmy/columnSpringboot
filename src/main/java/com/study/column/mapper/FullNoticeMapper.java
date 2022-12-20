@@ -3,6 +3,7 @@ package com.study.column.mapper;
 import com.study.column.board.BoardDTO;
 import com.study.column.fullNotice.FullNoticeDTO;
 import com.study.column.fullNotice.FullNoticeCommentDTO;
+import com.study.column.library.LibraryDTO;
 import com.study.column.openColumn.OpenColumnDTO;
 import com.study.column.util.PageDTO;
 import com.study.column.video.VideoDTO;
@@ -44,4 +45,6 @@ public interface FullNoticeMapper {
     void saveViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
 
     List<FullNoticeDTO> showSelfNoticeList() throws Exception;
+
+    List<LibraryDTO> showLibraryList() throws Exception;
 }

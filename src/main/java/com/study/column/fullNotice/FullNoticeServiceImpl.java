@@ -1,6 +1,7 @@
 package com.study.column.fullNotice;
 
 import com.study.column.board.BoardDTO;
+import com.study.column.library.LibraryDTO;
 import com.study.column.mapper.FullNoticeMapper;
 import com.study.column.openColumn.OpenColumnDTO;
 import com.study.column.util.PageDTO;
@@ -31,6 +32,11 @@ public class FullNoticeServiceImpl implements FullNoticeService {
     @Override
     public List<VideoDTO> showVideoList() throws Exception {
         return fullNoticeMapper.showVideoList();
+    }
+
+    @Override
+    public List<LibraryDTO> showLibraryList() throws Exception {
+        return fullNoticeMapper.showLibraryList();
     }
 
     @Override

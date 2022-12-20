@@ -1,6 +1,7 @@
 package com.study.column.fullNotice;
 
 import com.study.column.board.BoardDTO;
+import com.study.column.library.LibraryDTO;
 import com.study.column.openColumn.OpenColumnDTO;
 import com.study.column.util.PageDTO;
 import com.study.column.video.VideoDTO;
@@ -13,6 +14,8 @@ public interface FullNoticeService {
     List<OpenColumnDTO> showOpencolumnList() throws Exception;
 
     List<VideoDTO> showVideoList() throws Exception;
+
+    List<LibraryDTO> showLibraryList() throws Exception;
 
     void submitPost(FullNoticeDTO board) throws Exception;
 

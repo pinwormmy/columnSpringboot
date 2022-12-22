@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>컬럼 읽기</title>
+<title>${post.title} - 공개연재게시판</title>
 
 <style>
 body {
@@ -63,6 +63,42 @@ body {
 .section-wrapper {
     min-height: 850px;
 }
+.post-title {
+    padding: 0.5rem 0.75rem;
+    font-size: 20px;
+    font-weight: 300;
+    border-bottom: 1px solid;
+    border-color: #bbb;
+    background-color: #eee;
+}
+.info-row {
+    padding: 0.35rem 0.75rem 0.3rem;
+    border-bottom: 1px solid;
+    border-color: #bbb;
+    font-size: 18px;
+    font-weight: 300;
+    overflow: hidden;
+}
+.post-info {
+    display: inline-block;
+    float: right;
+}
+.single-section-title {
+    padding: 0.5rem 0.75rem;
+    font-size: 20px;
+    font-weight: 300;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: #bbb;
+    background-color: #eee;
+}
+.btn-theme {
+    margin: 10px;
+    float: right;
+}
+.col-xs-12 p {
+    color: black;
+}
 </style>
 
 </head>
@@ -74,13 +110,16 @@ body {
             <div class="row">
                 <%@include file="../include/sidebar.jspf" %>
                 <div class="col-md-9">
-                    <div class="post-heading mb">
-                        <h1>${post.title}</h1>
-                        <span class="white meta">Posted by <a href="#">${post.writer} </a>on 2022.07.30</span>
+                    <div class="title-row">
+                        <div class="post-title">${post.title}</div>
+                    </div>
+                    <div class="info-row">
+                        <span class="writer-info">작성자: ${post.writer}</span>
+                        <span class="post-info">작성일 ${post.regDate}</span>
                         <span style="float: right; color: white;">조회수 ${post.views}</span>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 mb wow fadeInUp">
+                        <div class="col-xs-12 mb fadeInUp">
                             ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
@@ -106,13 +145,13 @@ body {
                                     <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                                 </div><!--/#comment-form-->
                             </c:if>
-                            <div class="post-navigation">
-                                <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>
-                                <c:if test="${member.id == post.writer || member.grade == 3}">
-                                    <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                    <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
-                                </c:if>
-                            </div>
+                        </div>
+                        <div class="post-navigation">
+                            <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>
+                            <c:if test="${member.id == post.writer || member.grade == 3}">
+                                <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
+                                <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
+                            </c:if>
                         </div><!--/#comments-->
                     </div>
                 </div>

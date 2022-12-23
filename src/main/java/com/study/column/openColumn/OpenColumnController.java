@@ -87,7 +87,7 @@ public class OpenColumnController {
     @RequestMapping(value = "/commentPageSetting")
     @ResponseBody
     public PageDTO commentPageSetting(@RequestBody PageDTO page) throws Exception {
-        return openColumnService.pageSetting(page);
+        return openColumnService.commentPageSetting(page);
     }
 
     @RequestMapping(value = "/showCommentList")

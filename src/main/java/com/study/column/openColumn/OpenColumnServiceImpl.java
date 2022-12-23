@@ -59,9 +59,20 @@ public class OpenColumnServiceImpl implements OpenColumnService {
         return util.calculatePage(page);
     }
 
+    private PageDTO utilLoadingForCommentPage(PageDTO page) throws Exception {
+        log.debug("서비스단계에서 댓글페이지 로직 확인 : {}", page);
+        page.setTotalPostCount(countTotalComment(page)); // 총댓글수 의미
+        PageService util = initPageUtil();
+        return util.calculatePage(page);
+    }
+
     @Override
     public int countTotalPost(PageDTO page) throws Exception {
         return openColumnMapper.countTotalPost(page);
+    }
+
+    public int countTotalComment(PageDTO page) throws Exception {
+        return openColumnMapper.countTotalComment(page);
     }
 
     private PageService initPageUtil() {
@@ -114,5 +125,10 @@ public class OpenColumnServiceImpl implements OpenColumnService {
     @Override
     public List<FullNoticeDTO> showFullNoticeList() throws Exception {
         return openColumnMapper.showFullNoticeList();
+    }
+
+    @Override
+    public PageDTO commentPageSetting(PageDTO page) throws Exception {
+        return utilLoadingForCommentPage(page);
     }
 }

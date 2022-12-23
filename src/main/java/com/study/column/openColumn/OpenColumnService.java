@@ -37,4 +37,6 @@ public interface OpenColumnService {
     List<OpenColumnDTO> showSelfNoticeList() throws Exception;
 
     List<FullNoticeDTO> showFullNoticeList() throws Exception;
+
+    PageDTO commentPageSetting(PageDTO page) throws Exception;
 }

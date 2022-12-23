@@ -60,6 +60,11 @@
         where <include refid="searchKeyword" /> and notice=0
     </select>
 
+    <select id="countTotalComment" resultType="int">
+        select count(*) from OPENCOLUMN_COMMENT
+            where POST_NUM=#{postNum}
+    </select>
+
     <insert id="addComment">
         INSERT INTO OPENCOLUMN_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
             VALUES(#{postNum}, #{id}, NOW(), #{content})

@@ -1,6 +1,9 @@
 package com.study.column.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 // 추후 코드 어떻게 정리할지, 서비스로 치는게 맞는지 구현부 따로 두는게 맞는지 알아보기
+@Slf4j
 public class PageService {
 
     int DISPLAY_POST_LIMIT = 10;
@@ -36,7 +39,7 @@ public class PageService {
         page.setPrevPageSetPoint(prevPageSetPoint);
         page.setNextPageSetPoint(nextPageSetPoint);
         page.setTotalPage(totalPage);
-
+        log.debug("페이지 서비스단계 : 페이지 계산 후 : {}", page);
         return page;
     }
 }

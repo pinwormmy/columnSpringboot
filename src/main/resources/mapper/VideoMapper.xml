@@ -72,9 +72,10 @@
                 INNER JOIN MEMBER B
                 ON A.ID=B.ID
                 WHERE A.POST_NUM=#{postNum}
-                ORDER BY A.COMMENT_NUM DESC) C
+                ORDER BY A.COMMENT_NUM DESC
+                LIMIT #{postBeginPoint}, #{display} ) C
             ORDER BY COMMENT_NUM
-            LIMIT #{postBeginPoint}, #{display}
+
     </select>
 
     <delete id="deleteComment">

@@ -64,6 +64,9 @@ body {
 </style>
 </head>
 <body>
+
+<!-- 디자인 수정하기 -->
+
 <%@include file="../include/header.jspf" %>
 <section class="white section-wrapper">
     <div class="section-inner">

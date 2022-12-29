@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping("/library")
 public class LibraryController {
     
+    // 조회 페이지 수정후 첨부 기능 적용하기
     // 파일첨부 기능 구현 후, 견본데이터 10개 추가
     @Autowired
     LibraryService libraryService;

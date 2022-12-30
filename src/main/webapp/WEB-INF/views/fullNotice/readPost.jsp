@@ -84,7 +84,7 @@ body {
     float: right;
 }
 .single-section-title {
-    padding: 0.5rem 0.75rem;
+    padding: 5px 5px;
     font-size: 20px;
     font-weight: 300;
     border-top: 1px solid;

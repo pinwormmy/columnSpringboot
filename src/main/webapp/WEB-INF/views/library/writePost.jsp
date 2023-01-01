@@ -86,7 +86,7 @@ body {
                             <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
                                 CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
                             </script>
-                            <input type="file">
+                            <input type="file" name="uploadFile" multiple="multiple">
                             <button class="pull-left btn btn-theme">게시하기</button>
                             <button type="button" class="pull-left btn btn-theme" onclick="location.href='/library/list'">취소</button>
                         </form>

@@ -2,6 +2,7 @@ package com.study.column.library;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -17,4 +18,5 @@ public class LibraryDTO {
     private int views;
     private int commentCount;
     private int notice; // 0: 일반글 1:공지
+    private MultipartFile uploadFile;
 }

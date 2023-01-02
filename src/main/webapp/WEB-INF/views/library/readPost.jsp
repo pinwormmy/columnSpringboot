@@ -115,7 +115,15 @@ body {
                     <div class="info-row">
                         <span class="writer-info">작성자: ${post.writer}</span>
                         <span class="post-info">작성일 ${post.regDate}</span>
-                        <span style="float: right; color: white;">조회수 ${post.views}</span>
+                        <span style="float: right; margin-right: 10px;">조회수 ${post.views}</span>
+                    </div>
+                    <div class="info-row">
+                        <span>첨부파일</span>
+                        <c:if test="${empty fileList}">: 첨부파일이 없습니다.</c:if>
+                        <c:forEach var="file" items="${fileList }">
+                            <a class="downlink" id="${file.fileNum}" href="${file.originalFileName }">${file.originalFileName }</a>
+                            <br>
+                        </c:forEach>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">
@@ -279,6 +287,14 @@ function updateCommentCount(postNum) {
         .then(data => console.log("댓글 업데이트"))
         .catch(error => alert("댓글수 갱신 오류"));
 }
+
+$(document).ready(function() {
+    $(".downlink").click(function(e){
+        e.preventDefault();
+        var fileName = $(this).attr("href");
+        window.location = "fileDown.do?fileName=" + fileName;
+    });
+});
 
 </script>
 

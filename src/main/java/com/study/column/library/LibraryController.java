@@ -1,5 +1,6 @@
 package com.study.column.library;
 
+import com.study.column.util.FileUtils;
 import com.study.column.util.IpService;
 import com.study.column.util.PageDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -20,7 +24,6 @@ import java.util.List;
 @RequestMapping("/library")
 public class LibraryController {
     
-    // 디비 손대려다 말음..집중해서 빨리 진행하자고
     @Autowired
     LibraryService libraryService;
 
@@ -56,8 +59,18 @@ public class LibraryController {
     }
 
     @RequestMapping("/submitPost")
-    public String submitPost(LibraryDTO post) throws Exception {
-        libraryService.submitPost(post);
+    public String submitPost(LibraryDTO libraryDTO, HttpServletRequest request,
+                             MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        log.debug("글 등록 처리");
+        //파일 업로드 처리
+        MultipartFile uploadFile = libraryDTO.getUploadFile();
+        if(!uploadFile.isEmpty()) {
+            String fileName = uploadFile.getOriginalFilename();
+            uploadFile.transferTo(new File("C:\\testsite\\Pictures/" + fileName));
+        }
+        FileUtils fileUtils = new FileUtils();
+        List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(request, multipartHttpServletRequest);
+        libraryService.submitPost(libraryDTO);
         return "redirect:/library/list";
     }
 

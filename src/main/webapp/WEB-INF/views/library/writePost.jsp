@@ -77,7 +77,7 @@ body {
                         <div class="post-heading mb">
                             <h1>자료실 글 작성하기</h1>
                         </div>
-                        <form action="/library/submitPost" method="post">
+                        <form action="/library/submitPost" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="writer" value="${member.id}">
                             제목 <input type="text" name="title" size="60" required>
                             <input type="checkbox" name="notice" value="1">공지로 등록<br>

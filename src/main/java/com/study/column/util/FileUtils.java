@@ -1,6 +1,7 @@
 package com.study.column.util;
 
 import com.study.column.library.LibraryFileDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Slf4j
 public class FileUtils {
 
     public List<LibraryFileDTO> parseFileInfo(HttpServletRequest request,
@@ -29,6 +31,7 @@ public class FileUtils {
         //위 경로의 폴더가 없으면 폴더 생성
         File file = new File(root_path + attach_path);
         if(file.exists() == false) {
+            log.debug("업로드 폴더 없어서 생성함");
             file.mkdir();
         }
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,10 +67,14 @@ public class LibraryController {
         MultipartFile uploadFile = libraryDTO.getUploadFile();
         if(!uploadFile.isEmpty()) {
             String fileName = uploadFile.getOriginalFilename();
+            log.debug("첨부파일 생성");
             uploadFile.transferTo(new File("C:\\testsite\\Pictures/" + fileName));
         }
         FileUtils fileUtils = new FileUtils();
         List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(request, multipartHttpServletRequest);
+        if(CollectionUtils.isEmpty(fileList) == false) {
+            // boardService.insertBoardFileList(fileList); 파일첨부 서비스 부분 구현해야함
+        }
         libraryService.submitPost(libraryDTO);
         return "redirect:/library/list";
     }

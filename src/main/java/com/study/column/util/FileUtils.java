@@ -18,7 +18,9 @@ public class FileUtils {
 
     public List<LibraryFileDTO> parseFileInfo(HttpServletRequest request,
                                               MultipartHttpServletRequest mhsr) throws IOException {
+        log.debug("FileUtils 클래스 작동");
         if(ObjectUtils.isEmpty(mhsr)) {
+            log.debug("FileUtils 클래스 작동했지만, 첨부없어서 패스~");
             return null;
         }
 

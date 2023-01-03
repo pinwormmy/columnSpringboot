@@ -67,8 +67,8 @@ public class LibraryController {
         MultipartFile uploadFile = libraryDTO.getUploadFile();
         if(!uploadFile.isEmpty()) {
             String fileName = uploadFile.getOriginalFilename();
-            log.debug("첨부파일 생성");
-            uploadFile.transferTo(new File("C:\\testsite\\Pictures/" + fileName));
+            log.debug("첨부파일 생성 {}", fileName);
+            uploadFile.transferTo(new File("C:/testsite/" + fileName));
         }
         FileUtils fileUtils = new FileUtils();
         List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(request, multipartHttpServletRequest);

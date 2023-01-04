@@ -134,4 +134,9 @@
             WHERE POST_NUM = #{postNum}
     </select>
 
+    <select id="getPostNumBeforeInsert" resultType="int">
+        SELECT IFNULL(MAX(POST_NUM), 0) + 1
+            FROM LIBRARY
+    </select>
+
 </mapper>

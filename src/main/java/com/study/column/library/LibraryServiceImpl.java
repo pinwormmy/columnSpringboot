@@ -116,4 +116,9 @@ public class LibraryServiceImpl implements LibraryService {
     public List<FullNoticeDTO> showFullNoticeList() throws Exception {
         return libraryMapper.showFullNoticeList();
     }
+
+    @Override
+    public int getPostNumBeforeInsert() throws Exception {
+        return libraryMapper.getPostNumBeforeInsert();
+    }
 }

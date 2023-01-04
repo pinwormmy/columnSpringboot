@@ -26,7 +26,7 @@ public class FileUtils {
 
         List<LibraryFileDTO> fileList = new ArrayList<LibraryFileDTO>();
 
-        //서버의 절대 경로 얻기
+        //서버의 절대 경로 얻기 => 여기서 로컬 경로와 서버 경로가 갈리면서 절대 경로 의미 상실해서 오류 발생;
         String root_path = request.getSession().getServletContext().getRealPath("/");
         log.debug("root_path 확인 : {}", root_path);
         String attach_path = "/upload/";
@@ -54,8 +54,8 @@ public class FileUtils {
                 libraryFileDTO.setOriginalFileName(mf.getOriginalFilename());
                 libraryFileDTO.setFilePath(root_path + attach_path);
                 fileList.add(libraryFileDTO);
-
                 file = new File(root_path + attach_path + mf.getOriginalFilename());
+                log.debug("호출된 첨부파일 경로+원본명 : {}", file);
                 mf.transferTo(file);
             }
         }

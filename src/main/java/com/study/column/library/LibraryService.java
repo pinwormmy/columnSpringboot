@@ -37,4 +37,6 @@ public interface LibraryService {
     List<LibraryDTO> showSelfNoticeList() throws Exception;
 
     List<FullNoticeDTO> showFullNoticeList() throws Exception;
+
+    int getPostNumBeforeInsert() throws Exception;
 }

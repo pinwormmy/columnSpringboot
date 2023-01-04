@@ -42,4 +42,6 @@ public interface LibraryMapper {
     List<FullNoticeDTO> showFullNoticeList() throws Exception;
 
     int countTotalComment(PageDTO page) throws Exception;
+
+    int getPostNumBeforeInsert() throws Exception;
 }

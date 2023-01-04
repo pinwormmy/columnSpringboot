@@ -70,9 +70,12 @@ public class LibraryController {
             log.debug("첨부파일 생성 {}", fileName);
             uploadFile.transferTo(new File("C:/testsite/" + fileName));
         }
+        // int postNum = libraryService.getPostNumBeforeInsert();
         FileUtils fileUtils = new FileUtils();
-        List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(request, multipartHttpServletRequest);
+        log.debug("게시물번호 확인 : {}", libraryDTO.getPostNum());
+        List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(libraryDTO.getPostNum(), request, multipartHttpServletRequest);
         if(CollectionUtils.isEmpty(fileList) == false) {
+            log.debug("첨부파일 관련 쿼리 구현해야함");
             // boardService.insertBoardFileList(fileList); 파일첨부 서비스 부분 구현해야함
         }
         libraryService.submitPost(libraryDTO);

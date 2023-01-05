@@ -23,16 +23,11 @@ public class FileUtils {
             log.debug("FileUtils 클래스 작동했지만, 첨부없어서 패스~");
             return null;
         }
-
         List<LibraryFileDTO> fileList = new ArrayList<LibraryFileDTO>();
-
-        //서버의 절대 경로 얻기 => 여기서 로컬 경로와 서버 경로가 갈리면서 절대 경로 의미 상실해서 오류 발생;
-        String root_path = request.getSession().getServletContext().getRealPath("/");
-        log.debug("root_path 확인 : {}", root_path);
-        String attach_path = "/upload/";
+        String uploadPath = "C:/testsite/";
 
         //위 경로의 폴더가 없으면 폴더 생성
-        File file = new File(root_path + attach_path);
+        File file = new File(uploadPath);
         log.debug("첨부파일 절대경로 : {}", file);
         if(file.exists() == false) {
             log.debug("업로드 폴더 없어서 생성함");
@@ -45,16 +40,15 @@ public class FileUtils {
         while(iterator.hasNext()) {
             //파일명으로 파일 리스트 꺼내오기
             List<MultipartFile> list = mhsr.getFiles(iterator.next());
-
             //파일 리스트 개수 만큼 리턴할 파일 리스트에 담아주고 생성
             for(MultipartFile mf : list) {
                 LibraryFileDTO libraryFileDTO = new LibraryFileDTO();
                 libraryFileDTO.setPostNum(postNum);
                 libraryFileDTO.setFileSize((int) mf.getSize());
                 libraryFileDTO.setOriginalFileName(mf.getOriginalFilename());
-                libraryFileDTO.setFilePath(root_path + attach_path);
+                libraryFileDTO.setFilePath(uploadPath);
                 fileList.add(libraryFileDTO);
-                file = new File(root_path + attach_path + mf.getOriginalFilename());
+                file = new File(uploadPath + mf.getOriginalFilename());
                 log.debug("호출된 첨부파일 경로+원본명 : {}", file);
                 mf.transferTo(file);
             }

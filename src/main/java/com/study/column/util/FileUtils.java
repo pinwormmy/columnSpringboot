@@ -23,20 +23,15 @@ public class FileUtils {
             log.debug("FileUtils 클래스 작동했지만, 첨부없어서 패스~");
             return null;
         }
-        List<LibraryFileDTO> fileList = new ArrayList<LibraryFileDTO>();
+        List<LibraryFileDTO> fileList = new ArrayList<>();
         String uploadPath = "C:/testsite/";
-
-        //위 경로의 폴더가 없으면 폴더 생성
         File file = new File(uploadPath);
         log.debug("첨부파일 절대경로 : {}", file);
         if(file.exists() == false) {
             log.debug("업로드 폴더 없어서 생성함");
             file.mkdir();
         }
-
-        //파일 이름들을 iterator로 담음
         Iterator<String> iterator = mhsr.getFileNames();
-
         while(iterator.hasNext()) {
             //파일명으로 파일 리스트 꺼내오기
             List<MultipartFile> list = mhsr.getFiles(iterator.next());

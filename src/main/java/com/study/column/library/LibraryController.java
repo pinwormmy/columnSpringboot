@@ -68,7 +68,7 @@ public class LibraryController {
         if(!uploadFile.isEmpty()) {
             String fileName = uploadFile.getOriginalFilename();
             log.debug("첨부파일 생성 {}", fileName);
-            uploadFile.transferTo(new File("C:/testsite/" + fileName));
+            uploadFile.transferTo(new File("C:/testsite/" + fileName)); // 유틸클래스랑 업로드 처리 중복. 수정하기
         }
         int postNum = libraryService.getPostNumBeforeInsert();
         FileUtils fileUtils = new FileUtils();

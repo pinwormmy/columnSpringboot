@@ -3,6 +3,7 @@ package com.study.column.mapper;
 import com.study.column.library.LibraryDTO;
 import com.study.column.library.LibraryCommentDTO;
 import com.study.column.fullNotice.FullNoticeDTO;
+import com.study.column.library.LibraryFileDTO;
 import com.study.column.util.PageDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -44,4 +45,6 @@ public interface LibraryMapper {
     int countTotalComment(PageDTO page) throws Exception;
 
     int getPostNumBeforeInsert() throws Exception;
+
+    void insertBoardFileList(List<LibraryFileDTO> fileList) throws Exception;
 }

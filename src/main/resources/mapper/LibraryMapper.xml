@@ -139,4 +139,9 @@
             FROM LIBRARY
     </select>
 
+    <insert id="insertBoardFileList">
+        INSERT INTO library_file(POST_NUM, ORIGINAL_FILE_NAME, FILE_PATH, FILE_SIZE)
+            VALUES(#{postNum}, #{originalFileName}, filePath, fileSize);
+    </insert>
+
 </mapper>

@@ -121,4 +121,9 @@ public class LibraryServiceImpl implements LibraryService {
     public int getPostNumBeforeInsert() throws Exception {
         return libraryMapper.getPostNumBeforeInsert();
     }
+
+    @Override
+    public void insertBoardFileList(List<LibraryFileDTO> fileList) throws Exception {
+        libraryMapper.insertBoardFileList(fileList);
+    }
 }

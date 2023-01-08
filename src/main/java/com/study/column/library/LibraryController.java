@@ -63,20 +63,13 @@ public class LibraryController {
     public String submitPost(LibraryDTO libraryDTO, HttpServletRequest request,
                              MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         log.debug("글 등록 처리");
-        //파일 업로드 처리
-        MultipartFile uploadFile = libraryDTO.getUploadFile();
-        if(!uploadFile.isEmpty()) {
-            String fileName = uploadFile.getOriginalFilename();
-            log.debug("첨부파일 생성 {}", fileName);
-            uploadFile.transferTo(new File("C:/testsite/" + fileName)); // 유틸클래스랑 업로드 처리 중복. 수정하기
-        }
         int postNum = libraryService.getPostNumBeforeInsert();
         FileUtils fileUtils = new FileUtils();
         log.debug("게시물번호 확인 : {}", postNum);
         List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(postNum, request, multipartHttpServletRequest);
-        if(CollectionUtils.isEmpty(fileList) == false) {
+        if(!CollectionUtils.isEmpty(fileList)) {
             log.debug("첨부파일 관련 쿼리 구현해야함");
-            // boardService.insertBoardFileList(fileList); 파일첨부 서비스 부분 구현해야함
+            libraryService.insertBoardFileList(fileList);
         }
         libraryService.submitPost(libraryDTO);
         return "redirect:/library/list";

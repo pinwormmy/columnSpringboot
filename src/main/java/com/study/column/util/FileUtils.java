@@ -24,10 +24,10 @@ public class FileUtils {
             return null;
         }
         List<LibraryFileDTO> fileList = new ArrayList<>();
-        String uploadPath = "C:/testsite/";
+        String uploadPath = "C:\\testsite\\upload/";
         File file = new File(uploadPath);
         log.debug("첨부파일 절대경로 : {}", file);
-        if(file.exists() == false) {
+        if(!file.exists()) {
             log.debug("업로드 폴더 없어서 생성함");
             file.mkdir();
         }

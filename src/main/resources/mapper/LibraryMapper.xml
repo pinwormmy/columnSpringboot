@@ -124,11 +124,6 @@
             ORDER BY POST_NUM DESC
     </select>
 
-    <insert id="insertFileList" parameterType="com.study.column.library.LibraryFileDTO">
-        INSERT INTO LIBRARY_FILE (POST_NUM, ORIGINAL_FILE_NAME, FILE_PATH, FILE_SIZE)
-            VALUES (  #{seq},  #{originalFileName},  #{filePath}, #{fileSize})
-    </insert>
-
     <select id="showFileList" parameterType="int" resultType="com.study.column.library.LibraryFileDTO">
         SELECT * FROM BOARD_FILE
             WHERE POST_NUM = #{postNum}
@@ -139,9 +134,9 @@
             FROM LIBRARY
     </select>
 
-    <insert id="insertBoardFileList">
+    <insert id="insertBoardFileList" parameterType="com.study.column.library.LibraryFileDTO">
         INSERT INTO library_file(POST_NUM, ORIGINAL_FILE_NAME, FILE_PATH, FILE_SIZE)
-            VALUES(#{postNum}, #{originalFileName}, filePath, fileSize);
+            VALUES(#{postNum}, #{originalFileName}, #{filePath}, #{fileSize});
     </insert>
 
 </mapper>

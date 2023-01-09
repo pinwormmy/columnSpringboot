@@ -42,6 +42,7 @@ public class FileUtils {
                 libraryFileDTO.setFileSize((int) mf.getSize());
                 libraryFileDTO.setOriginalFileName(mf.getOriginalFilename());
                 libraryFileDTO.setFilePath(uploadPath);
+                log.debug("단일파일 정보 입력 확인 : {}", libraryFileDTO);
                 fileList.add(libraryFileDTO);
                 file = new File(uploadPath + mf.getOriginalFilename());
                 log.debug("호출된 첨부파일 경로+원본명 : {}", file);

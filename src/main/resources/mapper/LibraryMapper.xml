@@ -134,9 +134,12 @@
             FROM LIBRARY
     </select>
 
-    <insert id="insertBoardFileList" parameterType="com.study.column.library.LibraryFileDTO">
+    <insert id="insertBoardFileList" parameterType="java.util.List">
         INSERT INTO library_file(POST_NUM, ORIGINAL_FILE_NAME, FILE_PATH, FILE_SIZE)
-            VALUES(#{postNum}, #{originalFileName}, #{filePath}, #{fileSize});
+            VALUES
+            <foreach item="list" index="index" collection="java.util.List" separator=" , ">
+                (#{list.postNum}, #{list.originalFileName}, #{list.filePath}, #{list.fileSize})
+            </foreach>
     </insert>
 
 </mapper>

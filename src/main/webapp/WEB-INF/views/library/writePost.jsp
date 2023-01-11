@@ -83,6 +83,8 @@ body {
                             <input type="checkbox" name="notice" value="1">공지로 등록<br>
                             <textarea name="content" id="content"></textarea><br>
                             <input type="file" name="uploadFile" multiple="multiple">
+                            <div id="addFileForm"></div>
+                            <input type="button" value="파일 추가" onClick="addFile()"><br>
                             <button class="pull-left btn btn-theme">게시하기</button>
                             <button type="button" class="pull-left btn btn-theme" onclick="location.href='/library/list'">취소</button>
                         </form>
@@ -94,8 +96,15 @@ body {
 </section>
 <%@include file="../include/footer.jspf" %>
 
-<script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+<script type="text/javascript">
+
     CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
+    var cnt = 1;
+    function addFile(){
+        $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt + "' />");
+        cnt++;
+    }
+
 </script>
 
 </body>

@@ -137,7 +137,7 @@
     <insert id="insertBoardFileList" parameterType="java.util.List">
         INSERT INTO library_file(POST_NUM, ORIGINAL_FILE_NAME, FILE_PATH, FILE_SIZE)
             VALUES
-            <foreach item="list" index="index" collection="java.util.List" separator=" , ">
+            <foreach item="list" index="index" collection="fileList" separator=" , ">
                 (#{list.postNum}, #{list.originalFileName}, #{list.filePath}, #{list.fileSize})
             </foreach>
     </insert>

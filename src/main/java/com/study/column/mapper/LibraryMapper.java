@@ -47,4 +47,6 @@ public interface LibraryMapper {
     int getPostNumBeforeInsert() throws Exception;
 
     void insertBoardFileList(List<LibraryFileDTO> fileList) throws Exception;
+
+    List<LibraryFileDTO> showFileListInPost(int postNum) throws Exception;
 }

@@ -44,6 +44,7 @@ public class LibraryController {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         checkIpAndUpdateViews(request, postNum);
         model.addAttribute("post", libraryService.readPost(postNum));
+        model.addAttribute("fileList", libraryService.showFileListInPost(postNum));
         return "library/readPost";
     }
     private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {

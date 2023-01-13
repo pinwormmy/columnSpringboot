@@ -292,7 +292,7 @@ $(document).ready(function() {
     $(".downlink").click(function(e){
         e.preventDefault();
         var fileName = $(this).attr("href");
-        window.location = "fileDown.do?fileName=" + fileName;
+        window.location = "fileDownload?fileName=" + fileName;
     });
 });
 

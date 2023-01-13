@@ -5,19 +5,20 @@ import com.study.column.util.IpService;
 import com.study.column.util.PageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -123,5 +124,31 @@ public class LibraryController {
     @ResponseBody
     public void updateCommentCount(int postNum) throws Exception {
         libraryService.updateCommentCount(postNum);
+    }
+
+    @RequestMapping(value="/fileDownload")
+    @ResponseBody
+    public ResponseEntity<Resource> fileDown(@RequestParam("fileName") String fileName,
+                                             HttpServletRequest request) throws Exception {
+        //업로드 파일 경로
+        String path = request.getSession().getServletContext().getRealPath("/") + "/upload/";
+
+        //파일경로, 파일명으로 리소스 객체 생성
+        Resource resource = new FileSystemResource(path + fileName);
+
+        //파일 명
+        String resourceName = resource.getFilename();
+
+        //Http헤더에 옵션을 추가하기 위해서 헤더 변수 선언
+        HttpHeaders headers = new HttpHeaders();
+
+        try {
+            //헤더에 파일명으로 첨부파일 추가
+            headers.add("Content-Disposition", "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),
+                    "ISO-8859-1"));
+        } catch(UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
     }
 }

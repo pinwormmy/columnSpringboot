@@ -131,7 +131,7 @@ public class LibraryController {
     @ResponseBody
     public ResponseEntity<Resource> fileDown(@RequestParam("fileName") String fileName,
                                              HttpServletRequest request) {
-        // 뜬금포로 rest api개념을 넣게 되는데 다른데 적용하나도 안하다가 여기 다 써도 될까?
+        // 뜬금포로 rest api개념을 넣게 됨. 여기에만 적용하는 것이 가능하면 그대로 적용하기
         //업로드 파일 경로
         String path = request.getSession().getServletContext().getRealPath("/") + "/upload/";
         //파일경로, 파일명으로 리소스 객체 생성
@@ -140,13 +140,9 @@ public class LibraryController {
         String resourceName = resource.getFilename();
         //Http헤더에 옵션을 추가하기 위해서 헤더 변수 선언
         HttpHeaders headers = new HttpHeaders();
-        try {
-            //헤더에 파일명으로 첨부파일 추가
-            headers.add("Content-Disposition", "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),
-                    StandardCharsets.ISO_8859_1));
-        } catch(UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        //헤더에 파일명으로 첨부파일 추가
+        headers.add("Content-Disposition", "attachment; filename=" + new String(resourceName.getBytes(StandardCharsets.UTF_8),
+                StandardCharsets.ISO_8859_1));
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
 }

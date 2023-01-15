@@ -167,6 +167,8 @@ body {
     </div>
 </section>
 
+<%@include file="../include/footer.jspf" %>
+
 <script>
 
 //alert("js test 21");
@@ -298,6 +300,5 @@ $(document).ready(function() {
 
 </script>
 
-<%@include file="../include/footer.jspf" %>
 </body>
 </html>

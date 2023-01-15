@@ -156,15 +156,15 @@ span {
                                     <span><a href="/library/list">자료실</a></span>
                                      <table class="boardList">
                                             <c:forEach var="post" items="${libraryList}">
-                                            <tr>
-                                                <td>
-                                                <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                            </tr>
+                                                <tr>
+                                                    <td>
+                                                    <a class="postTitle" href="/library/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                </tr>
                                             </c:forEach>
                                      </table>
-                                     <c:if test="${empty opencolumnList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
+                                     <c:if test="${empty libraryList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
                                 </div>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->

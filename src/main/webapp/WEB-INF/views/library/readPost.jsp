@@ -293,7 +293,7 @@ function updateCommentCount(postNum) {
 $(document).ready(function() {
     $(".downlink").click(function(e){
         e.preventDefault();
-        alert("a태그 이동 중단 확인");
+        // alert("a태그 href방지 확인");
         var fileName = $(this).attr("href");
         window.location = "fileDownload?fileName=" + fileName;
     });

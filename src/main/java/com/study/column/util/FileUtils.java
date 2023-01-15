@@ -32,21 +32,25 @@ public class FileUtils {
             file.mkdir();
         }
         Iterator<String> iterator = mhsr.getFileNames();
+        
+        // 코드 정리 필요
         while(iterator.hasNext()) {
-            //파일명으로 파일 리스트 꺼내오기
             List<MultipartFile> list = mhsr.getFiles(iterator.next());
-            //파일 리스트 개수 만큼 리턴할 파일 리스트에 담아주고 생성
             for(MultipartFile mf : list) {
-                LibraryFileDTO libraryFileDTO = new LibraryFileDTO();
-                libraryFileDTO.setPostNum(postNum);
-                libraryFileDTO.setFileSize((int) mf.getSize());
-                libraryFileDTO.setOriginalFileName(mf.getOriginalFilename());
-                libraryFileDTO.setFilePath(uploadPath);
-                log.debug("단일파일 정보 입력 확인 : {}", libraryFileDTO);
-                fileList.add(libraryFileDTO);
-                file = new File(uploadPath + mf.getOriginalFilename());
-                log.debug("호출된 첨부파일 경로+원본명 : {}", file);
-                mf.transferTo(file);
+                if(mf.getSize() > 0) {
+                    LibraryFileDTO libraryFileDTO = new LibraryFileDTO();
+                    libraryFileDTO.setPostNum(postNum);
+                    libraryFileDTO.setFileSize((int) mf.getSize());
+                    libraryFileDTO.setOriginalFileName(mf.getOriginalFilename());
+                    libraryFileDTO.setFilePath(uploadPath);
+                    log.debug("단일파일 정보 입력 확인 : {}", libraryFileDTO);
+                    fileList.add(libraryFileDTO);
+                    file = new File(uploadPath + mf.getOriginalFilename());
+                    log.debug("호출된 첨부파일 경로+원본명 : {}", file);
+                    mf.transferTo(file);
+                }else {
+                    fileList = null;
+                }
             }
         }
         return fileList;

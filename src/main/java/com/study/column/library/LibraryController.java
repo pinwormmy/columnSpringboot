@@ -132,12 +132,12 @@ public class LibraryController {
     public ResponseEntity<Resource> fileDown(@RequestParam("fileName") String fileName,
                                              HttpServletRequest request) {
         // 뜬금포로 rest api개념을 넣게 됨. 여기에만 적용하는 것이 가능하면 그대로 적용하기
-        //업로드 파일 경로
-        String path = request.getSession().getServletContext().getRealPath("/") + "/upload/";
-        //파일경로, 파일명으로 리소스 객체 생성
+        log.debug("다운로드 컨트롤러 진입");
+        String path = "C:\\testsite\\upload/";
         Resource resource = new FileSystemResource(path + fileName);
-        //파일 명
+        log.debug("다운로드할 파일이름 확인 : {}", resource);
         String resourceName = resource.getFilename();
+        log.debug("다운로드 시 인식된 파일이름 : {}", resourceName);
         //Http헤더에 옵션을 추가하기 위해서 헤더 변수 선언
         HttpHeaders headers = new HttpHeaders();
         //헤더에 파일명으로 첨부파일 추가

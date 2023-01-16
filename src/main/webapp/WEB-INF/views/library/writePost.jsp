@@ -84,7 +84,9 @@ body {
                             <textarea name="content" id="content"></textarea><br>
                             <!-- <input type="file" name="uploadFile" multiple="multiple"> 목록 인식하는거 확인필요 -->
                             <div id="addFileForm"></div>
-                            <input type="button" value="첨부파일 추가" onClick="addFile()"><br>
+                            <input type="button" value="첨부파일 추가" onClick="addFile();">
+                            <input type="button" value="파일첨부 취소" onclick="cancelFile();">
+                            <br>
                             <button class="pull-left btn btn-theme">게시하기</button>
                             <button type="button" class="pull-left btn btn-theme" onclick="location.href='/library/list'">취소</button>
                         </form>
@@ -101,8 +103,12 @@ body {
     CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
     var cnt = 1;
     function addFile(){
-        $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt + "' />");
+        $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt + "' required />");
         cnt++;
+    }
+    function cancelFile() {
+        $("#addFileForm").empty();
+        cnt = 0;
     }
 
 </script>

@@ -142,4 +142,9 @@
             WHERE POST_NUM = #{postNum}
     </select>
 
+    <delete id="deleteFileList" parameterType="int">
+        DELETE FROM LIBRARY_FILE
+            WHERE POST_NUM = #{postNum}
+    </delete>
+
 </mapper>

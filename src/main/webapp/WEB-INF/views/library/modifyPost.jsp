@@ -85,9 +85,7 @@ body {
                                 <c:if test="${post.notice == 1}">checked</c:if> />공지로 등록<br>
                                 <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                 <textarea name="content" id="content">${post.content}</textarea><br>
-                                <script type="text/javascript">
-                                    CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
-                                </script>
+
                                 <button class="pull-left btn btn-theme">수정하기</button>
                                 <button type="button" class="pull-left btn btn-theme" onclick="location.href='/library/readPost?postNum=${post.postNum}'">취소</button>
                             </form>
@@ -100,14 +98,17 @@ body {
 </section>
 <%@include file="../include/footer.jspf" %>
 
-<script>
-let noticeChecked = document.getElementById("noticeChecked");
-let noticeUnchecked = document.getElementById("noticeUnchecked");
+<script type="text/javascript">
 
-function checkboxForNotice() {
-    if(noticeChecked.checked) { noticeUnchecked.disabled = true; }
-    else { noticeUnchecked.disabled = false; }
-}
+    CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
+    let noticeChecked = document.getElementById("noticeChecked");
+    let noticeUnchecked = document.getElementById("noticeUnchecked");
+
+    function checkboxForNotice() {
+        if(noticeChecked.checked) { noticeUnchecked.disabled = true; }
+        else { noticeUnchecked.disabled = false; }
+    }
+
 </script>
 
 </body>

@@ -131,4 +131,9 @@ public class LibraryServiceImpl implements LibraryService {
     public List<LibraryFileDTO> showFileListInPost(int postNum) throws Exception {
         return libraryMapper.showFileListInPost(postNum);
     }
+
+    @Override
+    public void deleteFileList(int postNum) throws Exception {
+        libraryMapper.deleteFileList(postNum);
+    }
 }

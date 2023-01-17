@@ -81,6 +81,7 @@ public class LibraryController {
     @RequestMapping("/deletePost")
     public String deletePost(int postNum) throws Exception {
         libraryService.deletePost(postNum);
+        libraryService.deleteFileList(postNum);
         return "redirect:/library/list";
     }
 

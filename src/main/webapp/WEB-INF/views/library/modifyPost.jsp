@@ -86,6 +86,11 @@ body {
                                 <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                 <textarea name="content" id="content">${post.content}</textarea><br>
 
+                                <!-- 수정페이지에서 첨부코드 어떻게 처리하는지 확인 -->
+                                <div id="addFileForm"></div>
+                                <input type="button" value="첨부파일 추가" onClick="addFile();">
+                                <input type="button" value="파일첨부 취소" onclick="cancelFile();">
+                                <br>
                                 <button class="pull-left btn btn-theme">수정하기</button>
                                 <button type="button" class="pull-left btn btn-theme" onclick="location.href='/library/readPost?postNum=${post.postNum}'">취소</button>
                             </form>

@@ -82,7 +82,6 @@ body {
                             제목 <input type="text" name="title" size="60" required>
                             <input type="checkbox" name="notice" value="1">공지로 등록<br>
                             <textarea name="content" id="content"></textarea><br>
-                            <!-- <input type="file" name="uploadFile" multiple="multiple"> 목록 인식하는거 확인필요 -->
                             <div id="addFileForm"></div>
                             <input type="button" value="첨부파일 추가" onClick="addFile();">
                             <input type="button" value="파일첨부 취소" onclick="cancelFile();">

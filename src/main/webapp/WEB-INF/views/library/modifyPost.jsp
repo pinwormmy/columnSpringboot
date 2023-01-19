@@ -85,9 +85,9 @@ body {
                                 <c:if test="${post.notice == 1}">checked</c:if> />공지로 등록<br>
                                 <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                 <textarea name="content" id="content">${post.content}</textarea><br>
+                                <div id="addFileForm">
 
-                                <!-- 수정페이지에서 첨부코드 어떻게 처리하는지 확인 -->
-                                <div id="addFileForm"></div>
+                                </div>
                                 <input type="button" value="첨부파일 추가" onClick="addFile();">
                                 <input type="button" value="파일첨부 취소" onclick="cancelFile();">
                                 <br>
@@ -112,6 +112,21 @@ body {
     function checkboxForNotice() {
         if(noticeChecked.checked) { noticeUnchecked.disabled = true; }
         else { noticeUnchecked.disabled = false; }
+    }
+
+    var cnt = 1;
+    function addFileAboutAlreadySelected(String fileName){
+        $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt +
+        "' value='" + fileName +"' required />");
+        cnt++;
+    }
+    function addFile(){
+        $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt + "' required />");
+        cnt++;
+    }
+    function cancelFile() {
+        $("#addFileForm").empty();
+        cnt = 0;
     }
 
 </script>

@@ -88,6 +88,7 @@ public class LibraryController {
     @RequestMapping(value = "/modifyPost")
     public String modifyPost(Model model, int postNum) throws Exception {
         model.addAttribute("post", libraryService.readPost(postNum));
+        model.addAttribute("fileList", libraryService.showFileListInPost(postNum));
         return "library/modifyPost";
     }
 

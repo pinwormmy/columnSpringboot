@@ -100,6 +100,7 @@ body {
 <script type="text/javascript">
 
     CKEDITOR.replace('content', {filebrowserUploadUrl:'/imageUpload'});
+
     var cnt = 1;
     function addFile(){
         $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt + "' required />");

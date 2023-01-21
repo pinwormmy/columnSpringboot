@@ -116,7 +116,7 @@ body {
                     <div class="info-row">
                         <span class="writer-info">작성자: ${post.writer}</span>
                         <span class="post-info">작성일 ${post.regDate}</span>
-                        <span style="float: right; color: white;">조회수 ${post.views}</span>
+                        <span style="float: right; margin-right: 10px;">조회수 ${post.views}</span>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 mb wow fadeInUp">

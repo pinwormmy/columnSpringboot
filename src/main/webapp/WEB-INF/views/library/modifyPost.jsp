@@ -77,7 +77,7 @@ body {
                             <h1>자료실 글 수정하기</h1>
                         </div>
                         <div class="col-xs-12 mb wow fadeInUp">
-                            <form action="/library/submitModifyPost" method="post">
+                            <form action="/library/submitModifyPost" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="writer" value="${post.writer}">
                                 <input type="hidden" name="postNum" value="${post.postNum}">
                                 제목 <input type="text" name="title" size="55" value="${post.title}" required>
@@ -86,7 +86,9 @@ body {
                                 <input type="hidden" name="notice" id="noticeUnchecked" value="0" />
                                 <textarea name="content" id="content">${post.content}</textarea><br>
                                 <div id="addFileForm">
-
+                                    <c:forEach var="file" items="${fileList}">
+                                        ${file.originalFileName} <br>
+                                    </c:forEach>
                                 </div>
                                 <input type="button" value="첨부파일 추가" onClick="addFile();">
                                 <input type="button" value="파일첨부 취소" onclick="cancelFile();">
@@ -115,18 +117,26 @@ body {
     }
 
     var cnt = 1;
-    function addFileAboutAlreadySelected(String fileName){
-        $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt +
-        "' value='" + fileName +"' required />");
-        cnt++;
-    }
     function addFile(){
         $("#addFileForm").append("<br>" + "<input type='file' name='file" + cnt + "' required />");
         cnt++;
     }
     function cancelFile() {
         $("#addFileForm").empty();
+        deleteFileList();
         cnt = 0;
+    }
+
+    function deleteFileList() {
+        // 제이쿼리ajax로 구현해보기
+        console.log("제이쿼리로 파일삭제 시도 :::");
+        $.ajax({
+            method : 'DELETE',
+            url : '/library/deleteFileList',
+            data : { postNum : ${post.postNum} }
+        }).done(function(result){
+            console.log(result);
+        });
     }
 
 </script>

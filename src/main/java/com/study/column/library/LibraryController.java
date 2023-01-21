@@ -71,7 +71,6 @@ public class LibraryController {
         log.debug("게시물번호 확인 : {}", postNum);
         List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(postNum, request, multipartHttpServletRequest);
         if(!CollectionUtils.isEmpty(fileList)) {
-            log.debug("첨부파일 관련 쿼리 구현해야함");
             libraryService.insertBoardFileList(fileList);
         }
         libraryService.submitPost(libraryDTO);
@@ -93,7 +92,16 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "/submitModifyPost")
-    public String submitModifyPost(LibraryDTO post) throws Exception {
+    public String submitModifyPost(LibraryDTO post, HttpServletRequest request,
+                                   MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        log.debug("글 수정 처리");
+        FileUtils fileUtils = new FileUtils();
+        log.debug("게시물번호 확인 : {}", post.getPostNum());
+        List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(post.getPostNum(), request, multipartHttpServletRequest);
+        if(!CollectionUtils.isEmpty(fileList)) {
+            log.debug("첨부파일 관련 쿼리 구현해야함");
+            libraryService.insertBoardFileList(fileList);
+        }
         libraryService.submitModifyPost(post);
         return "redirect:/library/readPost?postNum=" + post.getPostNum();
     }
@@ -147,4 +155,10 @@ public class LibraryController {
                 StandardCharsets.ISO_8859_1));
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
+
+    @DeleteMapping(value="/deleteFileList")
+    public void deleteFileList(int postNum) throws Exception {
+        libraryService.deleteFileList(postNum);
+    }
+
 }

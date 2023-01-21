@@ -121,8 +121,8 @@ body {
                         <span>첨부파일</span>
                         <c:if test="${empty fileList}">: 첨부파일이 없습니다.</c:if>
                         <c:forEach var="file" items="${fileList }">
-                            <a class="downlink" id="${file.fileNum}" href="${file.originalFileName }">${file.originalFileName }</a>
                             <br>
+                            <a class="downlink" id="${file.fileNum}" href="${file.originalFileName }">${file.originalFileName }</a>
                         </c:forEach>
                     </div>
                     <div class="row">

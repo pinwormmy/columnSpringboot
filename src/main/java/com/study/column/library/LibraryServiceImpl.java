@@ -118,8 +118,8 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public int getPostNumBeforeInsert() throws Exception {
-        return libraryMapper.getPostNumBeforeInsert();
+    public int getRecentPostNum() throws Exception {
+        return libraryMapper.getRecentPostNum();
     }
 
     @Override

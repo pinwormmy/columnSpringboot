@@ -44,7 +44,7 @@ public interface LibraryMapper {
 
     int countTotalComment(PageDTO page) throws Exception;
 
-    int getPostNumBeforeInsert() throws Exception;
+    int getRecentPostNum() throws Exception;
 
     void insertBoardFileList(List<LibraryFileDTO> fileList) throws Exception;
 

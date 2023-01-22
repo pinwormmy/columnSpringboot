@@ -66,14 +66,14 @@ public class LibraryController {
     public String submitPost(LibraryDTO libraryDTO, HttpServletRequest request,
                              MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         log.debug("글 등록 처리");
-        int postNum = libraryService.getPostNumBeforeInsert();
+        libraryService.submitPost(libraryDTO);
+        int postNum = libraryService.getRecentPostNum();
         FileUtils fileUtils = new FileUtils();
         log.debug("게시물번호 확인 : {}", postNum);
         List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(postNum, request, multipartHttpServletRequest);
         if(!CollectionUtils.isEmpty(fileList)) {
             libraryService.insertBoardFileList(fileList);
         }
-        libraryService.submitPost(libraryDTO);
         return "redirect:/library/list";
     }
 

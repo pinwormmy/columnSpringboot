@@ -38,7 +38,7 @@ public interface LibraryService {
 
     List<FullNoticeDTO> showFullNoticeList() throws Exception;
 
-    int getPostNumBeforeInsert() throws Exception;
+    int getRecentPostNum() throws Exception;
 
     void insertBoardFileList(List<LibraryFileDTO> fileList) throws Exception;
 

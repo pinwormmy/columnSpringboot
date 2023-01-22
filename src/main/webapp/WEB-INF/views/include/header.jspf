@@ -61,6 +61,9 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
 }
+.navbar-wrapper {
+    background-color: grey;
+}
 .this-header {
     width: 1140px;
     margin: 0 auto;
@@ -101,6 +104,9 @@ input {
     color: grey;
     font-size: 14px;
     text-align: center;
+}
+.header-menu ul li a {
+    color: white;
 }
 .header-menu-left {
     display: flex;
@@ -206,34 +212,36 @@ hr {
 </head>
 
 <body>
-<div class="this-header">
-    <div class="super-top-menu">
-        <ul>
-            <c:if test="${member == null}">
-                <li><a href="/loginForDemo">(시연용)일반로그인</a></li>
-                <li><a href="/loginForDemoAsAdmin">(시연용)관리자로그인</a></li>
-                <li><a href="/login">로그인</a></li>
-                <li><a href="/signUp">회원가입</a></li>
-            </c:if>
-            <c:if test="${member != null}">
-                <li>${member.id}님 로그인 중 : </li>
-                <li><a href="/logout">로그아웃</a></li>
-            </c:if>
-            <li><a href="javascript:comingSoon();">고객센터</a></li>
-        </ul>
+<div class="navbar-wrapper">
+    <div class="this-header">
+        <div class="super-top-menu">
+            <ul>
+                <c:if test="${member == null}">
+                    <li><a href="/loginForDemo">(시연용)일반로그인</a></li>
+                    <li><a href="/loginForDemoAsAdmin">(시연용)관리자로그인</a></li>
+                    <li><a href="/login">로그인</a></li>
+                    <li><a href="/signUp">회원가입</a></li>
+                </c:if>
+                <c:if test="${member != null}">
+                    <li>${member.id}님 로그인 중 : </li>
+                    <li><a href="/logout">로그아웃</a></li>
+                </c:if>
+                <li><a href="javascript:comingSoon();">고객센터</a></li>
+            </ul>
+        </div>
+        <nav class="header-menu">
+            <ul class="header-menu-left">
+                <li style="font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
+                <li style="padding-top: 8px;"><a href="/openColumn/list">게시판</a></li>
+                <li style="padding-top: 8px;"><a href="/library/list">자료실</a></li>
+            </ul>
+            <form class="searchbar" action="/"><input name="keyword"></form>
+            <ul class="header-menu-right">
+                <li style="padding-top: 8px;"><a href="javascript:goMyPage()">👤</a></li>
+            </ul>
+        </nav>
+        <hr class="color-hr">
     </div>
-    <nav class="header-menu">
-        <ul class="header-menu-left">
-            <li style="font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
-            <li style="padding-top: 8px;"><a href="/openColumn/list">게시판</a></li>
-            <li style="padding-top: 8px;"><a href="/library/list">자료실</a></li>
-        </ul>
-        <form class="searchbar" action="/"><input name="keyword"></form>
-        <ul class="header-menu-right">
-            <li style="padding-top: 8px;"><a href="javascript:goMyPage()">👤</a></li>
-        </ul>
-    </nav>
-    <hr class="color-hr">
 </div>
 
 </body>

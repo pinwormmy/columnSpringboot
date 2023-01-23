@@ -247,6 +247,7 @@ hr {
 </body>
 
 <script>
+    // 헬렐레하다가 시간 다 날림..정신똑바로 차려!!
 
     function comingSoon() {
         alert("업데이트 예정입니다.");

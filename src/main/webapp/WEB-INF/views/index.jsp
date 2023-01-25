@@ -70,12 +70,20 @@ span {
     font-weight: 300;
     border-bottom: 2px solid Turquoise;
 }
+.main-banner {
+    margin: 10px;
+    text-align: center;
+}
+
 </style>
 </head>
 <body>
 <%@include file="./include/header.jspf" %>
     <div class="section-inner">
         <div class="container">
+            <div class="main-banner">
+                <img src="/img/main_banner.jpg">
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">

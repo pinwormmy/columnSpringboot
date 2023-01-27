@@ -34,8 +34,11 @@ body {
     text-align: center;
 }
 .boardList tr th {
-    background-color: #EDFFFF;
+    border-top: 1px solid #AEAEAE;
+    border-bottom: 2px solid #D3D3D3;
+    padding: 5px;
     color: black;
+    font-size: 12px;
 }
 .boardList tr th:first-child {
     border-radius: 5px 0 0 0;
@@ -60,6 +63,9 @@ body {
 }
 .section-wrapper {
     min-height: 850px;
+}
+.notice-tr {
+    background-color: #F2F2F2;
 }
 </style>
 </head>
@@ -86,7 +92,7 @@ body {
                                                 <th>조회수</th>
                                             </tr>
                                             <c:forEach var="notice" items="${fullNoticeList}">
-                                            <tr>
+                                            <tr class="notice-tr">
                                                 <td><h4><span>[전체공지]</span>
                                                 <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
                                                  ${notice.title}</a>
@@ -97,7 +103,7 @@ body {
                                             </tr>
                                             </c:forEach>
                                             <c:forEach var="notice" items="${selfNoticeList}">
-                                            <tr>
+                                            <tr class="notice-tr">
                                                 <td><h4><span>[공지사항]</span>
                                                 <a class="noticeTitle" href="javascript:checkMemberLevelBeforeRead(${notice.postNum});">
                                                  ${notice.title}</a>

@@ -67,6 +67,7 @@ body {
     padding: 0.5rem 0.75rem;
     font-size: 20px;
     font-weight: 300;
+    border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
     background-color: #eee;
@@ -98,6 +99,10 @@ body {
 }
 .col-xs-12 p {
     color: black;
+    padding: 15px;
+}
+.col-md-9 {
+    padding: 15px;
 }
 </style>
 

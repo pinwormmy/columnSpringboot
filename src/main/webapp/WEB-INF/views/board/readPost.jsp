@@ -152,7 +152,7 @@ body {
                             </c:if>
                         </div><!--/#comments-->
                         <div class="post-navigation">
-                            <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>
+                            <a class="pull-left btn btn-theme" href="/board/list">글 목록</a>
                             <c:if test="${member.id == post.writer || member.grade == 3}">
                                 <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
                                 <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>

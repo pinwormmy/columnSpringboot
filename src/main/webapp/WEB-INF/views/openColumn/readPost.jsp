@@ -98,6 +98,10 @@ body {
 }
 .col-xs-12 p {
     color: black;
+    padding: 15px;
+}
+.col-md-9 {
+    padding: 15px;
 }
 </style>
 

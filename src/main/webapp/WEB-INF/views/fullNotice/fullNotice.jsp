@@ -128,10 +128,8 @@ body {
                                         다음</a>
                                     </c:if>
                                 </div>
-
-
                                 <div class="media">
-                                    회원연재게시판
+                                    승인연재게시판
                                      <table class="boardList">
                                             <tr>
                                                 <th>제목</th>
@@ -152,7 +150,6 @@ body {
                                      </table>
                                      <c:if test="${empty boardList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
                                 </div>
-
                                 <div class="media">
                                     공개연재게시판
                                      <table class="boardList">
@@ -197,7 +194,6 @@ body {
                                      </table>
                                      <c:if test="${empty videoList}"><tr><td>현재 등록된 공지사항이 없습니다.</td></tr></c:if>
                                 </div>
-
                                 <div class="media">
                                      <span><a href="/library/list">자료실</a></span>
                                      <table class="boardList">

@@ -85,7 +85,7 @@ body {
     float: right;
 }
 .single-section-title {
-    padding: 0.5rem 0.75rem;
+    padding: 5px 5px;
     font-size: 20px;
     font-weight: 300;
     border-top: 1px solid;
@@ -150,15 +150,14 @@ body {
                                     <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                                 </div><!--/#comment-form-->
                             </c:if>
-                            </div>
-                            <div class="post-navigation">
-                                <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>
-                                <c:if test="${member.id == post.writer || member.grade == 3}">
-                                    <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                    <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
-                                </c:if>
-                            </div>
                         </div><!--/#comments-->
+                        <div class="post-navigation">
+                            <a class="pull-left btn btn-theme" href="/openColumn/list">글 목록</a>
+                            <c:if test="${member.id == post.writer || member.grade == 3}">
+                                <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
+                                <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -98,6 +98,10 @@ body {
 }
 .col-xs-12 p {
     color: black;
+    padding: 15px;
+}
+.col-md-9 {
+    padding: 15px;
 }
 </style>
 
@@ -145,14 +149,14 @@ body {
                                     <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                                 </div><!--/#comment-form-->
                             </c:if>
-                            <div class="post-navigation">
-                                <a class="pull-left btn btn-theme" href="/fullNotice/list">글 목록</a>
-                                <c:if test="${member.id == post.writer || member.grade == 3}">
-                                    <a class="pull-right btn btn-theme" href="/fullNotice/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                    <a class="pull-right btn btn-theme" href="/fullNotice/deletePost?postNum=${post.postNum}">글 삭제</a>
-                                </c:if>
-                            </div>
                         </div><!--/#comments-->
+                        <div class="post-navigation">
+                            <a class="pull-left btn btn-theme" href="/fullNotice/list">글 목록</a>
+                            <c:if test="${member.id == post.writer || member.grade == 3}">
+                                <a class="pull-right btn btn-theme" href="/fullNotice/modifyPost?postNum=${post.postNum}">글 수정</a>
+                                <a class="pull-right btn btn-theme" href="/fullNotice/deletePost?postNum=${post.postNum}">글 삭제</a>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>

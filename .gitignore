@@ -6,8 +6,6 @@ build/
 !**/src/test/**/build/
 
 ### properties ###
-application.properties
-application-local.properties
 application-online.properties
 
 ### STS ###

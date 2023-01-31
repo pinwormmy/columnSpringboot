@@ -94,7 +94,7 @@ body {
     background-color: #eee;
 }
 .btn-theme {
-    margin: 10px;
+    margin: 10px 0;
     float: right;
 }
 .col-xs-12 p {
@@ -103,6 +103,26 @@ body {
 }
 .col-md-9 {
     padding: 15px;
+}
+.basic-button {
+    color: white;
+    background-color: Turquoise;
+    font-size: 14px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 300;
+    margin: 5px;
+}
+.basic-button-white {
+    color: Turquoise;
+    background-color: white;
+    border: 1px solid Turquoise;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: 300;
+    margin: 5px;
 }
 </style>
 <!-- 펫몰에서 버튼 디자인 등 가져오기 -->
@@ -146,16 +166,18 @@ body {
                                         <div class="col-sm-12">
                                             <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <button type="button" class="pull-right basic-button" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
+                                        </div>
                                     </div>
-                                    <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                                 </div><!--/#comment-form-->
                             </c:if>
                         </div><!--/#comments-->
-                        <div class="post-navigation">
-                            <a class="pull-left btn btn-theme" href="/board/list">글 목록</a>
+                        <div class="post-navigation col-xs-12"" >
+                            <a class="pull-left basic-button-white" href="/board/list">📝글 목록</a>
                             <c:if test="${member.id == post.writer || member.grade == 3}">
-                                <a class="pull-right btn btn-theme" href="/openColumn/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                <a class="pull-right btn btn-theme" href="/openColumn/deletePost?postNum=${post.postNum}">글 삭제</a>
+                                <a class="pull-right basic-button-white" href="/board/deletePost?postNum=${post.postNum}">🗑️글 삭제</a>
+                                <a class="pull-right basic-button-white" href="/board/modifyPost?postNum=${post.postNum}">✏️글 수정</a>
                             </c:if>
                         </div>
                     </div>

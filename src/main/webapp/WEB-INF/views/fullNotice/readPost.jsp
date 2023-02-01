@@ -93,7 +93,7 @@ body {
     background-color: #eee;
 }
 .btn-theme {
-    margin: 10px;
+    margin: 10px 0;
     float: right;
 }
 .col-xs-12 p {
@@ -102,6 +102,26 @@ body {
 }
 .col-md-9 {
     padding: 15px;
+}
+.basic-button {
+    color: white;
+    background-color: Turquoise;
+    font-size: 14px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 300;
+    margin: 5px;
+}
+.basic-button-white {
+    color: Turquoise;
+    background-color: white;
+    border: 1px solid Turquoise;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: 300;
+    margin: 5px;
 }
 </style>
 
@@ -150,11 +170,11 @@ body {
                                 </div><!--/#comment-form-->
                             </c:if>
                         </div><!--/#comments-->
-                        <div class="post-navigation">
-                            <a class="pull-left btn btn-theme" href="/fullNotice/list">글 목록</a>
+                        <div class="post-navigation col-xs-12"">
+                            <a class="pull-left basic-button-white" href="/fullNotice/list">글 목록</a>
                             <c:if test="${member.id == post.writer || member.grade == 3}">
-                                <a class="pull-right btn btn-theme" href="/fullNotice/modifyPost?postNum=${post.postNum}">글 수정</a>
-                                <a class="pull-right btn btn-theme" href="/fullNotice/deletePost?postNum=${post.postNum}">글 삭제</a>
+                                <a class="pull-right basic-button-white" href="/fullNotice/modifyPost?postNum=${post.postNum}">글 수정</a>
+                                <a class="pull-right basic-button-white" href="/fullNotice/deletePost?postNum=${post.postNum}">글 삭제</a>
                             </c:if>
                         </div>
                     </div>

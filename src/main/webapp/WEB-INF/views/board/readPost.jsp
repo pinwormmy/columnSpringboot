@@ -173,7 +173,7 @@ body {
                                 </div><!--/#comment-form-->
                             </c:if>
                         </div><!--/#comments-->
-                        <div class="post-navigation col-xs-12"" >
+                        <div class="post-navigation col-xs-12">
                             <a class="pull-left basic-button-white" href="/board/list">📝글 목록</a>
                             <c:if test="${member.id == post.writer || member.grade == 3}">
                                 <a class="pull-right basic-button-white" href="/board/deletePost?postNum=${post.postNum}">🗑️글 삭제</a>

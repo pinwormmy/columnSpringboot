@@ -148,7 +148,7 @@ body {
                             ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
-                            <c:if test="${post.commentCount > 0 || member.grade > 1}">
+                            <c:if test="${post.commentCount > 0 && member.grade > 1}">
                                 <div class="mb">
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>

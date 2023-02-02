@@ -147,7 +147,7 @@ body {
                             ${post.content}
                         </div>
                         <div id="comments" class="col-xs-12">
-                            <c:if test="${post.commentCount > 0 || member.grade > 1}">
+                            <c:if test="${post.commentCount > 0 && member.grade > 1}">
                                 <div class="mb">
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>
@@ -166,7 +166,7 @@ body {
                                             <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-theme" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
+                                    <button type="button" class="pull-right basic-button" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
                                 </div><!--/#comment-form-->
                             </c:if>
                         </div>

@@ -66,7 +66,7 @@ body {
 .post-title {
     padding: 0.5rem 0.75rem;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
@@ -167,7 +167,7 @@ body {
                                             <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
                                         </div>
                                         <div class="col-sm-12">
-                                            <button type="button" class="pull-right basic-button" style="margin-left: 15px;" onclick="addComment();">댓글 달기</button>
+                                            <button type="button" class="pull-right basic-button" style="margin-left: 15px;" onclick="addComment();">🔖댓글 달기</button>
                                         </div>
                                     </div>
                                 </div><!--/#comment-form-->

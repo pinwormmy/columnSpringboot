@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>공개연재게시판</title>
-
 <style>
 body {
     height: 100%;
@@ -28,8 +26,7 @@ body {
 .boardList tr:last-child {
     border: none;
 }
-.boardList th,
-.boardList td {
+.boardList th, td {
     padding: 2px;
     text-align: center;
 }
@@ -85,23 +82,24 @@ body {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
+                                     여기 표시 뭐야? 왜뜨는거?
                                      <table class="boardList">
                                             <tr>
-                                                <th>제목</th>
-                                                <th>작성자</th>
-                                                <th>작성일자</th>
-                                                <th>조회수</th>
+                                                <th style="width: 65%;">제목</th>
+                                                <th style="width: 15%;">작성자</th>
+                                                <th style="width: 10%;">작성일자</th>
+                                                <th style="width: 10%;">조회수</th>
                                             </tr>
                                             <c:forEach var="notice" items="${fullNoticeList}">
-                                            <tr class="notice-tr">
-                                                <td><h4><span>[전체공지]</span>
-                                                <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
-                                                 ${notice.title}</a>
-                                                <td>${notice.writer}</td>
-                                                <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
-                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
-                                                <td>${notice.views}</td>
-                                            </tr>
+                                                <tr class="notice-tr">
+                                                    <td><h4><span>[전체공지]</span>
+                                                    <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
+                                                     ${notice.title}</a>
+                                                    <td>${notice.writer}</td>
+                                                    <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
+                                                    <td>${notice.views}</td>
+                                                </tr>
                                             </c:forEach>
                                             <c:forEach var="notice" items="${selfNoticeList}">
                                             <tr class="notice-tr">

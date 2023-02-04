@@ -82,7 +82,7 @@ body {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
-                                     여기 표시 뭐야? 왜뜨는거?
+                                     여기 표시 뭐야? 왜뜨는거????
                                      <table class="boardList">
                                             <tr>
                                                 <th style="width: 65%;">제목</th>

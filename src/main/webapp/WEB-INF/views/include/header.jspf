@@ -50,30 +50,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 <style>
 @font-face {
     font-family: "NanumSquareNeo";
-    src: url("../fonts/NanumSquareNeo-aLt.ttf") format("truetype");
-    font-weight: 300;
+    src: url("../fonts/NanumSquareNeo-Variable.ttf") format("truetype");
 }
-@font-face {
-    font-family: "NanumSquareNeo";
-    src: url("../fonts/NanumSquareNeo-bRg.ttf") format("truetype");
-    font-weight: 400;
-}
-@font-face {
-    font-family: "NanumSquareNeo";
-    src: url("../fonts/NanumSquareNeo-cBd.ttf") format("truetype");
-    font-weight: 700;
-}
-@font-face {
-    font-family: "NanumSquareNeo";
-    src: url("../fonts/NanumSquareNeo-dEb.ttf") format("truetype");
-    font-weight: 800;
-}
-@font-face {
-    font-family: "NanumSquareNeo";
-    src: url("../fonts/NanumSquareNeo-eHv.ttf") format("truetype");
-    font-weight: 900;
-}
-
 
 html {
     height: 100%;
@@ -84,7 +62,7 @@ body {
     height: 100%;
     font-family: 'NanumSquareNeo', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
 }
 h1, h2, h3, h4, h5, h6, p {
     font-family: 'NanumSquareNeo', sans-serif;
@@ -279,8 +257,6 @@ hr {
 </body>
 
 <script>
-    // 헬렐레하다가 시간 다 날림..정신똑바로 차려!!
-    // 운동은 했는데 코딩은 거의 안함..일단 면접준비부터하자;;
 
     function comingSoon() {
         alert("업데이트 예정입니다.");

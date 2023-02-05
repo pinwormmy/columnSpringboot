@@ -81,8 +81,10 @@ body {
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
+
                                 <div class="media">
-                                     여기 표시 뭐야? 왜뜨는거????
+
+
                                      <table class="boardList">
                                             <tr>
                                                 <th style="width: 65%;">제목</th>
@@ -102,26 +104,27 @@ body {
                                                 </tr>
                                             </c:forEach>
                                             <c:forEach var="notice" items="${selfNoticeList}">
-                                            <tr class="notice-tr">
-                                                <td><h4><span>[공지사항]</span>
-                                                <a class="noticeTitle" href="/openColumn/readPost?postNum=${notice.postNum}">
-                                                 ${notice.title}</a>
-                                                <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
-                                                <td>${notice.writer}</td>
-                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
-                                                <td>${notice.views}</td>
-                                            </tr>
+                                                <tr class="notice-tr">
+                                                    <td><h4><span>[공지사항]</span>
+                                                    <a class="noticeTitle" href="/openColumn/readPost?postNum=${notice.postNum}">
+                                                     ${notice.title}</a>
+                                                    <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                    <td>${notice.writer}</td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
+                                                    <td>${notice.views}</td>
+                                                </tr>
                                             </c:forEach>
                                             <c:forEach var="post" items="${postList}">
-                                            <tr>
-                                                <td><h4><a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                <td>${post.writer}</td>
-                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                                <td>${post.views}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td><h4><a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                    <td>${post.writer}</td>
+                                                    <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                                    <td>${post.views}</td>
+                                                </tr>
                                             </c:forEach>
                                      </table>
+
                                      <c:if test="${empty postList}"><tr><td>관련 글이 없습니다...</td></tr></c:if>
                                 </div>
                                 <div class="post-navigation">

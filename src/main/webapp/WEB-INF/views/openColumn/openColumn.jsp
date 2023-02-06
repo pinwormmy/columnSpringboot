@@ -81,10 +81,7 @@ body {
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
-
                                 <div class="media">
-
-
                                      <table class="boardList">
                                             <tr>
                                                 <th style="width: 65%;">제목</th>
@@ -97,8 +94,8 @@ body {
                                                     <td><h4><span>[전체공지]</span>
                                                     <a class="noticeTitle" href="/fullNotice/readPost?postNum=${notice.postNum}">
                                                      ${notice.title}</a>
-                                                    <td>${notice.writer}</td>
                                                     <c:if test="${notice.commentCount > 0}">( ${notice.commentCount} )</c:if></h4></td>
+                                                    <td>${notice.writer}</td>
                                                     <td><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.regDate}"/></td>
                                                     <td>${notice.views}</td>
                                                 </tr>
@@ -170,5 +167,9 @@ body {
     </div>
 </section>
 <%@include file="../include/footer.jspf" %>
+
+<script>
+alert("js00 test");
+</script>
 </body>
 </html>

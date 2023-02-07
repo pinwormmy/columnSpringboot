@@ -75,17 +75,23 @@ span {
     text-align: center;
 }
 
+
 </style>
 </head>
 <body>
 <%@include file="./include/header.jspf" %>
     <div class="section-inner">
-        <div class="container">
+        <div class="container" style="width: 1600px;">
             <div class="main-banner">
                 <img src="/img/main_banner.jpg">
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-2">
+                    <div class="side-banner">
+                        <img src="/img/left_banner_ex1.jpg" width="100%">
+                    </div>
+                </div>
+                <div class="col-lg-4">
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
@@ -106,34 +112,7 @@ span {
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
                     </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="row">
-                        <div id="comments" class="col-xs-12">
-                            <div id="comments-list" class="gap">
-                                <div class="media">
-                                    <span><a href="/board/list">승인연재게시판</a></span>
-                                     <table class="boardList">
-                                            <c:forEach var="post" items="${boardList}">
-                                            <tr>
-                                                <td>
-                                                <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
-                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
-                                            </tr>
-                                            </c:forEach>
-                                     </table>
-                                     <c:if test="${empty boardList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
-                                </div>
-                            </div><!--/#comments-list-->
-                        </div><!--/#comments-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
@@ -156,7 +135,27 @@ span {
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div id="comments" class="col-xs-12">
+                            <div id="comments-list" class="gap">
+                                <div class="media">
+                                    <span><a href="/board/list">승인연재게시판</a></span>
+                                     <table class="boardList">
+                                            <c:forEach var="post" items="${boardList}">
+                                            <tr>
+                                                <td>
+                                                <a class="postTitle" href="/board/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
+                                            </tr>
+                                            </c:forEach>
+                                     </table>
+                                     <c:if test="${empty boardList}"><tr><td>현재 등록된 글이 없습니다.</td></tr></c:if>
+                                </div>
+                            </div><!--/#comments-list-->
+                        </div><!--/#comments-->
+                    </div>
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
@@ -178,7 +177,14 @@ span {
                         </div><!--/#comments-->
                     </div>
                 </div>
+
+                <div class="col-lg-2">
+                    <div class="side-banner">
+                        <img src="/img/left_banner_ex1.jpg" width="100%">
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </section>

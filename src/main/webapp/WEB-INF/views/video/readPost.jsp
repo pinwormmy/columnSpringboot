@@ -123,6 +123,9 @@ body {
     font-weight: 300;
     margin: 5px;
 }
+.row {
+    margin-top: 15px;
+}
 </style>
 
 </head>

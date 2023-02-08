@@ -168,8 +168,5 @@ body {
 </section>
 <%@include file="../include/footer.jspf" %>
 
-<script>
-alert("js00 test");
-</script>
 </body>
 </html>

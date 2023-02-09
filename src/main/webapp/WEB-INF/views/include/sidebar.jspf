@@ -13,15 +13,19 @@
 .panel {
     border-color: Turquoise;
 }
+.panel-group {
+    margin-top: 15px;
+}
 @media (max-width: 800px) {
     .col-md-3 {
         width: 100%;
         margin-top: 5%;
     }
 }
+
 </style>
 </head>
-<div class="col-md-3">
+<div class="col-lg-2">
     <div class="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default" style="border-radius: 10px;">
             <div class="panel-heading" role="tab" id="headingOne">

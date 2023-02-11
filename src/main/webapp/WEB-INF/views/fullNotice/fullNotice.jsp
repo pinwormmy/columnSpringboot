@@ -68,16 +68,19 @@ body {
         min-height: 850px;
     }
 }
+.side-banner {
+    margin-top: 15px;
+}
 
 </style>
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
     <div class="section-inner">
-        <div class="container">
+        <div class="container" style="width: 1600px;>
             <div class="row">
                 <%@include file="../include/sidebar.jspf" %>
-                <div class="col-md-9">
+                <div class="col-lg-7">
                     <div class="row">
                         <div id="comments" class="col-xs-12">
                             <div class="post-heading mb">
@@ -218,6 +221,11 @@ body {
                                 </div>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="side-banner">
+                        <img src="/img/right_banner_ex1.jpg" width="100%">
                     </div>
                 </div>
             </div>

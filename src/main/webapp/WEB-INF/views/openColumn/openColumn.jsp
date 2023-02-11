@@ -64,6 +64,9 @@ body {
 .notice-tr {
     background-color: #F2F2F2;
 }
+.side-banner {
+    margin-top: 15px;
+}
 </style>
 
 </head>
@@ -74,7 +77,7 @@ body {
         <div class="container" style="width: 1600px;">
             <div class="row">
                 <%@include file="../include/sidebar.jspf" %>
-                <div class="col-md-9">
+                <div class="col-lg-7">
                     <div class="post-heading mb">
                         <h3>공개연재게시판</h3>
                     </div>
@@ -160,6 +163,11 @@ body {
                                 </c:if>
                             </div><!--/#comments-list-->
                         </div><!--/#comments-->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="side-banner">
+                        <img src="/img/right_banner_ex1.jpg" width="100%">
                     </div>
                 </div>
             </div>

@@ -70,7 +70,7 @@ body {
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
-    background-color: #eee;
+    background-color: #E8F8F5;
 }
 .info-row {
     padding: 0.35rem 0.75rem 0.3rem;
@@ -91,7 +91,7 @@ body {
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
-    background-color: #eee;
+    background-color: #E8F8F5;
 }
 .btn-theme {
     margin: 10px 0;
@@ -124,6 +124,7 @@ body {
     font-weight: 300;
     margin: 5px;
 }
+
 </style>
 <!-- 펫몰에서 버튼 디자인 등 가져오기 -->
 </head>
@@ -277,18 +278,18 @@ function showCommentWithHtml(CommentDTOList) {
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
     console.log("댓글 코맨트 소스 반복문 준비 확인");
     for(let comment of CommentDTOList) {
-        commentListHtml += "<div class='media'><div class='media-body'><div class='well'><div class='media-heading'>";
+        commentListHtml += "<div class='media'><div class='media-body'><div class='well' style='margin: 0; padding: 10px;'><div class='media-heading'>";
         commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";
-        commentListHtml += comment.regDate + "</small></div><p>" + comment.content;
-        commentListHtml = displayDeleteButton(commentListHtml, comment) + "</p></div></div></div>";
+        commentListHtml = displayDeleteButton(commentListHtml, comment);
+        commentListHtml += comment.regDate + "</small></div><p style='margin: 0; padding: 0;'>" + comment.content + "</p></div></div></div>";
     }
     return commentListHtml;
 }
 
 function displayDeleteButton(commentListHtml, commentDTO) {
     if( ("${member.id}" == commentDTO.id) || ("${member.grade}" == 3) ) {
-        commentListHtml += "<button class='pull-right btn btn-theme' onclick='deleteComment(";
-        commentListHtml += commentDTO.commentNum + ");'>삭제</button>";
+        commentListHtml += "<button class='pull-right basic-button-white' onclick='deleteComment(";
+        commentListHtml += commentDTO.commentNum + ");'>🗑️삭제</button>";
     }
     return commentListHtml;
 }

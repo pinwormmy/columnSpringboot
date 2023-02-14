@@ -101,7 +101,7 @@ body {
     color: black;
     padding: 15px;
 }
-.col-md-9 {
+.col-lg-7 {
     padding: 15px;
 }
 .basic-button {
@@ -124,6 +124,9 @@ body {
     font-weight: 300;
     margin: 5px;
 }
+.side-banner {
+    margin-top: 15px;
+}
 
 </style>
 <!-- 펫몰에서 버튼 디자인 등 가져오기 -->
@@ -132,10 +135,10 @@ body {
 <%@include file="../include/header.jspf" %>
 <section class="white section-wrapper">
     <div class="section-inner">
-        <div class="container">
+        <div class="container" style="width: 1600px;">
             <div class="row">
                 <%@include file="../include/sidebar.jspf" %>
-                <div class="col-md-9">
+                <div class="col-lg-7">
                     <div class="title-row">
                         <div class="post-title">${post.title}</div>
                     </div>
@@ -181,6 +184,11 @@ body {
                                 <a class="pull-right basic-button-white" href="/board/modifyPost?postNum=${post.postNum}">✏️글 수정</a>
                             </c:if>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="side-banner">
+                        <img src="/img/right_banner_ex1.jpg" width="100%">
                     </div>
                 </div>
             </div>

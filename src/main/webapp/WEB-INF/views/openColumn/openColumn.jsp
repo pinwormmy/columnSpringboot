@@ -26,8 +26,9 @@ body {
 .boardList tr:last-child {
     border: none;
 }
-.boardList th, td {
-    padding: 2px;
+.boardList th,
+.boardList td {
+    padding: 0px;
     text-align: center;
 }
 .boardList tr th {
@@ -124,7 +125,9 @@ body {
                                                 </tr>
                                             </c:forEach>
                                      </table>
-
+                                     <c:if test="${empty postList}">
+                                         <h3>검색 결과가 없습니다</h3>
+                                     </c:if>
                                      <c:if test="${empty postList}"><tr><td>관련 글이 없습니다...</td></tr></c:if>
                                 </div>
                                 <div class="post-navigation">

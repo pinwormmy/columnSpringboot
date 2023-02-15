@@ -129,7 +129,6 @@ body {
 }
 
 </style>
-<!-- 펫몰에서 버튼 디자인 등 가져오기 -->
 </head>
 <body>
 <%@include file="../include/header.jspf" %>

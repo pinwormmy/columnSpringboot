@@ -77,7 +77,7 @@ body {
 <body>
 <%@include file="../include/header.jspf" %>
     <div class="section-inner">
-        <div class="container" style="width: 1600px;>
+        <div class="container" style="width: 1600px;">
             <div class="row">
                 <%@include file="../include/sidebar.jspf" %>
                 <div class="col-lg-7">

@@ -70,7 +70,7 @@ body {
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
-    background-color: #eee;
+    background-color: #E8F8F5;
 }
 .info-row {
     padding: 0.35rem 0.75rem 0.3rem;
@@ -91,7 +91,7 @@ body {
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
-    background-color: #eee;
+    background-color: #E8F8F5;
 }
 .btn-theme {
     margin: 10px 0;

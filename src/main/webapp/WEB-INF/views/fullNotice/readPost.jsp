@@ -67,6 +67,7 @@ body {
     padding: 0.5rem 0.75rem;
     font-size: 20px;
     font-weight: 400;
+    border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
     background-color: #E8F8F5;

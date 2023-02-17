@@ -67,9 +67,10 @@ body {
     padding: 0.5rem 0.75rem;
     font-size: 20px;
     font-weight: 400;
+    border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
-    background-color: #eee;
+    background-color: #E8F8F5;
 }
 .info-row {
     padding: 0.35rem 0.75rem 0.3rem;
@@ -90,7 +91,7 @@ body {
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-color: #bbb;
-    background-color: #eee;
+    background-color: #E8F8F5;
 }
 .btn-theme {
     margin: 10px 0;
@@ -224,8 +225,53 @@ function addComment(){
     commentContent.value = "";
 }
 
-function showCommentList(postNum){
-    fetch("/video/showCommentList?postNum=" + postNum)
+function showCommentList(commentPage) {
+    pageSettingAndLoadComment(commentPage);
+}
+
+function pageSettingAndLoadComment(commentPage) {
+    fetch("/library/commentPageSetting", {
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                recentPage : commentPage,
+                postNum : ${post.postNum}
+            })
+        })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        loadCommentFetch(data);
+        let commentPageDivTag = document.getElementById("comments-page");
+        commentPageDivTag.innerHTML = "";
+        let commentPageHtml = "";
+
+        if(data.prevPageSetPoint >= 1) {
+            commentPageHtml +="<a href='javascript:pageSettingAndLoadComment(" + data.prevPageSetPoint + ")'>◁</a>";
+        }
+        if(data.totalPage > 1) {
+            for(let i=data.pageBeginPoint; i<=data.pageEndPoint; i++) {
+                if(i == data.recentPage) {
+                    commentPageHtml += " " + i + " ";
+                }else {
+                    commentPageHtml += "<a href='javascript:pageSettingAndLoadComment(" + i + ")'>" + i + " </a>";
+                }
+            }
+        }
+        if(data.nextPageSetPoint <= data.totalPage) {
+            commentPageHtml +="<a href='javascript:pageSettingAndLoadComment(" + data.nextPageSetPoint + ")'>▷</a>";
+        }
+        commentPageDivTag.innerHTML += commentPageHtml;
+    });
+}
+
+function loadCommentFetch(pageDTO) {
+    console.log("댓글불러오기 펫치 시작전");
+    fetch("/library/showCommentList", {
+        method: "POST",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(pageDTO),
+    })
     .then((response) => response.json())
     .then((data) => showCommentWithHtml(data));
 }
@@ -235,9 +281,20 @@ function showCommentWithHtml(CommentDTOList) {
     commentDivTag.innerHTML = "";
     let commentListHtml = "";
     commentDivTag.innerHTML += commentHtmlWithString(commentListHtml, CommentDTOList);
+    console.log("댓글 코맨트 소스 작업  반영 확인");
+}
+
+
+function showCommentWithHtml(CommentDTOList) {
+    let commentDivTag = document.getElementById("comments-list");
+    commentDivTag.innerHTML = "";
+    let commentListHtml = "";
+    commentDivTag.innerHTML += commentHtmlWithString(commentListHtml, CommentDTOList);
+    console.log("댓글 코맨트 소스 작업  반영 확인");
 }
 
 function commentHtmlWithString(commentListHtml, CommentDTOList) {
+    console.log("댓글 코맨트 소스 반복문 준비 확인");
     for(let comment of CommentDTOList) {
         commentListHtml += "<div class='media'><div class='media-body'><div class='well' style='margin: 0; padding: 10px;'><div class='media-heading'>";
         commentListHtml += "<strong>" + comment.memberDTO.nickName + "</strong> &nbsp; <small>";

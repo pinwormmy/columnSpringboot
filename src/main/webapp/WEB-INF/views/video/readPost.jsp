@@ -199,6 +199,7 @@ body {
 
 <script>
 
+// 오류 수정 필요.
 //alert("js test 15");
 let commentContent = document.getElementById("commentContent");
 showCommentList(${post.postNum});

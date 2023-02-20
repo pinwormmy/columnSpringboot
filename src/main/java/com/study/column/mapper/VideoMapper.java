@@ -40,4 +40,6 @@ public interface VideoMapper {
     List<VideoDTO> showSelfNoticeList() throws Exception;
 
     List<FullNoticeDTO> showFullNoticeList() throws Exception;
+
+    int countTotalComment(PageDTO page) throws Exception;
 }

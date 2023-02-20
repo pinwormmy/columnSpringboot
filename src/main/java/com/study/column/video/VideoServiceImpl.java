@@ -61,6 +61,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public int countTotalPost(PageDTO page) throws Exception {
+        if(page.getPostNum() != 0) {return videoMapper.countTotalComment(page);}
         return videoMapper.countTotalPost(page);
     }
 

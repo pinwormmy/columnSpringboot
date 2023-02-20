@@ -60,6 +60,11 @@
             WHERE <include refid="searchKeyword" /> AND notice=0
     </select>
 
+    <select id="countTotalComment" resultType="int">
+        SELECT count(*) from VIDEO_COMMENT
+            WHERE POST_NUM=#{postNum}
+    </select>
+
     <insert id="addComment">
         INSERT INTO VIDEO_COMMENT(POST_NUM, ID, REG_DATE, CONTENT)
             VALUES(#{postNum}, #{id}, NOW(), #{content})
@@ -73,7 +78,7 @@
                 ON A.ID=B.ID
                 WHERE A.POST_NUM=#{postNum}
                 ORDER BY A.COMMENT_NUM DESC
-                LIMIT #{postBeginPoint}, #{display} ) C
+                LIMIT #{postBeginPoint}, #{displayPostLimit} ) C
             ORDER BY COMMENT_NUM
 
     </select>

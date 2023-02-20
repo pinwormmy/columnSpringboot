@@ -132,7 +132,6 @@ body {
 </head>
 <body>
 <%@include file="../include/header.jspf" %>
-
 <section class="white section-wrapper">
     <div class="section-inner">
         <div class="container" style="width: 1600px;">
@@ -160,8 +159,8 @@ body {
                                     <h3 class="single-section-title">Comments</h3>
                                 </div>
                             </c:if>
-                            <div id="comments-list" class="gap">
-                            </div><!--/#comments-list-->
+                            <div id="comments-list" class="gap"></div>
+                            <div id="comments-page" class="gap"></div>
                             <c:if test="${member != null}">
                                 <div id="comment-form" class="gap">
                                     <div class="form-group">
@@ -174,7 +173,9 @@ body {
                                             <textarea rows="3" class="form-control" name="commentContent" id="commentContent" placeholder="댓글을 작성합니다"></textarea>
                                         </div>
                                     </div>
-                                    <button type="button" class="pull-right basic-button" style="margin-left: 15px;" onclick="addComment();">🔖댓글 달기</button>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="pull-right basic-button" style="margin-left: 15px;" onclick="addComment();">🔖댓글 달기</button>
+                                    </div>
                                 </div><!--/#comment-form-->
                             </c:if>
                         </div><!--/#comments-->
@@ -199,10 +200,9 @@ body {
 
 <script>
 
-// 오류 수정 필요.
 //alert("js test 15");
 let commentContent = document.getElementById("commentContent");
-showCommentList(${post.postNum});
+showCommentList();
 
 function addComment(){
     if(commentContent.value == "") {
@@ -231,7 +231,7 @@ function showCommentList(commentPage) {
 }
 
 function pageSettingAndLoadComment(commentPage) {
-    fetch("/library/commentPageSetting", {
+    fetch("/video/commentPageSetting", {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
@@ -268,7 +268,7 @@ function pageSettingAndLoadComment(commentPage) {
 
 function loadCommentFetch(pageDTO) {
     console.log("댓글불러오기 펫치 시작전");
-    fetch("/library/showCommentList", {
+    fetch("/video/showCommentList", {
         method: "POST",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(pageDTO),
@@ -276,15 +276,6 @@ function loadCommentFetch(pageDTO) {
     .then((response) => response.json())
     .then((data) => showCommentWithHtml(data));
 }
-
-function showCommentWithHtml(CommentDTOList) {
-    let commentDivTag = document.getElementById("comments-list");
-    commentDivTag.innerHTML = "";
-    let commentListHtml = "";
-    commentDivTag.innerHTML += commentHtmlWithString(commentListHtml, CommentDTOList);
-    console.log("댓글 코맨트 소스 작업  반영 확인");
-}
-
 
 function showCommentWithHtml(CommentDTOList) {
     let commentDivTag = document.getElementById("comments-list");

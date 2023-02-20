@@ -82,6 +82,12 @@ public class VideoController {
         videoService.addComment(comment);
     }
 
+    @RequestMapping(value = "/commentPageSetting")
+    @ResponseBody
+    public PageDTO commentPageSetting(@RequestBody PageDTO page) throws Exception {
+        return videoService.pageSetting(page);
+    }
+
     @RequestMapping(value = "/showCommentList")
     @ResponseBody
     public List<VideoCommentDTO> showCommentList(@RequestBody PageDTO page) throws Exception {

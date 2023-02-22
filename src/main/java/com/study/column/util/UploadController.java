@@ -1,9 +1,7 @@
 package com.study.column.util;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -19,7 +17,7 @@ import java.util.UUID;
 @Controller
 public class UploadController {
 
-    @RequestMapping(value="/imageUpload", method = RequestMethod.POST)
+    @PostMapping(value="/imageUpload")
     public void imageUpload(HttpServletRequest request,
                             HttpServletResponse response, MultipartHttpServletRequest multiFile
             , @RequestParam MultipartFile upload) throws Exception{
@@ -36,7 +34,7 @@ public class UploadController {
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "C:\\testsite\\Pictures\\Saved Pictures" + "ckImage/";	// 이미지 경로 설정(폴더 자동 생성)
+            String path = "/";	// 이미지 경로 설정(폴더 자동 생성)
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
             System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
@@ -69,14 +67,14 @@ public class UploadController {
     }
 
     // 서버로 전송된 이미지 뿌려주기
-    @RequestMapping(value="/ckImgSubmit")
+    @GetMapping(value="/ckImgSubmit")
     public void ckSubmit(@RequestParam(value="uid") String uid
             , @RequestParam(value="fileName") String fileName
             , HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
-        String path = "C:\\testsite\\Pictures\\Saved Pictures" + "ckImage/";	// 저장된 이미지 경로
+        String path = "/";	// 저장된 이미지 경로
         System.out.println("path:"+path);
         String sDirPath = path + uid + "_" + fileName;
 

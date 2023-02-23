@@ -1,5 +1,6 @@
 package com.study.column.util;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,9 @@ import java.util.UUID;
 // 컨트롤러에 연산 이렇게 두는거 정리해야하지않을까?
 @Controller
 public class UploadController {
+
+    @Value("${path.upload.file}")
+    private String uploadPath;
 
     @PostMapping(value="/imageUpload")
     public void imageUpload(HttpServletRequest request,
@@ -34,7 +38,7 @@ public class UploadController {
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "/";	// 이미지 경로 설정(폴더 자동 생성)
+            String path = uploadPath;	// 이미지 경로 설정(폴더 자동 생성)
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
             System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
@@ -74,7 +78,7 @@ public class UploadController {
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
-        String path = "/";	// 저장된 이미지 경로
+        String path = uploadPath;	// 저장된 이미지 경로
         System.out.println("path:"+path);
         String sDirPath = path + uid + "_" + fileName;
 

@@ -1,5 +1,6 @@
 package com.study.column.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 // 에디터 첨부자료 통째로 들고와서 괜히 무거워짐. 나중에 필요없는 파일 다 삭제하기
 // 컨트롤러에 연산 이렇게 두는거 정리해야하지않을까?
+@Slf4j
 @Controller
 public class UploadController {
 
@@ -37,11 +39,10 @@ public class UploadController {
             String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
 
-            //이미지 경로 생성
             String path = uploadPath;	// 이미지 경로 설정(폴더 자동 생성)
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
-            System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
+            log.info("img upload path:"+path);	// 이미지 저장경로 console에 확인
             //해당 디렉토리 확인
             if(!folder.exists()){
                 try{
@@ -79,7 +80,7 @@ public class UploadController {
 
         //서버에 저장된 이미지 경로
         String path = uploadPath;	// 저장된 이미지 경로
-        System.out.println("path:"+path);
+        log.info("img upload path for submit:"+path);
         String sDirPath = path + uid + "_" + fileName;
 
         File imgFile = new File(sDirPath);

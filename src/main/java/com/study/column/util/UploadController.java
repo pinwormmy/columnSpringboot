@@ -20,7 +20,8 @@ import java.util.UUID;
 @Controller
 public class UploadController {
 
-    @Value("${path.upload.file}")
+    // 슬래시 포함 여부가 또 중요해서 설정 경로 따로 만듬
+    @Value("${path.upload.ck}")
     private String uploadPath;
 
     @PostMapping(value="/imageUpload")
@@ -39,7 +40,7 @@ public class UploadController {
             String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
 
-            String path = uploadPath;	// 이미지 경로 설정(폴더 자동 생성)
+            String path = uploadPath;
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
             log.info("img upload path:"+path);	// 이미지 저장경로 console에 확인

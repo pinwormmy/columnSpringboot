@@ -5,6 +5,7 @@ import com.study.column.util.IpService;
 import com.study.column.util.PageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +30,9 @@ public class LibraryController {
     
     @Autowired
     LibraryService libraryService;
+
+    @Value("${path.upload.file}")
+    private String uploadPath;
 
     @GetMapping(value = "/list")
     public String library(PageDTO page, Model model) throws Exception {
@@ -143,7 +147,7 @@ public class LibraryController {
                                              HttpServletRequest request) {
         // 뜬금포로 rest api개념을 넣게 됨. 여기에만 적용하는 것이 가능하면 그대로 적용하기
         log.debug("다운로드 컨트롤러 진입");
-        String path = "C:\\testsite\\upload/";
+        String path = uploadPath;
         Resource resource = new FileSystemResource(path + fileName);
         log.debug("다운로드할 파일이름 확인 : {}", resource);
         String resourceName = resource.getFilename();

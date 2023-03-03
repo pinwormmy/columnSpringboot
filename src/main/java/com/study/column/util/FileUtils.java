@@ -28,6 +28,7 @@ public class FileUtils {
             return null;
         }
         List<LibraryFileDTO> fileList = new ArrayList<>();
+        log.debug("uploadPath값 확인 : {}", uploadPath);
         File file = new File(uploadPath);
         log.debug("첨부파일 절대경로 : {}", file);
         if(!file.exists()) {

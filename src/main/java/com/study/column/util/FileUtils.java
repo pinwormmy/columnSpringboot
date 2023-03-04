@@ -3,6 +3,7 @@ package com.study.column.util;
 import com.study.column.library.LibraryFileDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -15,20 +16,23 @@ import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
+@Component
 public class FileUtils {
 
     @Value("${path.upload.file}")
     private String uploadPath;
 
+
     public List<LibraryFileDTO> parseFileInfo(int postNum, HttpServletRequest request,
                                               MultipartHttpServletRequest mhsr) throws IOException {
         log.debug("FileUtils 클래스 작동");
+        log.debug("uploadPath값 확인 : {}", uploadPath);
         if(ObjectUtils.isEmpty(mhsr)) {
             log.debug("FileUtils 클래스 작동했지만, 첨부없어서 패스~");
             return null;
         }
         List<LibraryFileDTO> fileList = new ArrayList<>();
-        log.debug("uploadPath값 확인 : {}", uploadPath);
+
         File file = new File(uploadPath);
         log.debug("첨부파일 절대경로 : {}", file);
         if(!file.exists()) {

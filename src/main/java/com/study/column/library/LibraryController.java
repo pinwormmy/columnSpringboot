@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -30,6 +31,9 @@ public class LibraryController {
     
     @Autowired
     LibraryService libraryService;
+
+    @Autowired
+    FileUtils fileUtils;
 
     @Value("${path.upload.file}")
     private String uploadPath;
@@ -72,7 +76,6 @@ public class LibraryController {
         log.debug("글 등록 처리");
         libraryService.submitPost(libraryDTO);
         int postNum = libraryService.getRecentPostNum();
-        FileUtils fileUtils = new FileUtils();
         log.debug("게시물번호 확인 : {}", postNum);
         List<LibraryFileDTO> fileList = fileUtils.parseFileInfo(postNum, request, multipartHttpServletRequest);
         if(!CollectionUtils.isEmpty(fileList)) {

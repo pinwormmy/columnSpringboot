@@ -2,6 +2,8 @@ package com.study.column.util;
 
 import javax.servlet.http.HttpServletRequest;
 
+// 차후 접속자 로그 기능에 활용..깃허브 리셋위해 다시
+
 public class IpService {
     public static String getRemoteIP(HttpServletRequest request){
         String ip = request.getHeader("X-FORWARDED-FOR");

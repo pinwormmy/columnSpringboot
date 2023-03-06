@@ -22,7 +22,6 @@ public class FileUtils {
     @Value("${path.upload.file}")
     private String uploadPath;
 
-
     public List<LibraryFileDTO> parseFileInfo(int postNum, HttpServletRequest request,
                                               MultipartHttpServletRequest mhsr) throws IOException {
         log.debug("FileUtils 클래스 작동");

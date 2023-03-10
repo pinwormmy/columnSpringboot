@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService{
         msgg+= "<div style='margin:20px;'>";
         msgg+= "<h2> 안녕하세요 이메일 인증테스트입니다. </h2>";
         msgg+= "<br>";
-        msgg+= "<p>아래 코드를 복사해 입력해주세요<p>";
+        msgg+= "<p>아래 코드를 회원가입 이메일 인증칸에 입력해주세요<p>";
         msgg+= "<br>";
         msgg+= "<p>감사합니다.<p>";
         msgg+= "<br>";
@@ -42,7 +42,7 @@ public class EmailServiceImpl implements EmailService{
         msgg+= ePw+"</strong><div><br/> ";
         msgg+= "</div>";
         message.setText(msgg, "utf-8", "html");//내용
-        message.setFrom(new InternetAddress("properties에 입력한 이메일","limjunho"));//보내는 사람
+        message.setFrom(new InternetAddress("입력한 이메일","admin"));//보내는 사람
 
         return message;
     }
@@ -50,10 +50,8 @@ public class EmailServiceImpl implements EmailService{
     public static String createKey() {
         StringBuffer key = new StringBuffer();
         Random rnd = new Random();
-
         for (int i = 0; i < 8; i++) { // 인증코드 8자리
             int index = rnd.nextInt(3); // 0~2 까지 랜덤
-
             switch (index) {
                 case 0:
                     key.append((char) ((int) (rnd.nextInt(26)) + 97));
@@ -73,7 +71,6 @@ public class EmailServiceImpl implements EmailService{
     }
     @Override
     public String sendSimpleMessage(String to)throws Exception {
-        // TODO Auto-generated method stub
         MimeMessage message = createMessage(to);
         try{//예외처리
             emailSender.send(message);

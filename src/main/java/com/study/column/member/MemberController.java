@@ -3,9 +3,7 @@ package com.study.column.member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +13,8 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
     @Autowired
     MemberService memberService;
+    @Autowired
+    EmailService emailService;
     
     // 승인 게시판에 아이피 로그 기능 만들기
 
@@ -104,5 +104,11 @@ public class MemberController {
         session.setAttribute("member", loginData);
         log.info("(시연용) 관리자로그인 성공 : {}", loginData);
         return "redirect:" + session.getAttribute("pageBeforeLogin");
+    }
+
+    @PostMapping("/emailConfirm")
+    public String emailConfirm(@RequestParam String email) throws Exception {
+        String confirm = emailService.sendSimpleMessage(email);
+        return confirm;
     }
 }

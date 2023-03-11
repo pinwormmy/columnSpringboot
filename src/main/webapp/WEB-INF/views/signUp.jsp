@@ -40,6 +40,7 @@ input {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
     background-color: Turquoise;
+    cursor:pointer;
 }
 .loginApi {
     margin: 3px;
@@ -67,7 +68,7 @@ input {
         </div>
         <form action="/submitSignUp" name="submitSignUp" id="submitSignUp" method="post">
             <div class="inputId">
-                <input type="text" name="id" id="inputId" placeholder="아이디">
+                <input type="text" name="id" id="inputId" placeholder="아이디"><br>
                 <span id="idCheckText">ID 중복확인이 필요합니다.</span>
             </div>
             <div>
@@ -83,20 +84,19 @@ input {
                 <input type="text" name="nickName" placeholder="별명">
             </div>
             <div>
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" placeholder="이메일">
-                <button id="sendVerificationNumberButton">인증번호 받기</button>
-                <input id="inputEmailVerificationNumber">
-                <span id="emailCheckText">이메일 중복확인이 필요합니다.</span>
+                <input type="email" id="email" name="email" placeholder="이메일"><br>
+                <span id="emailCheckText">이메일 중복확인이 필요합니다.</span><br>
+                <button id="sendVerificationNumberButton" class="basicButton" style="background-color: #AED6F1;">인증번호 받기</button><br>
+                <input id="inputEmailVerificationNumber" placeholder="이메일 인증번호 입력"><br>
             </div>
             <div>
                 <input type="text" name="phone" placeholder="연락처">
             </div>
 
-            <button type="button" class="basicButton" onclick="checkSignupForm();" style='cursor:pointer;'>가입하기</button><br>
-            <button type="button" class="basicButton" style="background-color: yellowgreen; cursor:pointer;"
+            <button type="button" class="basicButton" onclick="checkSignupForm();">가입하기</button><br>
+            <button type="button" class="basicButton" style="background-color: yellowgreen;"
             onclick="location.href='/login'">이미 가입한 회원이면 로그인하기</button><br>
-            <button type="button" class="basicButton" style="background-color:#9FE2BF; cursor:pointer;"
+            <button type="button" class="basicButton" style="background-color:#9FE2BF;"
             onclick="location.href='/'">처음 화면으로</button>
         </form>
     </div>
@@ -120,7 +120,7 @@ input {
     };
 
     const checkUniqueId = (inputId) => {
-      fetch("<%=request.getContextPath()%>/checkUniqueId.do?mId=" + inputId)
+      fetch("<%=request.getContextPath()%>/checkUniqueId?mId=" + inputId)
         .then(response => response.json())
         .then(data => {
           if (data === 0) {

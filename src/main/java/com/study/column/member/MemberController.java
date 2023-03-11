@@ -108,7 +108,13 @@ public class MemberController {
 
     @PostMapping("/emailConfirm")
     public String emailConfirm(@RequestParam String email) throws Exception {
-        String confirm = emailService.sendSimpleMessage(email);
-        return confirm;
+        return emailService.sendSimpleMessage(email);
+    }
+
+    @GetMapping("/checkUniqueId")
+    @ResponseBody
+    public int checkUniqueId(String id) {
+        log.info("아이디 중복 확인 컨트롤러 작동");
+        return 0;
     }
 }

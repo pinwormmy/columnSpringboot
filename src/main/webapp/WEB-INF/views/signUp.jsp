@@ -57,6 +57,10 @@ input {
 .loginTitle {
     font-size: 24px;
 }
+.tooltip {
+    font-size: 14px;
+    color: grey;
+}
 
 </style>
 </head>
@@ -69,7 +73,7 @@ input {
         <form action="/submitSignUp" name="submitSignUp" id="submitSignUp" method="post">
             <div class="inputId">
                 <input type="text" name="id" id="inputId" placeholder="아이디"><br>
-                <span id="idCheckText">ID 중복확인이 필요합니다.</span>
+                <span id="idCheckText" class="tooltip">ID 중복확인이 필요합니다.</span>
             </div>
             <div>
                 <input type="password" name="pw" id="pw" placeholder="4~16 자리 영문+숫자 조합">
@@ -85,12 +89,12 @@ input {
             </div>
             <div>
                 <input type="email" id="email" name="email" placeholder="이메일"><br>
-                <span id="emailCheckText">이메일 중복확인이 필요합니다.</span><br>
+                <span id="emailCheckText" class="tooltip">이메일 중복확인이 필요합니다.</span><br>
                 <button id="sendVerificationNumberButton" class="basicButton" style="background-color: #AED6F1;">인증번호 받기</button><br>
                 <input id="inputEmailVerificationNumber" placeholder="이메일 인증번호 입력"><br>
             </div>
             <div>
-                <input type="text" name="phone" placeholder="연락처">
+                <input type="text" name="phone" placeholder="연락처"><br><br>
             </div>
 
             <button type="button" class="basicButton" onclick="checkSignupForm();">가입하기</button><br>
@@ -105,7 +109,6 @@ input {
 <script type="text/javascript">
 
 	let submitSignUpForm = document.getElementById("submitSignUp");
-    let inputEmailVerificationNumber = document.getElementById("inputEmailVerificationNumber");
     let isEmailVerificationNumberValid = false;
     let isUniqueIdValid = false;
     let isEmailValid = false;
@@ -113,6 +116,10 @@ input {
     const inputId = document.getElementById("inputId");
     const idCheckText = document.getElementById("idCheckText");
     const emailCheckText = document.getElementById("emailCheckText");
+    const sendVerificationNumberButton = document.getElementById('sendVerificationNumberButton');
+    const inputEmail = document.getElementById('email');
+    const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
+    const emailVerificationResultText = document.getElementById('emailCheckText');
 
     const isIdValid = (inputId) => {
       const idPattern = /^[a-z]+[a-z0-9]{3,19}$/g;
@@ -155,7 +162,7 @@ input {
         return false;
       }
       if (!isIdValid(inputIdValue)) {
-        idCheckText.innerHTML = "ID는 영문자로 시작하는, 4~20자 영어 혹은 숫자이어야 합니다;";
+        idCheckText.innerHTML = "ID는 영문자로 시작하는, 4~20자 영어 혹은 숫자이어야 합니다.";
         isUniqueIdValid = false;
         return false;
       }
@@ -168,7 +175,7 @@ input {
     });
 
     // 이메일 입력 필드 변경 이벤트
-    submitSignUpForm.addEventListener("change", function () {
+    inputEmail.addEventListener("change", function () {
         const inputEmail = submitSignUpForm.elements.email.value;
         validateEmail(inputEmail);
 
@@ -178,11 +185,6 @@ input {
             submitSignUpForm.elements.submit.disabled = true;
         }
     });
-
-    const sendVerificationNumberButton = document.getElementById('sendVerificationNumberButton');
-    const inputEmail = document.getElementById('email');
-    const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
-    const emailCheckText = document.getElementById('emailCheckText');
 
     sendVerificationNumberButton.addEventListener('click', () => {
         const email = inputEmail.value;
@@ -211,9 +213,6 @@ input {
         });
     });
 
-    const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
-    const emailVerificationResultText = document.getElementById('emailCheckText');
-
     inputEmailVerificationNumber.addEventListener('input', () => {
         const inputText = inputEmailVerificationNumber.value;
         const length = inputText.length;
@@ -221,7 +220,7 @@ input {
         if (length === 8) {
             emailVerificationResultText.innerHTML = '인증번호 확인이 완료되었습니다.';
         }
-    }
+    });
 
 	function checkSignupForm() {
 		let isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;

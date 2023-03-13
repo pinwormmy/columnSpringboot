@@ -127,7 +127,7 @@ input {
     };
 
     const checkUniqueId = (inputId) => {
-      fetch("<%=request.getContextPath()%>/checkUniqueId?mId=" + inputId)
+      fetch("<%=request.getContextPath()%>/checkUniqueId?id=" + inputId)
         .then(response => response.json())
         .then(data => {
           if (data === 0) {

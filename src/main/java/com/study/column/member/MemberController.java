@@ -113,8 +113,8 @@ public class MemberController {
 
     @GetMapping("/checkUniqueId")
     @ResponseBody
-    public int checkUniqueId(String id) {
+    public String checkUniqueId(String id) throws Exception {
         log.info("아이디 중복 확인 컨트롤러 작동");
-        return 0;
+        return memberService.isUniqueId(id);
     }
 }

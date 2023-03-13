@@ -29,4 +29,9 @@ public class MemberServiceImpl implements MemberService {
     public void submitModifyMyInfo(MemberDTO member) throws Exception {
         memberMapper.submitModifyMyInfo(member);
     }
+
+    @Override
+    public String isUniqueEmail(String email) {
+        return memberMapper.isUniqueEmail(email);
+    }
 }

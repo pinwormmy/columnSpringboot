@@ -117,4 +117,11 @@ public class MemberController {
         log.info("아이디 중복 확인 컨트롤러 작동");
         return memberService.isUniqueId(id);
     }
+
+    @GetMapping("/checkUniqueEmail")
+    @ResponseBody
+    public String checkUniqueEmail(String email) throws Exception {
+        log.info("아이디 중복 확인 컨트롤러 작동");
+        return memberService.isUniqueEmail(email);
+    }
 }

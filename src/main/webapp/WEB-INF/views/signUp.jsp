@@ -47,9 +47,9 @@ input {
 }
 .loginMenu {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
-    margin:-400px 0 0 -200px
+    margin:-200px 0 0 -200px;
 }
 .signUpMenu {
     margin-bottom: 10%;
@@ -90,7 +90,7 @@ input {
             <div>
                 <input type="email" id="email" name="email" placeholder="이메일"><br>
                 <span id="emailCheckText" class="tooltip">이메일 중복확인이 필요합니다.</span><br>
-                <button id="sendVerificationNumberButton" class="basicButton" style="background-color: #AED6F1;">인증번호 받기</button><br>
+                <button type="button" id="sendVerificationNumberButton" class="basicButton" style="background-color: #AED6F1;">인증번호 받기</button><br>
                 <input id="inputEmailVerificationNumber" placeholder="이메일 인증번호 입력"><br>
             </div>
             <div>
@@ -112,6 +112,7 @@ input {
     let isEmailVerificationNumberValid = false;
     let isUniqueIdValid = false;
     let isEmailValid = false;
+    let isUniqueEmailValid = false;
 
     const inputId = document.getElementById("inputId");
     const idCheckText = document.getElementById("idCheckText");
@@ -143,6 +144,23 @@ input {
         });
     };
 
+    const checkUniqueEmail = (inputEmail) => {
+          fetch("<%=request.getContextPath()%>/checkUniqueEmail?email=" + inputEmail)
+            .then(response => response.json())
+            .then(data => {
+              if (data === 0) {
+                emailCheckText.innerHTML = "해당 이메일 사용가능합니다.";
+                isUniqueEmailValid = true;
+              } else {
+                emailCheckText.innerHTML = "사용할 수 없는 이메일입니다.";
+                isUniqueEmailValid = false;
+              }
+            })
+            .catch(error => {
+              alert("(이메일중복검사)서버 요청 실패...", error);
+            });
+        };
+
     const validateEmailVerificationNumber = (inputValue) => {
       const verificationNumberPattern = /^\d{8}$/;
       isEmailVerificationNumberValid = verificationNumberPattern.test(inputValue);
@@ -150,10 +168,9 @@ input {
 
     const validateEmail = (inputEmail) => {
       const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-      isEmailValid = emailPattern.test(inputEmail);
+      return emailPattern.test(inputEmail);
     };
 
-    // focusout 이벤트 리스너 추가
     inputId.addEventListener("focusout", function () {
       const inputIdValue = inputId.value;
       if (inputIdValue === "") {
@@ -174,23 +191,30 @@ input {
         validateEmailVerificationNumber(inputValue);
     });
 
-    // 이메일 입력 필드 변경 이벤트
-    inputEmail.addEventListener("change", function () {
+    inputEmail.addEventListener("focusout", function () {
         const inputEmail = submitSignUpForm.elements.email.value;
-        validateEmail(inputEmail);
-
-        if (isEmailValid && isEmailVerificationNumberValid && isUniqueIdValid) {
-            submitSignUpForm.elements.submit.disabled = false;
-        } else {
-            submitSignUpForm.elements.submit.disabled = true;
-        }
+        if (inputEmail === "") {
+            emailCheckText.innerHTML = "이메일을 입력해주세요.";
+            isUniqueEmailValid = false;
+            return false;
+          }
+          if (!validateEmail(inputEmail)) {
+            emailCheckText.innerHTML = "이메일 주소 양식 확인하세요!";
+            isUniqueEmailValid = false;
+            return false;
+          }
+        checkUniqueEmail(inputEmail);
     });
 
     sendVerificationNumberButton.addEventListener('click', () => {
         const email = inputEmail.value;
         if (email === '') {
-            emailCheckText.innerHTML = '이메일을 입력해주세요.';
-            return;
+            alert("이메일을 입력해주세요.");
+            return false;
+        }
+        if (isUniqueEmailValid == false) {
+            alert("이메일 입력 다시 확인해주세요.");
+            return false;
         }
 
         // 인증 메일 전송 API 호출
@@ -218,12 +242,18 @@ input {
         const length = inputText.length;
 
         if (length === 8) {
-            emailVerificationResultText.innerHTML = '인증번호 확인이 완료되었습니다.';
+            alert("인증번호 확인이 완료되었습니다.");
         }
     });
 
 	function checkSignupForm() {
 		let isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
+
+        if (isUniqueIdValid == false) {
+            alert("올바른 ID를 입력하세요!!");
+            submitSignUpForm.id.focus();
+            return false;
+        }
 
 		if (submitSignUpForm.pw.value == "") {
 			alert("비밀번호를 입력하세요!!");
@@ -250,6 +280,13 @@ input {
 			submitSignUpForm.name.focus();
 			return false;
 		}
+
+		if (isUniqueEmailValid == false) {
+            alert("올바른 이메일을 입력하세요!!");
+            submitSignUpForm.email.focus();
+            return false;
+        }
+
 		submitSignUpForm.submit();
 	}
 

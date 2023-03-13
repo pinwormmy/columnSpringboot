@@ -10,6 +10,11 @@
             WHERE id=#{id}
     </select>
 
+    <select id="isUniqueEmail" resultType="String">
+        SELECT COUNT(*) FROM MEMBER
+        WHERE email=#{email}
+    </select>
+
     <insert id="submitSignUp">
         INSERT INTO MEMBER(ID, PW, NICKNAME, REALNAME, EMAIL, PHONE, GRADE, REG_DATE)
             VALUES(#{id}, #{pw}, #{nickName}, #{realName}, #{email}, #{phone}, 1, NOW())

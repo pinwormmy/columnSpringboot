@@ -8,4 +8,6 @@ public interface MemberService {
     MemberDTO checkLoginData(MemberDTO memberDTO) throws Exception;
 
     void submitModifyMyInfo(MemberDTO member) throws Exception;
+
+    String isUniqueEmail(String email);
 }

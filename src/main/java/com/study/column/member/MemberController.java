@@ -106,7 +106,7 @@ public class MemberController {
         return "redirect:" + session.getAttribute("pageBeforeLogin");
     }
 
-    @PostMapping("/emailConfirm")
+    @PostMapping("/emailConfirm") // 지메일 로그인이 제대로 안되서 막힘
     public String emailConfirm(@RequestParam String email) throws Exception {
         return emailService.sendSimpleMessage(email);
     }

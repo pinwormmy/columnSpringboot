@@ -163,7 +163,7 @@ input {
 
     const validateEmailVerificationNumber = (inputValue) => {
       const verificationNumberPattern = /^\d{8}$/;
-      isEmailVerificationNumberValid = verificationNumberPattern.test(inputValue);
+      return verificationNumberPattern.test(inputValue);
     };
 
     const validateEmail = (inputEmail) => {
@@ -280,9 +280,23 @@ input {
 			submitSignUpForm.name.focus();
 			return false;
 		}
-
+		if (submitSignUpForm.nickName.value == "") {
+            alert("별명을 입력하세요!!");
+            submitSignUpForm.nickName.focus();
+            return false;
+        }
+        if (submitSignUpForm.phone.value == "") {
+            alert("연락처를 입력하세요!!");
+            submitSignUpForm.phone.focus();
+            return false;
+        }
 		if (isUniqueEmailValid == false) {
             alert("올바른 이메일을 입력하세요!!");
+            submitSignUpForm.email.focus();
+            return false;
+        }
+        if (isEmailVerificationNumberValid == false) {
+            alert("이메일 인증을 완료해주세요!!");
             submitSignUpForm.email.focus();
             return false;
         }

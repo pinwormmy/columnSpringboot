@@ -1,5 +1,6 @@
 package com.study.column.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+@Slf4j
 @Configuration
 public class EmailConfig {
 
@@ -30,6 +32,7 @@ public class EmailConfig {
 
     @Bean
     public JavaMailSender javaMailService() {
+        log.debug("패스워드 확인: {}", password); // 확인하고 지워
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setUsername(id);

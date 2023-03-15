@@ -109,7 +109,8 @@ input {
 <script type="text/javascript">
 
 	let submitSignUpForm = document.getElementById("submitSignUp");
-    let isEmailVerificationNumberValid = false;
+	let generatedVerificationNumber = null;
+    let verificationNumberValid = false;
     let isUniqueIdValid = false;
     let isEmailValid = false;
     let isUniqueEmailValid = false;
@@ -171,19 +172,27 @@ input {
       return emailPattern.test(inputEmail);
     };
 
-    inputId.addEventListener("focusout", function () {
-      const inputIdValue = inputId.value;
-      if (inputIdValue === "") {
-        idCheckText.innerHTML = "ID를 입력해주세요.";
-        isUniqueIdValid = false;
-        return false;
-      }
-      if (!isIdValid(inputIdValue)) {
-        idCheckText.innerHTML = "ID는 영문자로 시작하는, 4~20자 영어 혹은 숫자이어야 합니다.";
-        isUniqueIdValid = false;
-        return false;
-      }
-      checkUniqueId(inputIdValue);
+    inputEmail.addEventListener("focusout", function () {
+        const inputEmailValue = submitSignUpForm.elements.email.value;
+        if (inputEmailValue === "") {
+            emailCheckText.innerHTML = "이메일을 입력해주세요.";
+            isUniqueEmailValid = false;
+            return false;
+        }
+        if (!validateEmail(inputEmailValue)) {
+            emailCheckText.innerHTML = "이메일 주소 양식 확인하세요!";
+            isUniqueEmailValid = false;
+            return false;
+        }
+        checkUniqueEmail(inputEmailValue);
+
+        // 이메일 변경 시 인증번호 관련 상태 초기화
+        if (generatedVerificationNumber !== null) {
+            generatedVerificationNumber = null;
+            verificationNumberValid = false;
+            emailCheckText.innerHTML = "이메일이 변경되었습니다. 인증번호를 다시 받아주세요.";
+            inputEmailVerificationNumber.value = ''; // 인증번호 입력란 초기화
+        }
     });
 
     inputEmailVerificationNumber.addEventListener("input", function () {
@@ -217,7 +226,6 @@ input {
             return false;
         }
 
-        // 인증 메일 전송 API 호출
         fetch('/sendVerificationMail', {
             method: 'POST',
             headers: {
@@ -226,13 +234,21 @@ input {
             body: JSON.stringify({ email })
         })
         .then(response => {
-            if (response.ok) {
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
                 emailCheckText.innerHTML = '인증번호를 입력해주세요.';
+                generatedVerificationNumber = data.verificationNumber; // 서버에서 전달받은 인증번호 저장
             } else {
                 emailCheckText.innerHTML = '인증번호 전송에 실패하였습니다. 다시 시도해주세요.';
             }
         })
         .catch(error => {
+            console.error('Fetch error:', error);
             emailCheckText.innerHTML = '서버 요청 실패... 다시 시도해주세요.';
         });
     });
@@ -240,9 +256,15 @@ input {
     inputEmailVerificationNumber.addEventListener('input', () => {
         const inputText = inputEmailVerificationNumber.value;
         const length = inputText.length;
-
         if (length === 8) {
-            alert("인증번호 확인이 완료되었습니다.");
+            if (generatedVerificationNumber && generatedVerificationNumber === inputText) {
+                alert("인증번호 확인이 완료되었습니다.");
+                emailCheckText.innerHTML = '인증번호 확인이 완료되었습니다.';
+                verificationNumberValid = true;
+            } else {
+                alert("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
+                verificationNumberValid = false;
+            }
         }
     });
 
@@ -295,7 +317,7 @@ input {
             submitSignUpForm.email.focus();
             return false;
         }
-        if (isEmailVerificationNumberValid == false) {
+        if (verificationNumberValid == false) {
             alert("이메일 인증을 완료해주세요!!");
             submitSignUpForm.email.focus();
             return false;

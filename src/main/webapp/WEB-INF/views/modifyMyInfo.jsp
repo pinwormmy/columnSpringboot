@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>테스트 로그인</title>
+<title>회원정보 수정</title>
 </head>
 <body>
 <%@include file="./include/header.jspf" %>

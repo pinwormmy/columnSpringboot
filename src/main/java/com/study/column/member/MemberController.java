@@ -2,6 +2,8 @@ package com.study.column.member;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -106,9 +108,21 @@ public class MemberController {
         return "redirect:" + session.getAttribute("pageBeforeLogin");
     }
 
-    @PostMapping("/emailConfirm") // 지메일 로그인이 제대로 안되서 막힘
-    public String emailConfirm(@RequestParam String email) throws Exception {
-        return emailService.sendSimpleMessage(email);
+    @PostMapping("/sendVerificationMail")
+    @ResponseBody
+    public ResponseEntity<VerificationResponseDTO> sendVerificationMail(@RequestBody EmailDTO emailDTO) {
+        try {
+            String email = emailDTO.getEmail();
+            String verificationNumber = emailService.sendSimpleMessage(email);
+
+            VerificationResponseDTO response = new VerificationResponseDTO(true, verificationNumber);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            VerificationResponseDTO response = new VerificationResponseDTO(false, null);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/checkUniqueId")

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>P E T M A L L</title>
+<title>마이 페이지</title>
 <style>
 .my-page {
     margin: 30px;

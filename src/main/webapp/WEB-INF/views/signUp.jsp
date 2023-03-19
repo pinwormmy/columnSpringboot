@@ -108,6 +108,8 @@ input {
 
 <script type="text/javascript">
 
+    // 인증번호 확인 후, 메일 주소 바꾸면, 인증 과정 처음부터 다시하게 수정필요
+
 	let submitSignUpForm = document.getElementById("submitSignUp");
 	let generatedVerificationNumber = null;
     let verificationNumberValid = false;

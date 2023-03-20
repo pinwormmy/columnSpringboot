@@ -106,4 +106,6 @@ public class BoardController {
     public void updateCommentCount(int postNum) throws Exception {
         boardService.updateCommentCount(postNum);
     }
+    
+    // ip로그 처리 어떻게 할지 구상하기
 }

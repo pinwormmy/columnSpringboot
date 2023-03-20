@@ -4,80 +4,93 @@ import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+
+@Slf4j
 @Service
-public class EmailServiceImpl implements EmailService{
+public class EmailServiceImpl implements EmailService {
 
     @Autowired
-    JavaMailSender emailSender;
+    private JavaMailSender emailSender;
 
-    public static final String ePw = createKey();
+    private MimeMessage createMessage(String recipient, String verificationCode) throws Exception {
+        log.info("Recipient: {}", recipient);
+        log.info("Verification code: {}", verificationCode);
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 
-    private MimeMessage createMessage(String to)throws Exception{
-        System.out.println("보내는 대상 : "+ to);
-        System.out.println("인증 번호 : "+ePw);
-        MimeMessage  message = emailSender.createMimeMessage();
-
-        message.addRecipients(RecipientType.TO, to);//보내는 대상
-        message.setSubject("이메일 인증 테스트");//제목
-
-        String msgg="";
-        msgg+= "<div style='margin:20px;'>";
-        msgg+= "<h2> 안녕하세요 이메일 인증테스트입니다. </h2>";
-        msgg+= "<br>";
-        msgg+= "<p>아래 코드를 회원가입 이메일 인증칸에 입력해주세요<p>";
-        msgg+= "<br>";
-        msgg+= "<p>감사합니다.<p>";
-        msgg+= "<br>";
-        msgg+= "<div align='center' style='border:1px solid black; font-family:verdana';>";
-        msgg+= "<h3 style='color:blue;'>이메일 인증코드</h3>";
-        msgg+= "<div style='font-size:130%'>";
-        msgg+= "CODE : <strong>";
-        msgg+= ePw+"</strong><div><br/> ";
-        msgg+= "</div>";
-        message.setText(msgg, "utf-8", "html");//내용
-        message.setFrom(new InternetAddress("mealchelin@gmail.com","admin"));//보내는 사람
+        helper.setTo(recipient);
+        helper.setSubject("컬럼사이트 이메일 인증");
+        helper.setText(generateEmailContent(verificationCode), true);
+        helper.setFrom(new InternetAddress("mealchelin@gmail.com", "admin"));
 
         return message;
     }
 
-    public static String createKey() {
-        StringBuffer key = new StringBuffer();
+    private String generateEmailContent(String verificationCode) {
+        StringBuilder content = new StringBuilder();
+
+        content.append("<div style='margin:20px;'>")
+                .append("<h2> 안녕하세요 컬럼사이트 이메일 인증입니다. </h2>")
+                .append("<br>")
+                .append("<p>아래 코드를 회원가입 이메일 인증칸에 입력해주세요<p>")
+                .append("<br>")
+                .append("<p>감사합니다.<p>")
+                .append("<br>")
+                .append("<div align='center' style='border:1px solid black; font-family:verdana';>")
+                .append("<h3 style='color:blue;'>이메일 인증코드</h3>")
+                .append("<div style='font-size:130%'>")
+                .append("CODE : <strong>")
+                .append(verificationCode)
+                .append("</strong><div><br/> ")
+                .append("</div>");
+
+        return content.toString();
+    }
+
+    public static String createVerificationCode() {
+        StringBuilder key = new StringBuilder();
         Random rnd = new Random();
-        for (int i = 0; i < 8; i++) { // 인증코드 8자리
-            int index = rnd.nextInt(3); // 0~2 까지 랜덤
+
+        for (int i = 0; i < 8; i++) {
+            int index = rnd.nextInt(3);
+
             switch (index) {
                 case 0:
-                    key.append((char) ((int) (rnd.nextInt(26)) + 97));
-                    //  a~z  (ex. 1+97=98 => (char)98 = 'b')
+                    key.append((char) (rnd.nextInt(26) + 97));
                     break;
                 case 1:
-                    key.append((char) ((int) (rnd.nextInt(26)) + 65));
-                    //  A~Z
+                    key.append((char) (rnd.nextInt(26) + 65));
                     break;
                 case 2:
-                    key.append((rnd.nextInt(10)));
-                    // 0~9
+                    key.append(rnd.nextInt(10));
                     break;
             }
         }
+
         return key.toString();
     }
+
     @Override
-    public String sendSimpleMessage(String to)throws Exception {
-        MimeMessage message = createMessage(to);
-        try{//예외처리
+    public String sendSimpleMessage(String recipient) throws Exception {
+        String verificationCode = createVerificationCode();
+        MimeMessage message = createMessage(recipient, verificationCode);
+
+        try {
             emailSender.send(message);
-        }catch(MailException es){
-            es.printStackTrace();
+        } catch (MailException e) {
+            log.error("Email sending error", e);
             throw new IllegalArgumentException();
         }
-        return ePw;
+
+        return verificationCode;
     }
 }

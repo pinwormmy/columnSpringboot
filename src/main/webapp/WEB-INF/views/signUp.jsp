@@ -108,8 +108,6 @@ input {
 
 <script type="text/javascript">
 
-    // 인증번호 확인 후, 메일 주소 바꾸면, 인증 과정 처음부터 다시하게 수정필요
-
 	let submitSignUpForm = document.getElementById("submitSignUp");
 	let generatedVerificationNumber = null;
     let verificationNumberValid = false;
@@ -129,6 +127,22 @@ input {
       const idPattern = /^[a-z]+[a-z0-9]{3,19}$/g;
       return idPattern.test(inputId);
     };
+
+    // 아이디 입력란에 대한 이벤트 리스너 추가
+    inputId.addEventListener("focusout", function () {
+        const inputIdValue = submitSignUpForm.elements.id.value;
+        if (inputIdValue === "") {
+            idCheckText.innerHTML = "아이디를 입력해주세요.";
+            isUniqueIdValid = false;
+            return false;
+        }
+        if (!isIdValid(inputIdValue)) {
+            idCheckText.innerHTML = "아이디 양식을 확인하세요!";
+            isUniqueIdValid = false;
+            return false;
+        }
+        checkUniqueId(inputIdValue);
+    });
 
     const checkUniqueId = (inputId) => {
       fetch("<%=request.getContextPath()%>/checkUniqueId?id=" + inputId)
@@ -243,7 +257,7 @@ input {
         })
         .then(data => {
             if (data.success) {
-                emailCheckText.innerHTML = '인증번호를 입력해주세요.';
+                emailCheckText.innerHTML = '인증번호를 전송했습니다. 해당 메일로 온 인증번호를 입력해주세요.';
                 generatedVerificationNumber = data.verificationNumber; // 서버에서 전달받은 인증번호 저장
             } else {
                 emailCheckText.innerHTML = '인증번호 전송에 실패하였습니다. 다시 시도해주세요.';

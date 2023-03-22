@@ -2,6 +2,9 @@ package com.study.column.board;
 
 import com.study.column.fullNotice.FullNoticeDTO;
 import com.study.column.util.PageDTO;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 
 import java.util.List;
 
@@ -30,9 +33,14 @@ public interface BoardService {
 
     void updateViews(int postNum) throws Exception;
 
-    int checkViewUserIp(int postNum, String ip) throws Exception;
+    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip")
+    int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
-    void saveViewUserIp(int postNum, String ip) throws Exception;
+    @Caching(evict = {
+            @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", allEntries = true),
+            @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum", allEntries = true)
+    })
+    void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
     List<BoardDTO> showSelfNoticeList() throws Exception;
 

@@ -2,6 +2,7 @@ package com.study.column.mapper;
 
 import com.study.column.board.BoardDTO;
 import com.study.column.board.PostCommentDTO;
+import com.study.column.board.ViewsDetailDTO;
 import com.study.column.fullNotice.FullNoticeDTO;
 import com.study.column.util.PageDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -33,9 +34,9 @@ public interface BoardMapper {
 
     void updateViews(int postNum) throws Exception;
 
-    int checkViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
+    int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
-    void saveViewUserIp(@Param("postNum") int postNum, @Param("ip") String ip) throws Exception;
+    void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
     List<BoardDTO> showSelfNoticeList() throws Exception;
 

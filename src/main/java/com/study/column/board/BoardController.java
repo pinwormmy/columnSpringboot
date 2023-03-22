@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -41,8 +42,16 @@ public class BoardController {
     }
     private void logIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
-        boardService.saveViewUserIp(postNum, ip);
-        if(boardService.checkViewUserIp(postNum, ip) == 0) {
+        HttpSession session = request.getSession();
+        String realName = (String) session.getAttribute("realName");
+
+        ViewsDetailDTO viewsDetailDTO = new ViewsDetailDTO();
+        viewsDetailDTO.setPostNum(postNum);
+        viewsDetailDTO.setIp(ip);
+        viewsDetailDTO.setRealName(realName);
+
+        boardService.saveViewUserIp(viewsDetailDTO);
+        if (boardService.checkViewUserIp(viewsDetailDTO) == 0) {
             boardService.updateViews(postNum);
         }
     }

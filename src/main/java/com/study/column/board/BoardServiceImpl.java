@@ -100,18 +100,19 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.updateViews(postNum);
     }
 
-    @Cacheable(key = "#postNum + '_' + #ip")
-    public int checkViewUserIp(int postNum, String ip) throws Exception {
-        return boardMapper.checkViewUserIp(postNum, ip);
+    @Override
+    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip")
+    public int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
+        return boardMapper.checkViewUserIp(viewsDetailDTO);
     }
 
+    @Override
     @Caching(evict = {
-            @CacheEvict(key = "#postNum + '_' + #ip", allEntries = true),
-            @CacheEvict(key = "#postNum", allEntries = true)
+            @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", allEntries = true),
+            @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum", allEntries = true)
     })
-    public void saveViewUserIp(int postNum, String ip) throws Exception {
-
-        boardMapper.saveViewUserIp(postNum, ip);
+    public void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
+        boardMapper.saveViewUserIp(viewsDetailDTO);
     }
 
     @Override

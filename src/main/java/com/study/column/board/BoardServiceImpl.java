@@ -6,6 +6,9 @@ import com.study.column.util.PageDTO;
 import com.study.column.util.PageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -97,13 +100,17 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.updateViews(postNum);
     }
 
-    @Override
+    @Cacheable(key = "#postNum + '_' + #ip")
     public int checkViewUserIp(int postNum, String ip) throws Exception {
         return boardMapper.checkViewUserIp(postNum, ip);
     }
 
-    @Override
+    @Caching(evict = {
+            @CacheEvict(key = "#postNum + '_' + #ip", allEntries = true),
+            @CacheEvict(key = "#postNum", allEntries = true)
+    })
     public void saveViewUserIp(int postNum, String ip) throws Exception {
+
         boardMapper.saveViewUserIp(postNum, ip);
     }
 

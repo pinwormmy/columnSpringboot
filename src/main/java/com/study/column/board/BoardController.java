@@ -31,18 +31,18 @@ public class BoardController {
         return "board/board";
     }
 
-    @RequestMapping("/readPost")
+    @GetMapping("/readPost")
     @Transactional
     public String post(Model model, HttpServletRequest request) throws Exception {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
-        checkIpAndUpdateViews(request, postNum);
+        logIpAndUpdateViews(request, postNum);
         model.addAttribute("post", boardService.readPost(postNum));
         return "board/readPost";
     }
-    private void checkIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
+    private void logIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
+        boardService.saveViewUserIp(postNum, ip);
         if(boardService.checkViewUserIp(postNum, ip) == 0) {
-            boardService.saveViewUserIp(postNum, ip);
             boardService.updateViews(postNum);
         }
     }
@@ -106,6 +106,4 @@ public class BoardController {
     public void updateCommentCount(int postNum) throws Exception {
         boardService.updateCommentCount(postNum);
     }
-    
-    // ip로그 처리 어떻게 할지 구상하기
 }

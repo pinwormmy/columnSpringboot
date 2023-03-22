@@ -44,6 +44,8 @@ public class BoardController {
         String ip = IpService.getRemoteIP(request);
         HttpSession session = request.getSession();
         String realName = (String) session.getAttribute("realName");
+        log.debug("로그인정보 불러오기 테스트 : {}", session.getAttribute("id"));
+        log.debug("조회로그 : 로그인한 아이디값 받아오기: {}", realName);
 
         ViewsDetailDTO viewsDetailDTO = new ViewsDetailDTO();
         viewsDetailDTO.setPostNum(postNum);

@@ -103,8 +103,8 @@
     </update>
 
     <insert id="saveViewUserIp">
-        INSERT INTO BOARD_VIEWS_DETAIL
-            VALUES(#{postNum}, #{ip}, NOW())
+        INSERT INTO BOARD_VIEWS_DETAIL(POST_NUM, IP, REG_DATE, REALNAME)
+            VALUES(#{postNum}, #{ip}, NOW(), #{realName})
     </insert>
 
     <select id="checkViewUserIp" resultType="int">

@@ -1,5 +1,6 @@
 package com.study.column.board;
 
+import com.study.column.member.MemberDTO;
 import com.study.column.util.PageDTO;
 import com.study.column.util.IpService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,13 +39,17 @@ public class BoardController {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
         logIpAndUpdateViews(request, postNum);
         model.addAttribute("post", boardService.readPost(postNum));
+        model.addAttribute("viewsDetails", boardService.getViewsDetailsByPostNum(postNum));
         return "board/readPost";
     }
     private void logIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
         HttpSession session = request.getSession();
-        String realName = (String) session.getAttribute("realName");
-        log.debug("로그인정보 불러오기 테스트 : {}", session.getAttribute("id"));
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        String realName = null;
+        if (memberDTO != null) {
+            realName = memberDTO.getRealName();
+        }
         log.debug("조회로그 : 로그인한 아이디값 받아오기: {}", realName);
 
         ViewsDetailDTO viewsDetailDTO = new ViewsDetailDTO();

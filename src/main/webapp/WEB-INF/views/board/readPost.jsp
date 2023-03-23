@@ -187,7 +187,12 @@ body {
                 </div>
                 <div class="col-lg-3">
                     <div class="side-banner">
-                        <img src="/img/right_banner_ex1.jpg" width="100%">
+                        <c:if test="${member.grade != 3}">
+                            <img src="/img/right_banner_ex1.jpg" width="100%">
+                        </c:if>
+                        <c:if test="${member.grade == 3}">
+                            게시물 조회 로그 테이블 넣기~
+                        </c:if>
                     </div>
                 </div>
             </div>

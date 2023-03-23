@@ -43,4 +43,6 @@ public interface BoardMapper {
     List<FullNoticeDTO> showFullNoticeList() throws Exception;
 
     int countTotalComment(PageDTO page) throws Exception;
+
+    List<ViewsDetailDTO> getViewsDetailsByPostNum(int postNum);
 }

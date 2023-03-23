@@ -116,6 +116,11 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public List<ViewsDetailDTO> getViewsDetailsByPostNum(int postNum) {
+        return boardMapper.getViewsDetailsByPostNum(postNum);
+    }
+
+    @Override
     public List<BoardDTO> showSelfNoticeList() throws Exception {
         return boardMapper.showSelfNoticeList();
     }

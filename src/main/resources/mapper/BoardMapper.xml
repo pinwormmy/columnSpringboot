@@ -112,6 +112,11 @@
             WHERE POST_NUM=#{postNum} AND IP=#{ip}
     </select>
 
+    <select id="getViewsDetailsByPostNum" resultType="com.study.column.board.ViewsDetailDTO">
+        SELECT * FROM BOARD_VIEWS_DETAIL
+            WHERE POST_NUM=#{postNum}
+    </select>
+
     <select id="showSelfNoticeList" resultType="com.study.column.board.BoardDTO">
         SELECT * FROM BOARD
             WHERE NOTICE=1

@@ -3,7 +3,7 @@ package com.study.column.board;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Getter
@@ -11,6 +11,6 @@ import java.time.LocalDateTime;
 public class ViewsDetailDTO {
     private int postNum;
     private String ip;
-    private LocalDateTime regDate;
+    private Date regDate;
     private String realName;
 }

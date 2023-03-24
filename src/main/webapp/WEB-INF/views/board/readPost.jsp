@@ -35,10 +35,6 @@ body {
     padding: 12px;
     text-align: center;
 }
-.boardList tr th {
-    background-color: #CCFF33;
-    color: #fff;
-}
 .boardList tr th:first-child {
     border-radius: 5px 0 0 0;
 }
@@ -127,7 +123,45 @@ body {
 .side-banner {
     margin-top: 15px;
 }
+.views-log-table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
 
+.views-log-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.views-log-table tr:last-child {
+    border: none;
+}
+
+.views-log-table tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+.views-log-table th,
+.views-log-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.views-log-table tr th {
+    background-color: #E8F8F5;
+}
+
+.views-log-table tr th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+.views-log-table tr th:last-child {
+    border-radius: 0 5px 0 0;
+}
 </style>
 </head>
 <body>
@@ -191,7 +225,25 @@ body {
                             <img src="/img/right_banner_ex1.jpg" width="100%">
                         </c:if>
                         <c:if test="${member.grade == 3}">
-                            게시물 조회 로그 테이블 넣기~
+                            <table class="views-log-table">
+                                <thead>
+                                    <tr>
+                                        <th>아이디</th>
+                                        <th>IP 주소</th>
+                                        <th>조회 시간</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <h4>관리자 기능 - 게시글 접속내역 확인</h4>
+                                    <c:forEach var="viewDetail" items="${viewsDetails}">
+                                        <tr>
+                                            <td>${viewDetail.realName}</td>
+                                            <td>${viewDetail.ip}</td>
+                                            <td><fmt:formatDate value="${viewDetail.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </c:if>
                     </div>
                 </div>

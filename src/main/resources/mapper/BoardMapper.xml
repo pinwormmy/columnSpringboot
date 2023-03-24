@@ -114,7 +114,9 @@
 
     <select id="getViewsDetailsByPostNum" resultType="com.study.column.board.ViewsDetailDTO">
         SELECT * FROM BOARD_VIEWS_DETAIL
-            WHERE POST_NUM=#{postNum}
+            WHERE POST_NUM = #{postNum}
+            ORDER BY REG_DATE DESC
+            LIMIT 10
     </select>
 
     <select id="showSelfNoticeList" resultType="com.study.column.board.BoardDTO">

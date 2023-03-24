@@ -6,58 +6,8 @@
 <title>${post.title} - 승인연재게시판</title>
 
 <style>
-body {
-    height: 100%;
-}
-.boardList {
-    width: 100%;
-    background-color: #fff;
-    border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    overflow: hidden;
-}
-.boardList caption {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-.boardList tr {
-    border-bottom: 1px solid #eee;
-}
-.boardList tr:last-child {
-    border: none;
-}
-.boardList tr:nth-child(odd) {
-    background-color: #ddd;
-}
-.boardList th,
-.boardList td {
-    padding: 12px;
-    text-align: center;
-}
-.boardList tr th:first-child {
-    border-radius: 5px 0 0 0;
-}
-.boardList tr th:last-child {
-    border-radius: 0 5px 0 0;
-}
 .postTitle {
     color: black;
-}
-.leftbar-ul {
-    border-top: solid 1px ivory;
-    list-style-type: none;
-}
-.leftbar-ul li {
-    border-bottom: solid 1px ivory;
-}
-.leftbar-ul li a{
-    color : white;
-    font-size: 16px;
-    font-weight: 500px;
-}
-.section-wrapper {
-    min-height: 850px;
 }
 .post-title {
     padding: 0.5rem 0.75rem;
@@ -89,10 +39,6 @@ body {
     border-color: #bbb;
     background-color: #E8F8F5;
 }
-.btn-theme {
-    margin: 10px 0;
-    float: right;
-}
 .col-xs-12 p {
     color: black;
     padding: 15px;
@@ -120,47 +66,25 @@ body {
     font-weight: 300;
     margin: 5px;
 }
-.side-banner {
-    margin-top: 15px;
-}
 .views-log-table {
-    width: 100%;
-    background-color: #fff;
-    border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 15px;
+  margin-top: 10px;
+  font-size: 14px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.views-log-table tr {
-    border-bottom: 1px solid #eee;
+.views-log-table thead th {
+  background-color: #E8F8F5;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #bbb;
 }
 
-.views-log-table tr:last-child {
-    border: none;
-}
-
-.views-log-table tr:nth-child(odd) {
-    background-color: #ddd;
-}
-
-.views-log-table th,
-.views-log-table td {
-    padding: 12px;
-    text-align: center;
-}
-
-.views-log-table tr th {
-    background-color: #E8F8F5;
-}
-
-.views-log-table tr th:first-child {
-    border-radius: 5px 0 0 0;
-}
-
-.views-log-table tr th:last-child {
-    border-radius: 0 5px 0 0;
+.views-log-table tbody td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #bbb;
 }
 </style>
 </head>
@@ -226,23 +150,23 @@ body {
                         </c:if>
                         <c:if test="${member.grade == 3}">
                             <table class="views-log-table">
-                                <thead>
-                                    <tr>
-                                        <th>아이디</th>
-                                        <th>IP 주소</th>
-                                        <th>조회 시간</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <h4>관리자 기능 - 게시글 접속내역 확인</h4>
-                                    <c:forEach var="viewDetail" items="${viewsDetails}">
-                                        <tr>
-                                            <td>${viewDetail.realName}</td>
-                                            <td>${viewDetail.ip}</td>
-                                            <td><fmt:formatDate value="${viewDetail.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
+                              <thead>
+                                <tr>
+                                  <th style="width: 33%;">아이디</th>
+                                  <th style="width: 33%;">IP 주소</th>
+                                  <th style="width: 33%;">조회 시간</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <h4>관리자 기능 - 게시글 접속내역 확인</h4>
+                                <c:forEach var="viewDetail" items="${viewsDetails}">
+                                  <tr>
+                                    <td>${viewDetail.realName}</td>
+                                    <td>${viewDetail.ip}</td>
+                                    <td><fmt:formatDate value="${viewDetail.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                                  </tr>
+                                </c:forEach>
+                              </tbody>
                             </table>
                         </c:if>
                     </div>

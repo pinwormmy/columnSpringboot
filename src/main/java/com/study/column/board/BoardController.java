@@ -57,9 +57,11 @@ public class BoardController {
         viewsDetailDTO.setIp(ip);
         viewsDetailDTO.setRealName(realName);
 
-        boardService.saveViewUserIp(viewsDetailDTO);
         if (boardService.checkViewUserIp(viewsDetailDTO) == 0) {
+            boardService.saveViewUserIp(viewsDetailDTO);
             boardService.updateViews(postNum);
+        } else {
+            boardService.saveViewUserIp(viewsDetailDTO);
         }
     }
 

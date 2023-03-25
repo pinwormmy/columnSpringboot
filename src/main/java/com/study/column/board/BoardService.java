@@ -37,7 +37,7 @@ public interface BoardService {
     int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
     @Caching(evict = {
-            @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", allEntries = true),
+            @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip"),
             @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum", allEntries = true)
     })
     void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;

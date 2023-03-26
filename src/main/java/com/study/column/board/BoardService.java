@@ -33,12 +33,12 @@ public interface BoardService {
 
     void updateViews(int postNum) throws Exception;
 
-    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip")
+    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", sync = true)
     int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
     @Caching(evict = {
             @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip"),
-            @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum", allEntries = true)
+            @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum")
     })
     void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 

@@ -36,10 +36,6 @@ public interface BoardService {
     @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", sync = true)
     int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
-    @Caching(evict = {
-            @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip"),
-            @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum")
-    })
     void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
     public List<ViewsDetailDTO> getViewsDetailsByPostNum(int postNum);

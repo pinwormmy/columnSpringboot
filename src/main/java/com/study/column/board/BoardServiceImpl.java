@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -101,7 +102,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", sync = true)
+    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", sync = false)
     public int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
         int result = boardMapper.checkViewUserIp(viewsDetailDTO);
 
@@ -115,10 +116,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Caching(evict = {
-            @CacheEvict(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip"),
-            @CacheEvict(value = "postCache", key = "#viewsDetailDTO.postNum")
-    })
+    @Transactional
     public void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
         boardMapper.saveViewUserIp(viewsDetailDTO);
     }

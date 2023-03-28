@@ -41,7 +41,6 @@ public class BoardController {
         model.addAttribute("viewsDetails", boardService.getViewsDetailsByPostNum(postNum));
         return "board/readPost";
     }
-    @Transactional
     private void logIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
         HttpSession session = request.getSession();

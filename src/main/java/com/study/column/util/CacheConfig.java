@@ -1,12 +1,11 @@
 package com.study.column.util;
 
-import org.springframework.cache.CacheManager;
+import org.ehcache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
 @Configuration
 @EnableCaching
@@ -14,14 +13,13 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        return new EhCacheCacheManager(ehCacheCacheManager().getObject());
+        return new EhCacheCacheManager(ehCacheManager().getObject());
     }
 
     @Bean
-    public EhCacheManagerFactoryBean ehCacheCacheManager() {
-        EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
-        factoryBean.setConfigLocation(new ClassPathResource("ehcache/ehcache.xml"));
-        factoryBean.setShared(true);
-        return factoryBean;
+    public EhCacheManagerFactoryBean ehCacheManager() {
+        EhCacheManagerFactoryBean factory = new EhCacheManagerFactoryBean();
+        factory.setShared(true);
+        return factory;
     }
 }

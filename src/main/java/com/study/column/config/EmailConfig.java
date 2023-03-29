@@ -1,4 +1,4 @@
-package com.study.column.util;
+package com.study.column.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

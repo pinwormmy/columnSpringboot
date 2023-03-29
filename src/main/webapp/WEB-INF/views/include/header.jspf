@@ -17,6 +17,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 <html>
 <head>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
@@ -45,6 +46,12 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="/css/style.css">
+
+<!-- font-awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+integrity="sha512-14R0oKu0AuwpxV7wAT3qWzxug8LHsbKTt43MmvxdFr/jgX8bDTt5AgZKjUbZt5Ew2D1dwjMsx/2Qy5hBv33n8Q=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 
 <style>
@@ -237,8 +244,7 @@ hr {
         <nav class="header-menu">
             <ul class="header-menu-left">
                 <li style="font-size:24px; font-weight:700;"><a href="/">COLUMNSITE</a></li>
-                <li style="padding-top: 8px;"><a href="/openColumn/list">게시판</a></li>
-                <li style="padding-top: 8px;"><a href="/library/list">자료실</a></li>
+
             </ul>
             <form class="searchbar" action="/"><input name="keyword"></form>
             <ul class="header-menu-right">

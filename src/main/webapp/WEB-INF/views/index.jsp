@@ -74,7 +74,41 @@ span {
     margin: 10px;
     text-align: center;
 }
+.sidebar-menu {
+  margin-top: 20px;
+}
 
+.leftbar-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leftbar-ul li {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.leftbar-ul li:last-child {
+  border-bottom: none;
+}
+
+.leftbar-ul li a {
+  color: #333;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.leftbar-ul li a i {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.leftbar-ul li a:hover {
+  background-color: #eee;
+}
 
 </style>
 </head>
@@ -87,8 +121,39 @@ span {
             </div>
             <div class="row">
                 <div class="col-lg-2">
-                    <div class="side-banner">
-                        <img src="/img/left_banner_ex1.jpg" width="100%">
+                    <div class="sidebar-menu">
+                        <ul class="leftbar-ul">
+                            <li>
+                                <a href="/fullNotice/list">
+                                    <i class="fas fa-newspaper"></i>
+                                    <span class="menu-text">공지사항</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/openColumn/list">
+                                    <i class="fas fa-newspaper"></i>
+                                    <span class="menu-text">자유게시판</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/video/list">
+                                    <i class="fas fa-film"></i>
+                                    <span class="menu-text">동영상 게시판</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/board/list">
+                                    <i class="fas fa-comments"></i>
+                                    <span class="menu-text">회원게시판</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/library/list">
+                                    <i class="fas fa-book"></i>
+                                    <span class="menu-text">자료실</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -96,7 +161,7 @@ span {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
-                                    <span><a href="/openColumn/list">공개연재게시판</a></span>
+                                    <span><a href="/openColumn/list">자유게시판</a></span>
                                      <table class="boardList">
                                             <c:forEach var="post" items="${opencolumnList}">
                                             <tr>
@@ -140,7 +205,7 @@ span {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
-                                    <span><a href="/board/list">승인연재게시판</a></span>
+                                    <span><a href="/board/list">회원게시판</a></span>
                                      <table class="boardList">
                                             <c:forEach var="post" items="${boardList}">
                                             <tr>

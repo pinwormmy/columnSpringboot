@@ -38,7 +38,7 @@ public interface BoardService {
 
     void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception;
 
-    public List<ViewsDetailDTO> getViewsDetailsByPostNum(int postNum);
+    List<ViewsDetailDTO> getViewsDetailsByPostNum(int postNum);
 
     List<BoardDTO> showSelfNoticeList() throws Exception;
 

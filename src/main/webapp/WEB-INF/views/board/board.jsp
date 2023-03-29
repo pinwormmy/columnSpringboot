@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>승인연재게시판</title>
+<title>회원게시판</title>
 <style>
 body {
     height: 100%;
@@ -79,7 +79,7 @@ body {
                 <%@include file="../include/sidebar.jspf" %>
                 <div class="col-lg-7">
                     <div class="post-heading mb">
-                        <h3>승인연재게시판</h3>
+                        <h3>회원게시판</h3>
                     </div>
                     <div class="row">
                         <div id="comments" class="col-xs-12">

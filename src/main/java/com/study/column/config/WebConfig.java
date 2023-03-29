@@ -1,4 +1,4 @@
-package com.study.column.util;
+package com.study.column.config;
 
 import com.study.column.interceptor.AdminInterceptor;
 import com.study.column.interceptor.BoardLvInterceptor;

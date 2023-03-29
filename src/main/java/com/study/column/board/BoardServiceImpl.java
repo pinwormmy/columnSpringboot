@@ -7,6 +7,7 @@ import com.study.column.util.PageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
@@ -101,7 +102,6 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.updateViews(postNum);
     }
 
-    @Override
     @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", sync = false)
     public int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
         int result = boardMapper.checkViewUserIp(viewsDetailDTO);
@@ -115,7 +115,7 @@ public class BoardServiceImpl implements BoardService{
         return result;
     }
 
-    @Override
+    @CachePut(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip")
     @Transactional
     public void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
         boardMapper.saveViewUserIp(viewsDetailDTO);

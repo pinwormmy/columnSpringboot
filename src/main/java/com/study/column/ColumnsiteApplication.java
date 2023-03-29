@@ -8,7 +8,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cache.annotation.EnableCaching;
 
 @MapperScan(value={"com.study.column.mapper"})
-@EnableCaching
 @SpringBootApplication
 public class ColumnsiteApplication extends SpringBootServletInitializer {
 

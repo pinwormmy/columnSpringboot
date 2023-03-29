@@ -1,6 +1,7 @@
 package com.study.column.board;
 
 import com.study.column.member.MemberDTO;
+import com.study.column.util.CookieUtils;
 import com.study.column.util.PageDTO;
 import com.study.column.util.IpService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -34,14 +37,14 @@ public class BoardController {
     }
 
     @GetMapping("/readPost")
-    public String post(Model model, HttpServletRequest request) throws Exception {
+    public String post(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         int postNum = Integer.parseInt(request.getParameter("postNum"));
-        logIpAndUpdateViews(request, postNum);
+        logIpAndUpdateViews(request, response, postNum);
         model.addAttribute("post", boardService.readPost(postNum));
         model.addAttribute("viewsDetails", boardService.getViewsDetailsByPostNum(postNum));
         return "board/readPost";
     }
-    private void logIpAndUpdateViews(HttpServletRequest request, int postNum) throws Exception {
+    private void logIpAndUpdateViews(HttpServletRequest request, HttpServletResponse response, int postNum) throws Exception {
         String ip = IpService.getRemoteIP(request);
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -56,11 +59,18 @@ public class BoardController {
         viewsDetailDTO.setIp(ip);
         viewsDetailDTO.setRealName(realName);
 
-        if (boardService.checkViewUserIp(viewsDetailDTO) == 0) {
-            boardService.saveViewUserIp(viewsDetailDTO);
-            boardService.updateViews(postNum);
+        Cookie postViewCookie = CookieUtils.getPostViewCookie(request, postNum);
+        if (postViewCookie == null) {
+            if (boardService.checkViewUserIp(viewsDetailDTO) == 0) {
+                boardService.saveViewUserIp(viewsDetailDTO);
+                boardService.updateViews(postNum);
+            } else {
+                boardService.saveViewUserIp(viewsDetailDTO);
+            }
+            response.addCookie(CookieUtils.createPostViewCookie(postNum));
         } else {
-            boardService.saveViewUserIp(viewsDetailDTO);
+            // 쿠키가 존재하므로, 같은 사용자가 5분 이내에 접속한 것으로 판단하고 기록하지 않습니다.
+            log.debug("조회로그 : 5분 이내에 이미 조회한 사용자로 판단되어 기록을 생략합니다.");
         }
     }
 

@@ -102,20 +102,11 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.updateViews(postNum);
     }
 
-    @Cacheable(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip", sync = false)
     public int checkViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
         int result = boardMapper.checkViewUserIp(viewsDetailDTO);
-
-        if (result == 0) {
-            log.debug("Cache miss for postNum: {}, ip: {}. Fetching from database.", viewsDetailDTO.getPostNum(), viewsDetailDTO.getIp());
-        } else {
-            log.debug("Cache hit for postNum: {}, ip: {}. Using cached value.", viewsDetailDTO.getPostNum(), viewsDetailDTO.getIp());
-        }
-
         return result;
     }
 
-    @CachePut(value = "viewUserIpCache", key = "#viewsDetailDTO.postNum + '_' + #viewsDetailDTO.ip")
     @Transactional
     public void saveViewUserIp(ViewsDetailDTO viewsDetailDTO) throws Exception {
         boardMapper.saveViewUserIp(viewsDetailDTO);

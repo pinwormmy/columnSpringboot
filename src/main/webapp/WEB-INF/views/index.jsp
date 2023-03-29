@@ -161,7 +161,7 @@ span {
                         <div id="comments" class="col-xs-12">
                             <div id="comments-list" class="gap">
                                 <div class="media">
-                                    <span><a href="/openColumn/list">자유게시판123</a></span>
+                                    <span><a href="/openColumn/list">자유게시판</a></span>
                                      <table class="boardList">
                                             <c:forEach var="post" items="${opencolumnList}">
                                             <tr>

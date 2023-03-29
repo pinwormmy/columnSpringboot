@@ -152,13 +152,13 @@
                             <table class="views-log-table">
                               <thead>
                                 <tr>
-                                  <th style="width: 33%;">아이디</th>
+                                  <th style="width: 33%;">접속자명</th>
                                   <th style="width: 33%;">IP 주소</th>
                                   <th style="width: 33%;">조회 시간</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <h4>관리자 기능 - 게시글 접속내역 확인</h4>
+                                <h4>관리자 기능 - 게시글 조회내역</h4>
                                 <c:forEach var="viewDetail" items="${viewsDetails}">
                                   <tr>
                                     <td>${viewDetail.realName}</td>

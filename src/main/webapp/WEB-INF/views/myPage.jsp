@@ -7,6 +7,18 @@
 .my-page {
     margin: 30px;
 }
+
+.btn-turquoise {
+    background-color: #40E0D0;
+    color: #fff;
+    border: none;
+    margin: 10px;
+}
+
+.btn-turquoise:hover {
+    background-color: #3CB7B8;
+    color: #fff;
+}
 </style>
 </head>
 <body>
@@ -34,61 +46,19 @@
 							</div>
 						</div>
 					</div>
-					<div class="total-order me-20">
-					    <h3>💳결제 수단 등록</h3>
-					    <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>유형</th>
-                                        <th>이름</th>
-                                        <th>등록일자</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#!">#1</a></td>
-                                        <td>신용카드</td>
-                                        <td>국민 카드 - 궁민이 아니신가 카드</td>
-                                        <td>Mar 25, 2022</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <c:if test="${member.grade == 3}">
+                        <div>
+                            <a href="admin" class="btn btn-turquoise">관리자 모드</a>
                         </div>
+                    </c:if>
+                    <div>
+                        <a href="editProfile" class="btn btn-turquoise">회원 정보 변경</a>
+                    </div>
+                    <hr>
+					<div class="total-order me-20">
 					</div>
 					<hr>
 					<div class="total-order mt-20">
-						<h3>📦주문 내역</h3>
-						<div class="table-responsive">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>주문번호</th>
-										<th>상품명</th>
-										<th>주문일자</th>
-										<th>상품수</th>
-										<th>가격</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a href="#!">#252125</a></td>
-										<td>털 깎인 미도리가 찾는 푹신이불</td>
-										<td>Oct 12, 2022</td>
-										<td>1</td>
-										<td>27300원</td>
-									</tr>
-									<tr>
-                                        <td><a href="#!">#21156</a></td>
-                                        <td>팩맨 개구리를 위한 사또밥</td>
-                                        <td>Oct 10, 2022</td>
-                                        <td>1</td>
-                                        <td>5500원</td>
-                                    </tr>
-								</tbody>
-							</table>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -111,4 +81,3 @@
 
 </body>
 </html>
-

@@ -36,10 +36,12 @@
 				<div class="dashboard-wrapper user-dashboard" style="margin: 30px 0 30px 0;">
 					<div class="media">
 						<div class="media-body">
-							<h1 class="media-heading">환영합니다. ${member.id}님!</h1>
+							<h1 class="media-heading">환영합니다. ${member.nickName}님!</h1>
 							<hr>
 							<div class="member-info" style="font-size: 20px; line-height: 50px;">
-                                <span>고객명 : ${member.realName}</span><br>
+                                <span>ID : ${member.id}</span><br>
+                                <span>실명 : ${member.realName}</span><br>
+                                <span>별명 : ${member.nickName}</span><br>
                                 <span>연락처 : ${member.phone}</span><br>
                                 <span>이메일 : ${member.email}</span><br>
                                 <hr>

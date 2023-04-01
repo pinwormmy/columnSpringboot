@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Member;
 
 @Controller
 @Slf4j
@@ -134,7 +136,7 @@ public class MemberController {
 
     @GetMapping("/checkUniqueEmail")
     @ResponseBody
-    public String checkUniqueEmail(String email) throws Exception {
+    public String checkUniqueEmail(String email) {
         log.info("아이디 중복 확인 컨트롤러 작동");
         return memberService.isUniqueEmail(email);
     }

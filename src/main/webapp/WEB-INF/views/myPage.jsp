@@ -54,7 +54,7 @@
                         </div>
                     </c:if>
                     <div>
-                        <a href="editProfile" class="btn btn-turquoise">회원 정보 변경</a>
+                        <a href="/modifyMyInfo" class="btn btn-turquoise">회원 정보 변경</a>
                     </div>
                     <hr>
 					<div class="total-order me-20">

@@ -39,10 +39,13 @@
                                                 <div>
                                                     <p>ID : ${member.id}</p>
                                                     <input type="hidden" name="id" value="${member.id}">
-                                                    <p>별명 : <input type="text" name="nickName" placeholder="${member.nickName}"></p>
-                                                    <p>비밀번호 : <input type="password" name="pw" placeholder="비밀번호를 입력하세요"></p>
-                                                    <p>비밀번호확인 : <input type="password" name="pw2" placeholder="비밀번호를 다시 입력하세요"></p>
-                                                    <p>이메일 : <input type="email" name="email" placeholder="${member.email}"></p>
+                                                    <p>별명 : <input type="text" name="nickName" value="${member.nickName}"></p>
+                                                    <p>비밀번호 : <input type="password" name="pw" placeholder="비밀번호를 입력하세요" value="${member.pw}"></p>
+                                                    <p>비밀번호확인 : <input type="password" name="pw2" placeholder="비밀번호를 다시 입력하세요" value="${member.pw}"></p>
+                                                    <p>이메일 : <input type="email" name="email" value="${member.email}"></p>
+                                                    <button type="button" id="emailAuthBtn" class="btn btn-theme">이메일 인증</button>
+                                                    <p>인증 코드 : <input type="text" name="authCode" id="authCode" placeholder="이메일로 받은 인증 코드를 입력하세요"></p>
+                                                    <button type="button" id="checkAuthCodeBtn" class="btn btn-theme">인증 확인</button>
                                                     <button type="button" class="pull-left btn btn-theme" onclick="checkSignupForm();">수정하기</button>
                                                     <button type="button" class="pull-left btn btn-theme" onclick="location.href='/myPage'">취소</button>
                                                 </div>
@@ -66,6 +69,10 @@
     let modifyMyInfoForm = document.getElementById("modifyMyInfo");
 	let checkUniqueId = false;
 	let checkUniqueNickname = false;
+	let isEmailAuthed = false;
+
+	document.getElementById("emailAuthBtn").addEventListener("click", sendAuthEmail);
+    document.getElementById("checkAuthCodeBtn").addEventListener("click", checkAuthCode);
 
 	function checkSignupForm() {
 
@@ -99,6 +106,45 @@
 		alert("수정되었습니다.");
 		modifyMyInfoForm.submit();
 	}
+
+	function sendAuthEmail() {
+        let email = modifyMyInfoForm.email.value;
+        if (email === "") {
+            alert("이메일을 입력하세요!");
+            modifyMyInfoForm.email.focus();
+            return;
+        }
+
+        // 이메일 전송하는 서버 통신 코드 작성
+        alert("이메일로 인증 코드가 전송되었습니다.");
+    }
+
+    function checkAuthCode() {
+        let authCode = document.getElementById("authCode").value;
+        if (authCode === "") {
+            alert("인증 코드를 입력하세요!");
+            document.getElementById("authCode").focus();
+            return;
+        }
+
+        // 인증 코드 확인하는 서버 통신 코드 작성
+
+        // 서버에서 전송한 결과가 일치하면, 아래 코드 실행
+        isEmailAuthed = true;
+        alert("이메일 인증이 완료되었습니다.");
+    }
+
+    function checkSignupForm() {
+        // 기존 검증 코드 생략
+
+        if (!isEmailAuthed) {
+            alert("이메일 인증을 완료해주세요!");
+            return false;
+        }
+
+        alert("수정되었습니다.");
+        modifyMyInfoForm.submit();
+    }
 
 </script>
 

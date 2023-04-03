@@ -71,41 +71,80 @@
 	let checkUniqueNickname = false;
 	let isEmailAuthed = false;
 
+	let generatedVerificationNumber = null;
+    let verificationNumberValid = false;
+    let isEmailValid = false;
+    let isUniqueEmailValid = false;
+
+    const emailCheckText = document.getElementById("emailCheckText");
+    const sendVerificationNumberButton = document.getElementById('sendVerificationNumberButton');
+    const inputEmail = document.getElementById('email');
+    const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
+
 	document.getElementById("emailAuthBtn").addEventListener("click", sendAuthEmail);
     document.getElementById("checkAuthCodeBtn").addEventListener("click", checkAuthCode);
 
-	function checkSignupForm() {
+    const validateEmailVerificationNumber = (inputValue) => {
+      const verificationNumberPattern = /^\d{8}$/;
+      return verificationNumberPattern.test(inputValue);
+    };
 
-		let isPassword = /\S{4,}/;
+    const validateEmail = (inputEmail) => {
+      const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      return emailPattern.test(inputEmail);
+    };
 
-		if (modifyMyInfoForm.pw.value == "") {
-			alert("비밀번호를 입력하세요!!");
-			modifyMyInfoForm.pw.focus();
-			return false;
-		}
-		if(!isPassword.test(modifyMyInfoForm.pw.value)){
-			alert("비밀번호는 4자리 이상이어야 합니다;");
-			modifyMyInfoForm.pw.focus();
-			return false;
-		}
-		if (modifyMyInfoForm.pw2.value == "") {
-			alert("비밀번호 확인도 입력하세요!!");
-			modifyMyInfoForm.pw2.focus();
-			return false;
-		}
-		if (modifyMyInfoForm.pw.value != modifyMyInfoForm.pw2.value) {
-			alert("비밀번호 재입력까지 일치해야합니다.");
-			modifyMyInfoForm.pw.focus();
-			return false;
-		}
-		if (modifyMyInfoForm.nickName.value == "") {
-            alert("닉네임을 입력하세요!!");
-            modifyMyInfoForm.nickName.focus();
+    // 이메일 인증번호 전송 버튼 클릭 이벤트
+    sendVerificationNumberButton.addEventListener('click', () => {
+        const email = inputEmail.value;
+        if (email === '') {
+            alert("이메일을 입력해주세요.");
             return false;
         }
-		alert("수정되었습니다.");
-		modifyMyInfoForm.submit();
-	}
+
+        fetch('/sendVerificationMail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: userEmail
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('서버에서 문제가 발생했습니다.');
+            }
+        })
+        .then(data => {
+            if (data.success) {
+                generatedVerificationNumber = data.verificationNumber;
+                alert("인증번호가 이메일로 발송되었습니다. 확인해주세요.");
+            } else {
+                alert("인증번호 발송에 실패했습니다. 다시 시도해주세요.");
+            }
+        })
+        .catch(error => {
+            console.error("Error: ", error);
+        });
+    }
+
+	inputEmailVerificationNumber.addEventListener('input', () => {
+        const inputText = inputEmailVerificationNumber.value;
+        const length = inputText.length;
+        if (length === 8) {
+            if (generatedVerificationNumber && generatedVerificationNumber === inputText) {
+                alert("인증번호 확인이 완료되었습니다.");
+                emailCheckText.innerHTML = '인증번호 확인이 완료되었습니다.';
+                verificationNumberValid = true;
+            } else {
+                alert("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
+                verificationNumberValid = false;
+            }
+        }
+    });
 
 	function sendAuthEmail() {
         let email = modifyMyInfoForm.email.value;
@@ -135,15 +174,61 @@
     }
 
     function checkSignupForm() {
-        // 기존 검증 코드 생략
+        let isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
 
-        if (!isEmailAuthed) {
-            alert("이메일 인증을 완료해주세요!");
+        if (isUniqueIdValid == false) {
+            alert("올바른 ID를 입력하세요!!");
+            submitSignUpForm.id.focus();
             return false;
         }
 
-        alert("수정되었습니다.");
-        modifyMyInfoForm.submit();
+        if (submitSignUpForm.pw.value == "") {
+            alert("비밀번호를 입력하세요!!");
+            submitSignUpForm.pw.focus();
+            return false;
+        }
+        if (submitSignUpForm.pw2.value == "") {
+            alert("비밀번호 확인도 입력하세요!!");
+            submitSignUpForm.pw2.focus();
+            return false;
+        }
+        if (submitSignUpForm.pw.value != pw2.value) {
+            alert("비밀번호 재입력까지 일치해야합니다.");
+            submitSignUpForm.pw.focus();
+            return false;
+        }
+        if (!isPassword.test(submitSignUpForm.pw.value)) {
+            alert("비밀번호 양식 확인해주세요");
+            submitSignUpForm.pw.focus();
+            return false;
+        }
+        if (submitSignUpForm.name.value == "") {
+            alert("이름을 입력하세요!!");
+            submitSignUpForm.name.focus();
+            return false;
+        }
+        if (submitSignUpForm.nickName.value == "") {
+            alert("별명을 입력하세요!!");
+            submitSignUpForm.nickName.focus();
+            return false;
+        }
+        if (submitSignUpForm.phone.value == "") {
+            alert("연락처를 입력하세요!!");
+            submitSignUpForm.phone.focus();
+            return false;
+        }
+        if (isUniqueEmailValid == false) {
+            alert("올바른 이메일을 입력하세요!!");
+            submitSignUpForm.email.focus();
+            return false;
+        }
+        if (verificationNumberValid == false) {
+            alert("이메일 인증을 완료해주세요!!");
+            submitSignUpForm.email.focus();
+            return false;
+        }
+
+        submitSignUpForm.submit();
     }
 
 </script>

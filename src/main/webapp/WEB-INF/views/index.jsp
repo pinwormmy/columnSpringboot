@@ -29,7 +29,6 @@ body {
 .boardList th,
 .boardList td {
     padding: 5px;
-    text-align: center;
 }
 .boardList tr th {
     background-color: #EDFFFF;
@@ -46,7 +45,8 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 15%;
+    max-width: 100%;
+    text-align: left;
 }
 .leftbar-ul {
     border-top: solid 1px ivory;
@@ -136,7 +136,7 @@ span {
                                             <tr>
                                                 <td>
                                                 <a class="postTitle" href="/openColumn/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></td>
                                                 <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
                                             </tr>
                                             </c:forEach>
@@ -199,8 +199,9 @@ span {
                                             <c:forEach var="post" items="${libraryList}">
                                                 <tr>
                                                     <td>
-                                                    <a class="postTitle" href="/library/readPost?postNum=${post.postNum}">${post.title}</a>
-                                                    <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if></h4></td>
+                                                        <a class="postTitle" href="/library/readPost?postNum=${post.postNum}">${post.title}</a>
+                                                        <c:if test="${post.commentCount > 0}">( ${post.commentCount} )</c:if>
+                                                    </td>
                                                     <td><fmt:formatDate pattern="yyyy.MM.dd" value="${post.regDate}"/></td>
                                                 </tr>
                                             </c:forEach>

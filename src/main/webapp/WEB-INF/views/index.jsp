@@ -17,7 +17,7 @@ body {
     margin: 10px 0 10px 0;
 }
 .boardList caption {
-    font-size: 20px;
+    font-size: 12px;
     margin-bottom: 30px;
 }
 .boardList tr {
@@ -43,6 +43,10 @@ body {
 }
 .postTitle {
     color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15%;
 }
 .leftbar-ul {
     border-top: solid 1px ivory;
@@ -53,7 +57,7 @@ body {
 }
 .leftbar-ul li a{
     color : white;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500px;
 }
 .page-navigation {
@@ -66,7 +70,7 @@ body {
     font-weight: 400;
 }
 span {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 300;
     border-bottom: 2px solid Turquoise;
 }
@@ -102,7 +106,7 @@ span {
 }
 
 .leftbar-ul li a i {
-  font-size: 16px;
+  font-size: 12px;
   margin-right: 10px;
 }
 
@@ -120,42 +124,7 @@ span {
                 <img src="/img/main_banner.jpg">
             </div>
             <div class="row">
-                <div class="col-lg-2">
-                    <div class="sidebar-menu">
-                        <ul class="leftbar-ul">
-                            <li>
-                                <a href="/fullNotice/list">
-                                    <i class="fas fa-newspaper"></i>
-                                    <span class="menu-text">공지사항</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/openColumn/list">
-                                    <i class="fas fa-newspaper"></i>
-                                    <span class="menu-text">자유게시판</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/video/list">
-                                    <i class="fas fa-film"></i>
-                                    <span class="menu-text">동영상 게시판</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/board/list">
-                                    <i class="fas fa-comments"></i>
-                                    <span class="menu-text">회원게시판</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/library/list">
-                                    <i class="fas fa-book"></i>
-                                    <span class="menu-text">자료실</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <%@include file="./include/sidebar.jspf" %>
                 <div class="col-lg-4">
                     <div class="row">
                         <div id="comments" class="col-xs-12">

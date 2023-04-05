@@ -36,32 +36,53 @@
                                             </div>
                                             <hr>
                                             <form action="/submitModifyMyInfo" id="modifyMyInfo" method="post">
-                                                <div>
-                                                    <p>ID : ${member.id}</p>
-                                                    <input type="hidden" name="id" value="${member.id}">
-                                                    <p>별명 : <input type="text" name="nickName" value="${member.nickName}"></p>
-                                                    <p>비밀번호 : <input type="password" name="pw" placeholder="비밀번호를 입력하세요" value="${member.pw}"></p>
-                                                    <p>비밀번호확인 : <input type="password" name="pw2" placeholder="비밀번호를 다시 입력하세요" value="${member.pw}"></p>
-                                                    <p>이메일 : <input type="email" name="email" value="${member.email}"></p>
-                                                    <button type="button" id="emailAuthBtn" class="btn btn-theme">이메일 인증</button>
-                                                    <p>인증 코드 : <input type="text" name="authCode" id="authCode" placeholder="이메일로 받은 인증 코드를 입력하세요"></p>
-                                                    <button type="button" id="checkAuthCodeBtn" class="btn btn-theme">인증 확인</button>
-                                                    <button type="button" class="pull-left btn btn-theme" onclick="checkSignupForm();">수정하기</button>
-                                                    <button type="button" class="pull-left btn btn-theme" onclick="location.href='/myPage'">취소</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                <table>
+                                                    <tr>
+                                                        <td>ID :</td>
+                                                        <td>${member.id}<input type="hidden" name="id" value="${member.id}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>별명 :</td>
+                                                        <td><input type="text" name="nickName" value="${member.nickName}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>비밀번호 :</td>
+                                                        <td><input type="password" name="pw" placeholder="비밀번호를 입력하세요" value="${member.pw}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>비밀번호확인 :</td>
+                                                        <td><input type="password" name="pw2" placeholder="비밀번호를 다시 입력하세요" value="${member.pw}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>이메일 :</td>
+                                                        <td><input type="email" name="email" value="${member.email}">
+                                                            <button type="button" id="sendVerificationNumberButton" class="btn btn-theme">이메일 인증</button>
+                                                            <span id="emailCheckText" style="margin-left: 10px;"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>인증 코드 :</td>
+                                                        <td>
+                                                            <input type="text" name="authCode" id="inputEmailVerificationNumber" placeholder="이메일로 받은 인증 코드를 입력하세요">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div style="margin-top: 20px;">
+                                                    <button type="button" class="btn btn-theme" onclick="checkSignupForm();">수정하기</button>
+                                                    <button type="button" class="btn btn-theme" onclick="location.href='/myPage'">취소</button>
+                                               </div>
+                                           </form>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 </section>
-
 <script>
 
     // alert("js test02");
@@ -81,8 +102,6 @@
     const inputEmail = document.getElementById('email');
     const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
 
-	document.getElementById("emailAuthBtn").addEventListener("click", sendAuthEmail);
-    document.getElementById("checkAuthCodeBtn").addEventListener("click", checkAuthCode);
 
     const validateEmailVerificationNumber = (inputValue) => {
       const verificationNumberPattern = /^\d{8}$/;
@@ -129,7 +148,7 @@
         .catch(error => {
             console.error("Error: ", error);
         });
-    }
+    });
 
 	inputEmailVerificationNumber.addEventListener('input', () => {
         const inputText = inputEmailVerificationNumber.value;

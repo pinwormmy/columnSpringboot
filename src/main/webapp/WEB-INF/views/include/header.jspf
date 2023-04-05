@@ -47,13 +47,6 @@ FACEBOOK: https://www.facebook.com/themefisher
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="/css/style.css">
 
-<!-- font-awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-integrity="sha512-14R0oKu0AuwpxV7wAT3qWzxug8LHsbKTt43MmvxdFr/jgX8bDTt5AgZKjUbZt5Ew2D1dwjMsx/2Qy5hBv33n8Q=="
-crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-
 <style>
 @font-face {
     font-family: "NanumSquareNeo";

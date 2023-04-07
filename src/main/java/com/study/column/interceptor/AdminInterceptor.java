@@ -17,8 +17,9 @@ public class AdminInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         MemberDTO member = (MemberDTO)session.getAttribute("member");
         if (member == null || member.getGrade() != 3){
-            log.debug("해당 기능은 관리자만 사용 가능합니다.");
-            response.sendRedirect("/");
+            String message = "해당 접근은 관리자 전용입니다.";
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().write("<script>alert('" + message + "'); history.go(-1);</script>");
             return false;
         }
         return true;

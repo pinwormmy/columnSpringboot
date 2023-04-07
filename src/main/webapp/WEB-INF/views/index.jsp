@@ -212,7 +212,6 @@ span {
                         </div><!--/#comments-->
                     </div>
                 </div>
-
                 <div class="col-lg-2">
                     <div class="side-banner">
                         <img src="/img/left_banner_ex1.jpg" width="100%">

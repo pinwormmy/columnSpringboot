@@ -15,10 +15,11 @@ public class BoardLvInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         HttpSession session = request.getSession();
-        MemberDTO member = (MemberDTO)session.getAttribute("member");
-        if (member == null || member.getGrade() < 2){
-            log.debug("해당 접근은 관리자 승인이 필요합니다.");
-            response.sendRedirect("/");
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        if (member == null || member.getGrade() < 2) {
+            String message = "해당 접근은 관리자 승인이 필요합니다.";
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().write("<script>alert('" + message + "'); history.go(-1);</script>");
             return false;
         }
         return true;

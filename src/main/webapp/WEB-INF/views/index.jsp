@@ -23,9 +23,6 @@ body {
 .boardList tr {
     border-bottom: 1px solid #eee;
 }
-.boardList tr:last-child {
-    border: none;
-}
 .boardList th,
 .boardList td {
     padding: 5px;

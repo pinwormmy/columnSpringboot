@@ -1,5 +1,6 @@
 package com.study.column.openColumn;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ public class OpenColumnDTO {
     private String title;
     private String content;
     private String writer;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;
     private int views;
     private int commentCount;

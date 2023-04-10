@@ -69,30 +69,6 @@ input#saveIdBox:checked {
     background-color: Greenyellow;
     cursor:pointer;
 }
-button#kakaoLogin {
-    background-image: url("/img/kakaoLogin.png");
-    background-size: 310px;
-    background-color: transparent;
-    border: none;
-    width: 310px;
-    height: 47px;
-}
-button#naverLogin {
-    background-image: url("/img/naverLogin.png");
-    background-size: 310px 47px;
-    background-color: transparent;
-    border: none;
-    width: 310px;
-    height: 47px;
-}
-button#facebookLogin {
-    background-image: url("/img/facebookLogin.png");
-    background-size: 310px 47px;
-    background-color: transparent;
-    border: none;
-    width: 310px;
-    height: 47px;
-}
 .loginApi {
     margin: 3px;
 }
@@ -134,17 +110,12 @@ a {
                 <input type="password" name="pw" id="pw" placeholder="4~16 자리 영문+숫자 조합">
             </div>
             <button id="loginButton">로그인하기</button><br>
-            <button class="homeButton" onclick="location.href='/'">처음으로</button>
+            <button type="button" class="homeButton" onclick="location.href='/'">처음으로</button>
         </form>
         <div class="subMenu">
             <div id="right-menu" ><a href="javascript:comingSoon();">ID/PW 찾기</a> |
             <a id="signUp" href="/signUp">회원가입</a></div>
         </div>
-    </div>
-    <div class="loginApi">
-        <button type="button" id="kakaoLogin" onclick="comingSoon();"></button><br>
-        <button type="button" id="naverLogin" onclick="comingSoon();"></button><br>
-        <button type="button" id="facebookLogin" onclick="comingSoon();"></button><br>
     </div>
 </div>
 

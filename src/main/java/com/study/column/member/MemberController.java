@@ -50,8 +50,9 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
-    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {  
-        session.setAttribute("member", memberService.checkLoginData(memberDTO));
+    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {
+        MemberDTO loginData = memberService.checkLoginData(memberDTO);
+        session.setAttribute("member", memberService.checkLoginData(loginData));
         log.debug("로그인 확인: {}", memberDTO);
         return "redirect:" + session.getAttribute("pageBeforeLogin");
     }

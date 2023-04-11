@@ -20,8 +20,7 @@ public class MemberController {
     @Autowired
     EmailService emailService;
     
-    // 승인 게시판에 아이피 로그 기능 만들기
-
+    // 심부름하느라 손못댐 ㅋ 빨리 자자
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
         // 로그인 이전 페이지 정보 세션에 저장

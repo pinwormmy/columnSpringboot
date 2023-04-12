@@ -123,6 +123,11 @@ a {
     function comingSoon() {
         alert("업데이트 예정입니다.");
     }
+
+    <c:if test="${not empty message}">
+        alert("${message}");
+        history.back();
+    </c:if>
 </script>
 
 </body>

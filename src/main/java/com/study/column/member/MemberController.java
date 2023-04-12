@@ -20,7 +20,6 @@ public class MemberController {
     @Autowired
     EmailService emailService;
     
-    // 심부름하느라 손못댐 ㅋ 빨리 자자
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
         // 로그인 이전 페이지 정보 세션에 저장
@@ -49,9 +48,13 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
-    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {
+    public String submitLogin(HttpSession session, MemberDTO memberDTO, Model model) throws Exception {
         MemberDTO loginData = memberService.checkLoginData(memberDTO);
-        session.setAttribute("member", memberService.checkLoginData(loginData));
+        if (loginData == null) {
+            model.addAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
+            return "login";
+        }
+        session.setAttribute("member", loginData);
         log.debug("로그인 확인: {}", memberDTO);
         return "redirect:" + session.getAttribute("pageBeforeLogin");
     }

@@ -84,171 +84,178 @@
    </div>
 </section>
 <script>
+let modifyMyInfoForm = document.getElementById("modifyMyInfo");
+let checkUniqueId = false;
+let checkUniqueNickname = false;
+let isEmailAuthed = false;
 
-    // alert("js test02");
+let generatedVerificationNumber = null;
+let verificationNumberValid = false;
+let isEmailValid = false;
+let isUniqueEmailValid = false;
 
-    let modifyMyInfoForm = document.getElementById("modifyMyInfo");
-	let checkUniqueId = false;
-	let checkUniqueNickname = false;
-	let isEmailAuthed = false;
-
-	let generatedVerificationNumber = null;
-    let verificationNumberValid = false;
-    let isEmailValid = false;
-    let isUniqueEmailValid = false;
-
-    const emailCheckText = document.getElementById("emailCheckText");
-    const sendVerificationNumberButton = document.getElementById('sendVerificationNumberButton');
-    const inputEmail = document.getElementById('email');
-    const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
+const emailCheckText = document.getElementById("emailCheckText");
+const sendVerificationNumberButton = document.getElementById('sendVerificationNumberButton');
+const inputEmail = document.getElementsByName('email')[0];
+const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
 
 
-    const validateEmailVerificationNumber = (inputValue) => {
-      const verificationNumberPattern = /^\d{8}$/;
-      return verificationNumberPattern.test(inputValue);
-    };
+const validateEmailVerificationNumber = (inputValue) => {
+  const verificationNumberPattern = /^\d{8}$/;
+  return verificationNumberPattern.test(inputValue);
+};
 
-    const validateEmail = (inputEmail) => {
-      const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-      return emailPattern.test(inputEmail);
-    };
+const validateEmail = (inputEmail) => {
+  const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return emailPattern.test(inputEmail);
+};
 
-    // 이메일 인증번호 전송 버튼 클릭 이벤트
-    sendVerificationNumberButton.addEventListener('click', () => {
-        const email = inputEmail.value;
-        if (email === '') {
-            alert("이메일을 입력해주세요.");
-            return false;
-        }
-
-        fetch('/sendVerificationMail', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: userEmail
-            })
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('서버에서 문제가 발생했습니다.');
-            }
-        })
-        .then(data => {
-            if (data.success) {
-                generatedVerificationNumber = data.verificationNumber;
-                alert("인증번호가 이메일로 발송되었습니다. 확인해주세요.");
-            } else {
-                alert("인증번호 발송에 실패했습니다. 다시 시도해주세요.");
-            }
-        })
-        .catch(error => {
-            console.error("Error: ", error);
-        });
-    });
-
-	inputEmailVerificationNumber.addEventListener('input', () => {
-        const inputText = inputEmailVerificationNumber.value;
-        const length = inputText.length;
-        if (length === 8) {
-            if (generatedVerificationNumber && generatedVerificationNumber === inputText) {
-                alert("인증번호 확인이 완료되었습니다.");
-                emailCheckText.innerHTML = '인증번호 확인이 완료되었습니다.';
-                verificationNumberValid = true;
-            } else {
-                alert("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
-                verificationNumberValid = false;
-            }
-        }
-    });
-
-	function sendAuthEmail() {
-        let email = modifyMyInfoForm.email.value;
-        if (email === "") {
-            alert("이메일을 입력하세요!");
-            modifyMyInfoForm.email.focus();
-            return;
-        }
-
-        // 이메일 전송하는 서버 통신 코드 작성
-        alert("이메일로 인증 코드가 전송되었습니다.");
+// 이메일 인증번호 전송 버튼 클릭 이벤트
+sendVerificationNumberButton.addEventListener('click', () => {
+    const userEmail = inputEmail.value;
+    if (userEmail === '') {
+        alert("이메일을 입력해주세요.");
+        return false;
     }
 
-    function checkAuthCode() {
-        let authCode = document.getElementById("authCode").value;
-        if (authCode === "") {
-            alert("인증 코드를 입력하세요!");
-            document.getElementById("authCode").focus();
-            return;
+    fetch('/sendVerificationMail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: userEmail
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('서버에서 문제가 발생했습니다.');
         }
+    })
+    .then(data => {
+        if (data.success) {
+            generatedVerificationNumber = data.verificationNumber;
+            alert("인증번호가 이메일로 발송되었습니다. 확인해주세요.");
+        } else {
+            alert("인증번호 발송에 실패했습니다. 다시 시도해주세요.");
+        }
+    })
+    .catch(error => {
+        console.error("Error: ", error);
+    });
+});
 
-        // 인증 코드 확인하는 서버 통신 코드 작성
+inputEmailVerificationNumber.addEventListener('input', () => {
+    const inputText = inputEmailVerificationNumber.value;
+    const length = inputText.length;
+    if (length === 8) {
+        if (generatedVerificationNumber && generatedVerificationNumber === inputText) {
+            alert("인증번호 확인이 완료되었습니다.");
+            emailCheckText.innerHTML = '인증번호 확인이 완료되었습니다.';
+            verificationNumberValid = true;
+        } else {
+            alert("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
+            verificationNumberValid = false;
+        }
+    }
+});
 
-        // 서버에서 전송한 결과가 일치하면, 아래 코드 실행
+function sendAuthEmail() {
+    let email = modifyMyInfoForm.email.value;
+    if (email === "") {
+        alert("이메일을 입력하세요!");
+        modifyMyInfoForm.email.focus();
+        return;
+    }
+
+    // 이메일 전송하는 서버 통신 코드 작성
+    alert("이메일로 인증 코드가 전송되었습니다.");
+}
+
+function checkAuthCode() {
+  let authCode = document.getElementById("authCode").value;
+  if (authCode === "") {
+    alert("인증 코드를 입력하세요!");
+    document.getElementById("authCode").focus();
+    return;
+  }
+
+  fetch('/checkVerificationCode', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      verificationCode: authCode
+    })
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('서버에서 문제가 발생했습니다.');
+      }
+    })
+    .then(data => {
+      if (data.success) {
         isEmailAuthed = true;
         alert("이메일 인증이 완료되었습니다.");
+      } else {
+        alert("인증 코드가 올바르지 않습니다. 다시 확인해주세요.");
+      }
+    })
+    .catch(error => {
+      console.error("Error: ", error);
+    });
+}
+
+function checkSignupForm() {
+    if (!verificationNumberValid) {
+        alert("이메일 인증을 완료해주세요.");
+        return;
     }
 
-    function checkSignupForm() {
-        let isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
+    const id = modifyMyInfoForm.id.value;
+    const nickName = modifyMyInfoForm.nickName.value;
+    const pw = modifyMyInfoForm.pw.value;
+    const pw2 = modifyMyInfoForm.pw2.value;
+    const email = modifyMyInfoForm.email.value;
 
-        if (isUniqueIdValid == false) {
-            alert("올바른 ID를 입력하세요!!");
-            submitSignUpForm.id.focus();
-            return false;
-        }
-
-        if (submitSignUpForm.pw.value == "") {
-            alert("비밀번호를 입력하세요!!");
-            submitSignUpForm.pw.focus();
-            return false;
-        }
-        if (submitSignUpForm.pw2.value == "") {
-            alert("비밀번호 확인도 입력하세요!!");
-            submitSignUpForm.pw2.focus();
-            return false;
-        }
-        if (submitSignUpForm.pw.value != pw2.value) {
-            alert("비밀번호 재입력까지 일치해야합니다.");
-            submitSignUpForm.pw.focus();
-            return false;
-        }
-        if (!isPassword.test(submitSignUpForm.pw.value)) {
-            alert("비밀번호 양식 확인해주세요");
-            submitSignUpForm.pw.focus();
-            return false;
-        }
-        if (submitSignUpForm.name.value == "") {
-            alert("이름을 입력하세요!!");
-            submitSignUpForm.name.focus();
-            return false;
-        }
-        if (submitSignUpForm.nickName.value == "") {
-            alert("별명을 입력하세요!!");
-            submitSignUpForm.nickName.focus();
-            return false;
-        }
-        if (submitSignUpForm.phone.value == "") {
-            alert("연락처를 입력하세요!!");
-            submitSignUpForm.phone.focus();
-            return false;
-        }
-        if (isUniqueEmailValid == false) {
-            alert("올바른 이메일을 입력하세요!!");
-            submitSignUpForm.email.focus();
-            return false;
-        }
-        if (verificationNumberValid == false) {
-            alert("이메일 인증을 완료해주세요!!");
-            submitSignUpForm.email.focus();
-            return false;
-        }
-
-        submitSignUpForm.submit();
+    if (id === "") {
+        alert("ID를 입력하세요!");
+        modifyMyInfoForm.id.focus();
+        return;
     }
+
+    if (nickName === "") {
+        alert("별명을 입력하세요!");
+        modifyMyInfoForm.nickName.focus();
+        return;
+    }
+
+    if (pw === "") {
+        alert("비밀번호를 입력하세요!");
+        modifyMyInfoForm.pw.focus();
+        return;
+    }
+
+    if (pw !== pw2) {
+        alert("비밀번호가 일치하지 않습니다!");
+        modifyMyInfoForm.pw2.focus();
+        return;
+    }
+
+    if (email === "") {
+        alert("이메일을 입력하세요!");
+        modifyMyInfoForm.email.focus();
+        return;
+    }
+
+    modifyMyInfoForm.submit();
+}
+
 
 </script>
 

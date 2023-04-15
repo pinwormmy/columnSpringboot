@@ -55,7 +55,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>이메일 :</td>
-                                                        <td><input type="email" name="email" value="${member.email}">
+                                                        <td><input type="email" name="email" value="${member.email}" oninput="checkEmailChanged();">
                                                             <button type="button" id="sendVerificationNumberButton" class="btn btn-theme">이메일 인증</button>
                                                             <span id="emailCheckText" style="margin-left: 10px;"></span>
                                                         </td>
@@ -83,22 +83,15 @@
        </div>
    </div>
 </section>
+
 <script>
 let modifyMyInfoForm = document.getElementById("modifyMyInfo");
-let checkUniqueId = false;
-let checkUniqueNickname = false;
-let isEmailAuthed = false;
-
-let generatedVerificationNumber = null;
-let verificationNumberValid = false;
-let isEmailValid = false;
-let isUniqueEmailValid = false;
+let isEmailAuthed = true;
 
 const emailCheckText = document.getElementById("emailCheckText");
 const sendVerificationNumberButton = document.getElementById('sendVerificationNumberButton');
 const inputEmail = document.getElementsByName('email')[0];
 const inputEmailVerificationNumber = document.getElementById('inputEmailVerificationNumber');
-
 
 const validateEmailVerificationNumber = (inputValue) => {
   const verificationNumberPattern = /^\d{8}$/;
@@ -110,11 +103,26 @@ const validateEmail = (inputEmail) => {
   return emailPattern.test(inputEmail);
 };
 
-// 이메일 인증번호 전송 버튼 클릭 이벤트
+inputEmail.addEventListener('input', checkEmailChanged);
+
+function checkEmailChanged() {
+    if (inputEmail.value === '${member.email}') {
+        emailCheckText.innerHTML = '이메일 인증이 완료된 상태입니다.';
+        isEmailAuthed = true;
+    } else {
+        emailCheckText.innerHTML = '이메일 인증이 필요합니다.';
+        isEmailAuthed = false;
+    }
+}
+
 sendVerificationNumberButton.addEventListener('click', () => {
     const userEmail = inputEmail.value;
     if (userEmail === '') {
         alert("이메일을 입력해주세요.");
+        return false;
+    }
+    if (isEmailAuthed == true) {
+        alert("이미 인증된 이메일입니다.");
         return false;
     }
 
@@ -136,7 +144,6 @@ sendVerificationNumberButton.addEventListener('click', () => {
     })
     .then(data => {
         if (data.success) {
-            generatedVerificationNumber = data.verificationNumber;
             alert("인증번호가 이메일로 발송되었습니다. 확인해주세요.");
         } else {
             alert("인증번호 발송에 실패했습니다. 다시 시도해주세요.");
@@ -151,68 +158,19 @@ inputEmailVerificationNumber.addEventListener('input', () => {
     const inputText = inputEmailVerificationNumber.value;
     const length = inputText.length;
     if (length === 8) {
-        if (generatedVerificationNumber && generatedVerificationNumber === inputText) {
+        if (validateEmailVerificationNumber(inputText)) {
             alert("인증번호 확인이 완료되었습니다.");
             emailCheckText.innerHTML = '인증번호 확인이 완료되었습니다.';
-            verificationNumberValid = true;
+            isEmailAuthed = true;
         } else {
             alert("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
-            verificationNumberValid = false;
+            isEmailAuthed = false;
         }
     }
 });
 
-function sendAuthEmail() {
-    let email = modifyMyInfoForm.email.value;
-    if (email === "") {
-        alert("이메일을 입력하세요!");
-        modifyMyInfoForm.email.focus();
-        return;
-    }
-
-    // 이메일 전송하는 서버 통신 코드 작성
-    alert("이메일로 인증 코드가 전송되었습니다.");
-}
-
-function checkAuthCode() {
-  let authCode = document.getElementById("authCode").value;
-  if (authCode === "") {
-    alert("인증 코드를 입력하세요!");
-    document.getElementById("authCode").focus();
-    return;
-  }
-
-  fetch('/checkVerificationCode', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      verificationCode: authCode
-    })
-  })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('서버에서 문제가 발생했습니다.');
-      }
-    })
-    .then(data => {
-      if (data.success) {
-        isEmailAuthed = true;
-        alert("이메일 인증이 완료되었습니다.");
-      } else {
-        alert("인증 코드가 올바르지 않습니다. 다시 확인해주세요.");
-      }
-    })
-    .catch(error => {
-      console.error("Error: ", error);
-    });
-}
-
 function checkSignupForm() {
-    if (!verificationNumberValid) {
+    if (!isEmailAuthed) {
         alert("이메일 인증을 완료해주세요.");
         return;
     }
@@ -255,7 +213,6 @@ function checkSignupForm() {
 
     modifyMyInfoForm.submit();
 }
-
 
 </script>
 

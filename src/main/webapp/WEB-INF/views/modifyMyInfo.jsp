@@ -180,6 +180,7 @@ function checkSignupForm() {
     const pw = modifyMyInfoForm.pw.value;
     const pw2 = modifyMyInfoForm.pw2.value;
     const email = modifyMyInfoForm.email.value;
+    let isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
 
     if (id === "") {
         alert("ID를 입력하세요!");
@@ -203,6 +204,12 @@ function checkSignupForm() {
         alert("비밀번호가 일치하지 않습니다!");
         modifyMyInfoForm.pw2.focus();
         return;
+    }
+
+    if(!isPassword.test(pw)){
+        alert("비밀번호는 4~16 자리 영문+숫자 조합으로 이루어져야 합니다.");
+        submitSignUpForm.pw.focus();
+        return false;
     }
 
     if (email === "") {

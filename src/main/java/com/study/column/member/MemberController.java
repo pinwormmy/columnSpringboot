@@ -92,7 +92,7 @@ public class MemberController {
         request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
         MemberDTO member = new MemberDTO();
         member.setId("midori"); // midori는 시연용 일반계정입니다.
-        member.setPw("1111");
+        member.setPw("a111");
         MemberDTO loginData = memberService.checkLoginData(member);
         HttpSession session = request.getSession();
         session.setAttribute("member", loginData);
@@ -105,7 +105,7 @@ public class MemberController {
         request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
         MemberDTO member = new MemberDTO();
         member.setId("admin"); // admin은 관리자계정입니다.
-        member.setPw("1111");
+        member.setPw("a111");
         MemberDTO loginData = memberService.checkLoginData(member);
         HttpSession session = request.getSession();
         session.setAttribute("member", loginData);

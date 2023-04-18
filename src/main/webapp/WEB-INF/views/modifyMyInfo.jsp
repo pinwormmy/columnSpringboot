@@ -57,7 +57,7 @@
                                                         <td>이메일 :</td>
                                                         <td><input type="email" name="email" value="${member.email}" oninput="checkEmailChanged();">
                                                             <button type="button" id="sendVerificationNumberButton" class="btn btn-theme">이메일 인증</button>
-                                                            <span id="emailCheckText" style="margin-left: 10px;"></span>
+                                                            <span id="emailCheckText" style="margin-left: 10px;">인증받은 이메일입니다.</span>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -107,7 +107,7 @@ inputEmail.addEventListener('input', checkEmailChanged);
 
 function checkEmailChanged() {
     if (inputEmail.value === '${member.email}') {
-        emailCheckText.innerHTML = '이메일 인증이 완료된 상태입니다.';
+        emailCheckText.innerHTML = '인증받은 이메일입니다.';
         isEmailAuthed = true;
     } else {
         emailCheckText.innerHTML = '이메일 인증이 필요합니다.';
@@ -145,6 +145,7 @@ sendVerificationNumberButton.addEventListener('click', () => {
     .then(data => {
         if (data.success) {
             alert("인증번호가 이메일로 발송되었습니다. 확인해주세요.");
+            sessionStorage.setItem("verificationNumber", data.verificationNumber); // 인증번호를 sessionStorage에 저장
         } else {
             alert("인증번호 발송에 실패했습니다. 다시 시도해주세요.");
         }
@@ -154,11 +155,18 @@ sendVerificationNumberButton.addEventListener('click', () => {
     });
 });
 
+
 inputEmailVerificationNumber.addEventListener('input', () => {
+    checkVerificationNumber();
+});
+
+function checkVerificationNumber() {
+    const storedVerificationNumber = sessionStorage.getItem("verificationNumber");
     const inputText = inputEmailVerificationNumber.value;
     const length = inputText.length;
     if (length === 8) {
-        if (validateEmailVerificationNumber(inputText)) {
+
+        if (inputText === storedVerificationNumber) {
             alert("인증번호 확인이 완료되었습니다.");
             emailCheckText.innerHTML = '인증번호 확인이 완료되었습니다.';
             isEmailAuthed = true;
@@ -167,7 +175,7 @@ inputEmailVerificationNumber.addEventListener('input', () => {
             isEmailAuthed = false;
         }
     }
-});
+}
 
 function checkSignupForm() {
     if (!isEmailAuthed) {

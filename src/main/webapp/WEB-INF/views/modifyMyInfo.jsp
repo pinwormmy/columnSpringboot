@@ -121,6 +121,10 @@ sendVerificationNumberButton.addEventListener('click', () => {
         alert("이메일을 입력해주세요.");
         return false;
     }
+    if (!validateEmail(userEmail)) {
+        alert("이메일 주소 확인해주세요!");
+        return false;
+    }
     if (isEmailAuthed == true) {
         alert("이미 인증된 이메일입니다.");
         return false;
@@ -139,7 +143,7 @@ sendVerificationNumberButton.addEventListener('click', () => {
         if (response.ok) {
             return response.json();
         } else {
-            throw new Error('서버에서 문제가 발생했습니다.');
+            throw new Error(response.statusText);
         }
     })
     .then(data => {
@@ -147,11 +151,13 @@ sendVerificationNumberButton.addEventListener('click', () => {
             alert("인증번호가 이메일로 발송되었습니다. 확인해주세요.");
             sessionStorage.setItem("verificationNumber", data.verificationNumber); // 인증번호를 sessionStorage에 저장
         } else {
-            alert("인증번호 발송에 실패했습니다. 다시 시도해주세요.");
+            // 서버에서 반환한 실패 메시지를 사용합니다.
+            alert(data.message || "인증번호 발송에 실패했습니다. 이메일 주소를 확인해주세요.");
         }
     })
     .catch(error => {
         console.error("Error: ", error);
+        alert("인증번호 발송에 실패했습니다. 이메일 주소를 확인해주세요.");
     });
 });
 

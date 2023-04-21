@@ -85,6 +85,7 @@
 </section>
 
 <script>
+// 빨리 자야해서 급마무리;
 let modifyMyInfoForm = document.getElementById("modifyMyInfo");
 let isEmailAuthed = true;
 

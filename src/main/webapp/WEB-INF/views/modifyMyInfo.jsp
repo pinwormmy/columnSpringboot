@@ -85,7 +85,7 @@
 </section>
 
 <script>
-// 빨리 자야해서 급마무리;
+// 뉴스픽 졸면서 하는 중...
 let modifyMyInfoForm = document.getElementById("modifyMyInfo");
 let isEmailAuthed = true;
 

@@ -31,4 +31,19 @@
             WHERE ID=#{id}
     </update>
 
+    <select id="showMemberList" resultType="com.study.column.member.MemberDTO">
+        SELECT ID, PW, NICKNAME, REALNAME, EMAIL, PHONE, GRADE, REGDATE
+        FROM MEMBER
+        WHERE <include refid="searchKeyword" />
+        ORDER by REGDATE DESC
+        LIMIT #{postBeginPoint}, #{displayPostLimit}
+    </select>
+
+    <sql id="searchKeyword">
+        <if test="searchType == 'id'">ID like CONCAT('%', #{keyword}, '%')</if>
+        <if test="searchType == 'nickname'">NICKNAME like CONCAT('%', #{keyword}, '%')</if>
+        <if test="searchType == 'realname'">REALNAME like CONCAT('%', #{keyword}, '%')</if>
+    </sql>
+
+
 </mapper>

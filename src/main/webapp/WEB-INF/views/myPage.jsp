@@ -5,7 +5,8 @@
 <title>마이 페이지</title>
 <style>
 .my-page {
-    margin: 30px;
+    width: 1600px;
+    margin: auto;
 }
 
 .btn-turquoise {
@@ -50,7 +51,7 @@
 					</div>
                     <c:if test="${member.grade == 3}">
                         <div>
-                            <a href="admin" class="btn btn-turquoise">관리자 모드</a>
+                            <a href="/adminPage" class="btn btn-turquoise">관리자 모드</a>
                         </div>
                     </c:if>
                     <div>

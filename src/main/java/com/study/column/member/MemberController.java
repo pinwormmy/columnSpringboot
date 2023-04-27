@@ -143,4 +143,10 @@ public class MemberController {
         log.info("아이디 중복 확인 컨트롤러 작동");
         return memberService.isUniqueEmail(email);
     }
+
+    @GetMapping("/adminPage")
+    public String adminPage() {
+        log.info("관리자 모드");
+        return "adminPage";
+    }
 }

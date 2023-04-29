@@ -144,7 +144,7 @@ public class MemberController {
         return memberService.isUniqueEmail(email);
     }
 
-    @GetMapping("/adminPage")
+    @GetMapping("/adminPage") // 코딩시간 너무 부족. 계획 좀 세우고 해라
     public String adminPage() {
         log.info("관리자 모드");
         return "adminPage";

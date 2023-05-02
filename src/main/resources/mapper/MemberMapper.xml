@@ -31,12 +31,9 @@
             WHERE ID=#{id}
     </update>
 
-    <select id="showMemberList" resultType="com.study.column.member.MemberDTO">
-        SELECT ID, PW, NICKNAME, REALNAME, EMAIL, PHONE, GRADE, REGDATE
-        FROM MEMBER
-        WHERE <include refid="searchKeyword" />
-        ORDER by REGDATE DESC
-        LIMIT #{postBeginPoint}, #{displayPostLimit}
+    <select id="getMemberList" resultType="com.study.column.member.MemberDTO">
+        SELECT ID, PW, NICKNAME, REALNAME, EMAIL, PHONE, GRADE, REG_DATE
+            FROM MEMBER
     </select>
 
     <sql id="searchKeyword">

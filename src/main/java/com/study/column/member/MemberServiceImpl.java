@@ -4,6 +4,8 @@ import com.study.column.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -33,5 +35,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public String isUniqueEmail(String email) {
         return memberMapper.isUniqueEmail(email);
+    }
+
+    @Override
+    public List<MemberDTO> getMemberList() {
+        return memberMapper.getMemberList();
     }
 }

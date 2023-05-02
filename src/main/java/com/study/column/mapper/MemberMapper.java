@@ -3,6 +3,8 @@ package com.study.column.mapper;
 import com.study.column.member.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface MemberMapper {
 
@@ -15,4 +17,6 @@ public interface MemberMapper {
     void submitModifyMyInfo(MemberDTO member) throws Exception;
 
     String isUniqueEmail(String email);
+
+    List<MemberDTO> getMemberList();
 }

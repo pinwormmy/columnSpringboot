@@ -45,8 +45,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <c:forEach items="${memberList}" var="member">
+            <c:forEach items="${memberList}" var="member">
+                <tr>
                     <td>${member.id}</td>
                     <td>${member.nickName}</td>
                     <td>${member.realName}</td>
@@ -58,9 +58,9 @@
                         <button class="btn btn-turquoise">수정</button>
                         <button class="btn btn-danger">탈퇴</button>
                     </td>
-                </c:forEach>
-                <c:if test="${empty memberList}"><td colspan="8">회원 목록이 없습니다....(조회오류 확인 필요)</td></c:if>
-            </tr>
+                </tr>
+            </c:forEach>
+            <c:if test="${empty memberList}"><td colspan="8">회원 목록이 없습니다....(조회오류 확인 필요)</td></c:if>
         </tbody>
     </table>
 </div>

@@ -1,5 +1,7 @@
 package com.study.column.member;
 
+import java.util.List;
+
 public interface MemberService {
     String isUniqueId(String id) throws Exception;
 
@@ -10,4 +12,6 @@ public interface MemberService {
     void submitModifyMyInfo(MemberDTO member) throws Exception;
 
     String isUniqueEmail(String email);
+
+    List<MemberDTO> getMemberList();
 }

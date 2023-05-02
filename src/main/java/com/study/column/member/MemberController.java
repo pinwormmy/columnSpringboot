@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -91,7 +92,7 @@ public class MemberController {
     public String loginForDemo(HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
         MemberDTO member = new MemberDTO();
-        member.setId("midori"); // midori는 시연용 일반계정입니다.
+        member.setId("midori"); // midori는 시연용 승인회원 계정
         member.setPw("a111");
         MemberDTO loginData = memberService.checkLoginData(member);
         HttpSession session = request.getSession();
@@ -104,7 +105,7 @@ public class MemberController {
     public String loginForDemoAsAdmin(HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
         MemberDTO member = new MemberDTO();
-        member.setId("admin"); // admin은 관리자계정입니다.
+        member.setId("admin"); // admin은 시연용 관리자 계정입니다.
         member.setPw("a111");
         MemberDTO loginData = memberService.checkLoginData(member);
         HttpSession session = request.getSession();
@@ -145,8 +146,10 @@ public class MemberController {
     }
 
     @GetMapping("/adminPage") // 코딩시간 너무 부족. 계획 좀 세우고 해라
-    public String adminPage() {
+    public String adminPage(Model model) {
         log.info("관리자 모드");
+        List<MemberDTO> memberList = memberService.getMemberList();
+        model.addAttribute("memberList", memberList);
         return "adminPage";
     }
 }

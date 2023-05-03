@@ -32,8 +32,17 @@
     </update>
 
     <select id="getMemberList" resultType="com.study.column.member.MemberDTO">
-        SELECT ID, PW, NICKNAME, REALNAME, EMAIL, PHONE, GRADE, REG_DATE
+        SELECT *
             FROM MEMBER
+            WHERE <include refid="searchKeyword" />
+            ORDER by id
+            LIMIT #{postBeginPoint}, #{displayPostLimit}
+    </select>
+
+    <select id="getTotalMemberCount" resultType="int">
+        SELECT COUNT(*)
+            FROM MEMBER
+            WHERE <include refid="searchKeyword" />
     </select>
 
     <sql id="searchKeyword">
@@ -41,6 +50,5 @@
         <if test="searchType == 'nickname'">NICKNAME like CONCAT('%', #{keyword}, '%')</if>
         <if test="searchType == 'realname'">REALNAME like CONCAT('%', #{keyword}, '%')</if>
     </sql>
-
 
 </mapper>

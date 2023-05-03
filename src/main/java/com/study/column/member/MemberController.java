@@ -1,5 +1,6 @@
 package com.study.column.member;
 
+import com.study.column.util.PageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -145,11 +146,14 @@ public class MemberController {
         return memberService.isUniqueEmail(email);
     }
 
-    @GetMapping("/adminPage") // 코딩시간 너무 부족. 계획 좀 세우고 해라
-    public String adminPage(Model model) {
+    @GetMapping(value = "/adminPage")
+    public String adminPage(Model model, PageDTO page) throws Exception {
         log.info("관리자 모드");
-        List<MemberDTO> memberList = memberService.getMemberList();
+        page = memberService.pageSetting(page);
+        List<MemberDTO> memberList = memberService.getMemberList(page);
         model.addAttribute("memberList", memberList);
+        model.addAttribute("pageInfo", page);
+
         return "adminPage";
     }
 }

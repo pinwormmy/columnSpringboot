@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 
     private void checkPageAndKeyword(PageDTO page) {
         if(page.getRecentPage() < 1) { page.setRecentPage(1); }
-        if(page.getSearchType() == null) { page.setSearchType("title"); }
+        if(page.getSearchType() == null) { page.setSearchType("id"); }
         if(page.getKeyword() == null) { page.setKeyword(""); }
     }
 
@@ -68,6 +68,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int getTotalMemberCount(PageDTO page) throws Exception {
         // 게시판에 서비스 로직 참고 및 수정해서 가져오기
+        return 1; // 매퍼 작성해야함
     }
 
     private PageService initPageUtil() {
@@ -76,11 +77,5 @@ public class MemberServiceImpl implements MemberService {
         util.setPAGESET_LIMIT(10);
         return util;
     }
-
-    @Override
-    public List<MemberDTO> getMemberList(PageDTO page) throws Exception {
-        // 실제 필요 기능
-    }
-
 
 }

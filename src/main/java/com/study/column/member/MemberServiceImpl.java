@@ -42,14 +42,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberDTO> getMemberList() {
-        return memberMapper.getMemberList();
-    }
-
-    @Override
     public PageDTO pageSetting(PageDTO page) throws Exception {
         checkPageAndKeyword(page);
         return utilLoadingForPage(page);
+    }
+
+    @Override
+    public List<MemberDTO> getMemberList(PageDTO page) {
+        return memberMapper.getMemberList(page);
     }
 
     private void checkPageAndKeyword(PageDTO page) {
@@ -66,9 +66,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int getTotalMemberCount(PageDTO page) throws Exception {
-        // 게시판에 서비스 로직 참고 및 수정해서 가져오기
-        return 1; // 매퍼 작성해야함
+    public int getTotalMemberCount(PageDTO page) {
+        return memberMapper.getTotalMemberCount(page);
     }
 
     private PageService initPageUtil() {

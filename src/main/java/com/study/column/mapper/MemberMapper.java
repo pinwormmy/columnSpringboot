@@ -1,6 +1,7 @@
 package com.study.column.mapper;
 
 import com.study.column.member.MemberDTO;
+import com.study.column.util.PageDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,5 +19,8 @@ public interface MemberMapper {
 
     String isUniqueEmail(String email);
 
-    List<MemberDTO> getMemberList();
+    int getTotalMemberCount(PageDTO page);
+
+    List<MemberDTO> getMemberList(PageDTO pageDTO);
+
 }

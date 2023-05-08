@@ -15,9 +15,9 @@ public interface MemberService {
 
     String isUniqueEmail(String email);
 
-    List<MemberDTO> getMemberList();
-
     PageDTO pageSetting(PageDTO page) throws Exception;
     List<MemberDTO> getMemberList(PageDTO page) throws Exception;
     int getTotalMemberCount(PageDTO page) throws Exception;
+
+
 }

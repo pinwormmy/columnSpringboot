@@ -20,6 +20,12 @@
     background-color: #3CB7B8;
     color: #fff;
 }
+.div-search {
+    margin: 10px;
+}
+.search-element {
+    height: 38px;
+}
 </style>
 </head>
 <body>
@@ -27,6 +33,20 @@
 
 <div class="admin-page">
     <h1>🛠 관리자 페이지</h1>
+</div>
+
+<div class="container">
+    <form action="/adminPage" method="get">
+        <div class="div-search">
+            <select name="searchType" class="search-element">
+                <option value="id" <c:if test="${pageInfo.searchType == 'id'}">selected</c:if>>ID</option>
+                <option value="nickName" <c:if test="${pageInfo.searchType == 'nickName'}">selected</c:if>>닉네임</option>
+                <option value="realName" <c:if test="${pageInfo.searchType == 'realName'}">selected</c:if>>실명</option>
+            </select>
+            <input type="text" name="keyword" class="search-element" value="${pageInfo.keyword}">
+            <button type="submit" class="btn btn-primary search-element">검색</button>
+        </div>
+    </form>
 </div>
 
 <!-- 회원 목록 테이블 -->
@@ -64,6 +84,38 @@
         </tbody>
     </table>
 </div>
+
+<div class="container">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <c:if test="${pageInfo.prevPageSetPoint != 0}">
+                <li class="page-item">
+                    <a class="page-link" href="/adminPage?recentPage=${pageInfo.prevPageSetPoint}&searchType=${pageInfo.searchType}&keyword=${pageInfo.keyword}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+            <c:forEach var="i" begin="${pageInfo.pageBeginPoint}" end="${pageInfo.pageEndPoint}">
+                <c:choose>
+                    <c:when test="${i == pageInfo.recentPage}">
+                        <li class="page-item active"><a class="page-link" href="/adminPage?recentPage=${i}&searchType=${pageInfo.searchType}&keyword=${pageInfo.keyword}">${i}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link" href="/adminPage?recentPage=${i}&searchType=${pageInfo.searchType}&keyword=${pageInfo.keyword}">${i}</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:if test="${pageInfo.nextPageSetPoint <= pageInfo.totalPage}">
+                <li class="page-item">
+                    <a class="page-link" href="/adminPage?recentPage=${pageInfo.nextPageSetPoint}&searchType=${pageInfo.searchType}&keyword=${pageInfo.keyword}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
+</div>
+
 <%@ include file="/WEB-INF/views/include/footer.jspf" %>
 
 </body>

@@ -40,11 +40,14 @@
         <div class="div-search">
             <select name="searchType" class="search-element">
                 <option value="id" <c:if test="${pageInfo.searchType == 'id'}">selected</c:if>>ID</option>
-                <option value="nickName" <c:if test="${pageInfo.searchType == 'nickName'}">selected</c:if>>닉네임</option>
+                <option value="nickName" <c:if test="${pageInfo.searchType == 'nickName'}">selected</c:if>>별명</option>
                 <option value="realName" <c:if test="${pageInfo.searchType == 'realName'}">selected</c:if>>실명</option>
             </select>
             <input type="text" name="keyword" class="search-element" value="${pageInfo.keyword}">
             <button type="submit" class="btn btn-primary search-element">검색</button>
+            <c:if test="${pageInfo.keyword != ''}">
+                <button type="button" class="btn btn-primary search-element" onclick="location.href='/adminPage'">취소</button>
+            </c:if>
         </div>
     </form>
 </div>

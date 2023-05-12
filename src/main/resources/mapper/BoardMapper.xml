@@ -56,8 +56,9 @@
     </delete>
 
     <select id="countTotalPost" resultType="int">
-        SELECT count(*) from BOARD
-        WHERE <include refid="searchKeyword" /> and notice=0
+        SELECT count(*)
+            FROM BOARD
+            WHERE <include refid="searchKeyword" /> and notice=0
     </select>
 
     <select id="countTotalComment" resultType="int">

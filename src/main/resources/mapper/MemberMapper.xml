@@ -47,8 +47,8 @@
 
     <sql id="searchKeyword">
         <if test="searchType == 'id'">ID like CONCAT('%', #{keyword}, '%')</if>
-        <if test="searchType == 'nickname'">NICKNAME like CONCAT('%', #{keyword}, '%')</if>
-        <if test="searchType == 'realname'">REALNAME like CONCAT('%', #{keyword}, '%')</if>
+        <if test="searchType == 'nickName'">NICKNAME like CONCAT('%', #{keyword}, '%')</if>
+        <if test="searchType == 'realName'">REALNAME like CONCAT('%', #{keyword}, '%')</if>
     </sql>
 
 </mapper>

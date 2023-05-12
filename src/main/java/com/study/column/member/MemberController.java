@@ -153,7 +153,6 @@ public class MemberController {
         List<MemberDTO> memberList = memberService.getMemberList(page);
         model.addAttribute("memberList", memberList);
         model.addAttribute("pageInfo", page);
-
         return "adminPage";
     }
 }

@@ -30,7 +30,6 @@
 </div>
 
 <section class="user-dashboard page-wrapper" style="padding: 0;">
-    <hr class="color-hr">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="width: 97%; padding: 0;">
@@ -57,12 +56,6 @@
                     <div>
                         <a href="/modifyMyInfo" class="btn btn-turquoise">회원 정보 변경</a>
                     </div>
-                    <hr>
-					<div class="total-order me-20">
-					</div>
-					<hr>
-					<div class="total-order mt-20">
-					</div>
 				</div>
 			</div>
 		</div>

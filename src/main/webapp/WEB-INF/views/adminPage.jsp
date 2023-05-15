@@ -27,6 +27,7 @@
     height: 38px;
 }
 
+
 </style>
 </head>
 <body>
@@ -44,7 +45,7 @@
                 <option value="nickName" <c:if test="${pageInfo.searchType == 'nickName'}">selected</c:if>>별명</option>
                 <option value="realName" <c:if test="${pageInfo.searchType == 'realName'}">selected</c:if>>실명</option>
             </select>
-            <input type="text" name="keyword" class="search-element" value="${pageInfo.keyword}">
+            <input type="text" name="keyword" class="search-element" style="border: 1px solid Turquoise; height: 38px;" value="${pageInfo.keyword}">
             <button type="submit" class="btn btn-primary search-element">검색</button>
             <c:if test="${pageInfo.keyword != ''}">
                 <button type="button" class="btn btn-primary search-element" onclick="location.href='/adminPage'">취소</button>

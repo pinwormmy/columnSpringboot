@@ -54,7 +54,6 @@
     </form>
 </div>
 
-<!-- 회원 목록 테이블 -->
 <div class="container">
     <table class="table table-bordered table-hover">
         <thead>
@@ -80,12 +79,12 @@
                     <td>${member.grade}</td>
                     <td>${member.regDate}</td>
                     <td>
-                        <button class="btn btn-turquoise" style="margin: 0px;">수정</button>
+                        <button class="btn btn-turquoise" style="margin: 0px;" onclick="location.href='/modifyMemberByAdmin'">수정</button>
                         <button class="btn btn-danger">탈퇴</button>
                     </td>
                 </tr>
             </c:forEach>
-            <c:if test="${empty memberList}"><td colspan="8">회원 목록이 없습니다....(조회오류 확인 필요)</td></c:if>
+            <c:if test="${empty memberList}"><td colspan="8">조회 결과가 없습니다....</td></c:if>
         </tbody>
     </table>
 </div>

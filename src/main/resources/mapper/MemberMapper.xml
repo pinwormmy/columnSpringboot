@@ -31,6 +31,14 @@
             WHERE ID=#{id}
     </update>
 
+
+
+    <select id="getMemberInfo" resultType="com.study.column.member.MemberDTO">
+        SELECT *
+            FROM MEMBER
+            WHERE ID=#{id}
+    </select>
+
     <select id="getMemberList" resultType="com.study.column.member.MemberDTO">
         SELECT *
             FROM MEMBER

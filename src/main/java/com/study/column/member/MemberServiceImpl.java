@@ -48,6 +48,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public MemberDTO getMemberInfo(String id) {
+        return memberMapper.getMemberInfo(id);
+    }
+
+    @Override
     public List<MemberDTO> getMemberList(PageDTO page) {
         return memberMapper.getMemberList(page);
     }

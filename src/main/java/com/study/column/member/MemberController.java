@@ -155,4 +155,10 @@ public class MemberController {
         model.addAttribute("pageInfo", page);
         return "adminPage";
     }
+
+    @RequestMapping(value = "/modifyMemberByAdmin")
+    public String modifyMemberByAdmin(Model model, String id) {
+        model.addAttribute("member", memberService.getMemberInfo(id));
+        return "modifyMemberByAdmin";
+    }
 }

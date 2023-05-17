@@ -22,6 +22,7 @@
     <label for="grade">회원 등급:</label><br>
     <input type="text" id="grade" name="grade" value="${member.grade}"><br>
     <input type="submit" value="수정하기">
+    <button type="button" onclick="location.href='/adminPage'">취소</button>
 </form>
 
 <%@ include file="/WEB-INF/views/include/footer.jspf" %>

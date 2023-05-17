@@ -23,4 +23,5 @@ public interface MemberMapper {
 
     List<MemberDTO> getMemberList(PageDTO pageDTO);
 
+    MemberDTO getMemberInfo(String id);
 }

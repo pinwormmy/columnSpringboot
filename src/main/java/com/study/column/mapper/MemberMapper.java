@@ -21,7 +21,8 @@ public interface MemberMapper {
 
     int getTotalMemberCount(PageDTO page);
 
+    MemberDTO getMemberInfo(String id);
+
     List<MemberDTO> getMemberList(PageDTO pageDTO);
 
-    MemberDTO getMemberInfo(String id);
 }

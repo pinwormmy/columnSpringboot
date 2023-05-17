@@ -27,7 +27,6 @@
     height: 38px;
 }
 
-
 </style>
 </head>
 <body>
@@ -79,7 +78,7 @@
                     <td>${member.grade}</td>
                     <td>${member.regDate}</td>
                     <td>
-                        <button class="btn btn-turquoise" style="margin: 0px;" onclick="location.href='/modifyMemberByAdmin'">수정</button>
+                        <button class="btn btn-turquoise" style="margin: 0px;" onclick="location.href='/modifyMemberByAdmin?id=${member.id}'">수정</button>
                         <button class="btn btn-danger">탈퇴</button>
                     </td>
                 </tr>

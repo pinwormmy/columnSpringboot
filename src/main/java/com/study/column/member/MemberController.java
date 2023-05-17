@@ -156,7 +156,7 @@ public class MemberController {
         return "adminPage";
     }
 
-    @RequestMapping(value = "/modifyMemberByAdmin")
+    @RequestMapping(value = "/modifyMemberByAdmin") // 관리자 모드에서 회원정보 수정
     public String modifyMemberByAdmin(Model model, String id) {
         model.addAttribute("member", memberService.getMemberInfo(id));
         return "modifyMemberByAdmin";

@@ -18,10 +18,9 @@ public interface MemberService {
     PageDTO pageSetting(PageDTO page) throws Exception;
 
     MemberDTO getMemberInfo(String id);
+
     List<MemberDTO> getMemberList(PageDTO page) throws Exception;
+
     int getTotalMemberCount(PageDTO page) throws Exception;
-
-
-
 
 }

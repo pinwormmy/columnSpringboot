@@ -161,4 +161,6 @@ public class MemberController {
         model.addAttribute("member", memberService.getMemberInfo(id));
         return "modifyMemberByAdmin";
     }
+
+    // 회원수정 submit 만들어야함.
 }

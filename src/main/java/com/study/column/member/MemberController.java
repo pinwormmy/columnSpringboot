@@ -163,4 +163,5 @@ public class MemberController {
     }
 
     // 회원수정 submit 만들어야함.
+    // 뜬금없이 테스트 파일쪽에 오류발생 ㅡㅡ;
 }

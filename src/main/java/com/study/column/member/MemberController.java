@@ -162,6 +162,9 @@ public class MemberController {
         return "modifyMemberByAdmin";
     }
 
-    // 회원수정 submit 만들어야함.
-    // 뜬금없이 테스트 파일쪽에 오류발생 ㅡㅡ;
+    @RequestMapping(value = "/submitModifyMemberByAdmin") // 관리자 모드에서 회원정보 수정
+    public String submitModifyMemberByAdmin(MemberDTO memberDTO) {
+        memberService.submitModifyMemberByAdmin(memberDTO); // 서비스랑 매퍼 만들어야 함
+        return "adminPage";
+    }
 }

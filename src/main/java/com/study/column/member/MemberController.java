@@ -156,13 +156,13 @@ public class MemberController {
         return "adminPage";
     }
 
-    @RequestMapping(value = "/modifyMemberByAdmin") // 관리자 모드에서 회원정보 수정
+    @RequestMapping(value = "/modifyMemberByAdmin")
     public String modifyMemberByAdmin(Model model, String id) {
         model.addAttribute("member", memberService.getMemberInfo(id));
         return "modifyMemberByAdmin";
     }
 
-    @RequestMapping(value = "/submitModifyMemberByAdmin") // 관리자 모드에서 회원정보 수정
+    @RequestMapping(value = "/submitModifyMemberByAdmin")
     public String submitModifyMemberByAdmin(MemberDTO memberDTO) {
         memberService.submitModifyMemberByAdmin(memberDTO); // 서비스랑 매퍼 만들어야 함
         return "adminPage";

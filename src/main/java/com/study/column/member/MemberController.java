@@ -162,9 +162,9 @@ public class MemberController {
         return "modifyMemberByAdmin";
     }
 
-    @RequestMapping(value = "/submitModifyMemberByAdmin") // 인텔리제이에서 깃 푸시 제대로 안되는 것부터 수정해야함(2)
+    @RequestMapping(value = "/submitModifyMemberByAdmin") // 인텔리제이에서 깃 푸시 제대로 안되는 것부터 수정해야함(3)
     public String submitModifyMemberByAdmin(MemberDTO memberDTO) {
-        memberService.submitModifyMemberByAdmin(memberDTO); // 서비스랑 매퍼 만들어야 함..
+        memberService.submitModifyMemberByAdmin(memberDTO); // 서비스랑 매퍼 만들어야 함...
         return "adminPage";
     }
 }

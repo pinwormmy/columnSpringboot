@@ -9,8 +9,9 @@
 
 <h1>🛠 회원 정보 수정</h1>
 
-<form action="/updateMember" method="post">
-    <input type="hidden" name="id" value="${member.id}">
+<form action="/submitModifyMemberByAdmin" method="post">
+    <label for="id">ID:</label><br>
+    <input type="text" name="id" value="${member.id}" readonly><br>
     <label for="nickName">닉네임:</label><br>
     <input type="text" id="nickName" name="nickName" value="${member.nickName}"><br>
     <label for="realName">실명:</label><br>
@@ -22,7 +23,7 @@
     <label for="grade">회원 등급:</label><br>
     <input type="text" id="grade" name="grade" value="${member.grade}"><br>
     <input type="submit" value="수정하기">
-    <button type="button" onclick="location.href='/adminPage'">취소</button>
+    <input type="button" onclick="location.href='/adminPage'">취소</button>
 </form>
 
 <%@ include file="/WEB-INF/views/include/footer.jspf" %>

@@ -25,4 +25,5 @@ public interface MemberMapper {
 
     List<MemberDTO> getMemberList(PageDTO pageDTO);
 
+    void submitModifyMemberByAdmin(MemberDTO memberDTO);
 }

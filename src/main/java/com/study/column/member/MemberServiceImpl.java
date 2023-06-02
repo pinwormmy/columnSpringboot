@@ -75,6 +75,11 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.getTotalMemberCount(page);
     }
 
+    @Override
+    public void submitModifyMemberByAdmin(MemberDTO memberDTO) {
+        memberMapper.submitModifyMemberByAdmin(memberDTO);
+    }
+
     private PageService initPageUtil() {
         PageService util = new PageService();
         util.setDISPLAY_POST_LIMIT(10);

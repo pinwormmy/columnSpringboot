@@ -59,4 +59,10 @@
         <if test="searchType == 'realName'">REALNAME like CONCAT('%', #{keyword}, '%')</if>
     </sql>
 
+    <update id="submitModifyMemberByAdmin">
+        UPDATE MEMBER
+            SET PW=#{pw}, NICKNAME=#{nickName}, EMAIL=#{email}
+            WHERE ID=#{id}
+    </update>
+
 </mapper>

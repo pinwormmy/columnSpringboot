@@ -162,9 +162,9 @@ public class MemberController {
         return "modifyMemberByAdmin";
     }
 
-    @RequestMapping(value = "/submitModifyMemberByAdmin") //  깃 푸시. 왠지 모릐겠는데 오류 사라짐..
+    @RequestMapping(value = "/submitModifyMemberByAdmin")
     public String submitModifyMemberByAdmin(MemberDTO memberDTO) {
-        memberService.submitModifyMemberByAdmin(memberDTO); // 서비스랑 매퍼 만들어야 함...
+        memberService.submitModifyMemberByAdmin(memberDTO);
         return "redirect:/adminPage";
     }
 }

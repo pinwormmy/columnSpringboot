@@ -35,6 +35,7 @@
 </style>
 </head>
 <body>
+
 <%@ include file="/WEB-INF/views/include/header.jspf" %>
 <div class="container" style="width:33%;">
     <h1>🛠 회원 정보 수정</h1>
@@ -57,5 +58,6 @@
     </form>
 </div>
 <%@ include file="/WEB-INF/views/include/footer.jspf" %>
+
 </body>
 </html>

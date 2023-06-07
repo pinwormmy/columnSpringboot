@@ -36,7 +36,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jspf" %>
-
 <div class="container" style="width:33%;">
     <h1>🛠 회원 정보 수정</h1>
     <form action="/submitModifyMemberByAdmin" method="post">
@@ -57,8 +56,6 @@
         <button type="button" onclick="location.href='/adminPage'">취소</button>
     </form>
 </div>
-
 <%@ include file="/WEB-INF/views/include/footer.jspf" %>
-
 </body>
 </html>

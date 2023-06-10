@@ -20,7 +20,6 @@ public class MemberController {
     MemberService memberService;
     @Autowired
     EmailService emailService;
-    
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
         // 로그인 이전 페이지 정보 세션에 저장

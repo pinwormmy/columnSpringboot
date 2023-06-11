@@ -169,4 +169,5 @@ public class MemberController {
     }
 
     // 회원을 위한 비밀번호 찾기 기능 구현하기(이메일 인증 활용)
+
 }

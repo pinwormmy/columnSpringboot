@@ -168,6 +168,16 @@ public class MemberController {
         return "redirect:/adminPage";
     }
 
-    // 회원을 위한 비밀번호 찾기 기능 구현하기(이메일 인증 활용)
+    @RequestMapping(value = "/findCredentials", method = RequestMethod.POST)
+    public String findCredentials(String email, Model model) {
+        // 사용자 이메일로 아이디 및 임시 비밀번호를 발급하고 이를 이메일로 보냅니다.
+        boolean result = memberService.findCredentials(email);
+        if (!result) {
+            model.addAttribute("message", "등록된 정보가 없습니다.");
+            return "login";
+        }
+        model.addAttribute("message", "이메일을 확인해주세요.");
+        return "login";
+    }
 
 }

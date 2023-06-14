@@ -24,4 +24,6 @@ public interface MemberService {
     int getTotalMemberCount(PageDTO page) throws Exception;
 
     void submitModifyMemberByAdmin(MemberDTO memberDTO);
+
+    boolean findCredentials(String email);
 }

@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -32,8 +33,9 @@ public class MemberServiceTest {
         when(memberMapper.findByEmail(any(String.class))).thenReturn(new MemberDTO());
         doNothing().when(memberMapper).updatePassword(any(MemberDTO.class));
 
-        //boolean result = memberService.findCredentials(email);
+        boolean result = memberService.findCredentials(email);
 
+        assertTrue(result);
         // More assertions as per your requirements...
     }
 }

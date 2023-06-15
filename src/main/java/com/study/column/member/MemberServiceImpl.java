@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -15,6 +16,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     MemberMapper memberMapper;
+
+    @Autowired
+    EmailService emailService;
 
     @Override
     public String isUniqueId(String id) throws Exception {
@@ -78,6 +82,29 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void submitModifyMemberByAdmin(MemberDTO memberDTO) {
         memberMapper.submitModifyMemberByAdmin(memberDTO);
+    }
+
+    public boolean findCredentials(String email) {
+        MemberDTO member = memberMapper.findByEmail(email);
+        if (member == null) {
+            return false;
+        }
+
+        // 임시 비밀번호 생성
+        String tempPassword = UUID.randomUUID().toString().substring(0, 8);
+
+        // DB에 임시 비밀번호로 업데이트
+        member.setPw(tempPassword);
+        memberMapper.updatePassword(member);
+
+        // 이메일로 아이디 및 임시 비밀번호 보내기
+        try {
+            emailService.sendSimpleMessage(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     private PageService initPageUtil() {

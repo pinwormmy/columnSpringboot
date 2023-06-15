@@ -26,4 +26,8 @@ public interface MemberMapper {
     List<MemberDTO> getMemberList(PageDTO pageDTO);
 
     void submitModifyMemberByAdmin(MemberDTO memberDTO);
+
+    MemberDTO findByEmail(String email);
+
+    void updatePassword(MemberDTO member);
 }

@@ -65,4 +65,16 @@
             WHERE ID=#{id}
     </update>
 
+    <select id="findByEmail" resultType="com.study.column.member.MemberDTO">
+        SELECT * FROM MEMBER
+        WHERE EMAIL=#{email}
+    </select>
+
+    <update id="updatePassword">
+        UPDATE MEMBER
+        SET PW=#{pw}
+        WHERE ID=#{id}
+    </update>
+
+
 </mapper>

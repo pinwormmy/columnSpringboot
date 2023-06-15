@@ -113,16 +113,13 @@ a {
             <button type="button" class="homeButton" onclick="location.href='/'">처음으로</button>
         </form>
         <div class="subMenu">
-            <div id="right-menu" ><a href="javascript:comingSoon();">ID/PW 찾기</a> |
+            <div id="right-menu" ><a href="/findCredentials">ID/PW 찾기</a> |
             <a id="signUp" href="/signUp">회원가입</a></div>
         </div>
     </div>
 </div>
 
 <script>
-    function comingSoon() {
-        alert("업데이트 예정입니다.");
-    }
 
     <c:if test="${not empty message}">
         alert("${message}");

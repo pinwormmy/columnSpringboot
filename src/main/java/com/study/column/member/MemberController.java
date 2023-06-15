@@ -168,9 +168,15 @@ public class MemberController {
         return "redirect:/adminPage";
     }
 
-    @RequestMapping(value = "/findCredentials", method = RequestMethod.POST)
+    @GetMapping(value = "/findCredentials")
+    public String findCredentials() {
+        log.info("아이디 / 비밀번호 찾기 페이지");
+        return "findCredentials";
+    }
+
+    @PostMapping(value = "/findCredentials")
     public String findCredentials(String email, Model model) {
-        // 사용자 이메일로 아이디 및 임시 비밀번호를 발급하고 이를 이메일로 보냅니다.
+        log.info("사용자 이메일로 아이디 및 임시 비밀번호를 발급하고 이를 이메일로 보냅니다.");
         boolean result = memberService.findCredentials(email);
         if (!result) {
             model.addAttribute("message", "등록된 정보가 없습니다.");

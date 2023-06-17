@@ -91,4 +91,6 @@ public class EmailServiceImpl implements EmailService {
 
         return verificationCode;
     }
+
+    // 임시 비밀번호 발급용 이메일 양식 코드 필요.
 }

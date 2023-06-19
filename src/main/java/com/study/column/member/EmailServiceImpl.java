@@ -34,24 +34,21 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private String generateEmailContent(String verificationCode) {
-        StringBuilder content = new StringBuilder();
 
-        content.append("<div style='margin:20px;'>")
-                .append("<h2> 안녕하세요 컬럼사이트 이메일 인증입니다. </h2>")
-                .append("<br>")
-                .append("<p>아래 코드를 회원가입 이메일 인증칸에 입력해주세요<p>")
-                .append("<br>")
-                .append("<p>감사합니다.<p>")
-                .append("<br>")
-                .append("<div align='center' style='border:1px solid black; font-family:verdana';>")
-                .append("<h3 style='color:blue;'>이메일 인증코드</h3>")
-                .append("<div style='font-size:130%'>")
-                .append("CODE : <strong>")
-                .append(verificationCode)
-                .append("</strong><div><br/> ")
-                .append("</div>");
-
-        return content.toString();
+        return "<div style='margin:20px;'>" +
+                "<h2> 안녕하세요 컬럼사이트 이메일 인증입니다. </h2>" +
+                "<br>" +
+                "<p>아래 코드를 회원가입 이메일 인증칸에 입력해주세요<p>" +
+                "<br>" +
+                "<p>감사합니다.<p>" +
+                "<br>" +
+                "<div align='center' style='border:1px solid black; font-family:verdana';>" +
+                "<h3 style='color:blue;'>이메일 인증코드</h3>" +
+                "<div style='font-size:130%'>" +
+                "CODE : <strong>" +
+                verificationCode +
+                "</strong><div><br/> " +
+                "</div>";
     }
 
     public static String createVerificationCode() {
@@ -92,5 +89,35 @@ public class EmailServiceImpl implements EmailService {
         return verificationCode;
     }
 
-    // 임시 비밀번호 발급용 이메일 양식 코드 필요.
+    public void sendNewPasswordMessage(String recipient, String newPassword) throws Exception {
+        MimeMessage message = createNewPasswordMessage(recipient, newPassword);
+
+        try {
+            emailSender.send(message);
+        } catch (MailException e) {
+            log.error("Email sending error", e);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private MimeMessage createNewPasswordMessage(String recipient, String newPassword) throws Exception {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+
+        helper.setTo(recipient);
+        helper.setSubject("Your New Temporary Password from 컬럼사이트");
+        helper.setText(generateNewPasswordEmailContent(newPassword), true);
+        helper.setFrom(new InternetAddress("mealchelin@gmail.com", "admin"));
+
+        return message;
+    }
+
+    private String generateNewPasswordEmailContent(String newPassword) {
+
+        return "<h2>컬럼사이트의 임시 비밀번호입니다</h2>" +
+                "<p>아래 임시 비밀번호로 로그인해 주세요: <strong>" +
+                newPassword +
+                "</strong></p>" +
+                "<p>로그인 후 비밀번호를 변경해 주세요.</p>";
+    }
 }

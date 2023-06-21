@@ -120,5 +120,6 @@ public class EmailServiceImpl implements EmailService {
                 "</strong></p>" +
                 "<p>로그인 후 비밀번호를 변경해 주세요.</p>";
     }
-    // 깃 푸시 되다 안되다 하는데, 다시 테스트...
+
+    // 깃 푸시 되다 안되다 하는데, 다시 테스트3. 왜 되다안되다 할까?
 }

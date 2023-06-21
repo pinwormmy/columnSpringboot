@@ -122,4 +122,5 @@ public class EmailServiceImpl implements EmailService {
     }
     
     // 깃 푸시 되다 안되다 하는데, 다시 테스트4. 왜 되다안되다 할까? 문제 파악이 잘 안됨
+    // 터미널로 하면 이상없이 되는데 왜?
 }

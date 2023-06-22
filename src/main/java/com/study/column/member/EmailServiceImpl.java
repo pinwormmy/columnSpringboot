@@ -115,11 +115,11 @@ public class EmailServiceImpl implements EmailService {
     private String generateNewPasswordEmailContent(String newPassword) {
 
         return "<h2>컬럼사이트의 임시 비밀번호입니다</h2>" +
-                "<p>아래 임시 비밀번호로 로그인해 주세요: <strong>" +
+                "<p>아래 임시 비밀번호로 로그인해 주 세요: <strong>" +
                 newPassword +
                 "</strong></p>" +
                 "<p>로그인 후 비밀번호를 변경해 주세요.</p>";
     }
 
-    // 인텔리제이 권한 문제로 보이는데, 왜 잘되다가 갑자기? 여튼 관리자 모드로 실행해서 재시도 중...
+    // 관리자 모드랑은 상관없는 것으로 보임
 }

@@ -133,4 +133,5 @@ public class BoardController {
     public void updateCommentCount(int postNum) throws Exception {
         boardService.updateCommentCount(postNum);
     }
+
 }

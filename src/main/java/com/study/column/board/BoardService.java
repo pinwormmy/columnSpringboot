@@ -2,9 +2,7 @@ package com.study.column.board;
 
 import com.study.column.fullNotice.FullNoticeDTO;
 import com.study.column.util.PageDTO;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 
 import java.util.List;
 

@@ -113,8 +113,11 @@ a {
             <button type="button" class="homeButton" onclick="location.href='/'">처음으로</button>
         </form>
         <div class="subMenu">
-            <div id="right-menu" ><a href="/findCredentials">ID/PW 찾기</a> |
-            <a id="signUp" href="/signUp">회원가입</a></div>
+            <div id="right-menu" >
+            <a href="/findId">아이디 찾기</a> |
+            <a href="/findPassword">비밀번호 찾기</a> |
+            <a id="signUp" href="/signUp">회원가입</a>
+            </div>
         </div>
     </div>
 </div>

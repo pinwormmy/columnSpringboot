@@ -84,7 +84,7 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.submitModifyMemberByAdmin(memberDTO);
     }
 
-    public boolean findCredentials(String email) {
+    public boolean findPassword(String email) {
         MemberDTO member = memberMapper.findByEmail(email);
         if (member == null) {
             return false;

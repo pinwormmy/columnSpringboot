@@ -25,5 +25,5 @@ public interface MemberService {
 
     void submitModifyMemberByAdmin(MemberDTO memberDTO);
 
-    boolean findCredentials(String email);
+    boolean findPassword(String email);
 }

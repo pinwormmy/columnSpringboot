@@ -168,16 +168,16 @@ public class MemberController {
         return "redirect:/adminPage";
     }
 
-    @GetMapping(value = "/findCredentials")
-    public String findCredentials() {
-        log.info("아이디 / 비밀번호 찾기 페이지");
-        return "findCredentials";
+    @GetMapping(value = "/findPassword")
+    public String findPassword() {
+        log.info("비밀번호 찾기 페이지");
+        return "findPassword";
     }
 
-    @PostMapping(value = "/findCredentials")
-    public String findCredentials(String email, Model model) {
+    @PostMapping(value = "/findPassword")
+    public String findPassword(String email, Model model) {
         log.info("사용자 이메일로 아이디 및 임시 비밀번호를 발급하고 이를 이메일로 보냅니다.");
-        boolean result = memberService.findCredentials(email);
+        boolean result = memberService.findPassword(email);
         if (!result) {
             model.addAttribute("message", "등록된 정보가 없습니다.");
             return "login";

@@ -33,7 +33,7 @@ public class MemberServiceTest {
         when(memberMapper.findByEmail(any(String.class))).thenReturn(new MemberDTO());
         doNothing().when(memberMapper).updatePassword(any(MemberDTO.class));
 
-        boolean result = memberService.findCredentials(email);
+        boolean result = memberService.findPassword(email);
 
         assertTrue(result);
         // More assertions as per your requirements...

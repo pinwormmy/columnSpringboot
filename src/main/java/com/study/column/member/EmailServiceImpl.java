@@ -105,7 +105,7 @@ public class EmailServiceImpl implements EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 
         helper.setTo(recipient);
-        helper.setSubject("Your New Temporary Password from 컬럼사이트");
+        helper.setSubject("컬럼사이트에서 보낸 임시 비밀번호");
         helper.setText(generateNewPasswordEmailContent(newPassword), true);
         helper.setFrom(new InternetAddress("mealchelin@gmail.com", "admin"));
 
@@ -114,11 +114,11 @@ public class EmailServiceImpl implements EmailService {
 
     private String generateNewPasswordEmailContent(String newPassword) {
 
-        return "<h2>컬럼사이트의 임시 비밀번호입니다</h2>" +
-                "<p>아래 임시 비밀번호로 로그인해 주 세요: <strong>" +
+        return "<h2>컬럼사이트에서 보내드립니다. 임시 비밀번호입니다</h2>" +
+                "<p>아래의 임시 비밀번호로 로그인 해주세요: <strong>" +
                 newPassword +
                 "</strong></p>" +
-                "<p>로그인 후 비밀번호를 변경해 주세요.</p>";
+                "<p>로그인 후 반드시 비밀번호를 변경해주세요.</p>";
     }
 
     // 커밋이랑 푸시가 되다 안되다 해서 계속 테스트 중...

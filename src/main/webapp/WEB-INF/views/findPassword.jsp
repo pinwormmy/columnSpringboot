@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <style>
-/* 필요한 CSS 코드를 넣으세요. */
 </style>
 </head>
 <body>

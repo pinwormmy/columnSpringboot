@@ -99,7 +99,7 @@ public class MemberServiceImpl implements MemberService {
 
         // 이메일로 아이디 및 임시 비밀번호 보내기
         try {
-            emailService.sendSimpleMessage(email);
+            emailService.sendNewPasswordMessage(email, tempPassword);
         } catch (Exception e) {
             e.printStackTrace();
         }

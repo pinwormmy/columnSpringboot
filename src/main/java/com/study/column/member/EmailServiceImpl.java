@@ -120,7 +120,7 @@ public class EmailServiceImpl implements EmailService {
                 "</strong></p>" +
                 "<p>로그인 후 반드시 비밀번호를 변경해주세요.</p>";
     }
+    
+    // 깃푸시 제대로 안되는 거 아직 못고침...ㅋ
 
-    // 커밋이랑 푸시가 되다 안되다 해서 계속 테스트 중...
-    // 깃허브 권한과 관련 있는 듯한데..?
 }

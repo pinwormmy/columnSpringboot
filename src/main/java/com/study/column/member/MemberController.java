@@ -180,9 +180,7 @@ public class MemberController {
         boolean result = memberService.findPassword(email);
         if (!result) {
             model.addAttribute("message", "등록된 정보가 없습니다.");
-            return "login";
         }
-        model.addAttribute("message", "이메일을 확인해주세요.");
         return "login"; // 작동 안 함. 비번찾기 페이지에 그대로 있음 ㅋ
     }
 

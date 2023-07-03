@@ -25,10 +25,15 @@
 </div>
 
 <script>
-    <c:if test="${not empty message}">
-        alert("${message}");
-    </c:if>
+    const findButton = document.getElementById('findButton');
+    const form = document.querySelector('form');
+
+    findButton.addEventListener('click', function(event) {
+        alert("이메일을 확인해주세요.");
+        form.submit();
+    });
 </script>
+
 
 </body>
 </html>

@@ -176,12 +176,14 @@ public class MemberController {
 
     @PostMapping(value = "/findPassword")
     public String findPassword(String email, Model model) {
-        log.info("사용자 이메일로 아이디 및 임시 비밀번호를 발급하고 이를 이메일로 보냅니다.");
-        boolean result = memberService.findPassword(email);
+        log.info("사용자 이메일로 인증 링크를 보냅니다.");
+        boolean result = memberService.sendPasswordResetLink(email);
         if (!result) {
             model.addAttribute("message", "등록된 정보가 없습니다.");
+        } else {
+            model.addAttribute("message", "이메일을 확인해주세요.");
         }
-        return "login"; // 작동 안 함. 비번찾기 페이지에 그대로 있음 ㅋ
+        return "login";
     }
 
 }

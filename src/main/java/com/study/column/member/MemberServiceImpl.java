@@ -114,5 +114,28 @@ public class MemberServiceImpl implements MemberService {
         return util;
     }
 
-    // 다시 푸시 테스트1
+    @Override
+    public boolean sendPasswordResetLink(String email) {
+        MemberDTO member = memberMapper.findByEmail(email);
+        if (member == null) {
+            return false;
+        }
+
+        // 인증 토큰 생성
+        String token = UUID.randomUUID().toString();
+
+        // DB에 인증 토큰 저장
+        member.setResetToken(token);
+        memberMapper.updateResetToken(member);
+
+        // 이메일로 인증 링크 보내기
+        try {
+            emailService.sendPasswordResetLink(email, token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
 }

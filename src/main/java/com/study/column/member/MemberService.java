@@ -26,4 +26,7 @@ public interface MemberService {
     void submitModifyMemberByAdmin(MemberDTO memberDTO);
 
     boolean findPassword(String email);
+
+    boolean sendPasswordResetLink(String email);
+
 }

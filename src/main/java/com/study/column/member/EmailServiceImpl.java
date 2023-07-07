@@ -100,6 +100,40 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
+    @Override
+    public void sendPasswordResetLink(String email, String token) throws Exception {
+        MimeMessage message = createResetLinkMessage(email, token);
+
+        try {
+            emailSender.send(message);
+        } catch (MailException e) {
+            log.error("Email sending error", e);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private MimeMessage createResetLinkMessage(String recipient, String token) throws Exception {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+
+        helper.setTo(recipient);
+        helper.setSubject("컬럼사이트에서 보낸 비밀번호 재설정 링크");
+        helper.setText(generateResetLinkEmailContent(token), true);
+        helper.setFrom(new InternetAddress("mealchelin@gmail.com", "admin"));
+
+        return message;
+    }
+
+    private String generateResetLinkEmailContent(String token) {
+        String resetUrl = "http://yourwebsite.com/reset-password?token=" + token; // 나중에 설정파일 연동해서 동적 주소로 바꾸기
+
+        return "<h2>컬럼사이트에서 보내드립니다. 비밀번호 재설정 링크입니다</h2>" +
+                "<p>아래의 링크를 클릭하여 비밀번호를 재설정해주세요: </p>" +
+                "<a href=\"" + resetUrl + "\">비밀번호 재설정하기</a>" +
+                "<p>만약 비밀번호 재설정을 요청하지 않으셨다면, 이 이메일을 무시하시면 됩니다.</p>";
+    }
+
+
     private MimeMessage createNewPasswordMessage(String recipient, String newPassword) throws Exception {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
@@ -120,7 +154,5 @@ public class EmailServiceImpl implements EmailService {
                 "</strong></p>" +
                 "<p>로그인 후 반드시 비밀번호를 변경해주세요.</p>";
     }
-    
-    // 깃푸시 제대로 안되는 거 아직 못고침...ㅋ
 
 }

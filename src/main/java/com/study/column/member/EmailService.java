@@ -5,4 +5,5 @@ public interface EmailService {
 
     void sendNewPasswordMessage(String recipient, String newPassword) throws Exception;
 
+    void sendPasswordResetLink(String email, String token) throws Exception;
 }

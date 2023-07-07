@@ -30,4 +30,6 @@ public interface MemberMapper {
     MemberDTO findByEmail(String email);
 
     void updatePassword(MemberDTO member);
+
+    void saveResetToken(MemberDTO member);
 }

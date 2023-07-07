@@ -76,6 +76,16 @@
         WHERE ID=#{id}
     </update>
 
+    <update id="saveResetToken">
+        UPDATE MEMBER
+            SET RESET_TOKEN=#{resetToken}
+            WHERE EMAIL=#{email}
+    </update>
+
+    <select id="findByResetToken" resultType="com.study.column.member.MemberDTO">
+        SELECT * FROM MEMBER
+            WHERE RESET_TOKEN=#{resetToken}
+    </select>
 
 
 </mapper>

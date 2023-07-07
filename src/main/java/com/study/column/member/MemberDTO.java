@@ -14,4 +14,5 @@ public class MemberDTO {
     private String phone;
     private int grade;
     private Date regDate;
+    private String resetToken;
 }

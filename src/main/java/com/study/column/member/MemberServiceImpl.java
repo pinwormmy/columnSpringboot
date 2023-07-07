@@ -126,11 +126,11 @@ public class MemberServiceImpl implements MemberService {
 
         // DB에 인증 토큰 저장
         member.setResetToken(token);
-        memberMapper.updateResetToken(member);
+        memberMapper.saveResetToken(member);
 
         // 이메일로 인증 링크 보내기
         try {
-            emailService.sendPasswordResetLink(email, token); // 디비 수정 완료하고 추가작업 필요
+            emailService.sendPasswordResetLink(email, token);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -130,7 +130,7 @@ public class MemberServiceImpl implements MemberService {
 
         // 이메일로 인증 링크 보내기
         try {
-            emailService.sendPasswordResetLink(email, token);
+            emailService.sendPasswordResetLink(email, token); // 디비 수정 완료하고 추가작업 필요
         } catch (Exception e) {
             e.printStackTrace();
         }

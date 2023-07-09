@@ -188,11 +188,6 @@ public class MemberController {
 
     @RequestMapping(value = "/reset-password", method = RequestMethod.GET)
     public String showResetPasswordForm(@RequestParam("token") String token, Model model) {
-        // 이 메서드는 사용자가 이메일로 받은 링크를 클릭했을 때 호출됩니다.
-        // 서비스 메서드를 호출하여 토큰의 유효성을 검사하고, 해당 사용자를 찾아야 합니다.
-        // 이 부분은 나중에 구현하셔야 합니다.
-
-        // 가정: isValidTokenAndUserFound 메서드는 토큰의 유효성을 검사하고 해당 사용자를 찾습니다.
         boolean isValid = memberService.isValidTokenAndUserFound(token);
         if (isValid) {
             model.addAttribute("token", token);
@@ -205,11 +200,6 @@ public class MemberController {
 
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     public String resetPassword(@RequestParam("token") String token, @RequestParam("password") String password, Model model) {
-        // 이 메서드는 사용자가 새 비밀번호를 입력하고 제출했을 때 호출됩니다.
-        // 서비스 메서드를 호출하여 비밀번호를 재설정하고, 토큰을 무효화해야 합니다.
-        // 이 부분도 나중에 구현하셔야 합니다.
-
-        // 가정: resetPassword 메서드는 비밀번호를 재설정하고, 토큰을 무효화합니다.
         boolean isReset = memberService.resetPassword(token, password);
         if (isReset) {
             return "redirect:/login";

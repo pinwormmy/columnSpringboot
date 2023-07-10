@@ -197,7 +197,7 @@ public class MemberController {
             return "error";
         }
     }
-
+// trest
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     public String resetPassword(@RequestParam("token") String token, @RequestParam("password") String password, Model model) {
         boolean isReset = memberService.resetPassword(token, password);

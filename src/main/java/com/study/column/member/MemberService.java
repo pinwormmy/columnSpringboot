@@ -29,4 +29,7 @@ public interface MemberService {
 
     boolean sendPasswordResetLink(String email);
 
+    boolean isValidTokenAndUserFound(String token);
+
+    boolean resetPassword(String token, String password);
 }

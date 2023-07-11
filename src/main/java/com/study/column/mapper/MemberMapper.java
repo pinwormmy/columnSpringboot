@@ -32,4 +32,8 @@ public interface MemberMapper {
     void updatePassword(MemberDTO member);
 
     void saveResetToken(MemberDTO member);
+
+    MemberDTO findByResetToken(String token);
+
+    void updatePasswordAndResetToken(MemberDTO member);
 }

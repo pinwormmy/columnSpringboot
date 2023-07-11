@@ -138,4 +138,30 @@ public class MemberServiceImpl implements MemberService {
         return true;
     }
 
+    @Override
+    public boolean isValidTokenAndUserFound(String token) {
+        MemberDTO member = memberMapper.findByResetToken(token);
+        return member != null;
+    }
+
+    @Override
+    public boolean resetPassword(String token, String password) {
+        MemberDTO member = memberMapper.findByResetToken(token);
+        if (member == null) {
+            return false;
+        }
+
+        // 실제 비밀번호를 업데이트 하기 전에 해싱을 수행해야 합니다.
+        // 비밀번호 저장은 원시 문자열 대신 해시된 값으로 저장해야 합니다.
+        // 아래 코드는 예제로 작성된 것이며, 실제로는 해싱 함수를 사용해야 합니다.
+        // String hashedPassword = hashFunction(password);
+
+        // 위의 hashedPassword를 아래 코드에 적용해야 합니다.
+        member.setPw(password);
+        member.setResetToken(null); // Reset token을 null로 설정하여 다시 사용할 수 없게 만듭니다.
+        memberMapper.updatePasswordAndResetToken(member);
+
+        return true;
+    }
+
 }

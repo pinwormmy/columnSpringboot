@@ -2,6 +2,7 @@ package com.study.column.member;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,6 +16,9 @@ import java.util.Random;
 @Slf4j
 @Service
 public class EmailServiceImpl implements EmailService {
+
+    @Value("${app.baseUrl}")
+    private String baseUrl;
 
     @Autowired
     private JavaMailSender emailSender;
@@ -125,7 +129,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private String generateResetLinkEmailContent(String token) {
-        String resetUrl = "http://yourwebsite.com/reset-password?token=" + token; // 나중에 설정파일 연동해서 동적 주소로 바꾸기
+        String resetUrl = baseUrl + "/reset-password?token=" + token;
 
         return "<h2>컬럼사이트에서 보내드립니다. 비밀번호 재설정 링크입니다</h2>" +
                 "<p>아래의 링크를 클릭하여 비밀번호를 재설정해주세요: </p>" +

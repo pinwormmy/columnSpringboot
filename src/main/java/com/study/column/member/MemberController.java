@@ -191,10 +191,10 @@ public class MemberController {
         boolean isValid = memberService.isValidTokenAndUserFound(token);
         if (isValid) {
             model.addAttribute("token", token);
-            return "resetPasswordForm.jsp";
+            return "resetPasswordForm";
         } else {
             model.addAttribute("message", "유효하지 않은 토큰입니다. 비밀번호 재설정 요청을 다시 해주세요.");
-            return "error";
+            return "login";
         }
     }
 // trest
@@ -205,7 +205,7 @@ public class MemberController {
             return "redirect:/login";
         } else {
             model.addAttribute("message", "비밀번호 재설정에 실패했습니다. 다시 시도해주세요.");
-            return "error";
+            return "login";
         }
     }
 

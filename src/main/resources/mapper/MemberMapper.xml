@@ -89,8 +89,8 @@
 
     <update id="updatePasswordAndResetToken">
         UPDATE MEMBER
-        SET PW=#{pw}, RESET_TOKEN=#{resetToken}
-        WHERE ID=#{id}
+            SET PW=#{pw}, RESET_TOKEN=#{resetToken}
+            WHERE ID=#{id}
     </update>
 
 

@@ -187,27 +187,31 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/reset-password", method = RequestMethod.GET)
-    public String showResetPasswordForm(@RequestParam("token") String token, Model model) {
+    public String showResetPasswordForm(@RequestParam("token") String token, Model model, HttpSession session) {
+        log.info("사용자 인증 링크로 비밀번호 재설정 페이지 진입");
         boolean isValid = memberService.isValidTokenAndUserFound(token);
         if (isValid) {
             model.addAttribute("token", token);
             return "resetPasswordForm";
         } else {
-            model.addAttribute("message", "유효하지 않은 토큰입니다. 비밀번호 재설정 요청을 다시 해주세요.");
-            return "login";
-        }
-    }
-// trest
-    @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
-    public String resetPassword(@RequestParam("token") String token, @RequestParam("password") String password, Model model) {
-        boolean isReset = memberService.resetPassword(token, password);
-        if (isReset) {
-            return "redirect:/login";
-        } else {
-            model.addAttribute("message", "비밀번호 재설정에 실패했습니다. 다시 시도해주세요.");
+            session.setAttribute("message", "유효하지 않은 토큰입니다. 비밀번호 재설정 요청을 다시 해주세요.");
             return "login";
         }
     }
 
+    @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
+    public String resetPassword(@RequestParam("token") String token, @RequestParam("password") String password, Model model, HttpSession session) {
+        log.info("인증 링크 통해 비밀번호 재설정 시도...");
+        boolean isReset = memberService.resetPassword(token, password);
+        if (isReset) {
+            log.debug("비밀번호 재설정 성공");
+            session.removeAttribute("message"); // 로그인 성공 후 메세지 제거
+            return "redirect:/";
+        } else {
+            log.debug("비밀번호 재설정 실패");
+            session.setAttribute("message", "비밀번호 재설정에 실패했습니다. 다시 시도해주세요.");
+            return "redirect:/login";
+        }
+    }
 
 }
